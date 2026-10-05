@@ -1,0 +1,12 @@
+{
+  "network": "StudioNet",
+  "chainId": 61999,
+  "contract": "",
+  "probe": "",
+  "sourceCommit": "",
+  "challengeId": "challenge-1",
+  "transactions": {},
+  "challenge": null,
+  "payoutVerified": false,
+  "completed": false
+}

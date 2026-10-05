@@ -1,0 +1,9 @@
+.pytest_cache
+**/__pycache__
+deploy/receipts
+deploy/proof.previous.json
+.env*
+.git
+.impeccable/review
+node_modules
+tests

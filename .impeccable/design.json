@@ -1,0 +1,440 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-05T20:19:52.842Z",
+  "title": "Design System: Eligibility Judge",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Warm paper",
+        "tonalRamp": [
+          "oklch(15.00% 0.00538 117.92)",
+          "oklch(26.43% 0.00538 117.92)",
+          "oklch(37.86% 0.00538 117.92)",
+          "oklch(49.29% 0.00538 117.92)",
+          "oklch(60.71% 0.00538 117.92)",
+          "oklch(72.14% 0.00538 117.92)",
+          "oklch(83.57% 0.00538 117.92)",
+          "oklch(95.00% 0.00538 117.92)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 89.88)",
+          "oklch(26.43% 0.00000 89.88)",
+          "oklch(37.86% 0.00000 89.88)",
+          "oklch(49.29% 0.00000 89.88)",
+          "oklch(60.71% 0.00000 89.88)",
+          "oklch(72.14% 0.00000 89.88)",
+          "oklch(83.57% 0.00000 89.88)",
+          "oklch(95.00% 0.00000 89.88)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Forest ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.02745 172.21)",
+          "oklch(26.43% 0.02745 172.21)",
+          "oklch(37.86% 0.02745 172.21)",
+          "oklch(49.29% 0.02745 172.21)",
+          "oklch(60.71% 0.02745 172.21)",
+          "oklch(72.14% 0.02745 172.21)",
+          "oklch(83.57% 0.02745 172.21)",
+          "oklch(95.00% 0.02745 172.21)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.02297 163.93)",
+          "oklch(26.43% 0.02297 163.93)",
+          "oklch(37.86% 0.02297 163.93)",
+          "oklch(49.29% 0.02297 163.93)",
+          "oklch(60.71% 0.02297 163.93)",
+          "oklch(72.14% 0.02297 163.93)",
+          "oklch(83.57% 0.02297 163.93)",
+          "oklch(95.00% 0.02297 163.93)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Fine divider",
+        "tonalRamp": [
+          "oklch(15.00% 0.01368 134.90)",
+          "oklch(26.43% 0.01368 134.90)",
+          "oklch(37.86% 0.01368 134.90)",
+          "oklch(49.29% 0.01368 134.90)",
+          "oklch(60.71% 0.01368 134.90)",
+          "oklch(72.14% 0.01368 134.90)",
+          "oklch(83.57% 0.01368 134.90)",
+          "oklch(95.00% 0.01368 134.90)"
+        ]
+      },
+      "green": {
+        "role": "primary",
+        "displayName": "Forest green",
+        "tonalRamp": [
+          "oklch(15.00% 0.07507 158.83)",
+          "oklch(26.43% 0.07507 158.83)",
+          "oklch(37.86% 0.07507 158.83)",
+          "oklch(49.29% 0.07507 158.83)",
+          "oklch(60.71% 0.07507 158.83)",
+          "oklch(72.14% 0.07507 158.83)",
+          "oklch(83.57% 0.07507 158.83)",
+          "oklch(95.00% 0.07507 158.83)"
+        ]
+      },
+      "green-light": {
+        "role": "primary",
+        "displayName": "Pale leaf",
+        "tonalRamp": [
+          "oklch(15.00% 0.02375 133.46)",
+          "oklch(26.43% 0.02375 133.46)",
+          "oklch(37.86% 0.02375 133.46)",
+          "oklch(49.29% 0.02375 133.46)",
+          "oklch(60.71% 0.02375 133.46)",
+          "oklch(72.14% 0.02375 133.46)",
+          "oklch(83.57% 0.02375 133.46)",
+          "oklch(95.00% 0.02375 133.46)"
+        ]
+      },
+      "red": {
+        "role": "secondary",
+        "displayName": "Brick red",
+        "tonalRamp": [
+          "oklch(15.00% 0.12511 26.58)",
+          "oklch(26.43% 0.12511 26.58)",
+          "oklch(37.86% 0.12511 26.58)",
+          "oklch(49.29% 0.12511 26.58)",
+          "oklch(60.71% 0.12511 26.58)",
+          "oklch(72.14% 0.12511 26.58)",
+          "oklch(83.57% 0.12511 26.58)",
+          "oklch(95.00% 0.12511 26.58)"
+        ]
+      },
+      "red-light": {
+        "role": "secondary",
+        "displayName": "Pale brick",
+        "tonalRamp": [
+          "oklch(15.00% 0.01772 39.40)",
+          "oklch(26.43% 0.01772 39.40)",
+          "oklch(37.86% 0.01772 39.40)",
+          "oklch(49.29% 0.01772 39.40)",
+          "oklch(60.71% 0.01772 39.40)",
+          "oklch(72.14% 0.01772 39.40)",
+          "oklch(83.57% 0.01772 39.40)",
+          "oklch(95.00% 0.01772 39.40)"
+        ]
+      },
+      "amber": {
+        "role": "secondary",
+        "displayName": "Amber ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.08649 73.82)",
+          "oklch(26.43% 0.08649 73.82)",
+          "oklch(37.86% 0.08649 73.82)",
+          "oklch(49.29% 0.08649 73.82)",
+          "oklch(60.71% 0.08649 73.82)",
+          "oklch(72.14% 0.08649 73.82)",
+          "oklch(83.57% 0.08649 73.82)",
+          "oklch(95.00% 0.08649 73.82)"
+        ]
+      },
+      "amber-light": {
+        "role": "secondary",
+        "displayName": "Pale amber",
+        "tonalRamp": [
+          "oklch(15.00% 0.02565 94.74)",
+          "oklch(26.43% 0.02565 94.74)",
+          "oklch(37.86% 0.02565 94.74)",
+          "oklch(49.29% 0.02565 94.74)",
+          "oklch(60.71% 0.02565 94.74)",
+          "oklch(72.14% 0.02565 94.74)",
+          "oklch(83.57% 0.02565 94.74)",
+          "oklch(95.00% 0.02565 94.74)"
+        ]
+      },
+      "neutral": {
+        "role": "neutral",
+        "displayName": "Neutral stamp",
+        "tonalRamp": [
+          "oklch(15.00% 0.00981 125.68)",
+          "oklch(26.43% 0.00981 125.68)",
+          "oklch(37.86% 0.00981 125.68)",
+          "oklch(49.29% 0.00981 125.68)",
+          "oklch(60.71% 0.00981 125.68)",
+          "oklch(72.14% 0.00981 125.68)",
+          "oklch(83.57% 0.00981 125.68)",
+          "oklch(95.00% 0.00981 125.68)"
+        ]
+      },
+      "green-hover": {
+        "role": "primary",
+        "displayName": "Forest hover",
+        "tonalRamp": [
+          "oklch(15.00% 0.06303 159.62)",
+          "oklch(26.43% 0.06303 159.62)",
+          "oklch(37.86% 0.06303 159.62)",
+          "oklch(49.29% 0.06303 159.62)",
+          "oklch(60.71% 0.06303 159.62)",
+          "oklch(72.14% 0.06303 159.62)",
+          "oklch(83.57% 0.06303 159.62)",
+          "oklch(95.00% 0.06303 159.62)"
+        ]
+      },
+      "ledger-header": {
+        "role": "neutral",
+        "displayName": "Ledger header",
+        "tonalRamp": [
+          "oklch(15.00% 0.00979 125.68)",
+          "oklch(26.43% 0.00979 125.68)",
+          "oklch(37.86% 0.00979 125.68)",
+          "oklch(49.29% 0.00979 125.68)",
+          "oklch(60.71% 0.00979 125.68)",
+          "oklch(72.14% 0.00979 125.68)",
+          "oklch(83.57% 0.00979 125.68)",
+          "oklch(95.00% 0.00979 125.68)"
+        ]
+      },
+      "source-strip": {
+        "role": "neutral",
+        "displayName": "Source strip",
+        "tonalRamp": [
+          "oklch(15.00% 0.01424 128.63)",
+          "oklch(26.43% 0.01424 128.63)",
+          "oklch(37.86% 0.01424 128.63)",
+          "oklch(49.29% 0.01424 128.63)",
+          "oklch(60.71% 0.01424 128.63)",
+          "oklch(72.14% 0.01424 128.63)",
+          "oklch(83.57% 0.01424 128.63)",
+          "oklch(95.00% 0.01424 128.63)"
+        ]
+      },
+      "expanded-row": {
+        "role": "neutral",
+        "displayName": "Expanded row",
+        "tonalRamp": [
+          "oklch(15.00% 0.00536 117.92)",
+          "oklch(26.43% 0.00536 117.92)",
+          "oklch(37.86% 0.00536 117.92)",
+          "oklch(49.29% 0.00536 117.92)",
+          "oklch(60.71% 0.00536 117.92)",
+          "oklch(72.14% 0.00536 117.92)",
+          "oklch(83.57% 0.00536 117.92)",
+          "oklch(95.00% 0.00536 117.92)"
+        ]
+      },
+      "evidence-surface": {
+        "role": "neutral",
+        "displayName": "Evidence surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.00408 121.56)",
+          "oklch(26.43% 0.00408 121.56)",
+          "oklch(37.86% 0.00408 121.56)",
+          "oklch(49.29% 0.00408 121.56)",
+          "oklch(60.71% 0.00408 121.56)",
+          "oklch(72.14% 0.00408 121.56)",
+          "oklch(83.57% 0.00408 121.56)",
+          "oklch(95.00% 0.00408 121.56)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Main introductory title."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Challenge title."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Global prose and inherited control text."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Form labels and action text."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Browser monospace for actual code, hashes and paths."
+      }
+    },
+    "shadows": [
+      {
+        "name": "source-selected",
+        "value": "0 1px 3px #23362312",
+        "purpose": "Selected proof-source segment only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "rule-chip-hover",
+        "value": "transform .18s ease,background .18s ease",
+        "purpose": "Lift a rule chip 2px on hover."
+      },
+      {
+        "name": "evidence-reveal",
+        "value": "evidence .23s cubic-bezier(.16,1,.3,1)",
+        "purpose": "Reveal inline evidence using clip-path from inset(0 0 100% 0) to inset(0)."
+      },
+      {
+        "name": "pending-spin",
+        "value": "spin 1.2s linear infinite",
+        "purpose": "Rotate pending indicators to 360deg."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}",
+        "purpose": "Disable all animation and transition when reduced motion is requested."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "1000px"
+      },
+      {
+        "name": "mobile",
+        "value": "680px"
+      },
+      {
+        "name": "wide-shell",
+        "value": "1600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main writing and settlement actions.",
+      "html": "<button class=\"ds-button ds-primary ds-focus\">Sign and submit entry</button>",
+      "css": ".ds-button{font-family:\"DM Sans\",sans-serif;line-height:1.5;border:0;cursor:pointer}.ds-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:6px;padding:11px 15px;font-size:12px;font-weight:600;min-height:40px}.ds-button:disabled{cursor:not-allowed;opacity:.46}.ds-focus:focus-visible{outline:2px solid var(--green,#285f43);outline-offset:4px}.ds-primary{background:var(--green,#285f43);color:white}.ds-primary:hover:not(:disabled){background:#1c4933}"
+    },
+    {
+      "name": "Secondary button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Supporting actions, previews and claims.",
+      "html": "<button class=\"ds-button ds-secondary ds-focus\">Preview evidence</button>",
+      "css": ".ds-button{font-family:\"DM Sans\",sans-serif;line-height:1.5;border:0;cursor:pointer}.ds-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:6px;padding:11px 15px;font-size:12px;font-weight:600;min-height:40px}.ds-button:disabled{cursor:not-allowed;opacity:.46}.ds-focus:focus-visible{outline:2px solid var(--green,#285f43);outline-offset:4px}.ds-secondary{background:white;border:1px solid var(--line,#dce2d9);color:var(--ink,#182b25)}.ds-secondary:hover:not(:disabled){background:var(--green-light,#e5efdf)}"
+    },
+    {
+      "name": "Text button",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "Lightweight utility actions.",
+      "html": "<button class=\"ds-text-button ds-focus\">Add rule</button>",
+      "css": ".ds-text-button{font-family:\"DM Sans\",sans-serif;line-height:1.5;border:0;cursor:pointer}.ds-text-button{padding:0;background:none;color:var(--green,#285f43);font-weight:600;display:inline-flex;gap:7px;align-items:center;font-size:12px}.ds-text-button:hover{color:var(--ink,#182b25);text-decoration:underline;text-underline-offset:4px}.ds-focus:focus-visible{outline:2px solid var(--green,#285f43);outline-offset:4px}"
+    },
+    {
+      "name": "Text field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Stacked labeled white fields used by entry and creation forms.",
+      "html": "<div class=\"ds-form-section\"><label>Public GitHub repository<input class=\"ds-focus\" type=\"url\" placeholder=\"https://github.com/you/your-project\"/></label></div>",
+      "css": ".ds-form-section{font-family:\"DM Sans\",sans-serif;line-height:1.5;color:var(--ink,#182b25)}.ds-form-section label{display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;margin:20px 0}.ds-form-section input,.ds-form-section textarea{background:white;border:1px solid var(--line,#dce2d9);padding:12px 13px;border-radius:6px;color:var(--ink,#182b25);width:100%;font-size:12px}.ds-form-section input::placeholder,.ds-form-section textarea::placeholder{color:#6f7a6e}.ds-form-section input{font-family:inherit;caret-color:var(--green,#285f43);box-sizing:border-box}.ds-focus:focus-visible{outline:2px solid var(--green,#285f43);outline-offset:4px}"
+    },
+    {
+      "name": "Content tabs",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Section navigation with counts and a selected underline.",
+      "html": "<nav class=\"ds-tabs\" aria-label=\"Challenge sections\"><button class=\"ds-selected ds-focus\">Entries <span>3</span></button><button class=\"ds-focus\">Rulebook <span>4</span></button><button class=\"ds-focus\">Payouts</button></nav>",
+      "css": ".ds-tabs{font-family:\"DM Sans\",sans-serif;line-height:1.5}.ds-tabs button{font-family:inherit;border:0;cursor:pointer}.ds-tabs{display:flex;gap:26px;margin:22px 0 30px;border-bottom:1px solid var(--line,#dce2d9)}.ds-tabs button{display:flex;align-items:center;gap:8px;background:none;padding:15px 0;color:var(--muted,#5d6d65);border-bottom:2px solid transparent;font-weight:500;font-size:12px;white-space:nowrap}.ds-tabs button:hover{color:var(--green,#285f43)}.ds-tabs button.ds-selected{color:var(--ink,#182b25);border-bottom-color:var(--green,#285f43)}.ds-tabs button>span{font-size:10px;padding:1px 6px;background:var(--neutral,#edf0e9);border-radius:4px}.ds-tabs button.ds-selected>span{background:var(--green-light,#e5efdf);color:var(--green,#285f43)}@media(max-width:680px){.ds-tabs{gap:21px;overflow-x:auto;margin:16px 0 25px;scrollbar-width:thin}.ds-tabs button{font-size:11px;padding:12px 0}}.ds-focus:focus-visible{outline:2px solid var(--green,#285f43);outline-offset:4px}"
+    },
+    {
+      "name": "Status stamp",
+      "kind": "chip",
+      "refersTo": "status-good",
+      "description": "Semantic outcomes carry a readable label alongside their color.",
+      "html": "<span class=\"ds-status ds-good\">Pass</span> <span class=\"ds-status ds-bad\">Fail</span> <span class=\"ds-status ds-unknown\">Insufficient</span> <span class=\"ds-status ds-neutral\">Pending</span>",
+      "css": ".ds-status{font-family:\"DM Sans\",sans-serif;line-height:1.5}.ds-status{display:inline-flex;align-items:center;gap:6px;border-radius:5px;font-size:11px;font-weight:600;padding:5px 9px;white-space:nowrap}.ds-good{background:var(--green-light,#e5efdf);color:var(--green,#285f43)}.ds-bad{background:var(--red-light,#f9eae5);color:var(--red,#973b35)}.ds-unknown{background:var(--amber-light,#f4efdc);color:var(--amber,#775219)}.ds-neutral{background:var(--neutral,#edf0e9);color:var(--muted,#5d6d65)}"
+    },
+    {
+      "name": "Rule chip",
+      "kind": "chip",
+      "refersTo": "rule-chip",
+      "description": "A rule cell reveals inline evidence; expanded cells have an ink outline.",
+      "html": "<button class=\"ds-rule-chip ds-good ds-focus\" aria-label=\"R1: pass\" aria-expanded=\"true\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></button>",
+      "css": ".ds-rule-chip{font-family:\"DM Sans\",sans-serif;border:0;cursor:pointer}.ds-rule-chip{width:30px;height:30px;border-radius:6px;display:grid;place-items:center;transition:transform .18s ease,background .18s ease}.ds-good{background:var(--green-light,#e5efdf);color:var(--green,#285f43)}.ds-rule-chip:hover{transform:translateY(-2px);outline:1px solid currentColor}\r\n\r\n.ds-rule-chip[aria-expanded=\"true\"]{outline:2px solid var(--ink,#182b25);outline-offset:3px}@media(max-width:680px){.ds-rule-chip{width:24px;height:27px;border-radius:4px;flex-shrink:0}.ds-rule-chip svg{width:14px}}@media(prefers-reduced-motion:reduce){.ds-rule-chip{transition:none}}.ds-focus:focus-visible{outline:2px solid var(--green,#285f43);outline-offset:4px}"
+    },
+    {
+      "name": "Ledger container",
+      "kind": "card",
+      "refersTo": "ledger",
+      "description": "A flat bordered surface, ordered columns and divider-separated entries.",
+      "html": "<div class=\"ds-matrix\" style=\"--rule-count:4\"><div class=\"ds-matrix-head\"><span>Repository / pinned commit</span><span>R1–R4</span><span>Verdict</span><span></span></div><div class=\"ds-entry-row\"><span>you/project</span><span>Rule cells</span><span class=\"ds-entry-verdict ds-neutral\">Pending</span><span>›</span></div></div>",
+      "css": ".ds-matrix{font-family:\"DM Sans\",sans-serif;font-size:14px;line-height:1.5;color:var(--ink,#182b25)}.ds-matrix{border:1px solid var(--line,#dce2d9);border-radius:10px;overflow:hidden;background:white}.ds-matrix-head,.ds-entry-row{display:grid;grid-template-columns:minmax(250px,1fr) minmax(150px,240px) 160px 20px;gap:22px;align-items:center;padding:0 24px}.ds-matrix-head{height:44px;background:#f0f3ec;font-size:10px;color:var(--muted,#5d6d65)}.ds-entry-row{min-height:92px}.ds-entry-verdict{justify-self:start;border-radius:4px;padding:5px 8px;font-size:10px;font-weight:600}.ds-neutral{background:var(--neutral,#edf0e9);color:var(--muted,#5d6d65)}@media(max-width:1000px){.ds-matrix-head,.ds-entry-row{grid-template-columns:minmax(200px,1fr) 180px 125px 18px;gap:15px;padding:0 16px}}@media(max-width:680px){.ds-matrix-head,.ds-entry-row{grid-template-columns:minmax(110px,1fr) calc(var(--rule-count,4)*27px) 15px;gap:8px;padding:0 12px}.ds-matrix-head{font-size:9px;height:38px}.ds-matrix-head>span:nth-last-child(2){display:none}.ds-entry-row{min-height:101px;position:relative;padding-top:14px;padding-bottom:35px}.ds-entry-verdict{position:absolute;bottom:12px;left:12px;font-size:11px;padding:2px 6px}}"
+    },
+    {
+      "name": "Inline evidence",
+      "kind": "custom",
+      "refersTo": "evidence",
+      "description": "Explanation, quoted evidence and pinned file link inside an expanded row.",
+      "html": "<section class=\"ds-evidence-panel\"><div class=\"ds-evidence-rule\"><span class=\"ds-rule-id\">R1</span><div><h5>README includes deployment instructions</h5><p>Example citation layout; content comes from the finalized verdict.</p><blockquote>Quoted source passage appears here.</blockquote><a class=\"ds-file-link ds-focus\" href=\"#example-file\">README.md</a></div></div></section>",
+      "css": ".ds-evidence-panel{font-family:\"DM Sans\",sans-serif;line-height:1.5;color:var(--ink,#182b25)}.ds-evidence-panel h5,.ds-evidence-panel p{margin:0}.ds-evidence-panel a{text-decoration:none}.ds-evidence-panel{padding:22px 30px 22px 70px;border-top:1px solid var(--line,#dce2d9);background:#fbfcf9;animation:ds-evidence .23s cubic-bezier(.16,1,.3,1)}.ds-evidence-panel{padding:18px 12px}.ds-evidence-rule{display:grid;grid-template-columns:32px 1fr;gap:12px;padding:15px 0}.ds-rule-id{font-size:11px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--green,#285f43);background:var(--green-light,#e5efdf);border-radius:4px;display:grid;place-items:center;width:29px;height:25px}.ds-evidence-rule h5{font-size:12px;font-weight:600}.ds-evidence-rule p{font-size:12px;color:var(--muted,#5d6d65);margin-top:7px;max-width:75ch}.ds-evidence-panel blockquote{margin:12px 0;background:#f0f3ec;border-radius:6px;padding:13px 16px;font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere;max-width:75ch}.ds-file-link{display:inline-flex;align-items:center;gap:6px;color:var(--green,#285f43);font-size:11px}.ds-file-link:hover{text-decoration:underline;text-underline-offset:4px}@keyframes ds-evidence{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0)}}.ds-evidence-panel{animation:ds-evidence .23s cubic-bezier(.16,1,.3,1)}@media(max-width:680px){.ds-evidence-panel{padding:18px 12px}.ds-evidence-rule{gap:8px;grid-template-columns:27px 1fr}.ds-evidence-rule h5{font-size:13px}.ds-evidence-rule p,.ds-evidence-panel blockquote{font-size:14px;line-height:1.6}.ds-file-link{font-size:12px}}@media(prefers-reduced-motion:reduce){.ds-evidence-panel{animation:none}}.ds-focus:focus-visible{outline:2px solid var(--green,#285f43);outline-offset:4px}"
+    },
+    {
+      "name": "Payout arithmetic",
+      "kind": "custom",
+      "refersTo": "payout-equation",
+      "description": "A tonal equation shows the pool, qualifier count and equal share.",
+      "html": "<div class=\"ds-pool-equation\"><div><span>Prize pool</span><strong>3 <small>GEN</small></strong></div><span class=\"ds-math-symbol\">÷</span><div><span>Qualifiers</span><strong>3</strong></div><span class=\"ds-math-symbol\">=</span><div><span>Each share</span><strong>1 <small>GEN</small></strong></div></div>",
+      "css": ".ds-pool-equation{font-family:\"DM Sans\",sans-serif;line-height:1.5;color:var(--ink,#182b25)}.ds-pool-equation{display:flex;align-items:center;justify-content:space-between;background:var(--green-light,#e5efdf);border-radius:10px;padding:30px;margin:26px 0}.ds-pool-equation>div{display:flex;flex-direction:column;gap:9px}.ds-pool-equation>div>span{color:var(--green,#285f43);font-size:12px}.ds-pool-equation strong{font-family:'Space Grotesk';font-size:32px;font-weight:500;font-variant-numeric:tabular-nums}.ds-pool-equation small{font:500 13px 'DM Sans';color:var(--green,#285f43)}.ds-math-symbol{color:#6f866e;font-size:22px}@media(max-width:680px){.ds-pool-equation{padding:22px 16px;gap:8px}.ds-pool-equation strong{font-size:24px}.ds-pool-equation small,.ds-pool-equation>div>span{font-size:10px}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Rulebook ledger",
+    "overview": "The implemented world is a community workshop acceptance ledger: quiet paper, forest ink, ordered rule cells and compact outcome stamps. Space Grotesk gives headings a precise, open character; DM Sans keeps the controls and evidence readable. The visual emphasis belongs to repository identity, rule status and the quoted passage.\n\nThe same restrained shell holds the rulebook, entry forms, transaction trail and payout arithmetic. Evidence opens within its entry rather than moving the reader to another surface. The system uses flat surfaces, fine dividers and restrained tonal changes; icons are inline vector strokes. It ships no raster imagery.\n\nThis is a scan of `app/globals.css`, `app/judge-app.tsx` and `app/layout.tsx`, with the established direction in `docs/DIRECTION.md`. CSS and markup take precedence over intended prose. It records visual implementation, not a claim that chain completion or browser signing has been verified.",
+    "keyCharacteristics": [
+      "Paper surfaces and forest-green actions.",
+      "Ordered rule cells with text and symbol support for every status.",
+      "Inline, commit-specific evidence with readable quotations.",
+      "Flat borders and tonal layering, with one small selection shadow.",
+      "A compact desktop ledger that rearranges on mobile."
+    ],
+    "rules": [
+      {
+        "name": "Status Meaning",
+        "body": "Keep pass, fail, insufficient and pending colors paired with the implemented symbols or text labels. Color alone does not convey the outcome.",
+        "section": "colors"
+      },
+      {
+        "name": "Ledger Alignment",
+        "body": "Preserve ordered rule columns and the repository identity on each row. On small screens, move the outcome beneath the identity and size the rule region from the actual rule count.",
+        "section": "layout"
+      },
+      {
+        "name": "Flat Surface",
+        "body": "Use the existing surface tones and dividers for structural depth. Keep the small selection shadow specific to the proof-source toggle.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use the extracted paper, forest ink and semantic status pairs.",
+      "Do preserve ordered rule identifiers across the ledger, evidence and editor.",
+      "Do pair status colors with readable names or the existing symbols.",
+      "Do keep evidence inline, wrap long paths and respect the mobile evidence type overrides.",
+      "Do carry the shared focus-visible outline and reduced-motion behavior into new controls."
+    ],
+    "donts": [
+      "Don't replace the ledger with ranked cards or decorative score charts.",
+      "Don't add floating shadows to the flat container system.",
+      "Don't shrink rule chips to fit a fixed four-rule mobile column.",
+      "Don't present pending, insufficient or unverified states as successful outcomes.",
+      "Don't promote these extracted styles into claims of completed chain proof or verified wallet signing."
+    ]
+  }
+}

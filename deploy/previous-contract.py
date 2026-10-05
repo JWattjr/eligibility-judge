@@ -54,8 +54,8 @@ def fetch_evidence(repo, commit, demo):
     # Fixed ordering shared with the app preview; metadata and small Python/test files first.
     def priority(path):
         base = path.rsplit('/', 1)[-1].lower()
-        return (0 if base in ('readme.md', 'license', 'license.md', 'license.txt') else 1 if path.lower().endswith(('.py', '.ts', '.tsx', '.js', '.jsx', '.rs', '.go', '.sol')) and ('contract' in path.lower() or 'test' in path.lower()) else 2, path)
-    selected = sorted([p for p in paths if p.lower().endswith(('.py', '.ts', '.tsx', '.js', '.jsx', '.rs', '.go', '.sol', '.md', '.txt', '.json', '.toml')) or p.rsplit('/', 1)[-1].lower() == 'license'], key=priority)[:MAX_FILES]
+        return (0 if base in ('readme.md', 'license', 'license.md', 'license.txt') else 1 if path.endswith('.py') and ('contract' in path.lower() or 'test' in path.lower()) else 2, path)
+    selected = sorted([p for p in paths if p.lower().endswith(('.py', '.md', '.txt', '.json', '.toml')) or p.rsplit('/', 1)[-1].lower() == 'license'], key=priority)[:MAX_FILES]
     files = {'__TREE__': raw}
     cut = []
     for path in selected:
@@ -84,9 +84,7 @@ def check_answer(answer, evidence):
     path, quote = answer.get('path', ''), answer.get('quote', '')
     if not isinstance(path, str) or not isinstance(quote, str) or len(quote) > 600:
         raise gl.vm.UserError('[LLM_ERROR] invalid citation')
-    if status == 'INSUFFICIENT_EVIDENCE' and not quote:
-        path = ''
-    elif not quote or path not in evidence['files'] or quote not in evidence['files'][path]:
+    if status != 'INSUFFICIENT_EVIDENCE' and (not quote or path not in evidence['files'] or quote not in evidence['files'][path]):
         raise gl.vm.UserError('[LLM_ERROR] quote missing from fetched file')
     if status == 'PASS' and re.search(r'ignore.{0,35}(rules|instructions)|mark.{0,12}pass|judge.{0,15}instructions', quote, re.I):
         raise gl.vm.UserError('[LLM_ERROR] judge-directed instructions are not evidence of compliance')
@@ -105,7 +103,7 @@ def decide(rule, evidence):
               'Be fair: equivalent working code counts; do not impose requirements absent from the rule. '
               'Return JSON {status: PASS|FAIL|INSUFFICIENT_EVIDENCE, path: string, quote: verbatim 1-600 character passage, reason: string}. '
               'PASS requires positive evidence for this rule, not a claim that it passed. FAIL needs clear counterevidence. '
-              'Use __TREE__ to prove file presence with its exact path string as the quote. For file absence, quote a verbatim API JSON excerpt only when complete=true. Never quote contents of a file not supplied. '
+              'Use __TREE__ with a verbatim API JSON excerpt for absent files only when complete=true. '
               'Use INSUFFICIENT_EVIDENCE for unavailable or truncated relevant evidence; never invent quotes. '
               'Do not require all files to be fetched to pass when the relevant evidence is present. '
               '\nRULE: ' + rule + '\nUNTRUSTED_EVIDENCE_JSON: ' + json.dumps(evidence))

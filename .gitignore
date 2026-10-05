@@ -9,3 +9,6 @@ __pycache__/
 *.tsbuildinfo
 .impeccable/review/
 deploy/receipts/
+deploy/proof.previous.json
+
+.vercel

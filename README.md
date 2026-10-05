@@ -43,6 +43,13 @@ python -m pytest tests/direct -q
 
 On Windows, use the staged, resumable deployment script with your already unlocked GenLayer CLI account:
 
+The committed manifest resumes the existing public demonstration. For a fresh contract, first preserve that manifest and copy the empty template. This starts a separate instance; its `seed` step deposits another 3 StudioNet GEN from your selected CLI account.
+
+```powershell
+Copy-Item -LiteralPath deploy/proof.json -Destination deploy/proof.previous.json
+Copy-Item -LiteralPath deploy/proof.template.json -Destination deploy/proof.json
+```
+
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/deploy.ps1 probe
 powershell -ExecutionPolicy Bypass -File scripts/deploy.ps1 deploy
@@ -53,7 +60,7 @@ powershell -ExecutionPolicy Bypass -File scripts/deploy.ps1 settle
 npm run verify:proof
 ```
 
-Each stage records hashes before waiting. Resume the same stage after a timeout; it reuses saved transactions. The `probe` stage requires the saved access-probe address. The demo entrants' test-wallet keys are generated into a gitignored `.env.demo-wallets.json` solely for StudioNet. `seed` funds 3 GEN, starts a one-hour window, and validates four rules. Publish this repository before entering its pinned source commit. Deployment scripts save receipts locally; `deploy/proof.json` is the public, compact manifest. Vercel deploys with a remote build: `vercel --prod --scope wattxs-projects`.
+Each stage records hashes before waiting. Resume the same stage after a timeout; it reuses saved transactions. The `probe` stage deploys its access-probe contract when the fresh manifest has no saved deployment. The demo entrants' test-wallet keys are generated into a gitignored `.env.demo-wallets.json` solely for StudioNet. `seed` funds 3 GEN, starts a ten-minute window, and validates four rules. Publish this repository before entering its pinned source commit. Deployment scripts save receipts locally; `deploy/proof.json` is the public, compact manifest. Vercel deploys with a remote build: `vercel --prod --scope wattxs-projects`.
 
 ## Verification
 
@@ -71,11 +78,11 @@ Direct tests mock web and LLM responses and do not claim validator consensus. Th
 ## Proof and submission
 
 - [Public proof manifest](deploy/proof.json): addresses, pinned source commit, access probes, transaction hashes, outcomes, transfers, and completion flags.
-- [Contract on StudioNet](https://explorer-studio.genlayer.com/address/0x066f50FCb15Def2279A79Db23A6bC7a0130662d1).
+- [Contract on StudioNet](https://explorer-studio.genlayer.com/address/0xEB81a565E88489c9994a3495799C828D6dd697c2).
 - [Tutorial](docs/TUTORIAL.md), [two-minute demo](docs/DEMO.md), and [portal fields](docs/submission/portal-fields.json).
 - [Official finality documentation](https://docs.genlayer.com/understand-genlayer-protocol/core-concepts/optimistic-democracy/finality).
 
-Deployment and live demo verification are in progress. This statement is updated only once the retained manifest demonstrates every required live outcome and a credited payout. Nothing is submitted to the Portal automatically.
+Deployment and live demo verification are in progress. The first contract retained 3 StudioNet GEN after an invalid-window execution rolled back; its address and failed transaction remain in `previousAttempt`. The corrected contract makes invalid create inputs refundable instead of throwing after the deposit. The owner approved another 3 GEN for this corrected demonstration. This statement is updated only once the retained manifest demonstrates every required live outcome and a credited payout. Nothing is submitted to the Portal automatically.
 
 ## Limitations
 

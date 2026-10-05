@@ -19,3 +19,11 @@ A chip opens a rule's evidence directly in its repository row. The reveal is a s
 
 ## Cross-surface reach and risk
 Editors use the same R1–R6 notation. Payouts use a simple arithmetic ledger. Very long paths and six-rule matrices must remain legible on 390px mobile. Finality, source provenance and unverified states must stay explicit. The design is deliberately quiet; it depends on genuine entries and citations for specificity.
+
+## Direction contract
+THESIS: A public inspection ledger makes qualification auditable through exact evidence.
+OWN-WORLD: Warm paper, forest ink, Space Grotesk headings, DM Sans prose, flat rule cells and status stamps.
+STORY: Inspect the pinned repository, reveal each citation, then verify equal shares and native transfers.
+FIRST VIEWPORT: Compact masthead; left two-line title; right purpose and publish action; challenge strip, proof switch, tabs and matrix below. Rule chips reveal evidence inside their row with reduced-motion support.
+FORM: Community workshop acceptance ledger, seventh family, seed 3c09b863; code build chosen by the user.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

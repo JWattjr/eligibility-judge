@@ -202,3 +202,20 @@ def test_execution_delay_does_not_reject_open_window(contract, direct_vm):
     direct_vm.value = 5
     contract.create('Delayed execution', 'A window may already be open when execution occurs', json.dumps(RULES), T, T + 100, 3)
     assert json.loads(contract.get_challenge('challenge-2'))['status'] == 'VALIDATING_RULES'
+
+def test_typescript_test_file_can_supply_real_positive_evidence(contract, direct_vm, direct_alice):
+    accept(contract, direct_vm)
+    wallet = enter(contract, direct_vm, direct_alice)
+    direct_vm.mock_web(r'.*api\.github\.com.*', {'status': 200, 'body': json.dumps({'truncated': False, 'tree': [{'type': 'blob', 'path': 'tests/unit.test.ts'}]})})
+    direct_vm.mock_web(r'.*raw\.githubusercontent\.com.*', {'status': 200, 'body': "test('unit', () => assert.equal(1, 1));"})
+    direct_vm.mock_llm(r'.*ELIGIBILITY_RULE_JUDGMENT.*', json.dumps({'status': 'PASS', 'path': 'tests/unit.test.ts', 'quote': "test('unit', () => assert.equal(1, 1));", 'reason': 'Actual test file is present.'}))
+    contract.judge_rule('challenge-1', wallet, 3)
+    assert state(contract)['entries'][wallet]['pending'][3]
+
+def test_insufficient_verdict_cannot_carry_a_fabricated_quote(contract, direct_vm, direct_alice):
+    accept(contract, direct_vm)
+    wallet = enter(contract, direct_vm, direct_alice)
+    mock_evidence(direct_vm)
+    direct_vm.mock_llm(r'.*ELIGIBILITY_RULE_JUDGMENT.*', json.dumps({'status': 'INSUFFICIENT_EVIDENCE', 'path': 'README.md', 'quote': 'invented citation', 'reason': 'Unclear evidence.'}))
+    with direct_vm.expect_revert('quote missing from fetched file'):
+        contract.judge_rule('challenge-1', wallet, 3)

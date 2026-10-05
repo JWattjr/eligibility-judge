@@ -8,22 +8,25 @@ import time
 from pathlib import Path
 from genlayer_py import create_client, studionet
 from genlayer_py.types import TransactionHashVariant
+from eth_account import Account
 
 assert importlib.metadata.version('genlayer-py') == '0.18.0', 'Install pinned requirements.txt'
 root = Path(__file__).resolve().parent.parent
 proof = json.loads((root / 'deploy/proof.json').read_text(encoding='utf8'))
-client = create_client(chain=studionet)
+# SDK 0.18 requires a caller even for gen_call. This disposable account is never
+# funded, saved, or used to sign; the verifier only invokes read RPC methods.
+client = create_client(chain=studionet, account=Account.create())
 
 def receipt(hash_value):
     # SDK release adapter maps status fields differently across Studio versions.
-    raw = client.provider.make_request('gen_getTransactionReceipt', [hash_value])
+    raw = client.provider.make_request('eth_getTransactionByHash', [hash_value])
     if raw.get('error'):
         raise AssertionError(raw['error'])
     return raw['result']
 
 def finalized_success(record, transfer=False):
     status = record.get('status_name', record.get('statusName', record.get('status')))
-    assert status in ('FINALIZED', 7), 'Transaction is not finalized: ' + str(status)
+    assert status in ('FINALIZED', 7, '7'), 'Transaction is not finalized: ' + str(status)
     if transfer:
         assert record.get('value_credited') is True, 'Transfer is not credited'
         return
@@ -31,11 +34,22 @@ def finalized_success(record, transfer=False):
     leader = (consensus.get('leader_receipt') or [{}])[0]
     execution = record.get('txExecutionResultName', leader.get('execution_result'))
     assert execution in ('SUCCESS', 'FINISHED_WITH_RETURN'), 'Execution failed: ' + str(execution)
-    assert (leader.get('result') or {}).get('status') != 'rollback', 'Execution rolled back'
+    result = leader.get('result')
+    if isinstance(result, dict):
+        assert result.get('status') != 'rollback', 'Execution rolled back'
+    elif isinstance(result, str):
+        assert base64.b64decode(result)[:1] == b'\x00', 'Execution did not return successfully'
 
 def main():
     assert proof.get('completed') and proof.get('payoutVerified'), 'Live release proof is incomplete'
     receipts = {}
+    for name, attempt in proof.get('failedTransactions', {}).items():
+        failed = receipt(attempt['hash'])
+        assert failed.get('status') == 'FINALIZED', 'Failed attempt is not final: ' + name
+        leader = failed['consensus_data']['leader_receipt'][0]
+        assert leader.get('execution_result') == 'ERROR' or base64.b64decode(leader.get('result', ''))[:1] == b'\x01', 'Recorded failure was successful: ' + name
+        print(name, attempt['hash'], 'FINALIZED', 'RETAINED FAILURE')
+        time.sleep(2.6)
     for name, hash_value in proof['transactions'].items():
         record = receipt(hash_value)
         transfer = name.startswith(('claim-qualified-child', 'claim-refund-child'))
@@ -46,6 +60,11 @@ def main():
     record = json.loads(client.read_contract(proof['contract'], 'get_challenge', [proof['challengeId']], transaction_hash_variant=TransactionHashVariant.LATEST_FINAL))
     assert record == proof['challenge'], 'Recorded proof differs from finalized contract state'
     assert record['status'] == 'SETTLED'
+    for name, parent in receipts.items():
+        if '-child-' in name:
+            parent_name = name.rsplit('-child-', 1)[0]
+            assert parent['hash'] in receipts[parent_name].get('triggered_transactions', []), 'Unrelated callback: ' + name
+            assert parent.get('triggered_by') == receipts[parent_name]['hash'], 'Callback origin mismatch: ' + name
     expected_hash = hashlib.sha256(json.dumps(record['rules'], sort_keys=True, separators=(',', ':')).encode()).hexdigest()
     assert record['rulebook_hash'] == expected_hash
     for name, case in proof['cases'].items():

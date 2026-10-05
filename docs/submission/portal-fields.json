@@ -1,1 +1,39 @@
-{"contributionType":"Projects","projectName":"Eligibility Judge","primaryTag":"Developer Tools","tag1":"Hackathons","tag2":"Evidence Verification","oneLiner":"Open hackathon judging: every entry gets a rule-by-rule verdict anyone can verify.","description":"Eligibility Judge qualifies public GitHub entries against a frozen, validator-accepted rulebook. GenLayer validators judge one rule per transaction, independently fetch evidence at the submitted commit, and verify the leader's exact quote and file path. Entries passing every rule qualify; there are no scores or rankings. After close and finalized judgments, contract code divides a funded StudioNet GEN pool equally, refunds the integer remainder or an empty qualifying pool, and supports pull claims. Builders get one revision before close. The mobile-first app separates recorded proof from finalized live reads, preserves transaction polling across reloads, and uses native appeals. The repository includes direct tests, source, a tutorial, and a read-only finalized proof verifier. Live release verification is in progress; check deploy/proof.json before submission.","howTo":[{"heading":"Audit the public ledger","instruction":"Open the site without a wallet. Inspect Entries and the frozen Rulebook. Click a rule chip to see its quote and exact file at the commit."},{"heading":"Read finalized state","instruction":"Choose Live chain. Inspect the labeled read time and contract link. Accepted transactions remain provisional until finality."},{"heading":"Inspect settlement","instruction":"Choose Payouts and follow settlement, claim and credited-transfer links. Run npm run verify:proof from the public repo."},{"heading":"Run a new challenge","instruction":"Connect your StudioNet wallet, create and fund a challenge, validate each rule, then submit a public GitHub commit during its window. Judge rules, settle after finality and close, and claim your share."}],"expectedOutcome":"A transparent rule matrix and independently verified citations; finalized qualification outcomes; deterministic equal shares with organizer refunds and credited native transfers. Completion is conditional on the public proof manifest.","contractLinks":["https://explorer-studio.genlayer.com/address/0x066f50FCb15Def2279A79Db23A6bC7a0130662d1"],"website":"","github":"https://github.com/JWattjr/eligibility-judge","demoVideo":"","evidence":["https://github.com/JWattjr/eligibility-judge/blob/main/deploy/proof.json","https://github.com/JWattjr/eligibility-judge/blob/main/docs/TUTORIAL.md","https://github.com/JWattjr/eligibility-judge/blob/main/docs/DEMO.md"]}
+{
+  "contributionType": "Projects",
+  "projectName": "Eligibility Judge",
+  "primaryTag": "Developer Tools",
+  "tag1": "Hackathons",
+  "tag2": "Evidence Verification",
+  "oneLiner": "Open hackathon judging: every entry gets a rule-by-rule verdict anyone can verify.",
+  "description": "Eligibility Judge qualifies public GitHub entries against a frozen, validator-accepted rulebook. GenLayer validators judge one rule per transaction, independently fetch evidence at the submitted commit, and verify the leader's exact quote and file path. Entries passing every rule qualify; there are no scores or rankings. After close and finalized judgments, contract code divides a funded StudioNet GEN pool equally, refunds the integer remainder or an empty qualifying pool, and supports pull claims. Builders get one revision before close. The mobile-first app separates recorded proof from finalized live reads, preserves transaction polling across reloads, and uses native appeals. The repository includes direct tests, source, a tutorial, and a read-only finalized proof verifier. Live release verification is in progress; check deploy/proof.json before submission.",
+  "howTo": [
+    {
+      "heading": "Audit the public ledger",
+      "instruction": "Open the site without a wallet. Inspect Entries and the frozen Rulebook. Click a rule chip to see its quote and exact file at the commit."
+    },
+    {
+      "heading": "Read finalized state",
+      "instruction": "Choose Live chain. Inspect the labeled read time and contract link. Accepted transactions remain provisional until finality."
+    },
+    {
+      "heading": "Inspect settlement",
+      "instruction": "Choose Payouts and follow settlement, claim and credited-transfer links. Run npm run verify:proof from the public repo."
+    },
+    {
+      "heading": "Run a new challenge",
+      "instruction": "Connect your StudioNet wallet, create and fund a challenge, validate each rule, then submit a public GitHub commit during its window. Judge rules, settle after finality and close, and claim your share."
+    }
+  ],
+  "expectedOutcome": "A transparent rule matrix and independently verified citations; finalized qualification outcomes; deterministic equal shares with organizer refunds and credited native transfers. Completion is conditional on the public proof manifest.",
+  "contractLinks": [
+    "https://explorer-studio.genlayer.com/address/0xEB81a565E88489c9994a3495799C828D6dd697c2"
+  ],
+  "website": "https://eligibility-judge.vercel.app",
+  "github": "https://github.com/JWattjr/eligibility-judge",
+  "demoVideo": "",
+  "evidence": [
+    "https://github.com/JWattjr/eligibility-judge/blob/main/deploy/proof.json",
+    "https://github.com/JWattjr/eligibility-judge/blob/main/docs/TUTORIAL.md",
+    "https://github.com/JWattjr/eligibility-judge/blob/main/docs/DEMO.md"
+  ]
+}

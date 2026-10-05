@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-10-05",
+  "application": "Eligibility Judge",
+  "localUrl": "http://localhost:3111",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "checks": {
+    "publicLedger": "Real finalized entry records render; rule chips reveal quotes and pinned source links. Final completed snapshot check pending.",
+    "rulebook": "Four accepted validation reasons and frozen hash render.",
+    "creation": "Title, brief, rule editor (3\u20136), window, capacity and pool fields inspected. Add/remove checked. Wallet signing not verified in browser.",
+    "entry": "GitHub HEAD resolves to a full SHA and bounded preview on real public data. Signing not verified in browser.",
+    "transactions": "Live writes verified through GenLayer CLI; accepted/finalized-error behavior and finalized returned challenge ID tested in TypeScript. Browser wallet, native appeal and reload during a signed transaction not yet verified.",
+    "payouts": "Finality gates inspected. Live settlement and credited payout pending. Browser claim signature not verified.",
+    "mobile": "No page overflow at 390px for inspected ledger and forms.",
+    "walletUnavailable": "Connect shows a clear install-wallet error and retry path."
+  },
+  "walletSigningVerified": false,
+  "submissionReady": false,
+  "remaining": [
+    "Browser signing, appeal and reload verification with a real wallet",
+    "Final live demo outcomes, settlement and payout receipt verification"
+  ],
+  "screenshots": [
+    ".impeccable/review/desktop.png",
+    ".impeccable/review/mobile.png"
+  ]
+}

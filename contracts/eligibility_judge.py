@@ -157,16 +157,29 @@ class EligibilityJudge(gl.Contract):
 
     @gl.public.write.payable
     def create(self, title: str, brief: str, rules_json: str, opens: int, closes: int, cap: int) -> str:
-        rules = json.loads(rules_json)
-        require(isinstance(rules, list) and 3 <= len(rules) <= 6 and all(isinstance(r, str) and 5 <= len(r) <= 240 for r in rules), 'provide 3-6 checkable rules, 5-240 characters each')
-        require(3 <= len(title) <= 100 and 10 <= len(brief) <= 1200, 'invalid title or brief')
-        require(now() <= opens < closes and closes - opens <= 30 * 86400, 'invalid submission window')
-        require(1 <= cap <= 20, 'entry cap must be 1-20')
-        require(0 < int(gl.message.value) <= 1000 * 10**18, 'fund 1 wei to 1000 GEN')
-        require(len(self.ids) < 1000, 'challenge capacity reached')
+        error = ''
+        try:
+            rules = json.loads(rules_json)
+        except Exception:
+            rules = []
+            error = 'Rules must be valid JSON'
+        if not isinstance(rules, list) or not 3 <= len(rules) <= 6 or not all(isinstance(r, str) and 5 <= len(r) <= 240 for r in rules):
+            rules = []
+            error = 'Provide 3-6 checkable rules, 5-240 characters each'
+        if not 3 <= len(title) <= 100 or not 10 <= len(brief) <= 1200:
+            error = 'Invalid title or brief'
+        if not 0 <= opens < closes or now() >= closes or closes - opens > 30 * 86400:
+            error = 'Invalid submission window'
+        if not 1 <= cap <= 20:
+            error = 'Entry cap must be 1-20'
+        if not 0 < int(gl.message.value) <= 1000 * 10**18:
+            error = 'Fund 1 wei to 1000 GEN'
+        # StudioNet credits value even when execution rolls back. Business-validation
+        # errors must produce a refundable record instead of stranding the deposit.
+        # Creation permits an already-open window; entry still requires accepted rules.
         self.counter = u256(int(self.counter) + 1)
         cid = 'challenge-' + str(self.counter)
-        self._save(cid, {'id': cid, 'title': title, 'brief': brief, 'organizer': str(gl.message.sender_address).lower(), 'rules': rules, 'rule_checks': [None for _ in rules], 'rule_pending': [False for _ in rules], 'rulebook_hash': '', 'status': 'VALIDATING_RULES', 'opens': opens, 'closes': closes, 'cap': cap, 'pool': str(gl.message.value), 'entries': {}, 'order': [], 'qualifiers': [], 'share': '0', 'refund': '0', 'claims': {}, 'refund_claimed': False})
+        self._save(cid, {'id': cid, 'title': title, 'brief': brief, 'organizer': str(gl.message.sender_address).lower(), 'rules': rules, 'rule_checks': [None for _ in rules], 'rule_pending': [False for _ in rules], 'rulebook_hash': '', 'status': 'RULES_REJECTED' if error else 'VALIDATING_RULES', 'validation_error': error, 'opens': opens, 'closes': closes, 'cap': cap, 'pool': str(gl.message.value), 'entries': {}, 'order': [], 'qualifiers': [], 'share': '0', 'refund': str(gl.message.value) if error else '0', 'claims': {}, 'refund_claimed': False})
         self.ids.append(cid)
         return cid
 

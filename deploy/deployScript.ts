@@ -13,7 +13,7 @@ const compact=(r:any)=>({hash:r.hash,status:r.statusName??r.status_name,executio
 export default async function main(client:GenLayerClient<typeof studionet>){
  const proof=JSON.parse(readFileSync(proofPath,'utf8'));mkdirSync('deploy/receipts',{recursive:true});
  const save=()=>{proof.recordedAt=new Date().toISOString();writeFileSync(proofPath,JSON.stringify(proof,null,2));};
- async function final(hash:string,name:string,transfer=false){for(let i=0;i<180;i++){const receipt=await client.getTransaction({hash:hash as TransactionHash});if((receipt.statusName??(receipt as any).status_name)==='FINALIZED'){writeFileSync(`deploy/receipts/${name}.json`,JSON.stringify(receipt,(_,v)=>typeof v==='bigint'?String(v):v,2));const c=compact(receipt);console.log(name,JSON.stringify(c));if(transfer){if(c.value_credited!==true)throw Error('Native transfer has no credit');}else if(!['SUCCESS','FINISHED_WITH_RETURN'].includes(c.execution))throw Error('Finalized execution failed: '+name);return receipt;}if(i%12===0)console.log(name,(receipt as any).status_name??receipt.statusName);await sleep(5000);}throw Error('Timed out; rerun to resume '+name);}
+ async function final(hash:string,name:string,transfer=false){for(let i=0;i<180;i++){const receipt=await client.getTransaction({hash:hash as TransactionHash});if((receipt.statusName??(receipt as any).status_name)==='FINALIZED'){writeFileSync(`deploy/receipts/${name}.json`,JSON.stringify(receipt,(_,v)=>typeof v==='bigint'?String(v):v,2));const c=compact(receipt);console.log(name,JSON.stringify(c,(_,v)=>typeof v==='bigint'?String(v):v));if(transfer){if(c.value_credited!==true)throw Error('Native transfer has no credit');}else if(!['SUCCESS','FINISHED_WITH_RETURN'].includes(c.execution))throw Error('Finalized execution failed: '+name);return receipt;}if(i%12===0)console.log(name,(receipt as any).status_name??receipt.statusName);await sleep(5000);}throw Error('Timed out; rerun to resume '+name);}
  async function write(name:string,method:string,args:any[],value=0n,signer=client){if(!proof.transactions[name]){proof.transactions[name]=await signer.writeContract({address:proof.contract,functionName:method,args,value});save();}await final(proof.transactions[name],name);const children=await client.getTriggeredTransactionIds({hash:proof.transactions[name]});for(let i=0;i<children.length;i++){proof.transactions[name+'-child-'+i]=children[i];save();await final(children[i],name+'-child-'+i,method==='claim'||method==='claim_refund');}return proof.transactions[name];}
  async function record(){if(proof.contract){proof.challenge=JSON.parse(String(await client.readContract({address:proof.contract,functionName:'get_challenge',args:[proof.challengeId],transactionHashVariant:TransactionHashVariant.LATEST_FINAL})));save();}}
  const step=process.env.ELIGIBILITY_STEP??'proof';
@@ -28,18 +28,19 @@ export default async function main(client:GenLayerClient<typeof studionet>){
   proof.contract=(await final(proof.transactions.deploy,'deploy')).recipient;save();
  }
  if(step==='seed'){
-  proof.sourceCommit=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();save();
+  proof.sourceCommit=execFileSync('git',['-c','safe.directory='+process.cwd(),'rev-parse','HEAD'],{encoding:'utf8'}).trim();save();
   const rules=['README contains deployment instructions','Contains a Python GenLayer Intelligent Contract that makes a web request','Has an OSI-approved LICENSE file','Contains at least one test file'];
   const time=Math.floor(Date.now()/1000);
-  await write('create','create',['Ship a web-reading Intelligent Contract','Public code. Four checkable rules. Every qualifying entry shares the pool equally.',JSON.stringify(rules),time,time+3600,20],3n*10n**18n);
+  await write('create','create',['Ship a web-reading Intelligent Contract','Public code. Four checkable rules. Every qualifying entry shares the pool equally.',JSON.stringify(rules),time,time+600,20],3n*10n**18n);
   for(let i=0;i<rules.length;i++)await write('validate-rule-'+i,'validate_rule',[proof.challengeId,i]);
   await record();
  }
  if(step==='entries'){
   const keyPath='.env.demo-wallets.json';if(!existsSync(keyPath))writeFileSync(keyPath,JSON.stringify({failed:generatePrivateKey(),missing:generatePrivateKey(),injection:generatePrivateKey()}));
   const keys=JSON.parse(readFileSync(keyPath,'utf8'));proof.cases??={};
+  const fixture=await fetch('https://api.github.com/repos/JWattjr/eligibility-judge-injection-fixture/commits/HEAD',{headers:{'User-Agent':'Eligibility-Judge'}}).then(r=>r.json()) as any;
   const failRepo=await fetch('https://api.github.com/repos/genlayerlabs/genlayer-js/commits/main',{headers:{'User-Agent':'Eligibility-Judge'}}).then(r=>r.json()) as any;
-  const cases=[{name:'qualified',repo:'https://github.com/JWattjr/eligibility-judge',commit:proof.sourceCommit,expected:'QUALIFIED',signer:client},{name:'failed',repo:'https://github.com/genlayerlabs/genlayer-js',commit:failRepo.sha,expected:'DISQUALIFIED',signer:createClient({chain:studionet,account:privateKeyToAccount(keys.failed)})},{name:'missing',repo:'https://github.com/JWattjr/eligibility-judge',commit:'0'.repeat(40),expected:'INSUFFICIENT_EVIDENCE',signer:createClient({chain:studionet,account:privateKeyToAccount(keys.missing)})}];
+  const cases=[{name:'qualified',repo:'https://github.com/JWattjr/eligibility-judge',commit:proof.sourceCommit,expected:'QUALIFIED',signer:client},{name:'failed',repo:'https://github.com/genlayerlabs/genlayer-js',commit:failRepo.sha,expected:'DISQUALIFIED',signer:createClient({chain:studionet,account:privateKeyToAccount(keys.failed)})},{name:'missing',repo:'https://github.com/JWattjr/eligibility-judge',commit:'0'.repeat(40),expected:'INSUFFICIENT_EVIDENCE',signer:createClient({chain:studionet,account:privateKeyToAccount(keys.missing)})},{name:'injection',repo:'https://github.com/JWattjr/eligibility-judge-injection-fixture',commit:fixture.sha,expected:'DISQUALIFIED',signer:createClient({chain:studionet,account:privateKeyToAccount(keys.injection)})}];
   for(const c of cases){const wallet=c.signer.account!.address.toLowerCase();proof.cases[c.name]={wallet,repo:c.repo,commit:c.commit,expected:c.expected};save();await write('enter-'+c.name,'enter',[proof.challengeId,c.repo,c.commit,''],0n,c.signer);}
   await record();
  }

@@ -182,3 +182,23 @@ def test_settle_blocks_unfinished_judgments(contract, direct_vm, direct_alice):
     warp(direct_vm, T + 100)
     with direct_vm.expect_revert('every judgment must finalize'):
         contract.settle('challenge-1')
+
+@pytest.mark.parametrize('changes', [('rules', '{invalid'), ('opens', T + 101), ('closes', T - 1), ('cap', 99), ('title', '')])
+def test_invalid_create_retains_refundable_record(contract, direct_vm, direct_owner, changes):
+    fields = {'title': 'Refundable creation', 'brief': 'Invalid input must never strand credited StudioNet value', 'rules': json.dumps(RULES), 'opens': T, 'closes': T + 100, 'cap': 3}
+    fields[changes[0]] = changes[1]
+    direct_vm.sender = direct_owner
+    direct_vm.value = 7
+    contract.create(fields['title'], fields['brief'], fields['rules'], fields['opens'], fields['closes'], fields['cap'])
+    record = json.loads(contract.get_challenge('challenge-2'))
+    assert record['status'] == 'RULES_REJECTED' and record['refund'] == '7'
+    direct_vm.value = 0
+    direct_vm.deal(direct_vm._contract_address, 18)
+    contract.claim_refund('challenge-2')
+    assert json.loads(contract.get_challenge('challenge-2'))['refund_claimed']
+
+def test_execution_delay_does_not_reject_open_window(contract, direct_vm):
+    warp(direct_vm, T + 30)
+    direct_vm.value = 5
+    contract.create('Delayed execution', 'A window may already be open when execution occurs', json.dumps(RULES), T, T + 100, 3)
+    assert json.loads(contract.get_challenge('challenge-2'))['status'] == 'VALIDATING_RULES'

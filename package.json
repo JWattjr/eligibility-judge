@@ -1,1 +1,32 @@
-{"name":"eligibility-judge","version":"1.0.0","private":true,"type":"module","scripts":{"dev":"next dev --port 3111","build":"next build","start":"next start --port 3111","typecheck":"tsc --noEmit","test":"tsx --test tests/*.test.ts","verify:proof":"tsx scripts/verify-proof.ts","deploy:contract":"powershell -ExecutionPolicy Bypass -File scripts/deploy.ps1","test:contract":"python -m pytest tests/direct -q"},"dependencies":{"next":"16.3.8","react":"19.2.0","react-dom":"19.2.0","genlayer-js":"1.1.8","lucide-react":"0.548.0","@fontsource/dm-sans":"5.2.8","@fontsource/space-grotesk":"5.2.10"},"devDependencies":{"typescript":"5.9.3","@types/node":"24.9.1","@types/react":"19.2.2","@types/react-dom":"19.2.2","tsx":"4.20.6"}}
+{
+  "name": "eligibility-judge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --port 3111",
+    "build": "next build",
+    "start": "next start --port 3111",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "verify:proof": "python scripts/verify_proof.py",
+    "deploy:contract": "powershell -ExecutionPolicy Bypass -File scripts/deploy.ps1",
+    "test:contract": "python -m pytest tests/direct -q"
+  },
+  "dependencies": {
+    "next": "16.3.8",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "genlayer-js": "1.1.8",
+    "lucide-react": "0.548.0",
+    "@fontsource/dm-sans": "5.2.8",
+    "@fontsource/space-grotesk": "5.2.10"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/node": "24.9.1",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "tsx": "4.20.6"
+  }
+}

@@ -1,0 +1,6 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {executionState,gen,repoParts,selectedFiles} from '../lib/domain';
+test('accepted execution errors remain provisional; finalized errors are errors',()=>{assert.equal(executionState({status_name:'ACCEPTED',txExecutionResultName:'ERROR'}),'ACCEPTED');assert.equal(executionState({status_name:'FINALIZED',consensus_data:{leader_receipt:[{execution_result:'ERROR'}]}}),'FINALIZED_ERROR');assert.equal(executionState({status_name:'FINALIZED',consensus_data:{leader_receipt:[{execution_result:'SUCCESS'}]}}),'FINALIZED_SUCCESS');});
+test('wei are lossless and GitHub authority is constrained',()=>{assert.equal(gen('3000000000000000001'),'3.000000000000000001');assert.throws(()=>repoParts('https://github.com.attacker/owner/repo'));});
+test('preview uses fixed capped ordering with metadata before contracts',()=>{const paths=['src/ignored.ts','LICENSE','README.md','tests/test_contract.py','contracts/contract.py',...Array.from({length:20},(_,i)=>`docs/${i}.md`)];const files=selectedFiles(paths);assert.deepEqual(files.slice(0,4),['LICENSE','README.md','contracts/contract.py','tests/test_contract.py']);assert.equal(files.length,10);});

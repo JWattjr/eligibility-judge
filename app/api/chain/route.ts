@@ -1,0 +1,4 @@
+import {NextRequest,NextResponse} from 'next/server';
+import {challenge,transaction,wallet} from '@/lib/server-chain';
+export const dynamic='force-dynamic';
+export async function GET(request:NextRequest){const p=request.nextUrl.searchParams;try{if(p.has('tx')){const hash=p.get('tx')!;if(!/^0x[0-9a-f]{64}$/i.test(hash))throw Error('Invalid transaction hash');return NextResponse.json(await transaction(hash));}if(p.has('wallet')){const address=p.get('wallet')!;if(!/^0x[0-9a-f]{40}$/i.test(address))throw Error('Invalid wallet address');return NextResponse.json(await wallet(address));}const id=p.get('id')??'challenge-1';if(!/^challenge-\d+$/.test(id))throw Error('Invalid challenge id');return NextResponse.json(await challenge(id));}catch(error){return NextResponse.json({error:error instanceof Error?error.message:'Chain read failed'}, {status:503});}}

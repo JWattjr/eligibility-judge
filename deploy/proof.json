@@ -1,0 +1,33 @@
+{
+  "network": "StudioNet",
+  "chainId": 61999,
+  "contract": "0x066f50FCb15Def2279A79Db23A6bC7a0130662d1",
+  "probe": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+  "sourceCommit": "",
+  "challengeId": "challenge-1",
+  "transactions": {
+    "probe-deploy": "0xe388e9b08aa3e0069adbdb03e1fa4159b06832416940edeb390688fca2c3be09",
+    "probe-0": "0x6090b4b23189cdb45ba696c85254caea42b62ca22df5f4f0b660da5fb7eac6e7",
+    "probe-1": "0xe0d04c5bcb75b02c99552e7b3a3f01cfc96e6bee9699dad5d63db7dcafbfd254",
+    "probe-2": "0x609f1ad818351797c22bf75988e3e8d49d77e7324fd0cc57bffb49d1433f5273",
+    "deploy": "0x8f177b605392ae3e465f455ad39ed3cd1197709a418af8b10d48d36938122d0d"
+  },
+  "challenge": null,
+  "payoutVerified": false,
+  "completed": false,
+  "probes": {
+    "https://raw.githubusercontent.com/genlayerlabs/genlayer-js/main/README.md": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://api.github.com/repos/genlayerlabs/genlayer-js": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://web.archive.org/web/20240101000000/https://example.com/": {
+      "reachable": true,
+      "status": 200
+    }
+  },
+  "recordedAt": "2026-10-05T19:35:43.865Z"
+}

@@ -7,3 +7,5 @@
 
 .rule-chip[aria-expanded="true"]{outline:2px solid var(--ink);outline-offset:3px}
 @media(max-width:680px){.repo-button strong{font-size:13px;line-height:1.4}.repo-meta{font-size:11px}.entry-verdict{font-size:11px}.evidence-rule h5{font-size:13px}.evidence-rule p,blockquote{font-size:14px;line-height:1.6}.file-link{font-size:12px}.audit-strip p{font-size:11px}.audit-strip>a{font-size:11px}}
+@media(max-width:900px){.pool-equation{display:grid;grid-template-columns:1fr;gap:14px}.pool-equation>div{flex-direction:row;align-items:baseline;justify-content:space-between;min-width:0}.pool-equation>div>span{flex-shrink:0}.pool-equation strong{min-width:0;text-align:right;overflow-wrap:anywhere}.pool-equation .math-symbol{display:none}}
+@media(max-width:680px){.pool-equation strong{font-size:20px}.payment-line>strong{max-width:100%;overflow-wrap:anywhere}.payment-line>div{overflow-wrap:anywhere}}

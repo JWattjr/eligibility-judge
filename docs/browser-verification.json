@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-06T06:30:01.141576+00:00",
+  "checkedAt": "2026-10-06T17:44:16.692160+00:00",
   "application": "Eligibility Judge",
   "localUrl": "http://localhost:3111",
   "viewports": [
@@ -13,20 +13,21 @@
     }
   ],
   "checks": {
-    "publicLedger": "Published unfunded release renders with zero pool and Awaiting demo; earlier real finalized qualified ledger and pinned citations inspected. Completed release snapshot pending.",
+    "publicLedger": "Production recorded view shows Awaiting demo with zero entries. Live chain successfully renders Challenge not found for the unfunded contract, labels finalized read time, and keeps the ledger empty. Null responses do not crash or mark a transaction readback successful.",
     "rulebook": "Four accepted validation reasons and frozen hash render.",
     "creation": "Title, brief, rule editor (3\u20136), window, capacity and pool fields inspected. Add/remove checked. Wallet signing not verified in browser.",
     "entry": "GitHub HEAD resolves to a full SHA and bounded preview on real public data. Signing not verified in browser.",
     "transactions": "CLI finalized honest and missing-commit outcomes in the archived run. Production API correctly reports MAJORITY_DISAGREE with successful leader execution as FINALIZED_ERROR. Browser wallet signing, native appeal and reload during a signed transaction remain unverified.",
-    "payouts": "Exact 18-decimal GEN display verified without horizontal overflow at 390px. Current corrected release is unfunded; settlement and credited payout remain pending. Browser claim signature unverified.",
-    "mobile": "Ledger, entry preview, rule editor and payout layouts inspected at 390px; payout scrollWidth 382px. Unfunded release checked at desktop and mobile widths.",
-    "walletUnavailable": "Connect shows a clear install-wallet error and retry path.",
-    "deployedSource": "Native gen_getContractCode exactly matches reviewed source (sha256 eac2ce6ce8f232d19a940cf972fb035347435737579187bec1b2fee0294fc156); finalized get_balance returns 0."
+    "payouts": "Live unfunded production state displays pool, share, refund and contract balance as 0 GEN; settlement and claims disabled. Settlement and credited payout remain pending; browser claim signature unverified.",
+    "mobile": "Current production live empty state and payouts checked at 390x844; document scrollWidth 382px. Earlier funded-layout snapshots remain historical.",
+    "walletUnavailable": "Production Connect wallet shows Install MetaMask or another Ethereum wallet, then retry. No wallet provider was injected and no browser signature was made.",
+    "deployedSource": "Native gen_getContractCode exactly matches reviewed source (sha256 b80988372a3cf243991b1eb12c882ffa0d90787981f24753fba2bd5826d23d4e); finalized get_balance returns 0.",
+    "consensusSmoke": "Read-only npm run verify:smoke passed all six zero-value finalized consensus samples, stored records, helper identity and exact deployed probe source. This does not verify a funded pool or payout."
   },
   "walletSigningVerified": false,
   "submissionReady": false,
   "remaining": [
-    "Additional 1-wei authorization, then all fresh live cases, settlement and credited payout verification",
+    "Explicit authorization for one additional wei, then all fresh live cases, settlement and credited payout verification",
     "Browser signing, native appeal and reload verification with a real wallet"
   ],
   "screenshots": [
@@ -37,6 +38,7 @@
     ".impeccable/review/unfunded-mobile.png"
   ],
   "productionUrl": "https://eligibility-judge.vercel.app",
-  "productionCommit": "107b23a",
-  "deployedContract": "0x670d668284C1623fCcA57D7cb0F141Fef7958078"
+  "productionCommit": "1251f40",
+  "deployedContract": "0x03Dd21B241ea3e1EBB9B126Eb732d795dEE8Ae9a",
+  "deploymentId": "dpl_8qFPhrLuG3QsW5kkZ8AXHKM6mRSp"
 }

@@ -75,6 +75,8 @@ def main():
             assert 'judge-' + name + '-' + str(i) in receipts
             assert 'judge-' + name + '-' + str(i) + '-child-0' in receipts
     assert len(record['qualifiers']) == 1 and record['share'] == record['pool']
+    assert record['refund'] == '0', 'Single-qualifier settlement has an unexpected remainder'
+    assert record['claims'].get(proof['cases']['qualified']['wallet']) == record['share'], 'Claim amount is not recorded'
     claim = receipts['claim-qualified-child-0']
     assert str(claim['value']) == record['share']
     assert claim['from_address'].lower() == proof['contract'].lower()
@@ -84,6 +86,7 @@ def main():
         raise AssertionError('Cannot verify deployed source: ' + str(code['error']))
     deployed = code['result']
     local = (root / 'contracts/eligibility_judge.py').read_text(encoding='utf8')
+    assert hashlib.sha256(local.encode()).hexdigest() == proof['contractSourceSha256'], 'Manifest source hash differs from the release contract'
     if isinstance(deployed, str) and deployed.startswith('0x'):
         deployed = bytes.fromhex(deployed[2:]).decode()
     elif isinstance(deployed, str) and not deployed.startswith('#'):

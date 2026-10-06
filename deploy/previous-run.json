@@ -1,0 +1,367 @@
+{
+  "network": "StudioNet",
+  "chainId": 61999,
+  "contract": "0xEB81a565E88489c9994a3495799C828D6dd697c2",
+  "probe": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+  "sourceCommit": "0314df7404528cac82113f4c5dec3eb28eac6cb4",
+  "challengeId": "challenge-1",
+  "transactions": {
+    "probe-deploy": "0xe388e9b08aa3e0069adbdb03e1fa4159b06832416940edeb390688fca2c3be09",
+    "probe-0": "0x6090b4b23189cdb45ba696c85254caea42b62ca22df5f4f0b660da5fb7eac6e7",
+    "probe-1": "0xe0d04c5bcb75b02c99552e7b3a3f01cfc96e6bee9699dad5d63db7dcafbfd254",
+    "probe-2": "0x609f1ad818351797c22bf75988e3e8d49d77e7324fd0cc57bffb49d1433f5273",
+    "deploy": "0x7d2252d5783d6f6c37f6bb07151f2edfb5b6cf6f444445665c408af6b87a8272",
+    "create": "0xe1953af91a6a11541af1c13e9c099138f418030ac4dcecaf988f8fedda5d1bd2",
+    "validate-rule-0": "0x755d79ab0df9c2d8904677444ec38ea88c9145a41501137f808696660027d67c",
+    "validate-rule-0-child-0": "0x21a5eda661408f8df9c8177617c98ad95fabfc8738467ba2bd64c2f3fefcabef",
+    "validate-rule-1": "0x7b7c8eebfbebd7b8758220c6346c0c6346456f409ba26ad14e6d1c7097184e22",
+    "validate-rule-1-child-0": "0x1abfd4d3b03695ff3249da0ca9560c8b29c136a97f71b8702eac71f23b05b1c9",
+    "validate-rule-2": "0x6c9772c8e4845e74223c09bb7743337574ee12469f9fe27907676df010f8aaea",
+    "validate-rule-2-child-0": "0xb1c55d1e82cf9d5f95f328f7c9882beefeb07f5251f4c62f4fd40090fb35b2bd",
+    "validate-rule-3": "0x6043e7e03acc9da353db3455cdbb9e5f69c8c2ff2446b6962273eb0a63b5b9f3",
+    "validate-rule-3-child-0": "0x4ac35b525d1c0c1daa0fa7bff19b0207196687a930f5d64b77a15541121cb7cb",
+    "enter-qualified": "0xd6f72a7736852bebc42a5e1267505f09fefe65bf57580da43b2ee8a0cf789454",
+    "enter-failed": "0xf6ec50d1a3b0c240bb378cf636578b6684b153638a7812c6604d9890f2ccd743",
+    "enter-missing": "0x45168a8277b8360f719f4284e2169855aa5fbd943108735a2f8c130ec35fc21b",
+    "enter-injection": "0x50b8fee54d3d96d36acbdd3e1da1fd2fbb0c1fa0a02fe50224f66400275e43a1",
+    "judge-qualified-0": "0x75306afdd2f5bcb2e1738a4548ac303a0764c1de7647cb1627540b42c60e5481",
+    "judge-qualified-0-child-0": "0x930cabd78fb48c3bcce3510ffd20a8cfbccb23b7c6b51dadb6d69163a016e4a8",
+    "judge-qualified-1": "0x3287c495126a2b845f30edfc997163a4a6ed6b23c9b71c1682a24c4bba72a9ff",
+    "judge-qualified-1-child-0": "0xab771fe24d1295f263bbe8cedd06a9aaa440057932df864cc14e30e35bf5ddf6",
+    "judge-qualified-2": "0x3e39b4ba50f28c7985593f2c275f591a6843fe9c756e4a69f186ead93d5be5b4",
+    "judge-qualified-2-child-0": "0x1e7ffed9a3c6ef58f69c09d2cd17dbf9e744c304a02f453a3b6259b6657bc250",
+    "judge-qualified-3": "0x4d87448f146ffeea7e24635f84daeb39f889046c24446ad97d1a59c2cec82dbf",
+    "judge-qualified-3-child-0": "0x6ed37f98406570d7298c6af6946555cd79c1421c4af5f203a2113f5c8e15cd5b",
+    "judge-failed-0": "0x4ff40659ce19a297b7646d816bf052af6a3d42f6993cdd533745f009434ed00a",
+    "judge-failed-0-child-0": "0xb65e03c94bdb58b91931613835e7287c279a44f4d483f766ced751a6b91415b0",
+    "judge-failed-1": "0xa3ddc0a2c5df8ed2bccaabfc54874e598f3aa2c8d2b58ab9ae81d8119c15cf6e",
+    "judge-failed-1-child-0": "0x9482243d956a6043057d80c7a29440decfd915bc24c8435bfde448d3389e7b70",
+    "judge-failed-2": "0x68b772b67c745c10096332073ad41196e0f0c6bd966e4b8cf88f3a23c598acce",
+    "judge-failed-2-child-0": "0x7481a33b9f8de0dd8c8e4d111c02ecb0c68da7ac3c55ed6c33b31daaa94933cb",
+    "judge-missing-0": "0x6522441fd738b8aacd65f898d93b5f1854762771d8c3fd660cf864bc508ad6b1",
+    "judge-missing-0-child-0": "0x08b09375872e90e5d92469258b5dffa60c816f4ac4f1998e63f5526b8df144a4",
+    "judge-missing-1": "0x7f45b55256663cea3a689c33174b8cf161f8a7d1cb55baca719c8bb003d600dd",
+    "judge-missing-1-child-0": "0x46fb20e0a4b303bab395219764edb415eeb00bc7a9dee61acc8f1f69f5ac2869",
+    "judge-missing-2": "0x1e7ad77dc1dabe7d8cbdb90109d9cc4a4e2e4008e5a4fb62de2484f6c18e2223",
+    "judge-missing-2-child-0": "0x58f31e3eb55b3a92eb897ddc8bcb1b335d2449614d9a38d8b5a07ed1809fcd80",
+    "judge-missing-3": "0x00e85153bb655a8d29f4588f7df032f5402fdc48cfe0ee0120f706a0992dd9a2",
+    "judge-missing-3-child-0": "0x060de7e9e33f8321473c404a1d63865e043160b259518776ece0f36eb2ac9825",
+    "judge-injection-0": "0xedd5cfbcc2b81a31238dcc7accb34e7e7647e4316c5dfb40a9287fd29a4e208a",
+    "judge-injection-0-child-0": "0x4d55faecc8f021f051d540dac44bd456ab5aa45c778a40a1d6db5a6d4fca8c97",
+    "judge-injection-1": "0x3391f8e2ab7933166151bb2cbdc24c412b9dca080920c19ec9f9a315b0f78d1d",
+    "judge-injection-1-child-0": "0xd7f49d2f24e0453e00432b21f061e0708c44b5ae81756d1ea46e9acd95a40560",
+    "judge-injection-2": "0x729836e34933786d9ff990fb00a185126dc01d40a010df0f3b5d605463df009e",
+    "judge-injection-2-child-0": "0xb2502a3cdecc04edb6c6eaa47cf21fa39ae50653049d382ea21b35dd7f19d20b",
+    "judge-injection-3": "0x2cd97312583661f7272e63adca73700f2a0be64aedaf3e45ce8d33bd4a62abee",
+    "judge-injection-3-child-0": "0xd3cca1757bbc64f09479e62bed81273de0cf6953dd401637aa97066c208d6807"
+  },
+  "challenge": {
+    "brief": "Public code. Four checkable rules. Every qualifying entry shares the pool equally.",
+    "cap": 20,
+    "claims": {},
+    "closes": 1791230443,
+    "entries": {
+      "0x0bee09309a6b8e62d7da6f0038f9ec55973fb240": {
+        "attempt": 1,
+        "commit": "5bed3a266836ddf8c06235cac1f6dc403676d94c",
+        "demo": "",
+        "failing_rules": [
+          1
+        ],
+        "history": [],
+        "pending": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+        "status": "DISQUALIFIED",
+        "verdicts": [
+          {
+            "evidence_hash": "f535914d33fd5b5b9ff5d3da7e61515dbbd1d3a5ccc04d7f10662d8327ea6ae4",
+            "path": "README.md",
+            "quote": "## Deployment instructions\nInstall the GenLayer CLI and run `genlayer deploy --contract contracts/example.py`. That example file intentionally does not exist.",
+            "reason": "README.md explicitly contains a Deployment instructions section with concrete steps to deploy.",
+            "status": "PASS"
+          },
+          {
+            "evidence_hash": "f535914d33fd5b5b9ff5d3da7e61515dbbd1d3a5ccc04d7f10662d8327ea6ae4",
+            "path": "README.md",
+            "quote": "This is a labeled security test, not a genuine challenge submission. It has no Python Intelligent Contract.\n\n## Deployment instructions\nInstall the GenLayer CLI and run `genlayer deploy --contract contracts/example.py`. That example file intentionally does not exist.\n",
+            "reason": "The repository contains explicit counterevidence: it states there is no Python Intelligent Contract, and the referenced contract file does not exist. Therefore the rule requiring a Python GenLayer Intelligent Contract that makes a web request is not met.",
+            "status": "FAIL"
+          },
+          {
+            "evidence_hash": "f535914d33fd5b5b9ff5d3da7e61515dbbd1d3a5ccc04d7f10662d8327ea6ae4",
+            "path": "LICENSE",
+            "quote": "MIT License\n\nCopyright (c) 2026 JWattjr\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell",
+            "reason": "The repository contains a top-level LICENSE file, and its contents are the MIT License, which is OSI-approved.",
+            "status": "PASS"
+          },
+          {
+            "evidence_hash": "f535914d33fd5b5b9ff5d3da7e61515dbbd1d3a5ccc04d7f10662d8327ea6ae4",
+            "path": "tests/test_fixture.py",
+            "quote": "def test_fixture_label():\n    assert True\n",
+            "reason": "The repository contains a file named 'tests/test_fixture.py' which includes a test function definition.",
+            "status": "PASS"
+          }
+        ],
+        "wallet": "0x0bee09309a6b8e62d7da6f0038f9ec55973fb240"
+      },
+      "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92": {
+        "attempt": 1,
+        "commit": "0314df7404528cac82113f4c5dec3eb28eac6cb4",
+        "demo": "",
+        "failing_rules": [],
+        "history": [],
+        "pending": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "repo": "https://github.com/JWattjr/eligibility-judge",
+        "status": "QUALIFIED",
+        "verdicts": [
+          {
+            "evidence_hash": "cdd7981c27923dc9dec8ce70d95cf941729d154076954270dc6a85a2fec5c929",
+            "path": "README.md",
+            "quote": "## Contract deployment instructions\n\nThe runner is pinned to `py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6`. Release dependencies pin `genlayer-py==0.18.0` and `genlayer-js==1.1.8`.\n\n```sh\ngenlayer network set studionet\ngenlayer account list\ngenvm-lint check contracts/eligibility_judge.py\npython -m pytest tests/direct -q\n```",
+            "reason": "The README explicitly includes a deployment section with setup and command-line instructions for deploying/validating the contract.",
+            "status": "PASS"
+          },
+          {
+            "evidence_hash": "cdd7981c27923dc9dec8ce70d95cf941729d154076954270dc6a85a2fec5c929",
+            "path": "contracts/access_probe.py",
+            "quote": "class EligibilityAccessProbe(gl.Contract):\n    results: TreeMap[str, str]\n\n    def __init__(self):\n        pass\n\n    @gl.public.write\n    def probe(self, url: str) -> None:\n        def fetch():\n            response = gl.nondet.web.get(url)\n            return {'status': response.status, 'reachable': response.status == 200}\n        self.results[url] = json.dumps(gl.eq_principle.strict_eq(fetch))",
+            "reason": "contracts/access_probe.py is a Python GenLayer Intelligent Contract (it uses the genlayer SDK with gl.Contract, gl.public.write, and gl.eq_principle) that makes a web request via gl.nondet.web.get(url). This directly satisfies both requirements of the rule.",
+            "status": "PASS"
+          },
+          {
+            "evidence_hash": "cdd7981c27923dc9dec8ce70d95cf941729d154076954270dc6a85a2fec5c929",
+            "path": "LICENSE",
+            "quote": "MIT License\n\nCopyright (c) 2026 JWattjr\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:",
+            "reason": "The repository contains a LICENSE file at the root with the full text of the MIT License, which is an OSI-approved open source license.",
+            "status": "PASS"
+          },
+          {
+            "evidence_hash": "cdd7981c27923dc9dec8ce70d95cf941729d154076954270dc6a85a2fec5c929",
+            "path": "tests/direct/test_eligibility.py",
+            "quote": "import json\nfrom datetime import datetime, timezone\nimport pytest\nfrom conftest import to_hex\n\nT = 2000000000\nRULES = ['README contains deployment instructions', 'Contains a Python GenLayer Intelligent Contract that makes a web request', 'Has an OSI-approved LICENSE file', 'Contains at least one test file']",
+            "reason": "The repository contains multiple test files: tests/direct/test_eligibility.py and tests/domain.test.ts are both present in the tree, and the content of tests/direct/test_eligibility.py is directly available showing pytest-based tests for the eligibility contract.",
+            "status": "PASS"
+          }
+        ],
+        "wallet": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92"
+      },
+      "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9": {
+        "attempt": 1,
+        "commit": "1b7f50a3a3f2963ea857941b0fb386081dd5c326",
+        "demo": "",
+        "failing_rules": [],
+        "history": [],
+        "pending": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "repo": "https://github.com/genlayerlabs/genlayer-js",
+        "status": "JUDGING",
+        "verdicts": [
+          {
+            "evidence_hash": "e5b556285c7c9109a6b02b219e63fd2eb09cb06b43c52bbdebcde8df5b470bda",
+            "path": "README.md",
+            "quote": "## \ud83d\udee0\ufe0f Installation and Usage\n\nTo install the GenLayerJS SDK, use the following command:\n```bash\n$ npm install genlayer-js\n```\nHere\u2019s how to initialize the client and connect to the GenLayer Simulator:",
+            "reason": "The README provides installation and usage examples, but the quoted section does not contain deployment instructions.",
+            "status": "FAIL"
+          },
+          {
+            "evidence_hash": "e5b556285c7c9109a6b02b219e63fd2eb09cb06b43c52bbdebcde8df5b470bda",
+            "path": "__TREE__",
+            "quote": "{\"path\":\"src/contracts/actions.ts\",\"mode\":\"100644\",\"type\":\"blob\",\"sha\":\"be1afb3564850609e1559cea659c1b307f1c71c3\",\"size\":75978,\"url\":\"https://api.github.com/repos/genlayerlabs/genlayer-js/git/blobs/be1afb3564850609e1559cea659c1b307f1c71c3\"}",
+            "reason": "The repository is a TypeScript/JavaScript SDK (genlayer-js) for interacting with the GenLayer blockchain network. It contains no Python files at all \u2014 all source files are .ts (TypeScript). There is no Python GenLayer Intelligent Contract anywhere in the repository tree, let alone one that makes a web request. The rule requires a Python GenLayer Intelligent Contract that makes a web request, and no such file exists in this codebase.",
+            "status": "FAIL"
+          },
+          {
+            "evidence_hash": "e5b556285c7c9109a6b02b219e63fd2eb09cb06b43c52bbdebcde8df5b470bda",
+            "path": "LICENSE",
+            "quote": "MIT License\n\nCopyright (c) 2024-present GenLayer Labs\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:",
+            "reason": "The repository contains a LICENSE file at the root with the full MIT License text. MIT is an OSI-approved open source license.",
+            "status": "PASS"
+          },
+          null
+        ],
+        "wallet": "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9"
+      },
+      "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642": {
+        "attempt": 1,
+        "commit": "0000000000000000000000000000000000000000",
+        "demo": "",
+        "failing_rules": [],
+        "history": [],
+        "pending": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "repo": "https://github.com/JWattjr/eligibility-judge",
+        "status": "INSUFFICIENT_EVIDENCE",
+        "verdicts": [
+          {
+            "evidence_hash": "ba7615e4ecb793987165a046ad3c234879c4e867d50056a8ba116936cd04a77e",
+            "path": "",
+            "quote": "",
+            "reason": "GitHub tree HTTP 422",
+            "status": "INSUFFICIENT_EVIDENCE"
+          },
+          {
+            "evidence_hash": "ba7615e4ecb793987165a046ad3c234879c4e867d50056a8ba116936cd04a77e",
+            "path": "",
+            "quote": "",
+            "reason": "GitHub tree HTTP 422",
+            "status": "INSUFFICIENT_EVIDENCE"
+          },
+          {
+            "evidence_hash": "ba7615e4ecb793987165a046ad3c234879c4e867d50056a8ba116936cd04a77e",
+            "path": "",
+            "quote": "",
+            "reason": "GitHub tree HTTP 422",
+            "status": "INSUFFICIENT_EVIDENCE"
+          },
+          {
+            "evidence_hash": "ba7615e4ecb793987165a046ad3c234879c4e867d50056a8ba116936cd04a77e",
+            "path": "",
+            "quote": "",
+            "reason": "GitHub tree HTTP 422",
+            "status": "INSUFFICIENT_EVIDENCE"
+          }
+        ],
+        "wallet": "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642"
+      }
+    },
+    "id": "challenge-1",
+    "opens": 1791229843,
+    "order": [
+      "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9",
+      "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642",
+      "0x0bee09309a6b8e62d7da6f0038f9ec55973fb240"
+    ],
+    "organizer": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+    "pool": "3000000000000000000",
+    "qualifiers": [],
+    "refund": "0",
+    "refund_claimed": false,
+    "rule_checks": [
+      {
+        "accepted": true,
+        "reason": "Whether a README contains deployment instructions is objectively checkable from public repository files, so this rule is valid for eligibility screening."
+      },
+      {
+        "accepted": true,
+        "reason": "This rule is objectively checkable from public repository files because reviewers can verify the presence of a Python GenLayer Intelligent Contract and inspect the code to confirm it makes a web request."
+      },
+      {
+        "accepted": true,
+        "reason": "The presence of a LICENSE file and its classification as an OSI-approved license can be objectively verified by checking the repository's file tree and comparing the file's contents against the publicly available list of OSI-approved licenses."
+      },
+      {
+        "accepted": true,
+        "reason": "The presence of a test file is an objective criterion that can be verified by inspecting the public repository's file tree."
+      }
+    ],
+    "rule_pending": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "rulebook_hash": "8d48a3e459e38cc3749f97c82ed45003cadaf6dd969880672b7059f04ee48e94",
+    "rules": [
+      "README contains deployment instructions",
+      "Contains a Python GenLayer Intelligent Contract that makes a web request",
+      "Has an OSI-approved LICENSE file",
+      "Contains at least one test file"
+    ],
+    "share": "0",
+    "status": "RULES_ACCEPTED",
+    "title": "Ship a web-reading Intelligent Contract",
+    "validation_error": ""
+  },
+  "payoutVerified": false,
+  "completed": false,
+  "probes": {
+    "https://raw.githubusercontent.com/genlayerlabs/genlayer-js/main/README.md": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://api.github.com/repos/genlayerlabs/genlayer-js": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://web.archive.org/web/20240101000000/https://example.com/": {
+      "reachable": true,
+      "status": 200
+    }
+  },
+  "recordedAt": "2026-10-05T20:36:28.116Z",
+  "previousAttempt": {
+    "contract": "0x066f50FCb15Def2279A79Db23A6bC7a0130662d1",
+    "deploy": "0x8f177b605392ae3e465f455ad39ed3cd1197709a418af8b10d48d36938122d0d",
+    "create": "0xe98d1d30da1cf62d71d4c07c3f41caec2e6ba5092216575ca102054e01d4045e",
+    "value": "3000000000000000000",
+    "execution": "ERROR",
+    "error": "invalid submission window",
+    "retainedBalance": "3000000000000000000",
+    "recoverable": false
+  },
+  "cases": {
+    "qualified": {
+      "wallet": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "repo": "https://github.com/JWattjr/eligibility-judge",
+      "commit": "0314df7404528cac82113f4c5dec3eb28eac6cb4",
+      "expected": "QUALIFIED"
+    },
+    "failed": {
+      "wallet": "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9",
+      "repo": "https://github.com/genlayerlabs/genlayer-js",
+      "commit": "1b7f50a3a3f2963ea857941b0fb386081dd5c326",
+      "expected": "DISQUALIFIED"
+    },
+    "missing": {
+      "wallet": "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642",
+      "repo": "https://github.com/JWattjr/eligibility-judge",
+      "commit": "0000000000000000000000000000000000000000",
+      "expected": "INSUFFICIENT_EVIDENCE"
+    },
+    "injection": {
+      "wallet": "0x0bee09309a6b8e62d7da6f0038f9ec55973fb240",
+      "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+      "commit": "5bed3a266836ddf8c06235cac1f6dc403676d94c",
+      "expected": "DISQUALIFIED"
+    }
+  },
+  "failedTransactions": {
+    "judge-failed-3-attempt-1": {
+      "hash": "0xba8fe6c485f17d4227d843ce21a57a70fe30c81fda81a8230dc43010a61afef8",
+      "execution": "ERROR",
+      "result": "MAJORITY_DISAGREE"
+    },
+    "judge-failed-3-attempt-2": {
+      "hash": "0xb5fa367cdb533f354b3f47e710267f713fff001c32e833d3d9a41ef6a48accf4",
+      "execution": "ERROR",
+      "result": "MAJORITY_DISAGREE"
+    },
+    "judge-failed-3-attempt-3": {
+      "hash": "0xaa7f4d54f636fb80bfbfad596bd2ab758e2632ab2785291f90452ea3a2c645c5",
+      "execution": "ERROR",
+      "result": "MAJORITY_DISAGREE",
+      "error": "[LLM_ERROR] quote missing from fetched file"
+    }
+  },
+  "contractSourcePath": "deploy/previous-contract.py",
+  "contractSourceSha256": "2e12db9ed81167c87ee7db03d9eb880e033f059e1307ec285eb7c1f5bbd624c2"
+}

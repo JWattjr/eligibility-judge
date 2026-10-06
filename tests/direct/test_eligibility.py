@@ -1,4 +1,5 @@
 import json
+import os
 from datetime import datetime, timezone
 import pytest
 from conftest import to_hex
@@ -29,7 +30,7 @@ def contract(direct_vm, direct_deploy, direct_owner):
     direct_vm._chain_id = 61999
     direct_vm.sender = direct_owner
     warp(direct_vm, T)
-    c = direct_deploy('contracts/eligibility_judge.py')
+    c = direct_deploy(os.environ.get('ELIGIBILITY_CONTRACT_FILE', 'contracts/eligibility_judge.py'))
     direct_vm.value = 11
     c.create('Web reading challenge', 'A fair open eligibility challenge', json.dumps(RULES), T, T + 100, 3)
     direct_vm.value = 0

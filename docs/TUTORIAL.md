@@ -21,3 +21,12 @@ After close, call `settle`. It refuses to run while any entry still lacks finali
 Transaction hashes are saved locally in the browser so a reload does not lose progress. A successful leader execution with MAJORITY_DISAGREE is a failed transaction: agreement and finalized callbacks are required before the app reports success. Accepted transactions remain provisional during GenLayer's native appeal window; the UI queries native appeal availability rather than inventing a timer. The transaction trail can initiate a native appeal with the protocol's required bond. There is no custom court.
 
 Before presenting the project, run the direct tests, GenVM lint, TypeScript typecheck, production build, and read-only proof verifier. Direct tests are fast and cover adversarial inputs and accounting, but they do not execute the real validator path or native transfers. The live manifest and receipt checks are therefore essential. Consult `docs/DEMO.md` for the short walkthrough and `docs/submission/portal-fields.json` for the human submission fields.
+
+
+## Exact metadata and bounded content
+
+A live regression returned an entire reconstructed GitHub tree object as a quote, attributed to a test file. The file was real, but that JSON was not its contents. The release now accepts that form only when every metadata field matches a fetched tree node. It then stores the actual filename as a verbatim quote in `__TREE__`. Validators independently fetch and validate the same tree and separately confirm that the citation supports the rule. A changed SHA, size, path, extra instruction field or fabricated suffix is rejected. This is evidence normalization, not acceptance of the model's unsupported citation.
+
+The README regression also showed why file truncation matters. A model sometimes called an incomplete README a failure and another called it insufficient evidence. The release conservatively converts failures citing a truncated file into insufficient evidence. Positive evidence already visible in a prefix may still pass. A completed entry with another failing rule remains disqualified.
+
+Before another funded demonstration, four zero-value calls used the same adjudication helpers in a consensus-only probe. Each finalized with validator agreement. `npm run verify:smoke` independently checks those receipts, stored samples, exact deployed source and helper identity. The probe has no pool or payout methods. The complete funded demonstration remains a separate requirement checked by `npm run verify:proof`.

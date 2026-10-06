@@ -1,0 +1,67 @@
+{
+  "kind": "Zero-value adjudication smoke; does not prove funding, settlement or payout",
+  "network": "StudioNet",
+  "chainId": 61999,
+  "contract": "0x027D51C1eF5f48C914F7AE518d5B1A2A432AB101",
+  "transactions": {
+    "smoke-deploy": "0xbe535d825d8d15011336626988afda5e57d6f345fa90f69c7c45ca6eef643e8f",
+    "smoke-fixture-tests": "0x12e1de6a07c59ff4c2e18a1e5586a1f14c284031b9f90eb10ba50e106cc3502d",
+    "smoke-repo-readme": "0x0b26951707d1514e2825607c048ae172637424a4be2e5ef0e90684fa5c9af928",
+    "smoke-repo-tests": "0x74d293a88fa28be7cee0ce91975cd28ae8aeefdac6a5c81124a87fa50e4789d9",
+    "smoke-repo-license": "0x76fa9d278a86dc698e356a3c480dbfb76ae3d89ef4bd9304ea22c92a53a5b680"
+  },
+  "smokeVerified": true,
+  "recordedAt": "2026-10-06T12:16:52.014Z",
+  "samples": {
+    "fixture-tests": {
+      "label": "fixture-tests",
+      "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+      "commit": "5bed3a266836ddf8c06235cac1f6dc403676d94c",
+      "rule": "Contains at least one test file",
+      "expected": "PASS",
+      "evidence_hash": "f535914d33fd5b5b9ff5d3da7e61515dbbd1d3a5ccc04d7f10662d8327ea6ae4",
+      "path": "__TREE__",
+      "quote": "tests/test_fixture.py",
+      "reason": "The repository contains a dedicated tests directory with a valid test file named 'tests/test_fixture.py'.",
+      "status": "PASS"
+    },
+    "repo-readme": {
+      "label": "repo-readme",
+      "repo": "https://github.com/genlayerlabs/genlayer-js",
+      "commit": "1b7f50a3a3f2963ea857941b0fb386081dd5c326",
+      "rule": "README contains deployment instructions",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "evidence_hash": "4331554f3097b02aebc2800633bf16d6eca9fe39315ddd8c87af7ceb97ffcd30",
+      "path": "README.md",
+      "quote": "# GenLayerJS\n\n[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/license/mit/)\n[![Discord](https://dcbadge.vercel.app/api/server/8Jm4v89VAu?compact=true&style=flat)](https://discord.gg/VpfmXEMN66)\n[![Twitter](https://img.shields.io/twitter/url/https/twitter.com/genlaboratory.svg?style=social&label=Follow%20%40GenLayer)](https://x.com/GenLayer)\n[![GitHub star chart](https://img.shields.io/github/stars/genlayerlabs/genlayer-js?style=social)]",
+      "reason": "README.md is present and partially fetched, but the supplied excerpt is truncated and only shows installation/usage examples. I do not have conclusive positive evidence of deployment instructions in the README, and truncated content cannot establish a failure.",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    "repo-tests": {
+      "label": "repo-tests",
+      "repo": "https://github.com/genlayerlabs/genlayer-js",
+      "commit": "1b7f50a3a3f2963ea857941b0fb386081dd5c326",
+      "rule": "Contains at least one test file",
+      "expected": "PASS",
+      "evidence_hash": "4331554f3097b02aebc2800633bf16d6eca9fe39315ddd8c87af7ceb97ffcd30",
+      "path": "__TREE__",
+      "quote": "tests/accounts-actions.test.ts",
+      "reason": "The repository tree includes a test file under the tests directory, which is positive evidence that it contains at least one test file.",
+      "status": "PASS"
+    },
+    "repo-license": {
+      "label": "repo-license",
+      "repo": "https://github.com/genlayerlabs/genlayer-js",
+      "commit": "1b7f50a3a3f2963ea857941b0fb386081dd5c326",
+      "rule": "Has an OSI-approved LICENSE file",
+      "expected": "PASS",
+      "evidence_hash": "4331554f3097b02aebc2800633bf16d6eca9fe39315ddd8c87af7ceb97ffcd30",
+      "path": "LICENSE",
+      "quote": "MIT License\n\nCopyright (c) 2024-present GenLayer Labs\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions o",
+      "reason": "The repository includes a LICENSE file containing the MIT License, which is an OSI\u2011approved open source license.",
+      "status": "PASS"
+    }
+  },
+  "candidateSourceSha256": "b80988372a3cf243991b1eb12c882ffa0d90787981f24753fba2bd5826d23d4e",
+  "probeSourceSha256": "b9bb8c26b0184965a02e1cba7503056e1bd84214f0364c717f4f258c119bed61"
+}

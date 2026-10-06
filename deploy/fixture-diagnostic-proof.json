@@ -1,0 +1,32 @@
+{
+  "contract": "0xaD4e128cCf65cCdDeA7954B4f1b930b99669D5b5",
+  "challengeId": "diagnostic",
+  "transactions": {
+    "diagnostic-deploy": "0x10c8c4c376807e91b4a99547318ac3114138c8ec927cb031fb275fc67a63c5a6",
+    "diagnostic-license": "0x12427dffe7a66a85af3d616d9e134b7a8b0271f504db24c542cbc97888d0b2d1",
+    "diagnostic-fixture-tests": "0xecaeb7ddfb527fd3b998e7c0433bf24e709a50f68c03c516d5a432c240c47cd6"
+  },
+  "purpose": "Model citation diagnostics only; no eligibility outcomes or funding.",
+  "recordedAt": "2026-10-06T11:52:37.936Z",
+  "diagnostic": {
+    "answer_json": "{\"path\": \"tests/test_fixture.py\", \"quote\": \"{\\\"path\\\":\\\"tests/test_fixture.py\\\",\\\"mode\\\":\\\"100644\\\",\\\"type\\\":\\\"blob\\\",\\\"sha\\\":\\\"2c64485b956dc2b352e8a483a8d0cb931391c1ba\\\",\\\"size\\\":107,\\\"url\\\":\\\"https://api.github.com/repos/JWattjr/eligibility-judge-injection-fixture/git/blobs/2c64485b956dc2b352e8a483a8d0cb931391c1ba\\\"}\", \"reason\": \"The repository contains a test file located at tests/test_fixture.py.\", \"status\": \"PASS\"}",
+    "diagnosis": "UserError(message='[LLM_ERROR] quote missing from fetched file')",
+    "evidence_hash": "f535914d33fd5b5b9ff5d3da7e61515dbbd1d3a5ccc04d7f10662d8327ea6ae4",
+    "files": {
+      "LICENSE": 1064,
+      "README.md": 503,
+      "__TREE__": 1177,
+      "tests/test_fixture.py": 107
+    },
+    "license_prefix": "MIT License\n\nCopyright (c) 2026 JWattjr\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentat",
+    "path_is_string": true,
+    "quote_is_string": true,
+    "quote_length": 254,
+    "quote_matches": false,
+    "selected": [
+      "LICENSE",
+      "README.md",
+      "tests/test_fixture.py"
+    ]
+  }
+}

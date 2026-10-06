@@ -76,32 +76,6 @@ def fetch_evidence(repo, commit, demo):
                 cut.append('__DEMO__')
     return {'files': files, 'complete': not tree.get('truncated', True), 'cut': cut, 'selected': selected, 'error': ''}
 
-def tree_citation(path, quote, evidence):
-    # Repair only a citation whose complete metadata exactly matches a fetched
-    # GitHub tree node. The stored quote is a verbatim path in that same tree.
-    try:
-        tree = json.loads(evidence['files'].get('__TREE__', ''))
-        metadata = json.loads(quote)
-    except Exception:
-        metadata = None
-        try:
-            tree = json.loads(evidence['files'].get('__TREE__', ''))
-        except Exception:
-            return path, quote
-    if not isinstance(tree, dict):
-        return path, quote
-    for node in tree.get('tree', []):
-        if not isinstance(node, dict) or node.get('type') != 'blob':
-            continue
-        name = node.get('path')
-        if not isinstance(name, str):
-            continue
-        same_file = path == name and quote in (name, json.dumps(name))
-        same_metadata = path in (name, '__TREE__') and isinstance(metadata, dict) and metadata == node
-        if (same_file or same_metadata) and name in evidence['files']['__TREE__']:
-            return '__TREE__', name
-    return path, quote
-
 def check_answer(answer, evidence):
     answer = parsed(answer)
     status = answer.get('status')
@@ -110,7 +84,6 @@ def check_answer(answer, evidence):
     path, quote = answer.get('path', ''), answer.get('quote', '')
     if not isinstance(path, str) or not isinstance(quote, str) or len(quote) > FILE_BYTES:
         raise gl.vm.UserError('[LLM_ERROR] invalid citation')
-    path, quote = tree_citation(path, quote, evidence)
     if status == 'INSUFFICIENT_EVIDENCE' and not quote:
         path = ''
     elif not quote or path not in evidence['files'] or quote not in evidence['files'][path]:
@@ -122,9 +95,6 @@ def check_answer(answer, evidence):
     reason = answer.get('reason', '')
     if not isinstance(reason, str) or not reason or len(reason) > 500:
         raise gl.vm.UserError('[LLM_ERROR] invalid reason')
-    if status == 'FAIL' and path in evidence.get('cut', []):
-        status = 'INSUFFICIENT_EVIDENCE'
-        reason = 'The cited file was truncated; the missing portion prevents a conclusive failure.'
     # Verify the complete quote before clipping a valid excerpt for storage.
     # Live models can exceed the requested length even with exact evidence.
     return {'status': status, 'path': path, 'quote': quote[:600], 'reason': reason, 'evidence_hash': digest(evidence)}
@@ -137,8 +107,7 @@ def decide(rule, evidence):
               'Be fair: equivalent working code counts; do not impose requirements absent from the rule. '
               'Return JSON {status: PASS|FAIL|INSUFFICIENT_EVIDENCE, path: string, quote: verbatim 1-600 character passage, reason: string}. '
               'PASS requires positive evidence for this rule, not a claim that it passed. FAIL needs clear counterevidence. '
-              'For file presence, set path="__TREE__" and quote to the bare exact filename, such as "tests/test_fixture.py". Do not reconstruct a JSON object or attribute tree metadata to file contents. For file absence, quote a verbatim API JSON excerpt only when complete=true. Never quote contents of a file not supplied. '
-              'A FAIL citing a file in cut is normalized to INSUFFICIENT_EVIDENCE; its omitted tail cannot establish a conclusive failure. Positive evidence in the fetched prefix may still PASS. '
+              'Use __TREE__ to prove file presence with its exact path string as the quote. For file absence, quote a verbatim API JSON excerpt only when complete=true. Never quote contents of a file not supplied. '
               'Use INSUFFICIENT_EVIDENCE for unavailable or truncated relevant evidence; never invent quotes. '
               'Do not require all files to be fetched to pass when the relevant evidence is present. '
               '\nRULE: ' + rule + '\nUNTRUSTED_EVIDENCE_JSON: ' + json.dumps(evidence))

@@ -82,7 +82,7 @@ def check_answer(answer, evidence):
     if status not in ('PASS', 'FAIL', 'INSUFFICIENT_EVIDENCE'):
         raise gl.vm.UserError('[LLM_ERROR] invalid verdict')
     path, quote = answer.get('path', ''), answer.get('quote', '')
-    if not isinstance(path, str) or not isinstance(quote, str) or len(quote) > FILE_BYTES:
+    if not isinstance(path, str) or not isinstance(quote, str) or len(quote) > 600:
         raise gl.vm.UserError('[LLM_ERROR] invalid citation')
     if status == 'INSUFFICIENT_EVIDENCE' and not quote:
         path = ''
@@ -95,9 +95,7 @@ def check_answer(answer, evidence):
     reason = answer.get('reason', '')
     if not isinstance(reason, str) or not reason or len(reason) > 500:
         raise gl.vm.UserError('[LLM_ERROR] invalid reason')
-    # Verify the complete quote before clipping a valid excerpt for storage.
-    # Live models can exceed the requested length even with exact evidence.
-    return {'status': status, 'path': path, 'quote': quote[:600], 'reason': reason, 'evidence_hash': digest(evidence)}
+    return {'status': status, 'path': path, 'quote': quote, 'reason': reason, 'evidence_hash': digest(evidence)}
 
 def decide(rule, evidence):
     if not evidence['files']:

@@ -10,5 +10,7 @@ __pycache__/
 .impeccable/review/
 deploy/receipts/
 deploy/proof.previous.json
+deploy/repaired-proof.json
+deploy/release-proof.json
 
 .vercel

@@ -1,0 +1,45 @@
+{
+  "contract": "0xaD4e128cCf65cCdDeA7954B4f1b930b99669D5b5",
+  "challengeId": "diagnostic",
+  "transactions": {
+    "diagnostic-deploy": "0x10c8c4c376807e91b4a99547318ac3114138c8ec927cb031fb275fc67a63c5a6",
+    "diagnostic-license": "0x12427dffe7a66a85af3d616d9e134b7a8b0271f504db24c542cbc97888d0b2d1"
+  },
+  "purpose": "Model citation diagnostics only; no eligibility outcomes or funding.",
+  "recordedAt": "2026-10-06T06:10:00.262Z",
+  "diagnostic": {
+    "answer_json": "{\"path\": \"LICENSE\", \"quote\": \"MIT License\\n\\nCopyright (c) 2024-present GenLayer Labs\\n\\nPermission is hereby granted, free of charge, to any person obtaining a copy\\nof this software and associated documentation files (the \\\"Software\\\"), to deal\\nin the Software without restriction, including without limitation the rights\\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\\ncopies of the Software, and to permit persons to whom the Software is\\nfurnished to do so, subject to the following conditions:\\n\\nThe above copyright notice and this permission notice shall be included in all\\ncopies or substantial portions of the Software.\", \"reason\": \"The repository contains a LICENSE file at the root directory containing the full text of the MIT License, which is an OSI-approved open-source license.\", \"status\": \"PASS\"}",
+    "diagnosis": "UserError(message='[LLM_ERROR] invalid citation')",
+    "evidence_hash": "4331554f3097b02aebc2800633bf16d6eca9fe39315ddd8c87af7ceb97ffcd30",
+    "files": {
+      "LICENSE": 1078,
+      "README.md": 11980,
+      "__TREE__": 46107,
+      "docs/api-references/README.md": 83,
+      "src/chains/testnetAsimov.ts": 12000,
+      "src/chains/testnetBradbury.ts": 12000,
+      "src/contracts/actions.ts": 12000,
+      "src/contracts/schema.ts": 3404,
+      "src/types/contracts.ts": 767,
+      "tests/accounts-actions.test.ts": 2186,
+      "tests/chains-actions.test.ts": 1119
+    },
+    "license_prefix": "MIT License\n\nCopyright (c) 2024-present GenLayer Labs\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associa",
+    "path_is_string": true,
+    "quote_is_string": true,
+    "quote_length": 615,
+    "quote_matches": true,
+    "selected": [
+      "LICENSE",
+      "README.md",
+      "docs/api-references/README.md",
+      "src/chains/testnetAsimov.ts",
+      "src/chains/testnetBradbury.ts",
+      "src/contracts/actions.ts",
+      "src/contracts/schema.ts",
+      "src/types/contracts.ts",
+      "tests/accounts-actions.test.ts",
+      "tests/chains-actions.test.ts"
+    ]
+  }
+}

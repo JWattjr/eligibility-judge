@@ -60,7 +60,7 @@ powershell -ExecutionPolicy Bypass -File scripts/deploy.ps1 settle
 npm run verify:proof
 ```
 
-Each stage records hashes before waiting. Resume the same stage after a timeout; it reuses saved transactions. The `probe` stage deploys its access-probe contract when the fresh manifest has no saved deployment. The demo entrants' test-wallet keys are generated into a gitignored `.env.demo-wallets.json` solely for StudioNet. By default, `seed` funds 3 GEN, starts a twenty-minute window, and validates four rules. Set `ELIGIBILITY_DEMO_WEI=1` to use a 1-wei development demonstration instead. Publish this repository before entering its pinned source commit. Deployment scripts save receipts locally; `deploy/proof.json` is the public, compact manifest. Vercel deploys with a remote build: `vercel --prod --scope wattxs-projects`.
+Each stage records hashes before waiting. Resume the same stage after a timeout; it reuses saved transactions. The `probe` stage deploys its access-probe contract when the fresh manifest has no saved deployment. The demo entrants' test-wallet keys are generated into a gitignored `.env.demo-wallets.json` solely for StudioNet. By default, `seed` funds 3 GEN, starts a twenty-minute window, and validates four rules. Set `ELIGIBILITY_DEMO_WEI=1` to use a 1-wei development demonstration instead. Publish this repository before entering its pinned source commit. The CLI polls every ten seconds to leave headroom below the hourly RPC budget. Deployment scripts save receipts locally; `deploy/proof.json` is the public, compact manifest. Vercel deploys with a remote build: `vercel --prod --scope wattxs-projects`.
 
 ## Verification
 
@@ -78,11 +78,11 @@ Direct tests mock web and LLM responses and do not claim validator consensus. Th
 ## Proof and submission
 
 - [Public proof manifest](deploy/proof.json): addresses, pinned source commit, access probes, transaction hashes, outcomes, transfers, and completion flags.
-- [Contract on StudioNet](https://explorer-studio.genlayer.com/address/0xabD5191d96f6CD2ae04c6a1D890a8AA34e9beC6c).
+- [Contract on StudioNet](https://explorer-studio.genlayer.com/address/0x670d668284C1623fCcA57D7cb0F141Fef7958078).
 - [Tutorial](docs/TUTORIAL.md), [two-minute demo](docs/DEMO.md), and [portal fields](docs/submission/portal-fields.json).
 - [Official finality documentation](https://docs.genlayer.com/understand-genlayer-protocol/core-concepts/optimistic-democracy/finality).
 
-The latest evidence-corrected contract is running a 1-wei demonstration. Completion is reported only after every required outcome and a credited payout are verified. Earlier funding remains documented: 3 StudioNet GEN are unrecoverable at the first contract after an invalid-window rollback; another 3 GEN remain locked at the second contract because a test-file judgment failed citation verification. [The previous run](deploy/previous-run.json) and [its deployed source](deploy/previous-contract.py) preserve that history. The latest contract retains TypeScript test files in its bounded evidence set and rejects fabricated insufficient-evidence citations. Nothing is submitted to the Portal automatically.
+The latest contract verifies full source quotes before capping stored excerpts at 600 characters. A zero-value [native diagnostic](deploy/diagnostic-proof.json) reproduced an exact 615-character MIT citation rejected by the previous bound. The correction passes 23 direct tests, including that live regression and adversarial suffixes. Its fresh demo awaits an additional 1-wei funding approval. Completion is reported only after every required outcome and a credited payout are verified. Earlier funding remains documented: 3 StudioNet GEN are unrecoverable at the first contract after an invalid-window rollback; another 3 GEN remain locked at the second contract because a test-file judgment failed citation verification; 1 wei remains locked in [the evidence-corrected run](deploy/evidence-run.json) pending a shorter valid license citation. [The previous run](deploy/previous-run.json) and [its deployed source](deploy/previous-contract.py) preserve that history. The latest contract retains TypeScript test files in its bounded evidence set and rejects fabricated insufficient-evidence citations. Nothing is submitted to the Portal automatically.
 
 ## Limitations
 

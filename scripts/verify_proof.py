@@ -74,6 +74,8 @@ def main():
         entry = record['entries'][case['wallet']]
         assert entry['status'] == case['expected'], 'Wrong outcome: ' + name
         assert entry['commit'] == case['commit'] and entry['repo'] == case['repo']
+        for verdict in entry['verdicts']:
+            assert verdict is not None and len(verdict['quote']) <= 600, 'Unfinalized or unbounded stored citation'
         for i in range(len(record['rules'])):
             assert 'judge-' + name + '-' + str(i) in receipts
             assert 'judge-' + name + '-' + str(i) + '-child-0' in receipts

@@ -1,4 +1,4 @@
-param([ValidateSet('probe','deploy','seed','entries','judge','settle','proof')][string]$Step='proof')
+param([ValidateSet('probe','deploy','seed','entries','judge','settle','proof','diagnose')][string]$Step='proof')
 $ErrorActionPreference='Stop'
 Set-Location -LiteralPath (Split-Path -Parent $PSScriptRoot)
 $env:ELIGIBILITY_STEP=$Step

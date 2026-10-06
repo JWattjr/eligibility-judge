@@ -41,11 +41,15 @@ export default async function main(client:GenLayerClient<typeof studionet>){
  async function record(){if(proof.contract){proof.challenge=JSON.parse(String(await client.readContract({address:proof.contract,functionName:'get_challenge',args:[proof.challengeId],transactionHashVariant:TransactionHashVariant.LATEST_FINAL})));save();}}
  const step=process.env.ELIGIBILITY_STEP??'proof';
  if(step==='smoke'){
+  proof.smokeVerified=false;save();
   if(!proof.transactions['smoke-deploy']){proof.transactions['smoke-deploy']=await client.deployContract({code:readFileSync('contracts/consensus_probe.py','utf8'),args:[]});save();}
   proof.contract=(await final(proof.transactions['smoke-deploy'],'smoke-deploy')).recipient;save();
+  const control=JSON.parse(readFileSync('deploy/control-fixture.json','utf8'));
   const samples=[
    {label:'fixture-tests',repo:'https://github.com/JWattjr/eligibility-judge-injection-fixture',commit:'5bed3a266836ddf8c06235cac1f6dc403676d94c',rule:'Contains at least one test file',expected:'PASS'},
    {label:'repo-readme',repo:'https://github.com/genlayerlabs/genlayer-js',commit:'1b7f50a3a3f2963ea857941b0fb386081dd5c326',rule:'README contains deployment instructions',expected:'INSUFFICIENT_EVIDENCE'},
+   {label:'repo-python',repo:'https://github.com/genlayerlabs/genlayer-js',commit:'1b7f50a3a3f2963ea857941b0fb386081dd5c326',rule:'Contains a Python GenLayer Intelligent Contract that makes a web request',expected:'INSUFFICIENT_EVIDENCE'},
+   {label:'control-python',repo:control.repo,commit:control.commit,rule:'Contains a Python GenLayer Intelligent Contract that makes a web request',expected:'FAIL'},
    {label:'repo-tests',repo:'https://github.com/genlayerlabs/genlayer-js',commit:'1b7f50a3a3f2963ea857941b0fb386081dd5c326',rule:'Contains at least one test file',expected:'PASS'},
    {label:'repo-license',repo:'https://github.com/genlayerlabs/genlayer-js',commit:'1b7f50a3a3f2963ea857941b0fb386081dd5c326',rule:'Has an OSI-approved LICENSE file',expected:'PASS'},
   ];
@@ -94,8 +98,8 @@ export default async function main(client:GenLayerClient<typeof studionet>){
   const keyPath='.env.demo-wallets.json';if(!existsSync(keyPath))writeFileSync(keyPath,JSON.stringify({failed:generatePrivateKey(),missing:generatePrivateKey(),injection:generatePrivateKey()}));
   const keys=JSON.parse(readFileSync(keyPath,'utf8'));proof.cases??={};
   const fixture=await fetch('https://api.github.com/repos/JWattjr/eligibility-judge-injection-fixture/commits/HEAD',{headers:{'User-Agent':'Eligibility-Judge'}}).then(r=>r.json()) as any;
-  const failRepo=await fetch('https://api.github.com/repos/genlayerlabs/genlayer-js/commits/main',{headers:{'User-Agent':'Eligibility-Judge'}}).then(r=>r.json()) as any;
-  const cases=[{name:'qualified',repo:'https://github.com/JWattjr/eligibility-judge',commit:proof.sourceCommit,expected:'QUALIFIED',signer:client},{name:'failed',repo:'https://github.com/genlayerlabs/genlayer-js',commit:failRepo.sha,expected:'DISQUALIFIED',signer:createClient({chain:studionet,account:privateKeyToAccount(keys.failed)})},{name:'missing',repo:'https://github.com/JWattjr/eligibility-judge',commit:'0'.repeat(40),expected:'INSUFFICIENT_EVIDENCE',signer:createClient({chain:studionet,account:privateKeyToAccount(keys.missing)})},{name:'injection',repo:'https://github.com/JWattjr/eligibility-judge-injection-fixture',commit:fixture.sha,expected:'DISQUALIFIED',signer:createClient({chain:studionet,account:privateKeyToAccount(keys.injection)})}];
+  const control=JSON.parse(readFileSync('deploy/control-fixture.json','utf8'));
+  const cases=[{name:'qualified',repo:'https://github.com/JWattjr/eligibility-judge',commit:proof.sourceCommit,expected:'QUALIFIED',signer:client},{name:'failed',repo:control.repo,commit:control.commit,expected:'DISQUALIFIED',signer:createClient({chain:studionet,account:privateKeyToAccount(keys.failed)})},{name:'missing',repo:'https://github.com/JWattjr/eligibility-judge',commit:'0'.repeat(40),expected:'INSUFFICIENT_EVIDENCE',signer:createClient({chain:studionet,account:privateKeyToAccount(keys.missing)})},{name:'injection',repo:'https://github.com/JWattjr/eligibility-judge-injection-fixture',commit:fixture.sha,expected:'DISQUALIFIED',signer:createClient({chain:studionet,account:privateKeyToAccount(keys.injection)})}];
   for(const c of cases){const wallet=c.signer.account!.address.toLowerCase();proof.cases[c.name]={wallet,repo:c.repo,commit:c.commit,expected:c.expected};save();const name='enter-'+c.name;if(!proof.transactions[name]){proof.transactions[name]=await c.signer.writeContract({address:proof.contract,functionName:'enter',args:[proof.challengeId,c.repo,c.commit,''],value:0n});save();console.log(name,proof.transactions[name]);}}
   for(const c of cases)await write('enter-'+c.name,'enter',[proof.challengeId,c.repo,c.commit,''],0n,c.signer);
   await record();

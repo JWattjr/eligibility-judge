@@ -46,4 +46,4 @@ if deployed.startswith('0x'):
 elif not deployed.startswith('#'):
     deployed = base64.b64decode(deployed).decode()
 assert deployed.replace('\r\n', '\n') == local
-print('Verified four finalized consensus regressions and exact source; no funding or payout proof is claimed.')
+print('Verified', len(proof['samples']), 'finalized consensus regressions and exact source; no funding or payout proof is claimed.')

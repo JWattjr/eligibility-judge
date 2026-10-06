@@ -24,7 +24,7 @@
       "instruction": "Connect your StudioNet wallet, create and fund a challenge, validate each rule, then submit a public GitHub commit during its window. Judge rules, settle after finality and close, and claim your share."
     }
   ],
-  "expectedOutcome": "A transparent rule matrix and independently verified citations; finalized qualification outcomes; deterministic equal shares with organizer refunds and credited native transfers. Four zero-value consensus regressions passed; the fresh funded demo and payout are still pending.",
+  "expectedOutcome": "A transparent rule matrix and independently verified citations; finalized qualification outcomes; deterministic equal shares with organizer refunds and credited native transfers. Six zero-value consensus checks independently verified; the fresh funded demo and payout are still pending.",
   "contractLinks": [
     "https://explorer-studio.genlayer.com/address/0x03Dd21B241ea3e1EBB9B126Eb732d795dEE8Ae9a"
   ],

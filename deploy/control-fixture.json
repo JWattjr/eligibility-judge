@@ -1,0 +1,7 @@
+{
+  "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+  "branch": "control",
+  "commit": "33db77a45b087f970d6e8555086b20c8dd9addac",
+  "injectionCommit": "5bed3a266836ddf8c06235cac1f6dc403676d94c",
+  "purpose": "Small fully inspectable control; intentionally no Python Intelligent Contract; license and tests retained."
+}

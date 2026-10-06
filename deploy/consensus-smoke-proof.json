@@ -8,10 +8,12 @@
     "smoke-fixture-tests": "0x12e1de6a07c59ff4c2e18a1e5586a1f14c284031b9f90eb10ba50e106cc3502d",
     "smoke-repo-readme": "0x0b26951707d1514e2825607c048ae172637424a4be2e5ef0e90684fa5c9af928",
     "smoke-repo-tests": "0x74d293a88fa28be7cee0ce91975cd28ae8aeefdac6a5c81124a87fa50e4789d9",
-    "smoke-repo-license": "0x76fa9d278a86dc698e356a3c480dbfb76ae3d89ef4bd9304ea22c92a53a5b680"
+    "smoke-repo-license": "0x76fa9d278a86dc698e356a3c480dbfb76ae3d89ef4bd9304ea22c92a53a5b680",
+    "smoke-repo-python": "0xe249e130a170e889428dcb2d329295cc68a35d8b8b192dc4fc9443a814ab29b6",
+    "smoke-control-python": "0xd67ad0cb163981e2fc34f47d55fe38f8156632e29fdf862a2728517027547916"
   },
   "smokeVerified": true,
-  "recordedAt": "2026-10-06T12:16:52.014Z",
+  "recordedAt": "2026-10-06T12:58:15.345Z",
   "samples": {
     "fixture-tests": {
       "label": "fixture-tests",
@@ -58,8 +60,34 @@
       "evidence_hash": "4331554f3097b02aebc2800633bf16d6eca9fe39315ddd8c87af7ceb97ffcd30",
       "path": "LICENSE",
       "quote": "MIT License\n\nCopyright (c) 2024-present GenLayer Labs\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions o",
-      "reason": "The repository includes a LICENSE file containing the MIT License, which is an OSI\u2011approved open source license.",
+      "reason": "The repository includes a LICENSE file containing the MIT License, which is an OSI‑approved open source license.",
       "status": "PASS"
+    },
+    "repo-python": {
+      "label": "repo-python",
+      "repo": "https://github.com/genlayerlabs/genlayer-js",
+      "commit": "1b7f50a3a3f2963ea857941b0fb386081dd5c326",
+      "rule": "Contains a Python GenLayer Intelligent Contract that makes a web request",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "evidence_hash": "4331554f3097b02aebc2800633bf16d6eca9fe39315ddd8c87af7ceb97ffcd30",
+      "path": "__TREE__",
+      "quote": "src/contracts/actions.ts",
+      "reason": "The repository contains a JavaScript/TypeScript SDK for interacting with GenLayer, but no Python GenLayer Intelligent Contracts were found in the provided file tree or contents. GenLayer Intelligent Contracts are typically Python files that use the GenVM API to make web requests (e.g., using a 'get_web_page' or similar method), whereas this repository contains the client-side library code.",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "initialExpected": "FAIL",
+      "expectationReason": "The bounded SDK inspection produced a validator-agreed insufficient result; use a fully inspected control to demonstrate a conclusive failure."
+    },
+    "control-python": {
+      "label": "control-python",
+      "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+      "commit": "33db77a45b087f970d6e8555086b20c8dd9addac",
+      "rule": "Contains a Python GenLayer Intelligent Contract that makes a web request",
+      "expected": "FAIL",
+      "evidence_hash": "c6ba287d1c1dc05c7ad31e70da6489fb07a2b6bbc7895698891f40ffd106672a",
+      "path": "__TREE__",
+      "quote": "tests/test_fixture.py",
+      "reason": "The repository contains only a license, a readme, and a standard Python test file. There is no GenLayer Intelligent Contract present, nor any code that performs a web request.",
+      "status": "FAIL"
     }
   },
   "candidateSourceSha256": "b80988372a3cf243991b1eb12c882ffa0d90787981f24753fba2bd5826d23d4e",

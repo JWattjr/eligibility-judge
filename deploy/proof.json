@@ -32,7 +32,10 @@
     "judge-qualified-2-child-0": "0x91bf3bddae16daefdd4dc780b03532bfc156bf77c4d1d0d161ee12d1314608b3",
     "judge-qualified-3": "0x8269ba1adf482bf83bd6340f6dd70f060687dd2c19b963df44bcc5db0e864d1c",
     "judge-qualified-3-child-0": "0x8e0e9df8d1962f0320110c2ea4e358f027dd0961470526981edfffc6f60723f0",
-    "judge-failed-0": "0xbf3f6b666d8a33bc7bda3f9f4ce9d2d2698716a712a717471127764573f1568c"
+    "judge-failed-1": "0x1ff55320bd56c133738cb9d12ce192c047b487f69641d469e96614d9d891307a",
+    "judge-failed-1-child-0": "0xafe95a05e56141bc938c1b161d6874deeb4f1285d043c5b5e26a5d66529deffd",
+    "judge-failed-0": "0xd93cf290db46aa1934b9c3252c03b4c3059d529e80daf154b24703d36f1ef586",
+    "judge-failed-0-child-0": "0x41557330aa2d34ca7f639b077c5b011220d9a7faad6baf6d1ebba042b50b91ca"
   },
   "challenge": {
     "brief": "Public code. Four checkable rules. Every qualifying entry shares the pool equally.",
@@ -169,7 +172,7 @@
     "rule_checks": [
       {
         "accepted": true,
-        "reason": "This rule is objectively verifiable by inspecting the README file in the public repository to check whether deployment instructions are present. It requires no subjective judgment — either the README contains deployment instructions or it does not."
+        "reason": "This rule is objectively verifiable by inspecting the README file in the public repository to check whether deployment instructions are present. It requires no subjective judgment â€” either the README contains deployment instructions or it does not."
       },
       {
         "accepted": true,
@@ -204,7 +207,7 @@
   },
   "payoutVerified": false,
   "completed": false,
-  "recordedAt": "2026-10-06T05:39:47.938Z",
+  "recordedAt": "2026-10-06T05:50:13.668Z",
   "contractSourceSha256": "a7e6c675e2ba1c268075aef89cab47ec7df309f39e87e714c6b9617509d1b3c3",
   "probes": {
     "https://raw.githubusercontent.com/genlayerlabs/genlayer-js/main/README.md": {
@@ -265,6 +268,19 @@
       "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
       "commit": "5bed3a266836ddf8c06235cac1f6dc403676d94c",
       "expected": "DISQUALIFIED"
+    }
+  },
+  "failedTransactions": {
+    "judge-failed-0-attempt-1": {
+      "hash": "0xbf3f6b666d8a33bc7bda3f9f4ce9d2d2698716a712a717471127764573f1568c",
+      "status": "FINALIZED_ERROR",
+      "reason": "[LLM_ERROR] invalid citation"
+    },
+    "judge-failed-0-attempt-2": {
+      "hash": "0x42032b42adaf5762177114c602e838c068e2d2986eb55343e79f69b2288055e5",
+      "status": "FINALIZED_ERROR",
+      "leaderExecution": "SUCCESS",
+      "reason": "MAJORITY_DISAGREE; no callback or state change"
     }
   }
 }

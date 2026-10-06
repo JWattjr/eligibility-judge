@@ -30,6 +30,8 @@ def finalized_success(record, transfer=False):
     if transfer:
         assert record.get('value_credited') is True, 'Transfer is not credited'
         return
+    agreement = record.get('result_name', record.get('resultName'))
+    assert not agreement or agreement in ('AGREE', 'MAJORITY_AGREE', 'SUCCESS'), 'Consensus rejected the leader result: ' + str(agreement)
     consensus = record.get('consensus_data') or {}
     leader = (consensus.get('leader_receipt') or [{}])[0]
     execution = record.get('txExecutionResultName', leader.get('execution_result'))
@@ -47,7 +49,8 @@ def main():
         failed = receipt(attempt['hash'])
         assert failed.get('status') == 'FINALIZED', 'Failed attempt is not final: ' + name
         leader = failed['consensus_data']['leader_receipt'][0]
-        assert leader.get('execution_result') == 'ERROR' or base64.b64decode(leader.get('result', ''))[:1] == b'\x01', 'Recorded failure was successful: ' + name
+        rejected = failed.get('result_name') in ('DISAGREE', 'MAJORITY_DISAGREE', 'NO_MAJORITY', 'TIMEOUT', 'DETERMINISTIC_VIOLATION')
+        assert rejected or leader.get('execution_result') == 'ERROR' or base64.b64decode(leader.get('result', ''))[:1] == b'\x01', 'Recorded failure was successful: ' + name
         print(name, attempt['hash'], 'FINALIZED', 'RETAINED FAILURE')
         time.sleep(2.6)
     for name, hash_value in proof['transactions'].items():

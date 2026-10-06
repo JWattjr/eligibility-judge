@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-05",
+  "checkedAt": "2026-10-06T06:30:01.141576+00:00",
   "application": "Eligibility Judge",
   "localUrl": "http://localhost:3111",
   "viewports": [
@@ -13,23 +13,30 @@
     }
   ],
   "checks": {
-    "publicLedger": "Real finalized entry records render; rule chips reveal quotes and pinned source links. Final completed snapshot check pending.",
+    "publicLedger": "Published unfunded release renders with zero pool and Awaiting demo; earlier real finalized qualified ledger and pinned citations inspected. Completed release snapshot pending.",
     "rulebook": "Four accepted validation reasons and frozen hash render.",
     "creation": "Title, brief, rule editor (3\u20136), window, capacity and pool fields inspected. Add/remove checked. Wallet signing not verified in browser.",
     "entry": "GitHub HEAD resolves to a full SHA and bounded preview on real public data. Signing not verified in browser.",
-    "transactions": "Live writes verified through GenLayer CLI; accepted/finalized-error behavior and finalized returned challenge ID tested in TypeScript. Browser wallet, native appeal and reload during a signed transaction not yet verified.",
-    "payouts": "Finality gates inspected. Live settlement and credited payout pending. Browser claim signature not verified.",
-    "mobile": "No page overflow at 390px for inspected ledger and forms.",
-    "walletUnavailable": "Connect shows a clear install-wallet error and retry path."
+    "transactions": "CLI finalized honest and missing-commit outcomes in the archived run. Production API correctly reports MAJORITY_DISAGREE with successful leader execution as FINALIZED_ERROR. Browser wallet signing, native appeal and reload during a signed transaction remain unverified.",
+    "payouts": "Exact 18-decimal GEN display verified without horizontal overflow at 390px. Current corrected release is unfunded; settlement and credited payout remain pending. Browser claim signature unverified.",
+    "mobile": "Ledger, entry preview, rule editor and payout layouts inspected at 390px; payout scrollWidth 382px. Unfunded release checked at desktop and mobile widths.",
+    "walletUnavailable": "Connect shows a clear install-wallet error and retry path.",
+    "deployedSource": "Native gen_getContractCode exactly matches reviewed source (sha256 eac2ce6ce8f232d19a940cf972fb035347435737579187bec1b2fee0294fc156); finalized get_balance returns 0."
   },
   "walletSigningVerified": false,
   "submissionReady": false,
   "remaining": [
-    "Browser signing, appeal and reload verification with a real wallet",
-    "Final live demo outcomes, settlement and payout receipt verification"
+    "Additional 1-wei authorization, then all fresh live cases, settlement and credited payout verification",
+    "Browser signing, native appeal and reload verification with a real wallet"
   ],
   "screenshots": [
     ".impeccable/review/desktop.png",
-    ".impeccable/review/mobile.png"
-  ]
+    ".impeccable/review/mobile.png",
+    ".impeccable/review/mobile-payout.png",
+    ".impeccable/review/unfunded-desktop.png",
+    ".impeccable/review/unfunded-mobile.png"
+  ],
+  "productionUrl": "https://eligibility-judge.vercel.app",
+  "productionCommit": "107b23a",
+  "deployedContract": "0x670d668284C1623fCcA57D7cb0F141Fef7958078"
 }

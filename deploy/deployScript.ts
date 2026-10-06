@@ -40,6 +40,10 @@ export default async function main(client:GenLayerClient<typeof studionet>){
   const rules=['README contains deployment instructions','Contains a Python GenLayer Intelligent Contract that makes a web request','Has an OSI-approved LICENSE file','Contains at least one test file'];
   const time=Math.floor(Date.now()/1000);
   await write('create','create',['Ship a web-reading Intelligent Contract','Public code. Four checkable rules. Every qualifying entry shares the pool equally.',JSON.stringify(rules),time,time+1200,20],BigInt(process.env.ELIGIBILITY_DEMO_WEI??'3000000000000000000'));
+  const created=JSON.parse(readFileSync(receiptDir+'/create.json','utf8'));
+  const returnedId=JSON.parse(created.consensus_data?.leader_receipt?.[0]?.result?.payload?.readable??'null');
+  if(typeof returnedId!=='string'||!/^challenge-\d+$/.test(returnedId))throw Error('Finalized creation did not return a challenge ID');
+  proof.challengeId=returnedId;save();
   for(let i=0;i<rules.length;i++)await write('validate-rule-'+i,'validate_rule',[proof.challengeId,i]);
   await record();
  }

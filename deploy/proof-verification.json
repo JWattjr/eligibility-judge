@@ -1,0 +1,20 @@
+{
+  "recordedAt": "2026-10-07T11:50:07.056691+00:00",
+  "command": "npm run verify:proof",
+  "result": "PASS",
+  "readOnly": true,
+  "contract": "0x03Dd21B241ea3e1EBB9B126Eb732d795dEE8Ae9a",
+  "challengeId": "challenge-1",
+  "receiptsVerified": 54,
+  "manifestSha256": "f87dc9930037adf3cd439aa4048fecad6460b351f99c08e52ebb2966db97e683",
+  "contractSourceSha256": "b80988372a3cf243991b1eb12c882ffa0d90787981f24753fba2bd5826d23d4e",
+  "checks": [
+    "Every saved receipt finalized with successful execution or credited native transfer",
+    "Parent-child callback relations",
+    "Exact finalized challenge state and frozen rulebook hash",
+    "All sixteen verdicts and four expected entry outcomes",
+    "Exact one-wei native payout recipient and contract sender",
+    "Exact deployed source matches release source"
+  ],
+  "manifestHashNormalization": "UTF-8 with LF newlines"
+}

@@ -11,4 +11,13 @@ export function selectedFiles(paths:string[]){return paths.filter(p=>/\.(py|ts|t
 export function evidenceUrl(entry:Entry,path:string){const {owner,repo}=repoParts(entry.repo);return path==='__TREE__'?`https://api.github.com/repos/${owner}/${repo}/git/trees/${entry.commit}?recursive=1`:path==='__DEMO__'?entry.demo:`https://github.com/${owner}/${repo}/blob/${entry.commit}/${path.split('/').map(encodeURIComponent).join('/')}`;}
 export function executionState(receipt:Record<string,unknown>):string{const status=String(receipt.statusName??receipt.status_name??'PENDING');if(status!=='FINALIZED')return status;if(receipt.value_credited===true&&receipt.consensus_data===null)return 'FINALIZED_SUCCESS';const consensus=receipt.result_name??receipt.resultName;if(consensus&&!['AGREE','MAJORITY_AGREE','SUCCESS'].includes(String(consensus)))return 'FINALIZED_ERROR';const data=receipt.consensus_data as {leader_receipt?:{execution_result?:string;result?:{status?:string}}[]}|undefined;const leader=data?.leader_receipt?.[0];return ['SUCCESS','FINISHED_WITH_RETURN'].includes(String(receipt.txExecutionResultName??leader?.execution_result))&&leader?.result?.status!=='rollback'?'FINALIZED_SUCCESS':'FINALIZED_ERROR';}
 export const txUrl=(hash:string)=>`https://explorer-studio.genlayer.com/tx/${hash}`;
+// Studio uses the native finality window, extended by time spent appealing and
+// shortened after failed appeals (the Studio protocol's configured reduction).
+export function studioAppealDeadline(receipt:Record<string,unknown>,windowSeconds:number,reduction=0.2){
+ const state=executionState(receipt);
+ if(!['ACCEPTED','UNDETERMINED','LEADER_TIMEOUT','VALIDATORS_TIMEOUT'].includes(state)||receipt.leader_only!==false||receipt.appealed===true)return null;
+ const started=Number(receipt.timestamp_awaiting_finalization),processing=Number(receipt.appeal_processing_time??0),failed=Number(receipt.appeal_failed??0);
+ if(!Number.isFinite(started)||started<=0||!Number.isFinite(windowSeconds)||windowSeconds<=0||!Number.isFinite(processing)||processing<0||!Number.isInteger(failed)||failed<0||reduction<0||reduction>=1)return null;
+ return started+processing+windowSeconds*(1-reduction)**failed;
+}
 export function returnedChallengeId(receipt:Record<string,unknown>){if(executionState(receipt)!=='FINALIZED_SUCCESS')return null;const data=receipt.consensus_data as {leader_receipt?:{result?:{payload?:{readable?:string}}}[]}|undefined;try{const value=JSON.parse(data?.leader_receipt?.[0]?.result?.payload?.readable??'null');return typeof value==='string'&&/^challenge-\d+$/.test(value)?value:null;}catch{return null;}}

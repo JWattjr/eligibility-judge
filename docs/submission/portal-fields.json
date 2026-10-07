@@ -5,7 +5,7 @@
   "tag1": "Hackathons",
   "tag2": "Evidence Verification",
   "oneLiner": "Open hackathon judging: every entry gets a rule-by-rule verdict anyone can verify.",
-  "description": "Eligibility Judge qualifies public GitHub entries against a frozen, validator-accepted rulebook. GenLayer validators judge one rule per transaction, independently fetch evidence at the submitted commit, and verify the leader's exact quote and file path. Entries passing every rule qualify; there are no scores or rankings. After close and finalized judgments, contract code divides a funded StudioNet GEN pool equally, refunds the integer remainder or an empty qualifying pool, and supports pull claims. Builders get one revision before close. The mobile-first app separates recorded proof from finalized live reads, preserves transaction polling across reloads, and uses native appeals. The repository includes direct tests, source, a tutorial, and a read-only finalized proof verifier. Live release verification is in progress; check deploy/proof.json before submission.",
+  "description": "Eligibility Judge qualifies public GitHub entries against a frozen, validator-accepted rulebook. GenLayer validators judge one rule per transaction, independently fetch evidence at the submitted commit, and verify the leader's exact quote and file path. Entries passing every rule qualify; there are no scores or rankings. After close and finalized judgments, contract code divides a funded StudioNet GEN pool equally, refunds the integer remainder or an empty qualifying pool, and supports pull claims. Builders get one revision before close. The mobile-first app separates recorded proof from finalized live reads, preserves transaction polling across reloads, and uses native appeals. The repository includes direct tests, source, a tutorial, and a read-only finalized proof verifier. The live four-case demo settled and paid its one-wei pool; finalized receipts are in deploy/proof.json.",
   "howTo": [
     {
       "heading": "Audit the public ledger",
@@ -24,7 +24,7 @@
       "instruction": "Connect your StudioNet wallet, create and fund a challenge, validate each rule, then submit a public GitHub commit during its window. Judge rules, settle after finality and close, and claim your share."
     }
   ],
-  "expectedOutcome": "A transparent rule matrix and independently verified citations; finalized qualification outcomes; deterministic equal shares with organizer refunds and credited native transfers. Six zero-value consensus checks independently verified; the fresh funded demo and payout are still pending.",
+  "expectedOutcome": "The seeded demo shows one qualified entry, two disqualified fixture commits, and one missing commit with insufficient evidence. All sixteen judgments finalized; deterministic settlement awarded one wei to the qualifier, whose pull claim produced a credited native transfer. Inspect deploy/proof.json and docs/browser-verification.json for the current verification status before submission.",
   "contractLinks": [
     "https://explorer-studio.genlayer.com/address/0x03Dd21B241ea3e1EBB9B126Eb732d795dEE8Ae9a"
   ],

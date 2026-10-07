@@ -3,6 +3,7 @@ import hashlib
 import base64
 import importlib.metadata
 import json
+import re
 import sys
 import time
 from pathlib import Path
@@ -17,9 +18,20 @@ proof = json.loads((root / 'deploy/proof.json').read_text(encoding='utf8'))
 # funded, saved, or used to sign; the verifier only invokes read RPC methods.
 client = create_client(chain=studionet, account=Account.create())
 
+def read_with_retry(operation):
+    for attempt in range(6):
+        try:
+            return operation()
+        except Exception as error:
+            transient = re.search(r'invalid JSON|timed out|ETIMEDOUT|ECONNRESET|Bad Gateway|\b50[234]\b', str(error), re.I)
+            if not transient or attempt == 5:
+                raise
+            print('Temporary RPC read failure; retrying the same read.', flush=True)
+            time.sleep(10)
+
 def receipt(hash_value):
     # SDK release adapter maps status fields differently across Studio versions.
-    raw = client.provider.make_request('eth_getTransactionByHash', [hash_value])
+    raw = read_with_retry(lambda: client.provider.make_request('eth_getTransactionByHash', [hash_value]))
     if raw.get('error'):
         raise AssertionError(raw['error'])
     return raw['result']
@@ -60,7 +72,7 @@ def main():
         receipts[name] = record
         print(name, hash_value, 'FINALIZED', 'CREDITED' if transfer else 'SUCCESS')
         time.sleep(2.6)  # Below 30 requests/min; never poll or send a write.
-    record = json.loads(client.read_contract(proof['contract'], 'get_challenge', [proof['challengeId']], transaction_hash_variant=TransactionHashVariant.LATEST_FINAL))
+    record = json.loads(read_with_retry(lambda: client.read_contract(proof['contract'], 'get_challenge', [proof['challengeId']], transaction_hash_variant=TransactionHashVariant.LATEST_FINAL)))
     assert record == proof['challenge'], 'Recorded proof differs from finalized contract state'
     assert record['status'] == 'SETTLED'
     for name, parent in receipts.items():
@@ -86,7 +98,7 @@ def main():
     assert str(claim['value']) == record['share']
     assert claim['from_address'].lower() == proof['contract'].lower()
     assert claim['to_address'].lower() == proof['cases']['qualified']['wallet'].lower()
-    code = client.provider.make_request('gen_getContractCode', [proof['contract']])
+    code = read_with_retry(lambda: client.provider.make_request('gen_getContractCode', [proof['contract']]))
     if code.get('error'):
         raise AssertionError('Cannot verify deployed source: ' + str(code['error']))
     deployed = code['result']

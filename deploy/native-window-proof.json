@@ -1,0 +1,16 @@
+{
+  "kind": "Observed read-only production API response; does not prove an appeal signature",
+  "observedAt": "2026-10-07T11:01:30.732516+00:00",
+  "sourceCommit": "f91ba96",
+  "nativeFinalityWindowSeconds": 30,
+  "response": {
+    "hash": "0x645418c4245735ab120326dd502ddbae8794fc6e2d6b5f8621c71cfa1565b46c",
+    "state": "ACCEPTED",
+    "appealable": true,
+    "appealDeadline": 1791370876,
+    "challengeId": null,
+    "error": "",
+    "recipient": "0x03Dd21B241ea3e1EBB9B126Eb732d795dEE8Ae9a",
+    "children": []
+  }
+}

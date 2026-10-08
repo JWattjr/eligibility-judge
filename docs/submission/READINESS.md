@@ -31,3 +31,5 @@ The owner performs the final Portal submission. Nothing has been submitted autom
 Native browser appeal: [0xc568eeeae18c62240c1ef86b00baa3f7a309d8e7c53716f95fb9856aa6602c2e](https://explorer-studio.genlayer.com/tx/0xc568eeeae18c62240c1ef86b00baa3f7a309d8e7c53716f95fb9856aa6602c2e). Signed 27 seconds after acceptance; two rounds; expected rollback upheld. Details: `deploy/native-appeal-proof.json`.
 
 Validation: 33 contract tests and GenVM lint passed for the unchanged deployed contract; TypeScript, 14 app tests and a production build passed for the final app correction. Desktop and mobile checks and the exact wallet-signing limits are preserved in `docs/browser-verification.json`.
+
+Final production result display verified on desktop and 390x844 mobile at commit `79566497dd0c20e64575e552711172c071f29439`: native appeal upheld, exact expected rollback reason, reload recovery, and no horizontal overflow. Vercel production deployment `dpl_EBnLeRWNsqSXM7Fgncx1LJJdSLuc` is Ready.

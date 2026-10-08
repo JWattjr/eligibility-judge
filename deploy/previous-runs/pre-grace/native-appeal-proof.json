@@ -30,7 +30,5 @@
   ],
   "browserVerified": true,
   "browserStatus": "Real MetaMask request approved by the owner inside the native window; chain independently shows the appeal timestamp, two rounds, and Validator Appeal Failed. This upholds the deliberately rejected settled-rulebook call.",
-  "checkedAt": "2026-10-08T14:57:19.441099+00:00",
-  "proofPath": "deploy/previous-runs/pre-grace/proof.json",
-  "releaseScope": "Historical pre-grace contract; preserved native browser/CLI appeal proof, not a new-contract signing claim."
+  "checkedAt": "2026-10-08T14:57:19.441099+00:00"
 }

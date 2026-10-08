@@ -1,20 +1,21 @@
 {
-  "recordedAt": "2026-10-07T11:50:07.056691+00:00",
-  "command": "npm run verify:proof",
-  "result": "PASS",
-  "readOnly": true,
-  "contract": "0x03Dd21B241ea3e1EBB9B126Eb732d795dEE8Ae9a",
-  "challengeId": "challenge-1",
-  "receiptsVerified": 54,
-  "manifestSha256": "f87dc9930037adf3cd439aa4048fecad6460b351f99c08e52ebb2966db97e683",
-  "contractSourceSha256": "b80988372a3cf243991b1eb12c882ffa0d90787981f24753fba2bd5826d23d4e",
-  "checks": [
-    "Every saved receipt finalized with successful execution or credited native transfer",
-    "Parent-child callback relations",
-    "Exact finalized challenge state and frozen rulebook hash",
-    "All sixteen verdicts and four expected entry outcomes",
-    "Exact one-wei native payout recipient and contract sender",
-    "Exact deployed source matches release source"
+  "status": "PENDING",
+  "contract": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+  "contractSourceSha256": "20244a168541a23d1d46b2dc14b1f3d05e2b74d8def8761fb9f0eb5aaa7a17aa",
+  "deployReceipt": "0xf8c7a73646fd56834d12178977bba4ba1e48c1cdcbd1105f40c8ff7c5c2755e9",
+  "localChecks": {
+    "genvmLint": "PASS",
+    "contractTests": 46,
+    "typescript": "PASS",
+    "appTests": 16,
+    "productionBuild": "PASS"
+  },
+  "remaining": [
+    "Owner approval for two additional StudioNet wei",
+    "Four-outcome finalized demo and credited payout",
+    "Real unjudged-entry timeout settlement and credited organizer refund",
+    "Read-only verification of both funded proofs and exact deployed source",
+    "Production promotion and desktop/mobile checks"
   ],
-  "manifestHashNormalization": "UTF-8 with LF newlines"
+  "previousReleaseReport": "deploy/previous-runs/pre-grace/proof-verification.json"
 }

@@ -1,0 +1,13 @@
+{
+  "network": "StudioNet",
+  "chainId": 61999,
+  "contract": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+  "contractSourceSha256": "20244a168541a23d1d46b2dc14b1f3d05e2b74d8def8761fb9f0eb5aaa7a17aa",
+  "deployReceipt": "0xf8c7a73646fd56834d12178977bba4ba1e48c1cdcbd1105f40c8ff7c5c2755e9",
+  "status": "FINALIZED",
+  "execution": "SUCCESS",
+  "consensus": "MAJORITY_AGREE",
+  "demoDepositsApproved": false,
+  "timeoutLiveProofComplete": false,
+  "deployedSourceVerified": true
+}

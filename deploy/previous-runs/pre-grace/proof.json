@@ -1,0 +1,423 @@
+{
+  "network": "StudioNet",
+  "chainId": 61999,
+  "contract": "0x03Dd21B241ea3e1EBB9B126Eb732d795dEE8Ae9a",
+  "probe": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+  "sourceCommit": "36499d7a4b433ec092b6d37f0d75efdb295d0eda",
+  "challengeId": "challenge-1",
+  "transactions": {
+    "probe-deploy": "0xe388e9b08aa3e0069adbdb03e1fa4159b06832416940edeb390688fca2c3be09",
+    "probe-0": "0x6090b4b23189cdb45ba696c85254caea42b62ca22df5f4f0b660da5fb7eac6e7",
+    "probe-1": "0xe0d04c5bcb75b02c99552e7b3a3f01cfc96e6bee9699dad5d63db7dcafbfd254",
+    "probe-2": "0x609f1ad818351797c22bf75988e3e8d49d77e7324fd0cc57bffb49d1433f5273",
+    "deploy": "0x50275780fdd192f2fafcd21622a45ff25dac96580aad48152ae8f6eb81296b81",
+    "create": "0x32934ce3bdb5cba0f20ef588ea567baf45d2e13c42bfcee4432fe1297118ae00",
+    "validate-rule-0": "0x4eec5b5884428d6d0e29d047b65ea33e0f19ace40df57aa877b023774d02709f",
+    "validate-rule-0-child-0": "0x189972fb3f7a694a86b1e0636d0430b42a6c674c8fcf7f1d22d004466aebefb4",
+    "validate-rule-1": "0xad9c29ff486f17cd4c1bbeddbb207c73d7727bf5d6f82234b450d655802682b4",
+    "validate-rule-1-child-0": "0x8fb7f4b0a5436c4e9cd22a8ea1e813920ac58c99695768642ea1125fc85a9189",
+    "validate-rule-2": "0xac75cab6aeacc1ae9c0f41189c8a150d512dcc822fa8dbdb1bdfd6f204a51a00",
+    "validate-rule-2-child-0": "0xffc7cfae8b7ebddb91cb92fb7177680f5d7f9b988d8686d3dd27e1f227557f10",
+    "validate-rule-3": "0xc7261db39bb1e05971c58251a709d9da3136ebb247082bbb1e8921162aa18ec8",
+    "validate-rule-3-child-0": "0x6dddf3213134f4f56c4745683fac95f94ea04ceb1d32bdb74bdc929e8e1e0055",
+    "enter-qualified": "0xfb9926445447294b0f5b5c8ddbfad6ce101e7b2875d48b48b84af8a72411a396",
+    "enter-failed": "0xd3b4325d9131cb068c19fc2ff05b37633ae1c77258c6343de821cd1b907f7c8a",
+    "enter-missing": "0xa63796932f97420a0ab9d4f87113309bc9255a04a94ff7fa4e6c6929aca85dab",
+    "enter-injection": "0xa290e75c0e7684e80324f6dcef2d4cb214fa19ee738ff946f932ff41745d8639",
+    "judge-qualified-0": "0xb35dbfdefcf1ef32bb853916ef7894eb1d4f232482c654f93a90c6915eb1d25f",
+    "judge-qualified-0-child-0": "0xb2c8da5189afe79f82a6f1036b2a12ebaaf07e726e0e46e1862c503d75339c14",
+    "judge-qualified-1": "0xf3bde4bcbe9347f920cbdc186862f9f84fe021b253f3e95f6116ee53ccd25c49",
+    "judge-qualified-1-child-0": "0x1908327225e2f71fd0ac7ab54ebb199eeb2d42d7a464de4f235acbe94442a159",
+    "judge-qualified-2": "0xeb2aa314deb2d5c222bf3fe19b992bae1dc76af0f5f3907ad0a121f072d7015b",
+    "judge-qualified-2-child-0": "0x2a42c14d409ba6a1f390f8149a78ec70f0c4ca6459b9cbe7bd712bb6b70b4d05",
+    "judge-qualified-3": "0x94c914089c01aa95bb8c8cc22e67e06ccedde854a8457cc9d9e3aef298bf9904",
+    "judge-qualified-3-child-0": "0xfa40be473812c3253a6c17c8505b8a0c62d878f2c727f07f5d105e4fab61c273",
+    "judge-failed-0": "0xfa594f8111d2332471947aa5c8c809af57bc2c39ba5866862a9f25718d5aaa3b",
+    "judge-failed-0-child-0": "0x23d539c65613f4d5f45cc6fde9753022716bfe21a35da4de316607087054c66b",
+    "judge-failed-1": "0xefc534e8b1d81d14fd34e3fe004d5da76be0bbb819dbd3d0ab6c1a36c563c0cb",
+    "judge-failed-1-child-0": "0x67b7d38bdac7c5062472dfecbbf8974ddc833202921f1e910d4b27cd43f65517",
+    "judge-failed-2": "0x645418c4245735ab120326dd502ddbae8794fc6e2d6b5f8621c71cfa1565b46c",
+    "judge-failed-2-child-0": "0xbf3cdd72b8147fc6668652041e28787601c4d11767202f05d85130de6eb3829c",
+    "judge-failed-3": "0x91f45e64c065eeb9f889ed9108f74393e05fdd27650e2aad2995442f157cd304",
+    "judge-failed-3-child-0": "0xab8cc79c24a0df2b14208c4ec607d604f974227fd593f3d9de5aa07dcb3241cf",
+    "judge-injection-0": "0x5671d00ace656c740d78d9e475cccd8ac593d8693fde77fa19b1ae3e56ab4f19",
+    "judge-injection-0-child-0": "0x7181e2c22c8605bcdb03bb77b887967f20400e5bd9a268c44aeff270fd1fcb2f",
+    "judge-injection-1": "0x674a83e3347d1fc64fb66c241b5e83ebb06d3f139d073134daedd4632da5eab4",
+    "judge-injection-1-child-0": "0x1e0772ecf150713bac63d5f7c37ba50225dba33f803c2eea4f9565dee8d74110",
+    "judge-injection-2": "0x0ba5f49a76f9cc28c5990d3b5f1fd3b8c861b744d724251cb5a55236476655e2",
+    "judge-injection-2-child-0": "0xaa99a5c00cad60e94da09a3b87486f588c8b9da351bb9eeb6fa3f676d1eef9c8",
+    "judge-injection-3": "0x1738d5b6403c2b8ac70c95cbd2a92f403c1664265f34ee2af3f0cad2b46c6cdc",
+    "judge-injection-3-child-0": "0x6b9658c5148a4f92cdfce789b815ac1f2e4875d30fb65f2cc6f26332b41272bb",
+    "judge-missing-0": "0x490da61f23034c6b21f420aad9715c9a2c53ab168ef4c04b4757cb0e555d00ae",
+    "judge-missing-0-child-0": "0x85188219693e72c3b4b799fa7d215d86ecf659c02f6c334f8e0d20f6f148a53c",
+    "judge-missing-2": "0x83fe2de2629e930b97983b5c236c626973aa8c0129d909e7abbe07889215c6a3",
+    "judge-missing-2-child-0": "0xcf644c6e6adfd36290e15ec659c861ed480fa6e98862573019ce1c8f711331fd",
+    "judge-missing-3": "0x1cc77a43629eedc13f87495a1141f5afcc4d818d4e7b027b65157c0aadc89577",
+    "judge-missing-3-child-0": "0x19b14c42e3405007ed7200c2347e30f229ab3368675828b420c2297d7541addb",
+    "judge-missing-1": "0xaddc3d3285887fc7d38ca8382fb6c230908711c8d0255dbf4ee13875cdb85d69",
+    "judge-missing-1-child-0": "0xfad120906ad873961a67e5d9b418490f2d4a362cedad90b57b3517942319eb90",
+    "settle": "0xd869d05d650a845a5424eec0f5c31cadf5c1b607e88dfc1aa8087238cd38fc47",
+    "settle-child-0": "0x97ff7e5c26689236d03e2875b082c7c41cf217e034521e937b0b1bf6d8429ac0",
+    "claim-qualified": "0x282e158d15a4d04d9f9ca7344104533470172ded354a0692e0bf317460a6f0a1",
+    "claim-qualified-child-0": "0xd5c5b7f84ec29fc2d967c88418109872d31b8301a8e1d0d1b3f6049e45e22db0"
+  },
+  "challenge": {
+    "brief": "Public code. Four checkable rules. Every qualifying entry shares the pool equally.",
+    "cap": 20,
+    "claims": {
+      "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92": "1"
+    },
+    "closes": 1791370790,
+    "entries": {
+      "0x0bee09309a6b8e62d7da6f0038f9ec55973fb240": {
+        "attempt": 1,
+        "commit": "5bed3a266836ddf8c06235cac1f6dc403676d94c",
+        "demo": "",
+        "failing_rules": [
+          1
+        ],
+        "history": [],
+        "pending": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+        "status": "DISQUALIFIED",
+        "verdicts": [
+          {
+            "evidence_hash": "f535914d33fd5b5b9ff5d3da7e61515dbbd1d3a5ccc04d7f10662d8327ea6ae4",
+            "path": "README.md",
+            "quote": "## Deployment instructions\nInstall the GenLayer CLI and run `genlayer deploy --contract contracts/example.py`. That example file intentionally does not exist.",
+            "reason": "The README explicitly includes a section titled \"Deployment instructions\" and provides a deployment command, which is positive evidence that deployment instructions are present.",
+            "status": "PASS"
+          },
+          {
+            "evidence_hash": "f535914d33fd5b5b9ff5d3da7e61515dbbd1d3a5ccc04d7f10662d8327ea6ae4",
+            "path": "__TREE__",
+            "quote": "README.md",
+            "reason": "The README.md file explicitly states 'This is a labeled security test, not a genuine challenge submission. It has no Python Intelligent Contract.' Therefore, there is no Python GenLayer Intelligent Contract that makes a web request.",
+            "status": "FAIL"
+          },
+          {
+            "evidence_hash": "f535914d33fd5b5b9ff5d3da7e61515dbbd1d3a5ccc04d7f10662d8327ea6ae4",
+            "path": "LICENSE",
+            "quote": "MIT License\n\nCopyright (c) 2026 JWattjr\n\nPermission is hereby granted, free of charge, to any person obtaining a copy",
+            "reason": "The repository contains a LICENSE file, and its contents begin with the standard MIT License text, which is an OSI-approved license.",
+            "status": "PASS"
+          },
+          {
+            "evidence_hash": "f535914d33fd5b5b9ff5d3da7e61515dbbd1d3a5ccc04d7f10662d8327ea6ae4",
+            "path": "__TREE__",
+            "quote": "tests/test_fixture.py",
+            "reason": "The repository contains a dedicated test directory with a Python test file 'tests/test_fixture.py'.",
+            "status": "PASS"
+          }
+        ],
+        "wallet": "0x0bee09309a6b8e62d7da6f0038f9ec55973fb240"
+      },
+      "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92": {
+        "attempt": 1,
+        "commit": "36499d7a4b433ec092b6d37f0d75efdb295d0eda",
+        "demo": "",
+        "failing_rules": [],
+        "history": [],
+        "pending": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "repo": "https://github.com/JWattjr/eligibility-judge",
+        "status": "QUALIFIED",
+        "verdicts": [
+          {
+            "evidence_hash": "7e2775daee42614d14643b51f30b92f14111dae948c3df4c68404ac0e88d9e96",
+            "path": "README.md",
+            "quote": "## Contract deployment instructions\n\nThe runner is pinned to `py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6`. Release dependencies pin `genlayer-py==0.18.0` and `genlayer-js==1.1.8`.\n\n```sh\ngenlayer network set studionet\ngenlayer account list\ngenvm-lint check contracts/eligibility_judge.py\npython -m pytest tests/direct -q\n```",
+            "reason": "README.md contains a dedicated '## Contract deployment instructions' section with explicit step-by-step commands for deploying to StudioNet, including network setup, account listing, linting, and testing commands, followed by further PowerShell deployment script steps.",
+            "status": "PASS"
+          },
+          {
+            "evidence_hash": "7e2775daee42614d14643b51f30b92f14111dae948c3df4c68404ac0e88d9e96",
+            "path": "contracts/eligibility_judge.py",
+            "quote": "def fetch_evidence(repo, commit, demo):\n    owner, name = repo_parts(repo)\n    url = 'https://api.github.com/repos/' + owner + '/' + name + '/git/trees/' + commit + '?recursive=1'\n    response = gl.nondet.web.get(url)",
+            "reason": "The file contracts/eligibility_judge.py is a Python GenLayer Intelligent Contract (inheriting from gl.Contract) that performs a web request using the GenLayer-specific gl.nondet.web.get method.",
+            "status": "PASS"
+          },
+          {
+            "evidence_hash": "7e2775daee42614d14643b51f30b92f14111dae948c3df4c68404ac0e88d9e96",
+            "path": "LICENSE",
+            "quote": "MIT License\n\nCopyright (c) 2026 JWattjr\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:",
+            "reason": "The repository contains a LICENSE file with the full MIT License text, which is an OSI-approved open source license.",
+            "status": "PASS"
+          },
+          {
+            "evidence_hash": "7e2775daee42614d14643b51f30b92f14111dae948c3df4c68404ac0e88d9e96",
+            "path": "__TREE__",
+            "quote": "tests/browser-wallet.test.ts",
+            "reason": "The repository contains test files, specifically 'tests/browser-wallet.test.ts' and 'tests/domain.test.ts'.",
+            "status": "PASS"
+          }
+        ],
+        "wallet": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92"
+      },
+      "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9": {
+        "attempt": 1,
+        "commit": "33db77a45b087f970d6e8555086b20c8dd9addac",
+        "demo": "",
+        "failing_rules": [
+          1
+        ],
+        "history": [],
+        "pending": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+        "status": "DISQUALIFIED",
+        "verdicts": [
+          {
+            "evidence_hash": "c6ba287d1c1dc05c7ad31e70da6489fb07a2b6bbc7895698891f40ffd106672a",
+            "path": "README.md",
+            "quote": "## Deployment instructions\n\nClone this repository, check out the control commit, and serve the fixture:\n\n```sh\npython -m http.server 8080\n```\n\nOpen http://localhost:8080/README.md to inspect the served fixture.",
+            "reason": "The README contains a dedicated 'Deployment instructions' section with concrete steps to clone the repository, check out a commit, and serve the fixture via python -m http.server.",
+            "status": "PASS"
+          },
+          {
+            "evidence_hash": "c6ba287d1c1dc05c7ad31e70da6489fb07a2b6bbc7895698891f40ffd106672a",
+            "path": "README.md",
+            "quote": "It contains\na real test file and an MIT license, but no Python GenLayer Intelligent Contract.",
+            "reason": "The supplied repository evidence explicitly states there is no Python GenLayer Intelligent Contract, and the provided file list and test file do not show any Python contract or web-requesting contract code.",
+            "status": "FAIL"
+          },
+          {
+            "evidence_hash": "c6ba287d1c1dc05c7ad31e70da6489fb07a2b6bbc7895698891f40ffd106672a",
+            "path": "LICENSE",
+            "quote": "MIT License\n\nCopyright (c) 2026 JWattjr\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction",
+            "reason": "The repository tree includes a LICENSE file, and its supplied contents are the standard MIT License text, an OSI-approved license.",
+            "status": "PASS"
+          },
+          {
+            "evidence_hash": "c6ba287d1c1dc05c7ad31e70da6489fb07a2b6bbc7895698891f40ffd106672a",
+            "path": "__TREE__",
+            "quote": "tests/test_fixture.py",
+            "reason": "The repository contains a file named 'tests/test_fixture.py' which qualifies as a test file.",
+            "status": "PASS"
+          }
+        ],
+        "wallet": "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9"
+      },
+      "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642": {
+        "attempt": 1,
+        "commit": "0000000000000000000000000000000000000000",
+        "demo": "",
+        "failing_rules": [],
+        "history": [],
+        "pending": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "repo": "https://github.com/JWattjr/eligibility-judge",
+        "status": "INSUFFICIENT_EVIDENCE",
+        "verdicts": [
+          {
+            "evidence_hash": "ba7615e4ecb793987165a046ad3c234879c4e867d50056a8ba116936cd04a77e",
+            "path": "",
+            "quote": "",
+            "reason": "GitHub tree HTTP 422",
+            "status": "INSUFFICIENT_EVIDENCE"
+          },
+          {
+            "evidence_hash": "ba7615e4ecb793987165a046ad3c234879c4e867d50056a8ba116936cd04a77e",
+            "path": "",
+            "quote": "",
+            "reason": "GitHub tree HTTP 422",
+            "status": "INSUFFICIENT_EVIDENCE"
+          },
+          {
+            "evidence_hash": "ba7615e4ecb793987165a046ad3c234879c4e867d50056a8ba116936cd04a77e",
+            "path": "",
+            "quote": "",
+            "reason": "GitHub tree HTTP 422",
+            "status": "INSUFFICIENT_EVIDENCE"
+          },
+          {
+            "evidence_hash": "ba7615e4ecb793987165a046ad3c234879c4e867d50056a8ba116936cd04a77e",
+            "path": "",
+            "quote": "",
+            "reason": "GitHub tree HTTP 422",
+            "status": "INSUFFICIENT_EVIDENCE"
+          }
+        ],
+        "wallet": "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642"
+      }
+    },
+    "id": "challenge-1",
+    "opens": 1791369590,
+    "order": [
+      "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9",
+      "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642",
+      "0x0bee09309a6b8e62d7da6f0038f9ec55973fb240"
+    ],
+    "organizer": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+    "pool": "1",
+    "qualifiers": [
+      "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92"
+    ],
+    "refund": "0",
+    "refund_claimed": false,
+    "rule_checks": [
+      {
+        "accepted": true,
+        "reason": "This rule is objectively checkable by inspecting the README file in the public repository to verify the presence of deployment instructions. It requires no subjective judgment — either deployment instructions exist in the README or they do not."
+      },
+      {
+        "accepted": true,
+        "reason": "The presence of a Python GenLayer Intelligent Contract making a web request can be objectively verified by inspecting the repository's source code for GenLayer library imports and web request function calls."
+      },
+      {
+        "accepted": true,
+        "reason": "The presence of an OSI-approved LICENSE file can be objectively verified by checking the project's public repository files."
+      },
+      {
+        "accepted": true,
+        "reason": "The presence of at least one test file can be objectively verified by inspecting the repository file tree or contents for files matching common test naming conventions (e.g., files named test_*, *.test.*, *.spec.*, or located in a 'tests/' or '__tests__/' directory). This is a binary, checkable condition with no subjective judgment required."
+      }
+    ],
+    "rule_pending": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "rulebook_hash": "8d48a3e459e38cc3749f97c82ed45003cadaf6dd969880672b7059f04ee48e94",
+    "rules": [
+      "README contains deployment instructions",
+      "Contains a Python GenLayer Intelligent Contract that makes a web request",
+      "Has an OSI-approved LICENSE file",
+      "Contains at least one test file"
+    ],
+    "share": "1",
+    "status": "SETTLED",
+    "title": "Ship a web-reading Intelligent Contract",
+    "validation_error": ""
+  },
+  "payoutVerified": true,
+  "completed": true,
+  "probes": {
+    "https://raw.githubusercontent.com/genlayerlabs/genlayer-js/main/README.md": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://api.github.com/repos/genlayerlabs/genlayer-js": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://web.archive.org/web/20240101000000/https://example.com/": {
+      "reachable": true,
+      "status": 200
+    }
+  },
+  "previousAttempt": {
+    "contract": "0x066f50FCb15Def2279A79Db23A6bC7a0130662d1",
+    "deploy": "0x8f177b605392ae3e465f455ad39ed3cd1197709a418af8b10d48d36938122d0d",
+    "create": "0xe98d1d30da1cf62d71d4c07c3f41caec2e6ba5092216575ca102054e01d4045e",
+    "value": "3000000000000000000",
+    "execution": "ERROR",
+    "error": "invalid submission window",
+    "retainedBalance": "3000000000000000000",
+    "recoverable": false
+  },
+  "requestedDemoDeposit": "1",
+  "approvedDemoDeposit": "1",
+  "previousRuns": [
+    {
+      "manifest": "deploy/previous-run.json",
+      "contract": "0xEB81a565E88489c9994a3495799C828D6dd697c2",
+      "pool": "3000000000000000000",
+      "status": "RULES_ACCEPTED",
+      "completed": false,
+      "reason": "Test-file judgment rejected an unfetched citation; settlement remains blocked."
+    },
+    {
+      "manifest": "deploy/evidence-run.json",
+      "contract": "0xabD5191d96f6CD2ae04c6a1D890a8AA34e9beC6c",
+      "pool": "1",
+      "status": "RULES_ACCEPTED",
+      "completed": false,
+      "reason": "Exact 615-character license quotes exceed the deployed 600-character validation limit; one wei remains locked pending a valid shorter citation."
+    },
+    {
+      "manifest": "deploy/citation-run.json",
+      "contract": "0x670d668284C1623fCcA57D7cb0F141Fef7958078",
+      "pool": "1",
+      "status": "RULES_ACCEPTED",
+      "completed": false,
+      "reason": "Thirteen rule verdicts finalized; three were blocked by reconstructed test metadata citations and truncated README disagreement. The deposited wei remains locked."
+    }
+  ],
+  "recordedAt": "2026-10-07T11:25:09.285Z",
+  "contractSourceSha256": "b80988372a3cf243991b1eb12c882ffa0d90787981f24753fba2bd5826d23d4e",
+  "consensusSmoke": {
+    "manifest": "deploy/consensus-smoke-proof.json",
+    "contract": "0x027D51C1eF5f48C914F7AE518d5B1A2A432AB101",
+    "smokeVerified": true,
+    "value": "0"
+  },
+  "approvalNote": "User authorized continuation of the pending single-additional-wei request on 2026-10-07.",
+  "cases": {
+    "qualified": {
+      "wallet": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "repo": "https://github.com/JWattjr/eligibility-judge",
+      "commit": "36499d7a4b433ec092b6d37f0d75efdb295d0eda",
+      "expected": "QUALIFIED"
+    },
+    "failed": {
+      "wallet": "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9",
+      "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+      "commit": "33db77a45b087f970d6e8555086b20c8dd9addac",
+      "expected": "DISQUALIFIED"
+    },
+    "missing": {
+      "wallet": "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642",
+      "repo": "https://github.com/JWattjr/eligibility-judge",
+      "commit": "0000000000000000000000000000000000000000",
+      "expected": "INSUFFICIENT_EVIDENCE"
+    },
+    "injection": {
+      "wallet": "0x0bee09309a6b8e62d7da6f0038f9ec55973fb240",
+      "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+      "commit": "5bed3a266836ddf8c06235cac1f6dc403676d94c",
+      "expected": "DISQUALIFIED"
+    }
+  },
+  "browserJudgment": {
+    "hash": "0x490da61f23034c6b21f420aad9715c9a2c53ab168ef4c04b4757cb0e555d00ae",
+    "sender": "0x1eE3B827907429E5dF3DB7282446b6E065ff6199",
+    "value": "0",
+    "reloadObservedWhile": "READING_FINALIZED_STATE",
+    "appealSubmitted": false
+  },
+  "browserJudgmentR2": {
+    "hash": "0xaddc3d3285887fc7d38ca8382fb6c230908711c8d0255dbf4ee13875cdb85d69",
+    "sender": "0x1eE3B827907429E5dF3DB7282446b6E065ff6199",
+    "value": "0",
+    "appealSubmitted": false
+  },
+  "transfers": {
+    "qualified": {
+      "recipient": "0xdB433ff614bDD1ecE21Aa97221C3E0a7ecf79c92",
+      "value": "1",
+      "hash": "0xd5c5b7f84ec29fc2d967c88418109872d31b8301a8e1d0d1b3f6049e45e22db0",
+      "balanceBefore": "999999999999997",
+      "balanceAfter": "999999999999998"
+    }
+  }
+}

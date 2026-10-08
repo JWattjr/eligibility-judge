@@ -1,0 +1,58 @@
+{
+  "checkedAt": "2026-10-08T15:03:57.527375+00:00",
+  "application": "Eligibility Judge",
+  "localUrl": "http://localhost:3111",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "checks": {
+    "publicLedger": "Production recorded view shows SETTLED, four entries and all sixteen finalized verdicts. Live LATEST_FINAL read agrees with the recorded matrix.",
+    "rulebook": "Four accepted validation reasons and frozen hash render.",
+    "creation": "Title, brief, rule editor (3\u20136), window, capacity and pool fields inspected at desktop and mobile. Mobile add/remove checked. Browser funding signature not repeated; the contract creation and every rule validation finalized in the live CLI demo.",
+    "entry": "Real GitHub HEAD resolved to bca26b881721b80c3627f8aee924756e347376f4 with a capped ten-file preview on mobile. Submission correctly disabled for the settled closed challenge. Actual entry transactions were signed via CLI, not the browser. Desktop preview with the commit field cleared resolved current HEAD 17688c9385ea768cedaf114e16872553c8510466 with the same bounded file list.",
+    "transactions": "Two real browser zero-value judge_rule submissions finalized successfully with finalized callbacks: 0x490da61f23034c6b21f420aad9715c9a2c53ab168ef4c04b4757cb0e555d00ae and 0xaddc3d3285887fc7d38ca8382fb6c230908711c8d0255dbf4ee13875cdb85d69. Explicit reload during READING_FINALIZED_STATE recovered the first hash and reached Finalized transaction. Contract state read back. The native deadline and appeal button rendered. A real native appeal subsequently re-evaluated the tracked zero-value negative call; see nativeAppeal.",
+    "payouts": "Desktop and 390x844 mobile show one qualifier, 0.000000000000000001 GEN pool/share, zero refund and zero live contract balance. Settlement, claim and credited native-transfer links render. The read-only verifier independently confirms the exact one-wei credited transfer. Browser claim signing was not tested; the authorized CLI signed the claim.",
+    "mobile": "Completed payout, frozen rulebook, add/remove rule controls, real GitHub HEAD preview and labeled injection evidence checked at 390x844. document scrollWidth 382px. Viewport restored afterward.",
+    "deployedSource": "Read-only npm run verify:proof passed all 54 saved finalized receipts, callback relations, exact finalized challenge state, frozen hash, all four outcomes, one-wei native payout and exact deployed source (sha256 b80988372a3cf243991b1eb12c882ffa0d90787981f24753fba2bd5826d23d4e).",
+    "consensusSmoke": "Read-only npm run verify:smoke passed all six zero-value finalized consensus samples, stored records, helper identity and exact deployed probe source. This does not verify a funded pool or payout.",
+    "walletSelection": "Production EIP-6963 picker lists Rabby, Phantom, Keplr, OKX, MetaMask, Backpack and Nightly; MetaMask selected. Connection succeeds. At 390x844, document scrollWidth remains 382px with the picker visible.",
+    "nativeAppeal": "Real Chrome / EIP-6963 MetaMask native appeal verified for 0xc568eeeae18c62240c1ef86b00baa3f7a309d8e7c53716f95fb9856aa6602c2e: signed 27 seconds after acceptance inside the 30-second window; finalized with two consensus rounds, timestamp_appeal 1791471221, and one failed appeal. Validators upheld the expected settled-rulebook rollback. No GEN deposited; finalized paid demo remains identical. Independently rechecked with npm run verify:appeal.",
+    "nativeAppealDisplay": "Production desktop and 390x844 mobile show Native appeal reviewed \u00b7 original result upheld plus [EXPECTED] rulebook already decided. Reload preserves the result. Re-tracking a saved finalized transaction refreshes its native protocol metadata. Long saved rejection text wraps; mobile document width and scrollWidth both 382px."
+  },
+  "walletSigningVerified": true,
+  "submissionReady": true,
+  "remaining": [],
+  "screenshots": [
+    ".impeccable/review/desktop.png",
+    ".impeccable/review/mobile.png",
+    ".impeccable/review/mobile-payout.png",
+    ".impeccable/review/unfunded-desktop.png",
+    ".impeccable/review/unfunded-mobile.png",
+    ".impeccable/review/wallet-before-reload.png",
+    ".impeccable/review/wallet-after-reload.png",
+    ".impeccable/review/settled-desktop.png",
+    ".impeccable/review/settled-payout-desktop.png",
+    ".impeccable/review/settled-payout-mobile.png",
+    ".impeccable/review/settled-injection-mobile.png",
+    ".impeccable/review/native-appeal-second.png",
+    ".impeccable/review/final-ledger-desktop.png",
+    ".impeccable/review/final-ledger-mobile.png",
+    ".impeccable/review/submission-review.png",
+    ".impeccable/review/native-seventh-handoff.png",
+    ".impeccable/review/native-verified-desktop.png",
+    ".impeccable/review/native-verified-mobile.png"
+  ],
+  "productionUrl": "https://eligibility-judge.vercel.app",
+  "productionCommit": "79566497dd0c20e64575e552711172c071f29439",
+  "deployedContract": "0x03Dd21B241ea3e1EBB9B126Eb732d795dEE8Ae9a",
+  "deploymentId": "dpl_EBnLeRWNsqSXM7Fgncx1LJJdSLuc",
+  "walletProvider": "MetaMask explicitly selected through EIP-6963 in Chrome; selected-provider eth_accounts and connect both show 0x1ee3\u20266199. Seven installed providers are offered in the picker.",
+  "signingLimits": "Browser creation, entry and claim signatures were not repeated; their exact contract flows were verified live through the CLI. Two browser judgments, reload recovery, and native appeal signing plus re-evaluation were verified."
+}

@@ -7,8 +7,8 @@ from genlayer_py.types import TransactionHashVariant
 from eth_account import Account
 
 root = Path(__file__).resolve().parent.parent
-proof = json.loads((root / 'deploy/proof.json').read_text(encoding='utf8'))
 appeals = json.loads((root / 'deploy/native-appeal-proof.json').read_text(encoding='utf8'))
+proof = json.loads((root / appeals.get('proofPath', 'deploy/proof.json')).read_text(encoding='utf8'))
 client = create_client(chain=studionet, account=Account.create())
 assert appeals['contract'] == proof['contract']
 for case in appeals['verifiedCases']:

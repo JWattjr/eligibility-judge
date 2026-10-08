@@ -14,3 +14,4 @@
 @media(max-width:680px){.wallet-select{max-width:90px;font-size:10px;padding:6px}.header-end{gap:6px}}
 
 @media(max-width:680px){.wallet-select{max-width:78px;font-size:9px}.brand{font-size:16px}.brand-mark{width:26px;height:26px}.wallet-button{padding:7px 8px}.wallet-button svg{width:12px}.header-end{flex-shrink:0}}
+.transaction-line>.repo-meta{min-width:0;max-width:100%;overflow-wrap:anywhere}

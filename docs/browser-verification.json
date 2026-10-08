@@ -1,10 +1,10 @@
 {
-  "recordedAt": "2026-10-08T16:20:42.229991+00:00",
-  "submissionReady": false,
+  "recordedAt": "2026-10-08T18:03:49.252032+00:00",
+  "submissionReady": true,
   "fixedContract": "0x03E7970E791d644B2714a457D178Edf036670bb7",
-  "productionContract": "0x03Dd21B241ea3e1EBB9B126Eb732d795dEE8Ae9a",
-  "productionUpdatePending": true,
-  "sourceCommit": "b8d60df",
+  "productionContract": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+  "productionUpdatePending": false,
+  "sourceCommit": "00cc83f298e67813da08f5a641ac1c5c0cbd6c3d",
   "localChecks": {
     "browser": "Chrome",
     "toolbarUrl": {
@@ -78,10 +78,55 @@
     }
   },
   "limits": [
-    "These checks use the local production build and the previous recorded proof.",
-    "The owner approved and both one-wei deposits finalized. Funded live verification is in progress.",
-    "New-contract live timeout refund and production desktop/mobile checks are required before submission."
+    "Production verification is read-only; the new live contract demos were signed by the authorized CLI owner and independently verified.",
+    "Real Chrome MetaMask native appeal evidence belongs to the explicitly archived previous contract; no new-contract MetaMask appeal is claimed.",
+    "Existing browser transaction history was preserved, including prior expected failures and historical appeals.",
+    "The Portal has not been submitted; the owner submits."
   ],
   "previousReleaseReport": "deploy/previous-runs/pre-grace/browser-verification.json",
-  "extensionNotes": "Chrome reports wallet-extension provider collisions and Dark Reader HTML/SVG hydration attributes; EIP-6963 still presents the explicit wallet selector."
+  "extensionNotes": "Chrome reports wallet-extension provider collisions and Dark Reader HTML/SVG hydration attributes; EIP-6963 still presents the explicit wallet selector.",
+  "productionChecks": {
+    "status": "PASS",
+    "browser": "Chrome",
+    "url": "https://eligibility-judge.vercel.app",
+    "deploymentId": "dpl_CiKGfxegqiXU7U7frXCQdYc8mMeh",
+    "deploymentUrl": "https://eligibility-judge-gprbth9tq-wattxs-projects.vercel.app",
+    "deploymentStatus": "READY",
+    "remoteBuild": "PASS",
+    "contractLink": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+    "recordedProofCompleted": true,
+    "liveRead": "FINALIZED_STATE",
+    "fourOutcomes": [
+      "QUALIFIED",
+      "DISQUALIFIED",
+      "INSUFFICIENT_EVIDENCE",
+      "DISQUALIFIED"
+    ],
+    "contractBalanceWei": "0",
+    "qualifierCreditLink": "0xfdb4eaba2d58eddb83fcfb9b3dd97d5c4d1faf8b03cbfed829e351b2242c1522",
+    "timeoutChallengeId": "challenge-1",
+    "timeoutStatus": "SETTLED",
+    "timeoutEntryStatus": "INSUFFICIENT_EVIDENCE",
+    "timeoutReasonVisible": true,
+    "timedOutUnknownChips": 3,
+    "judgeButtons": 0,
+    "refundClaimDisabled": true,
+    "organizerRefundWei": "1",
+    "refundCreditLink": "0x1263413bbe824d0f7ebbfa0ca046996d854b5ef6124519345f76f5e72e4a7bea",
+    "timeoutQueryRestoredAfterReload": true,
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 382,
+      "scrollWidth": 382,
+      "standardDemoNoHorizontalOverflow": true,
+      "timeoutDemoNoHorizontalOverflow": true
+    },
+    "screenshots": [
+      ".impeccable/review/grace-production-desktop.png",
+      ".impeccable/review/grace-production-mobile.png",
+      ".impeccable/review/grace-production-timeout-desktop.png",
+      ".impeccable/review/grace-production-timeout-mobile.png"
+    ]
+  }
 }

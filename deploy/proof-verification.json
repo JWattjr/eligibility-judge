@@ -32,5 +32,7 @@
   "graceDeadline": 1791481605,
   "timeoutSettlementReceipt": "0x4d4d76bb3e495ce0c732f81adb9f63eb660f9e84e4b8d28ccd86b829cd685171",
   "timeoutRefundReceipt": "0x1263413bbe824d0f7ebbfa0ca046996d854b5ef6124519345f76f5e72e4a7bea",
-  "productionVerificationPending": true
+  "productionVerificationPending": false,
+  "productionBrowserReport": "docs/browser-verification.json",
+  "submissionReady": true
 }

@@ -2,7 +2,7 @@
 
 The live demo is settled and its one-wei pool has been claimed and credited. The read-only proof verifier passed all 54 saved receipts, callbacks, exact finalized state, rulebook hash, four outcomes, exact native payout and deployed source.
 
-The final native appeal re-evaluation check remains pending. Do not describe the entire project as submission-ready until that check completes. No further demo deposit is needed.
+Native protocol re-evaluation is verified through a zero-bond CLI appeal (two consensus rounds). The final browser native appeal check remains pending after earlier MetaMask requests appeared too late; the prompt latency fix is being checked. Do not describe the entire project as submission-ready until that check completes. No further demo deposit is needed.
 
 - Site: https://eligibility-judge.vercel.app
 - Source: https://github.com/JWattjr/eligibility-judge

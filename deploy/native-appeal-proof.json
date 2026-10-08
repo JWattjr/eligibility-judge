@@ -1,0 +1,18 @@
+{
+  "contract": "0x03Dd21B241ea3e1EBB9B126Eb732d795dEE8Ae9a",
+  "network": "StudioNet 61999",
+  "purpose": "Zero-value validate_rule on the settled challenge deliberately rolls back before mutation. Native validators re-evaluate and uphold that outcome.",
+  "verifiedCases": [
+    {
+      "channel": "CLI",
+      "hash": "0x52f82335f9fe71f91edbebb9b4a9cf91b374895ce472a255a9f648923bb4897b",
+      "valueWei": "0",
+      "appealBondWei": "0",
+      "timestampAppeal": 1791470542,
+      "rounds": 2,
+      "failedAppeals": 1
+    }
+  ],
+  "browserVerified": false,
+  "browserStatus": "Previous wallet requests appeared after the native deadline; a prompt latency correction awaits a fresh browser check."
+}

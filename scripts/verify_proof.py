@@ -101,11 +101,16 @@ def main():
     assert claim['from_address'].lower() == proof['contract'].lower()
     assert claim['to_address'].lower() == proof['cases']['qualified']['wallet'].lower()
     if proof.get('timeoutRequired'):
+        assert proof['approvedDemoDeposit'] == proof['approvedTimeoutDeposit'] == '1'
+        assert str(receipts['create']['value']) == str(receipts['timeout-create']['value']) == '1', 'Deposits must match the two authorized wei'
+        assert 'timeout-enter' in receipts, 'The unjudged entry receipt is missing'
         timeout = json.loads(read_with_retry(lambda: client.read_contract(proof['contract'], 'get_challenge', [proof['timeoutChallengeId']], transaction_hash_variant=TransactionHashVariant.LATEST_FINAL)))
         assert timeout == proof['timeoutChallenge'], 'Recorded timeout differs from finalized state'
         assert timeout['status'] == 'SETTLED' and len(timeout['order']) == 1
         assert timeout['qualifiers'] == [] and timeout['pool'] == timeout['refund'] == '1' and timeout['share'] == '0'
         assert timeout['refund_claimed'] is True
+        assert all(check is not None and check['accepted'] for check in timeout['rule_checks'])
+        assert timeout['rulebook_hash'] == hashlib.sha256(json.dumps(timeout['rules'], sort_keys=True, separators=(',', ':')).encode()).hexdigest()
         entry = timeout['entries'][timeout['order'][0]]
         assert entry['status'] == 'INSUFFICIENT_EVIDENCE' and entry['resolution_reason'] == 'Judgment did not finalize before the grace deadline.'
         assert not any(entry['verdicts']) and not any(entry['pending']), 'Timeout must not invent verdicts or leave callbacks pending'
@@ -120,6 +125,7 @@ def main():
         assert refund['value_credited'] is True and str(refund['value']) == '1'
         assert refund['from_address'].lower() == proof['contract'].lower()
         assert refund['to_address'].lower() == timeout['organizer'].lower()
+        assert int(read_with_retry(lambda: client.read_contract(proof['contract'], 'get_balance', [], transaction_hash_variant=TransactionHashVariant.LATEST_FINAL))) == 0, 'A funded demo pool remains in the contract'
     code = read_with_retry(lambda: client.provider.make_request('gen_getContractCode', [proof['contract']]))
     if code.get('error'):
         raise AssertionError('Cannot verify deployed source: ' + str(code['error']))

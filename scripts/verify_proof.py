@@ -56,6 +56,8 @@ def finalized_success(record, transfer=False):
 
 def main():
     assert proof.get('completed') and proof.get('payoutVerified'), 'Live release proof is incomplete'
+    if proof.get('timeoutRequired'):
+        assert proof.get('timeoutCompleted') and proof.get('timeoutRefundVerified'), 'Live timeout refund proof is incomplete'
     receipts = {}
     for name, attempt in proof.get('failedTransactions', {}).items():
         failed = receipt(attempt['hash'])
@@ -67,7 +69,7 @@ def main():
         time.sleep(2.6)
     for name, hash_value in proof['transactions'].items():
         record = receipt(hash_value)
-        transfer = name.startswith(('claim-qualified-child', 'claim-refund-child'))
+        transfer = name.startswith(('claim-qualified-child', 'claim-refund-child', 'timeout-refund-child'))
         finalized_success(record, transfer)
         receipts[name] = record
         print(name, hash_value, 'FINALIZED', 'CREDITED' if transfer else 'SUCCESS')
@@ -98,6 +100,26 @@ def main():
     assert str(claim['value']) == record['share']
     assert claim['from_address'].lower() == proof['contract'].lower()
     assert claim['to_address'].lower() == proof['cases']['qualified']['wallet'].lower()
+    if proof.get('timeoutRequired'):
+        timeout = json.loads(read_with_retry(lambda: client.read_contract(proof['contract'], 'get_challenge', [proof['timeoutChallengeId']], transaction_hash_variant=TransactionHashVariant.LATEST_FINAL)))
+        assert timeout == proof['timeoutChallenge'], 'Recorded timeout differs from finalized state'
+        assert timeout['status'] == 'SETTLED' and len(timeout['order']) == 1
+        assert timeout['qualifiers'] == [] and timeout['pool'] == timeout['refund'] == '1' and timeout['share'] == '0'
+        assert timeout['refund_claimed'] is True
+        entry = timeout['entries'][timeout['order'][0]]
+        assert entry['status'] == 'INSUFFICIENT_EVIDENCE' and entry['resolution_reason'] == 'Judgment did not finalize before the grace deadline.'
+        assert not any(entry['verdicts']) and not any(entry['pending']), 'Timeout must not invent verdicts or leave callbacks pending'
+        assert not any(name.startswith('timeout-judge') for name in receipts), 'Timeout entry was judged'
+        assert proof['timeoutDeadline'] == timeout['closes'] + 3600
+        settled_at = receipts['timeout-settle'].get('created_timestamp', receipts['timeout-settle'].get('created_at'))
+        if isinstance(settled_at, str) and not settled_at.isdecimal():
+            from datetime import datetime
+            settled_at = datetime.fromisoformat(settled_at.replace('Z', '+00:00')).timestamp()
+        assert int(settled_at) >= proof['timeoutDeadline'], 'Timeout settlement was sent before the real grace deadline'
+        refund = receipts['timeout-refund-child-0']
+        assert refund['value_credited'] is True and str(refund['value']) == '1'
+        assert refund['from_address'].lower() == proof['contract'].lower()
+        assert refund['to_address'].lower() == timeout['organizer'].lower()
     code = read_with_retry(lambda: client.provider.make_request('gen_getContractCode', [proof['contract']]))
     if code.get('error'):
         raise AssertionError('Cannot verify deployed source: ' + str(code['error']))
@@ -109,7 +131,7 @@ def main():
     elif isinstance(deployed, str) and not deployed.startswith('#'):
         deployed = base64.b64decode(deployed).decode()
     assert deployed.replace('\r\n', '\n') == local, 'Deployed source differs from the release contract'
-    print('Verified finalized entries, callbacks, rulebook, settlement, exact native payout, and deployed source.')
+    print('Verified finalized entries, callbacks, rulebook, settlement, exact native payout, and deployed source.' + (' Live grace settlement and exact credited organizer refund verified.' if proof.get('timeoutRequired') else ''))
 
 if __name__ == '__main__':
     try:

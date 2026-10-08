@@ -8,7 +8,7 @@ import {generatePrivateKey,privateKeyToAccount} from 'viem/accounts';
 // All writes carry explicit fees via a custom transport. SDK 1.1.8 does not expose fee fields on writeContract.
 // genlayer CLI supplies the signing client; fee injection is installed in scripts/deploy.ps1.
 const proofPath=process.env.ELIGIBILITY_PROOF_PATH??'deploy/proof.json';
-const receiptDir=proofPath==='deploy/proof.json'?'deploy/receipts':proofPath==='deploy/repaired-proof.json'?'deploy/receipts/repaired':proofPath==='deploy/release-proof.json'?'deploy/receipts/release':proofPath==='deploy/hardened-proof.json'?'deploy/receipts/hardened':'deploy/receipts/diagnostic';
+const receiptDir=proofPath==='deploy/proof.json'?'deploy/receipts':proofPath==='deploy/repaired-proof.json'?'deploy/receipts/repaired':proofPath==='deploy/release-proof.json'?'deploy/receipts/release':proofPath==='deploy/hardened-proof.json'?'deploy/receipts/hardened':proofPath==='deploy/grace-proof.json'?'deploy/receipts/grace':'deploy/receipts/diagnostic';
 const sleep=(ms:number)=>new Promise(r=>setTimeout(r,ms));
 const compact=(r:any)=>({hash:r.hash,status:r.statusName??r.status_name,execution:r.txExecutionResultName??r.consensus_data?.leader_receipt?.[0]?.execution_result,recipient:r.recipient??r.to_address,value:r.value,value_credited:r.value_credited,result:r.result_name??r.resultName,error:r.consensus_data?.leader_receipt?.[0]?.genvm_result});
 export default async function main(client:GenLayerClient<typeof studionet>){
@@ -127,8 +127,45 @@ export default async function main(client:GenLayerClient<typeof studionet>){
   await write('claim-qualified','claim',[proof.challengeId]);await record();
   const child=JSON.parse(readFileSync(receiptDir+'/claim-qualified-child-0.json','utf8'));
   if(child.value_credited!==true||String(child.value)!==proof.challenge.share||String(child.to_address).toLowerCase()!==client.account!.address.toLowerCase())throw Error('Payout credit mismatch');
-  proof.transfers={qualified:{recipient:child.to_address,value:child.value,hash:child.hash,balanceBefore:String(before),balanceAfter:String(await client.getBalance({address:client.account!.address}))}};
-  proof.payoutVerified=true;proof.completed=true;save();
+  proof.transfers={...proof.transfers,qualified:{recipient:child.to_address,value:child.value,hash:child.hash,balanceBefore:String(before),balanceAfter:String(await client.getBalance({address:client.account!.address}))}};
+  proof.payoutVerified=true;proof.completed=proof.timeoutRequired?proof.timeoutRefundVerified===true:true;save();
+ }
+ if(step==='timeout-seed'){
+  if(proof.approvedTimeoutDeposit!=='1')throw Error('The separate 1-wei timeout deposit requires owner approval recorded in the manifest');
+  const time=Math.floor(Date.now()/1000),rules=['README contains deployment instructions','Has an OSI-approved LICENSE file','Contains at least one test file'];
+  await write('timeout-create','create',['Unjudged entry refund proof','One entry will deliberately never be judged. Grace settlement must refund the organizer.',JSON.stringify(rules),time,time+900,2],1n);
+  const created=JSON.parse(readFileSync(receiptDir+'/timeout-create.json','utf8'));
+  const returnedId=JSON.parse(created.consensus_data?.leader_receipt?.[0]?.result?.payload?.readable??'null');
+  if(typeof returnedId!=='string'||!/^challenge-\d+$/.test(returnedId))throw Error('Timeout creation did not return a challenge ID');
+  proof.timeoutChallengeId=returnedId;save();
+  for(let i=0;i<rules.length;i++)await write('timeout-validate-rule-'+i,'validate_rule',[returnedId,i]);
+  proof.timeoutChallenge=JSON.parse(String(await client.readContract({address:proof.contract,functionName:'get_challenge',args:[returnedId],transactionHashVariant:TransactionHashVariant.LATEST_FINAL})));
+  proof.timeoutDeadline=proof.timeoutChallenge.closes+3600;save();
+  if(proof.timeoutChallenge.status!=='RULES_ACCEPTED')throw Error('Timeout rulebook is not accepted');
+ }
+ if(step==='timeout-entry'){
+  if(!proof.timeoutChallengeId)throw Error('Run timeout-seed first');
+  await write('timeout-enter','enter',[proof.timeoutChallengeId,'https://github.com/JWattjr/eligibility-judge',proof.sourceCommit,'']);
+  proof.timeoutChallenge=JSON.parse(String(await client.readContract({address:proof.contract,functionName:'get_challenge',args:[proof.timeoutChallengeId],transactionHashVariant:TransactionHashVariant.LATEST_FINAL})));
+  const entry=proof.timeoutChallenge.entries[client.account!.address.toLowerCase()];
+  if(entry?.status!=='SUBMITTED'||entry.verdicts.some(Boolean)||entry.pending.some(Boolean))throw Error('Timeout entry must remain unjudged');
+  save();console.log('TIMEOUT SETTLEMENT AVAILABLE',new Date(proof.timeoutDeadline*1000).toISOString());
+ }
+ if(step==='timeout-settle'){
+  if(!proof.timeoutChallengeId||!proof.timeoutDeadline)throw Error('Run timeout-seed and timeout-entry first');
+  if(Math.floor(Date.now()/1000)<proof.timeoutDeadline)throw Error('Grace is still open until '+new Date(proof.timeoutDeadline*1000).toISOString());
+  await write('timeout-settle','settle',[proof.timeoutChallengeId]);
+  proof.timeoutChallenge=JSON.parse(String(await client.readContract({address:proof.contract,functionName:'get_challenge',args:[proof.timeoutChallengeId],transactionHashVariant:TransactionHashVariant.LATEST_FINAL})));
+  const record=proof.timeoutChallenge,entry=record.entries[client.account!.address.toLowerCase()];
+  if(record.status!=='SETTLED'||record.order.length!==1||record.qualifiers.length!==0||record.share!=='0'||record.refund!=='1'||entry.status!=='INSUFFICIENT_EVIDENCE'||!entry.resolution_reason||entry.verdicts.some(Boolean)||entry.pending.some(Boolean))throw Error('Timeout settlement does not prove an unjudged entry refund');
+  const before=String(await client.getBalance({address:client.account!.address}));
+  await write('timeout-refund','claim_refund',[proof.timeoutChallengeId]);
+  const child=JSON.parse(readFileSync(receiptDir+'/timeout-refund-child-0.json','utf8'));
+  if(child.value_credited!==true||String(child.value)!=='1'||String(child.from_address).toLowerCase()!==proof.contract.toLowerCase()||String(child.to_address).toLowerCase()!==client.account!.address.toLowerCase())throw Error('Timeout organizer refund was not exactly credited');
+  proof.timeoutChallenge=JSON.parse(String(await client.readContract({address:proof.contract,functionName:'get_challenge',args:[proof.timeoutChallengeId],transactionHashVariant:TransactionHashVariant.LATEST_FINAL})));
+  if(proof.timeoutChallenge.refund_claimed!==true)throw Error('Timeout refund is not recorded as claimed');
+  proof.transfers??={};proof.transfers.timeoutRefund={recipient:child.to_address,value:child.value,hash:child.hash,balanceBefore:before,balanceAfter:String(await client.getBalance({address:client.account!.address}))};
+  proof.timeoutRefundVerified=true;proof.timeoutCompleted=true;proof.completed=proof.payoutVerified===true;save();
  }
  if(step==='proof')await record();
 }

@@ -1,9 +1,12 @@
 export type Verdict = {status:'PASS'|'FAIL'|'INSUFFICIENT_EVIDENCE';path:string;quote:string;reason:string;evidence_hash?:string};
-export type Entry = {wallet:string;repo:string;commit:string;demo:string;attempt:number;status:string;verdicts:(Verdict|null)[];pending:boolean[];failing_rules:number[];history:Entry[]};
+export type Entry = {wallet:string;repo:string;commit:string;demo:string;attempt:number;status:string;verdicts:(Verdict|null)[];pending:boolean[];failing_rules:number[];history:Entry[];resolution_reason?:string};
 export type Challenge = {id:string;title:string;brief:string;organizer:string;rules:string[];rule_checks:({accepted:boolean;reason:string}|null)[];rule_pending:boolean[];rulebook_hash:string;status:string;validation_error?:string;opens:number;closes:number;cap:number;pool:string;entries:Record<string,Entry>;order:string[];qualifiers:string[];share:string;refund:string;claims:Record<string,string>;refund_claimed:boolean};
 export type Proof = {network:string;chainId:number;contract:string;probe:string;sourceCommit:string;challengeId:string;transactions:Record<string,string>;challenge:Challenge|null;payoutVerified:boolean;completed:boolean;recordedAt?:string;probes?:Record<string,unknown>;cases?:Record<string,{wallet:string;repo:string;commit:string;expected:string}>;transfers?:Record<string,unknown>};
 export const RULES=['README contains deployment instructions','Contains a Python GenLayer Intelligent Contract that makes a web request','Has an OSI-approved LICENSE file','Contains at least one test file'];
 export const RULE_LABELS=['Deployment guide','Web-reading contract','Open-source license','Tests included'];
+export const JUDGING_GRACE=3600;
+export const RAW_ARCHIVE_PATTERN=/^https:\/\/web\.archive\.org\/web\/[0-9]{14}id_\/https?:\/\/[^\s]+$/.source;
+export function canSettleChallenge(challenge:Challenge,at:number){return challenge.status==='RULES_ACCEPTED'&&at>=challenge.closes&&(challenge.order.every(wallet=>['QUALIFIED','DISQUALIFIED','INSUFFICIENT_EVIDENCE'].includes(challenge.entries[wallet].status))||at>=challenge.closes+JUDGING_GRACE);}
 export const short=(s:string)=>s?`${s.slice(0,6)}…${s.slice(-4)}`:'—';
 export function gen(wei:string){const n=BigInt(wei);return `${n/10n**18n}${n%10n**18n?'.'+String(n%10n**18n).padStart(18,'0').replace(/0+$/,''):''}`;}
 export function repoParts(url:string){const match=/^https:\/\/github\.com\/([\w-]+)\/([\w.-]+)\/?$/.exec(url);if(!match)throw Error('Use a public https://github.com/owner/repo URL.');const repo=match[2].replace(/\.git$/,'');if(['','.','..'].includes(repo))throw Error('Invalid repository.');return {owner:match[1],repo};}

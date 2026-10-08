@@ -9,6 +9,7 @@ from genlayer import *
 MAX_FILES = 10
 FILE_BYTES = 12000
 TREE_BYTES = 96000
+JUDGING_GRACE = 3600
 
 def require(ok, reason):
     if not ok:
@@ -259,7 +260,7 @@ class EligibilityJudge(gl.Contract):
         require(record['status'] == 'RULES_ACCEPTED' and record['opens'] <= now() < record['closes'], 'outside open submission window')
         repo_parts(repo)
         require(re.fullmatch(r'[0-9a-fA-F]{40}', commit) is not None, 'commit must be a full 40-character SHA')
-        require(demo == '' or re.fullmatch(r'https://web\.archive\.org/web/[0-9]{14}/https?://[^\s]+', demo) is not None, 'demo must be a dated archive.org snapshot')
+        require(demo == '' or re.fullmatch(r'https://web\.archive\.org/web/[0-9]{14}id_/https?://[^\s]+', demo) is not None, 'demo must be a dated archive.org raw snapshot (14-digit timestamp followed by id_)')
         wallet = str(gl.message.sender_address).lower()
         previous = record['entries'].get(wallet)
         if previous:
@@ -280,6 +281,7 @@ class EligibilityJudge(gl.Contract):
         record = self._load(challenge_id)
         wallet = wallet.lower()
         require(record['status'] == 'RULES_ACCEPTED' and wallet in record['entries'], 'entry unavailable')
+        require(now() < record['closes'] + JUDGING_GRACE, 'judging grace deadline reached')
         entry = record['entries'][wallet]
         require(0 <= rule_id < len(record['rules']), 'unknown rule')
         require(entry['verdicts'][rule_id] is None and not entry['pending'][rule_id], 'judgment already recorded or pending')
@@ -293,6 +295,8 @@ class EligibilityJudge(gl.Contract):
     def finalize_judgment(self, challenge_id: str, wallet: str, attempt: int, rule_id: int, answer_json: str) -> None:
         self._self()
         record = self._load(challenge_id)
+        if record['status'] != 'RULES_ACCEPTED':
+            return
         entry = record['entries'][wallet]
         require(entry['attempt'] == attempt and entry['pending'][rule_id] and entry['verdicts'][rule_id] is None, 'stale or duplicate callback')
         entry['verdicts'][rule_id] = json.loads(answer_json)
@@ -307,7 +311,13 @@ class EligibilityJudge(gl.Contract):
     def settle(self, challenge_id: str) -> None:
         record = self._load(challenge_id)
         require(record['status'] == 'RULES_ACCEPTED' and now() >= record['closes'], 'challenge must close before settlement')
-        require(all(e['status'] in ('QUALIFIED', 'DISQUALIFIED', 'INSUFFICIENT_EVIDENCE') for e in record['entries'].values()), 'every judgment must finalize')
+        unfinished = [e for e in record['entries'].values() if e['status'] not in ('QUALIFIED', 'DISQUALIFIED', 'INSUFFICIENT_EVIDENCE')]
+        if unfinished:
+            require(now() >= record['closes'] + JUDGING_GRACE, 'every judgment must finalize or judging grace must expire')
+            for entry in unfinished:
+                entry['status'] = 'INSUFFICIENT_EVIDENCE'
+                entry['resolution_reason'] = 'Judgment did not finalize before the grace deadline.'
+                entry['pending'] = [False for _ in record['rules']]
         record['qualifiers'] = [wallet for wallet in record['order'] if record['entries'][wallet]['status'] == 'QUALIFIED']
         count = len(record['qualifiers'])
         pool = int(record['pool'])

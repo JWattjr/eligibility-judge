@@ -24,12 +24,64 @@
     "screenshots": [
       ".impeccable/review/grace-raw-form-desktop.png",
       ".impeccable/review/grace-raw-form-mobile.png"
-    ]
+    ],
+    "timeoutBeforeClose": {
+      "challengeId": "challenge-1",
+      "state": "RULES_ACCEPTED",
+      "entryStatus": "SUBMITTED",
+      "ruleVerdicts": [
+        null,
+        null,
+        null
+      ],
+      "settleEnabled": false,
+      "contractBalanceWei": "2",
+      "screenshot": ".impeccable/review/grace-before-close.png"
+    },
+    "timeoutDuringGrace": {
+      "checkedAt": "2026-10-08T16:48:22.736784+00:00",
+      "challengeId": "challenge-1",
+      "settleEnabled": false,
+      "graceHintVisible": true,
+      "screenshot": ".impeccable/review/grace-during-window.png"
+    },
+    "paidFourCaseDemo": {
+      "challengeId": "challenge-2",
+      "outcomes": [
+        "QUALIFIED",
+        "DISQUALIFIED",
+        "INSUFFICIENT_EVIDENCE",
+        "DISQUALIFIED"
+      ],
+      "mobileWidth": 390,
+      "mobileHeight": 844,
+      "documentWidth": 382,
+      "scrollWidth": 382,
+      "screenshot": ".impeccable/review/grace-paid-mobile-local.png"
+    },
+    "claimTrackingAndReload": {
+      "hash": "0xb6da4928f7e78672bd23086383d4585e273652660556116c96862e70077e1282",
+      "state": "FINALIZED_SUCCESS",
+      "nativeCreditVerifiedByPolling": true,
+      "restoredAfterReload": true,
+      "mobileWidth": 390,
+      "mobileHeight": 844,
+      "documentWidth": 382,
+      "scrollWidth": 382,
+      "screenshot": ".impeccable/review/grace-claim-reload-mobile.png"
+    },
+    "timeoutAtRealDeadline": {
+      "checkedAt": "2026-10-08T17:47:50.178068+00:00",
+      "challengeId": "challenge-1",
+      "settleEnabled": true,
+      "screenshot": ".impeccable/review/grace-deadline-enabled.png"
+    }
   },
   "limits": [
     "These checks use the local production build and the previous recorded proof.",
-    "The new contract has no funded challenge yet; both 1-wei deposits await owner approval.",
+    "The owner approved and both one-wei deposits finalized. Funded live verification is in progress.",
     "New-contract live timeout refund and production desktop/mobile checks are required before submission."
   ],
-  "previousReleaseReport": "deploy/previous-runs/pre-grace/browser-verification.json"
+  "previousReleaseReport": "deploy/previous-runs/pre-grace/browser-verification.json",
+  "extensionNotes": "Chrome reports wallet-extension provider collisions and Dark Reader HTML/SVG hydration attributes; EIP-6963 still presents the explicit wallet selector."
 }

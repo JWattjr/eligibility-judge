@@ -11,3 +11,5 @@
 **1:30–1:50 — Equal pool.** Choose Payouts. Show the equal split and organizer remainder. Follow the settlement and qualifier-claim links. A credited native transfer is the payout proof, not merely a successful claim request.
 
 **1:50–2:00 — Build and verify.** Show the public repository and `npm run verify:proof`. Finish with the architecture, test coverage, and the development-network limitation. The owner submits the Portal fields manually.
+
+For the grace correction, also open the Unjudged-entry refund proof link. The separate challenge shows an insufficient-evidence timeout reason without invented rule verdicts. Its settlement and credited organizer refund are required proof that an entry left unjudged cannot lock the pool forever. This is a live deadline test, separate from the four standard outcomes.

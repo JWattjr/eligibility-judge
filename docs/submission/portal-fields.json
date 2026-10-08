@@ -5,7 +5,7 @@
   "tag1": "Hackathons",
   "tag2": "Evidence Verification",
   "oneLiner": "Open hackathon judging: every entry gets a rule-by-rule verdict anyone can verify.",
-  "description": "Eligibility Judge qualifies public GitHub entries against a frozen, validator-accepted rulebook. GenLayer validators judge one rule per transaction, independently fetch evidence at the submitted commit, and verify the leader's exact quote and file path. Entries passing every rule qualify; there are no scores or rankings. After close and finalized judgments, contract code divides a funded StudioNet GEN pool equally, refunds the integer remainder or an empty qualifying pool, and supports pull claims. Builders get one revision before close. The mobile-first app separates recorded proof from finalized live reads, preserves transaction polling across reloads, and uses native appeals. The repository includes direct tests, source, a tutorial, and a read-only finalized proof verifier. The live four-case demo settled and paid its one-wei pool; finalized receipts are in deploy/proof.json.",
+  "description": "Eligibility Judge qualifies public GitHub entries against a frozen, validator-accepted rulebook. GenLayer validators independently fetch evidence at the submitted commit, judge one rule per transaction, and verify the exact quote and file path. Entries passing every rule qualify; there are no scores or rankings. Final entries settle after close. Unfinished entries become insufficient evidence after a one-hour grace period and never qualify. Contract code splits a StudioNet GEN pool equally, refunds any remainder or empty qualifying pool, and supports pull claims. Builders get one revision before close; optional demos use dated raw Wayback replays. The mobile app separates recorded proof from finalized live reads, resumes transaction polling across reloads, and supports native appeals. The repository includes tests, source, a tutorial, and a read-only proof verifier. Finalized demo and timeout-refund receipts are recorded in deploy/proof.json.",
   "howTo": [
     {
       "heading": "Audit the public ledger",
@@ -21,12 +21,12 @@
     },
     {
       "heading": "Run a new challenge",
-      "instruction": "Connect your StudioNet wallet, create and fund a challenge, validate each rule, then submit a public GitHub commit during its window. Judge rules, settle after finality and close, and claim your share."
+      "instruction": "Connect a StudioNet wallet, create and fund a challenge, validate each rule, and submit a public GitHub commit before close. Judge rules before the grace deadline. Settle at close if all entries are final, or one hour after close otherwise; then claim."
     }
   ],
-  "expectedOutcome": "The seeded demo shows one qualified entry, two disqualified fixture commits, and one missing commit with insufficient evidence. All sixteen judgments finalized; deterministic settlement awarded one wei to the qualifier, whose pull claim produced a credited native transfer. Inspect deploy/proof.json and docs/browser-verification.json for the current verification status before submission.",
+  "expectedOutcome": "The standard demo shows one qualified entry, two disqualified fixture commits, and a missing commit with insufficient evidence. All sixteen judgments finalized; equal settlement paid exactly one wei to the qualifier. A separate never-judged entry became insufficient evidence after the real one-hour grace deadline, and its one-wei organizer refund was claimed and credited. The read-only verifier passed all 62 receipts, exact finalized states, deployed source and zero remaining pool. Consult docs/browser-verification.json for production verification status.",
   "contractLinks": [
-    "https://explorer-studio.genlayer.com/address/0x03Dd21B241ea3e1EBB9B126Eb732d795dEE8Ae9a"
+    "https://explorer-studio.genlayer.com/address/0x03E7970E791d644B2714a457D178Edf036670bb7"
   ],
   "website": "https://eligibility-judge.vercel.app",
   "github": "https://github.com/JWattjr/eligibility-judge",

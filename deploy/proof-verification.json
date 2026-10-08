@@ -1,5 +1,5 @@
 {
-  "status": "PENDING",
+  "status": "PASS",
   "contract": "0x03E7970E791d644B2714a457D178Edf036670bb7",
   "contractSourceSha256": "20244a168541a23d1d46b2dc14b1f3d05e2b74d8def8761fb9f0eb5aaa7a17aa",
   "deployReceipt": "0xf8c7a73646fd56834d12178977bba4ba1e48c1cdcbd1105f40c8ff7c5c2755e9",
@@ -8,14 +8,29 @@
     "contractTests": 46,
     "typescript": "PASS",
     "appTests": 16,
-    "productionBuild": "PASS"
+    "productionBuild": "PASS",
+    "judgingPromptsAndValidatorLogic": "UNCHANGED (AST comparison against archived deployed source)",
+    "deployedSource": "PASS (exact source and SHA-256 checked against StudioNet)"
   },
-  "remaining": [
-    "Owner approval for two additional StudioNet wei",
-    "Four-outcome finalized demo and credited payout",
-    "Real unjudged-entry timeout settlement and credited organizer refund",
-    "Read-only verification of both funded proofs and exact deployed source",
-    "Production promotion and desktop/mobile checks"
-  ],
-  "previousReleaseReport": "deploy/previous-runs/pre-grace/proof-verification.json"
+  "remaining": [],
+  "previousReleaseReport": "deploy/previous-runs/pre-grace/proof-verification.json",
+  "demoDepositsApprovedWei": "2",
+  "standardPayoutVerified": true,
+  "fourOutcomes": {
+    "qualified": "QUALIFIED",
+    "failed": "DISQUALIFIED",
+    "missing": "INSUFFICIENT_EVIDENCE",
+    "injection": "DISQUALIFIED"
+  },
+  "payoutReceipt": "0xfdb4eaba2d58eddb83fcfb9b3dd97d5c4d1faf8b03cbfed829e351b2242c1522",
+  "recordedAt": "2026-10-08T17:55:55.768962+00:00",
+  "command": "npm run verify:proof",
+  "receiptCount": 62,
+  "timeoutRefundVerified": true,
+  "contractBalanceWei": "0",
+  "sourceMatchedExactly": true,
+  "graceDeadline": 1791481605,
+  "timeoutSettlementReceipt": "0x4d4d76bb3e495ce0c732f81adb9f63eb660f9e84e4b8d28ccd86b829cd685171",
+  "timeoutRefundReceipt": "0x1263413bbe824d0f7ebbfa0ca046996d854b5ef6124519345f76f5e72e4a7bea",
+  "productionVerificationPending": true
 }

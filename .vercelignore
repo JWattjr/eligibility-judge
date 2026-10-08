@@ -4,6 +4,8 @@ deploy/receipts
 deploy/proof.previous.json
 deploy/repaired-proof.json
 deploy/release-proof.json
+deploy/hardened-proof.json
+deploy/grace-proof.json
 .env*
 .git
 .impeccable/review

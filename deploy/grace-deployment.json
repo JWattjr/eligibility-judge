@@ -7,7 +7,8 @@
   "status": "FINALIZED",
   "execution": "SUCCESS",
   "consensus": "MAJORITY_AGREE",
-  "demoDepositsApproved": false,
-  "timeoutLiveProofComplete": false,
-  "deployedSourceVerified": true
+  "demoDepositsApproved": true,
+  "timeoutLiveProofComplete": true,
+  "deployedSourceVerified": true,
+  "demoDepositsApprovedWei": "2"
 }

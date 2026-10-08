@@ -2,7 +2,7 @@
 
 The live demo is settled and its one-wei pool has been claimed and credited. The read-only proof verifier passed all 54 saved receipts, callbacks, exact finalized state, rulebook hash, four outcomes, exact native payout and deployed source.
 
-Native protocol re-evaluation is verified through a zero-bond CLI appeal (two consensus rounds). The final browser native appeal check remains pending after earlier MetaMask requests appeared too late; the prompt latency fix is being checked. Do not describe the entire project as submission-ready until that check completes. No further demo deposit is needed.
+The project is submission-ready. A real Chrome / MetaMask native appeal was approved inside the 30-second window and finalized after a second consensus round. The validators upheld the intentionally rejected settled-rulebook call; this expected error proves the appeal flow without changing the paid demo. `npm run verify:appeal` independently rechecks both CLI and browser appeals plus the unchanged finalized challenge and zero contract balance. No further deposit is needed.
 
 - Site: https://eligibility-judge.vercel.app
 - Source: https://github.com/JWattjr/eligibility-judge
@@ -27,3 +27,7 @@ Credited payout: [0xd5c5b7f84ec29fc2d967c88418109872d31b8301a8e1d0d1b3f6049e45e2
 All sixteen parent judgment hashes and finalized callbacks are in the proof manifest. The source commit pinned in the qualifying entry is preserved; later app and documentation fixes do not change that entry.
 
 The owner performs the final Portal submission. Nothing has been submitted automatically.
+
+Native browser appeal: [0xc568eeeae18c62240c1ef86b00baa3f7a309d8e7c53716f95fb9856aa6602c2e](https://explorer-studio.genlayer.com/tx/0xc568eeeae18c62240c1ef86b00baa3f7a309d8e7c53716f95fb9856aa6602c2e). Signed 27 seconds after acceptance; two rounds; expected rollback upheld. Details: `deploy/native-appeal-proof.json`.
+
+Validation: 33 contract tests and GenVM lint passed for the unchanged deployed contract; TypeScript, 14 app tests and a production build passed for the final app correction. Desktop and mobile checks and the exact wallet-signing limits are preserved in `docs/browser-verification.json`.

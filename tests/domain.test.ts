@@ -1,6 +1,18 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {executionState,gen,repoParts,selectedFiles,returnedChallengeId} from '../lib/domain';
+import {executionState,executionError,nativeAppealReview,gen,repoParts,selectedFiles,returnedChallengeId} from '../lib/domain';
+test('agreed contract rollback reports its actual reason rather than MAJORITY_AGREE',()=>{
+ const receipt={status_name:'FINALIZED',result_name:'MAJORITY_AGREE',consensus_data:{leader_receipt:[{execution_result:'ERROR',result:{status:'rollback',payload:'[EXPECTED] rulebook already decided'}}]}};
+ assert.equal(executionError(receipt),'[EXPECTED] rulebook already decided');
+ assert.equal(executionError({...receipt,status_name:'ACCEPTED'}),'');
+});
+test('native appeal outcome requires finalized re-evaluation and does not mistake a prior failed appeal for the latest outcome',()=>{
+ const receipt={status_name:'FINALIZED',timestamp_appeal:1791471221,num_of_rounds:'2',consensus_data:{leader_receipt:[{execution_result:'ERROR'}]},consensus_history:{consensus_results:[{consensus_round:'Accepted'},{consensus_round:'Validator Appeal Failed'}]}};
+ assert.equal(nativeAppealReview(receipt),'Native appeal reviewed · original result upheld');
+ assert.equal(nativeAppealReview({...receipt,status_name:'ACCEPTED'}),null);
+ assert.equal(nativeAppealReview({...receipt,num_of_rounds:'1'}),null);
+ assert.equal(nativeAppealReview({...receipt,num_of_rounds:'3',consensus_history:{consensus_results:[...receipt.consensus_history.consensus_results,{consensus_round:'Accepted'}]}}),'Native appeal re-evaluated');
+});
 test('accepted execution errors remain provisional; finalized errors are errors',()=>{assert.equal(executionState({status_name:'ACCEPTED',txExecutionResultName:'ERROR'}),'ACCEPTED');assert.equal(executionState({status_name:'FINALIZED',consensus_data:{leader_receipt:[{execution_result:'ERROR'}]}}),'FINALIZED_ERROR');assert.equal(executionState({status_name:'FINALIZED',consensus_data:{leader_receipt:[{execution_result:'SUCCESS'}]}}),'FINALIZED_SUCCESS');});
 test('a successful leader rejected by consensus never becomes finalized success',()=>{const receipt={statusName:'FINALIZED',result_name:'MAJORITY_DISAGREE',consensus_data:{leader_receipt:[{execution_result:'SUCCESS'}]}};assert.equal(executionState(receipt),'FINALIZED_ERROR');assert.equal(executionState({...receipt,statusName:'ACCEPTED'}),'ACCEPTED');assert.equal(executionState({...receipt,result_name:'MAJORITY_AGREE'}),'FINALIZED_SUCCESS');});
 test('wei are lossless and GitHub authority is constrained',()=>{assert.equal(gen('3000000000000000001'),'3.000000000000000001');assert.throws(()=>repoParts('https://github.com.attacker/owner/repo'));});

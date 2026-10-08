@@ -11,6 +11,20 @@ export function selectedFiles(paths:string[]){return paths.filter(p=>/\.(py|ts|t
 export function evidenceUrl(entry:Entry,path:string){const {owner,repo}=repoParts(entry.repo);return path==='__TREE__'?`https://api.github.com/repos/${owner}/${repo}/git/trees/${entry.commit}?recursive=1`:path==='__DEMO__'?entry.demo:`https://github.com/${owner}/${repo}/blob/${entry.commit}/${path.split('/').map(encodeURIComponent).join('/')}`;}
 export function executionState(receipt:Record<string,unknown>):string{const status=String(receipt.statusName??receipt.status_name??'PENDING');if(status!=='FINALIZED')return status;if(receipt.value_credited===true&&receipt.consensus_data===null)return 'FINALIZED_SUCCESS';const consensus=receipt.result_name??receipt.resultName;if(consensus&&!['AGREE','MAJORITY_AGREE','SUCCESS'].includes(String(consensus)))return 'FINALIZED_ERROR';const data=receipt.consensus_data as {leader_receipt?:{execution_result?:string;result?:{status?:string}}[]}|undefined;const leader=data?.leader_receipt?.[0];return ['SUCCESS','FINISHED_WITH_RETURN'].includes(String(receipt.txExecutionResultName??leader?.execution_result))&&leader?.result?.status!=='rollback'?'FINALIZED_SUCCESS':'FINALIZED_ERROR';}
 export const txUrl=(hash:string)=>`https://explorer-studio.genlayer.com/tx/${hash}`;
+export function executionError(receipt:Record<string,unknown>){
+ if(executionState(receipt)!=='FINALIZED_ERROR')return '';
+ const leader=(receipt.consensus_data as {leader_receipt?:{genvm_result?:{error_description?:string;stderr?:string};result?:{status?:string;payload?:unknown}}[]}|undefined)?.leader_receipt?.[0];
+ const result=leader?.result;
+ if(result?.status==='rollback'&&typeof result.payload==='string'&&result.payload)return result.payload;
+ return leader?.genvm_result?.error_description||leader?.genvm_result?.stderr||'Contract execution or consensus rejected this transaction.';
+}
+export function nativeAppealReview(receipt:Record<string,unknown>){
+ const timestamp=Number(receipt.timestamp_appeal),rounds=Number(receipt.num_of_rounds);
+ const history=(receipt.consensus_history as {consensus_results?:{consensus_round?:string}[]}|undefined)?.consensus_results;
+ if(executionState(receipt)!=='FINALIZED_ERROR'&&executionState(receipt)!=='FINALIZED_SUCCESS')return null;
+ if(!Number.isFinite(timestamp)||timestamp<=0||!Number.isInteger(rounds)||rounds<2||!Array.isArray(history)||history.length<2)return null;
+ return ['Validator Appeal Failed','Leader Appeal Failed'].includes(history.at(-1)?.consensus_round??'')?'Native appeal reviewed · original result upheld':'Native appeal re-evaluated';
+}
 // Studio uses the native finality window, extended by time spent appealing and
 // shortened after failed appeals (the Studio protocol's configured reduction).
 export function studioAppealDeadline(receipt:Record<string,unknown>,windowSeconds:number,reduction=0.2){

@@ -11,8 +11,24 @@
       "timestampAppeal": 1791470542,
       "rounds": 2,
       "failedAppeals": 1
+    },
+    {
+      "channel": "Chrome / explicitly selected MetaMask",
+      "hash": "0xc568eeeae18c62240c1ef86b00baa3f7a309d8e7c53716f95fb9856aa6602c2e",
+      "valueWei": "0",
+      "appealBondWei": "0",
+      "timestampAppeal": 1791471221,
+      "rounds": 2,
+      "failedAppeals": 1,
+      "acceptedTimestamp": 1791471194,
+      "windowSeconds": 30,
+      "secondsAfterAcceptance": 27,
+      "lastConsensusRound": "Validator Appeal Failed",
+      "expectedRollback": "[EXPECTED] rulebook already decided",
+      "productionCommit": "5a82da7"
     }
   ],
-  "browserVerified": false,
-  "browserStatus": "Previous wallet requests appeared after the native deadline; a prompt latency correction awaits a fresh browser check."
+  "browserVerified": true,
+  "browserStatus": "Real MetaMask request approved by the owner inside the native window; chain independently shows the appeal timestamp, two rounds, and Validator Appeal Failed. This upholds the deliberately rejected settled-rulebook call.",
+  "checkedAt": "2026-10-08T14:57:19.441099+00:00"
 }

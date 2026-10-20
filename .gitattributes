@@ -1,0 +1,4 @@
+# Deployed milestone sources must retain their exact bytes on every checkout.
+contracts/rule_disputes.py -text
+contracts/qualification_badges.py -text
+contracts/eligibility_series.py -text

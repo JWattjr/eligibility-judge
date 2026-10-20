@@ -1,0 +1,10 @@
+{
+  "url": "https://api.github.com/repos/JWattjr/Bullseye/git/trees/a0a6eea3cb60836fe6c79a73aeefdbe5efd3a391?recursive=1",
+  "httpStatus": 200,
+  "bytes": 263265,
+  "sha256": "b5a2c421df1fbd96723eaadb1215c58a52900caab45c95cddaf2a049637f873d",
+  "truncated": false,
+  "blobCount": 960,
+  "judgeTreeBytes": 96000,
+  "disputeTreeBytes": 1000000
+}

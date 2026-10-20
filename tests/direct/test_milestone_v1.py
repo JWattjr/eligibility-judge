@@ -62,7 +62,7 @@ def sources(direct_vm, direct_owner, direct_alice, direct_bob, monkeypatch):
             assert kwargs == {'on': 'finalized'}
             return self
         def __getattr__(self, name):
-            if name.startswith('finalize_'):
+            if name.startswith('finalize_') or name == 'check_open':
                 return lambda *args: emissions.append((name, args))
             raise AttributeError(name)
     return SimpleNamespace(challenges=challenges, effective=effective, finalized=finalized, via=via,
@@ -105,6 +105,9 @@ def open_case(c, vm, sources, entrant=None, argument='Read the full pinned file.
     vm.value = amount
     key = c.open_dispute('challenge-1', entrant or sources.alice, 0, PATH, argument)
     vm.value = 0
+    if case(c, key)['status'] == 'OPENING':
+        c.check_open(key)
+        self_call(vm, c.finalize_open, key, case(c, key)['version'])
     return key
 
 
@@ -148,7 +151,7 @@ def test_dispute_unreachable_full_file_void_refunds(dispute, sources, direct_vm)
     mock_file(direct_vm, status=503)
     dispute.hear(key)
     assert case(dispute, key)['status'] == 'VOID_PENDING_FINALITY'
-    self_call(direct_vm, dispute.finalize_outcome, key, 1)
+    self_call(direct_vm, dispute.finalize_outcome, key, case(dispute,key)['version'])
     assert case(dispute, key)['status'] == 'VOID'
     assert case(dispute, key)['allocations'] == {sources.owner: str(BOND)}
     assert 'VOID_SOURCES_UNREACHABLE' in case(dispute, key)['reason']
@@ -159,7 +162,7 @@ def test_dispute_oversized_full_file_void_not_partial_judgment(dispute, sources,
     direct_vm.clear_mocks()
     mock_file(direct_vm, body='x' * 65537)
     dispute.hear(key)
-    self_call(direct_vm, dispute.finalize_outcome, key, 1)
+    self_call(direct_vm, dispute.finalize_outcome, key, case(dispute,key)['version'])
     assert case(dispute, key)['status'] == 'VOID'
 
 
@@ -172,12 +175,12 @@ def test_expiry_permissionless_at_exact_deadline_and_late_hearing_noop(dispute, 
     warp(direct_vm, T + 86400)
     direct_vm.sender = direct_bob
     dispute.expire(key)
-    assert case(dispute, key)['version'] == 2
-    self_call(direct_vm, dispute.finalize_outcome, key, 1)
-    assert case(dispute, key)['status'] == 'VOID_PENDING_FINALITY'
+    assert case(dispute, key)['version'] == 3
     self_call(direct_vm, dispute.finalize_outcome, key, 2)
+    assert case(dispute, key)['status'] == 'VOID_PENDING_FINALITY'
+    self_call(direct_vm, dispute.finalize_outcome, key, 3)
     before = dispute.get_dispute(key)
-    self_call(direct_vm, dispute.finalize_outcome, key, 1)
+    self_call(direct_vm, dispute.finalize_outcome, key, 2)
     assert dispute.get_dispute(key) == before
     assert case(dispute, key)['status'] == 'VOID' and case(dispute, key)['allocations'] == {sources.owner: str(BOND)}
 
@@ -188,7 +191,7 @@ def test_expire_never_heard_dispute_and_stop_hearing_at_deadline(dispute, source
     with direct_vm.expect_revert('deadline reached'):
         dispute.hear(key)
     dispute.expire(key)
-    self_call(direct_vm, dispute.finalize_outcome, key, 1)
+    self_call(direct_vm, dispute.finalize_outcome, key, case(dispute,key)['version'])
     assert case(dispute, key)['status'] == 'VOID'
 
 
@@ -220,7 +223,11 @@ def test_invalid_funded_dispute_is_rejected_but_every_deposit_refundable(dispute
     key = dispute.open_dispute('challenge-1', sources.alice, 0, 'missing.py' if invalid == 'file' else PATH,
                                'x' * 601 if invalid == 'argument' else 'Check the frozen file.')
     direct_vm.value = 0
-    self_call(direct_vm, dispute.finalize_outcome, key, 1)
+    if case(dispute,key)['status'] == 'OPENING':
+        dispute.check_open(key)
+        self_call(direct_vm, dispute.finalize_open, key, case(dispute,key)['version'])
+    else:
+        self_call(direct_vm, dispute.finalize_outcome, key, case(dispute,key)['version'])
     record = case(dispute, key)
     assert record['status'] == 'VOID'
     assert record['allocations'] == {sources.owner: record['bond']}
@@ -236,6 +243,24 @@ def test_credentials_wait_for_hearing_after_opening_window(dispute, sources, dir
     assert not json.loads(dispute.get_effective_verdicts('challenge-1', sources.alice))['credentials_final']
     hear(dispute, direct_vm, key)
     assert json.loads(dispute.get_effective_verdicts('challenge-1', sources.alice))['credentials_final']
+
+
+def test_failed_zero_value_opening_consensus_cannot_orphan_a_funded_bond(dispute, sources, direct_vm, monkeypatch):
+    import genlayer.gl as sdk
+    direct_vm.value=BOND
+    key=dispute.open_dispute('challenge-1',sources.alice,0,PATH,'Check the complete file.')
+    direct_vm.value=0
+    assert case(dispute,key)['status']=='OPENING' and case(dispute,key)['bond']==str(BOND)
+    def unavailable(*args):
+        raise sdk.vm.UserError('[TRANSIENT] temporary tree consensus failure')
+    monkeypatch.setattr(deployed_module('rule_disputes.py'),'file_in_tree',unavailable)
+    with direct_vm.expect_revert('temporary tree consensus failure'):
+        dispute.check_open(key)
+    assert case(dispute,key)['status']=='OPENING'
+    warp(direct_vm,T+86400)
+    dispute.expire(key)
+    self_call(direct_vm,dispute.finalize_outcome,key,case(dispute,key)['version'])
+    assert case(dispute,key)['status']=='VOID' and case(dispute,key)['allocations']=={sources.owner:str(BOND)}
 
 
 @pytest.mark.parametrize('leader_verdict,leader_path,leader_quote,expected', [

@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-20T14:27:58.878163+00:00",
+  "results": [
+    {
+      "url": "https://explorer-studio.genlayer.com/address/0x1fcF18ef9e74159900E4C7eA00F859F9132EBa5C",
+      "httpStatus": 200,
+      "network": "StudioNet 61999",
+      "type": "CONTRACT",
+      "address": "0x1fcF18ef9e74159900E4C7eA00F859F9132EBa5C"
+    },
+    {
+      "url": "https://explorer-studio.genlayer.com/address/0x7BCF4C1ED69F0B0dC36b590911f886bd32f24bDE",
+      "httpStatus": 200,
+      "network": "StudioNet 61999",
+      "type": "CONTRACT",
+      "address": "0x7BCF4C1ED69F0B0dC36b590911f886bd32f24bDE"
+    },
+    {
+      "url": "https://explorer-studio.genlayer.com/address/0x03262D836d327d4b01103A2ca759BC0776414E53",
+      "httpStatus": 200,
+      "network": "StudioNet 61999",
+      "type": "CONTRACT",
+      "address": "0x03262D836d327d4b01103A2ca759BC0776414E53"
+    },
+    {
+      "url": "https://explorer-studio.genlayer.com/address/0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "httpStatus": 200,
+      "network": "StudioNet 61999",
+      "type": "CONTRACT",
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7"
+    },
+    {
+      "name": "deploy-disputes",
+      "url": "https://explorer-studio.genlayer.com/tx/0x7ed11b453bf9d2a0a51bdb77cb4c1ef1bb5846b7c7f6ef5856f29c6cd533a34c",
+      "httpStatus": 200
+    },
+    {
+      "name": "deploy-badges",
+      "url": "https://explorer-studio.genlayer.com/tx/0x03c12c0767ddf63d6404d72944823816cf811f99d2aa33ed40c6d5d891b948ea",
+      "httpStatus": 200
+    },
+    {
+      "name": "deploy-series",
+      "url": "https://explorer-studio.genlayer.com/tx/0x9949e8c28c43dcb6aa079c323b6e88d64c1d6653949618c2d24ddb3c9d1b9cb9",
+      "httpStatus": 200
+    },
+    {
+      "name": "reported-failure-0",
+      "url": "https://explorer-studio.genlayer.com/tx/0x881ed4c5e4808348428c8223aedc02f635c316723c31b20c1f7080dd9f82abf3",
+      "httpStatus": 200
+    }
+  ]
+}

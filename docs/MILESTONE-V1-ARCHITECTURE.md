@@ -10,7 +10,7 @@ The owner selected a fixed season qualification count: void rounds do not lower 
 
 ## GEN exit audit
 
-- Dispute OPEN/HEARD: anyone can expire after the frozen hearing deadline; VOID refunds the disputant. Invalid funded inputs create an explicit refundable record instead of rolling back and stranding StudioNet value.
+- Dispute OPENING/OPEN/HEARD: anyone can expire after the frozen hearing deadline; VOID refunds the disputant. The payable opening commits the funded reservation before emitting a zero-value file-check callback. Failed web consensus cannot orphan the bond. Invalid funded inputs create an explicit refundable record instead of rolling back and stranding StudioNet value.
 - Dispute finality pending: self callback, or permissionless receipt-verified finality recovery. Generation guards reject stale callbacks.
 - Season OPEN: anyone can close once every round is imported or the fixed end passes. An unsettled round observed at/after the end is void. If source/dispute views cannot finalize by end + 24 hours, anyone can void the whole season for an organizer refund.
 - Season finality pending: self callback or receipt-verified recovery, without recomputing winners.

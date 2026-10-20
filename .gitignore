@@ -14,5 +14,6 @@ deploy/repaired-proof.json
 deploy/release-proof.json
 deploy/hardened-proof.json
 deploy/grace-proof.json
+deploy/milestone-opening-proof.json
 
 .vercel

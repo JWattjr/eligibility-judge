@@ -5,7 +5,7 @@ import {TransactionHashVariant} from 'genlayer-js/types';
 import {studionet} from 'genlayer-js/chains';
 import {createClient} from 'genlayer-js';
 import {generatePrivateKey,privateKeyToAccount} from 'viem/accounts';
-import milestone from './milestone';
+import milestone from '../scripts/milestone-runner';
 // All writes carry explicit fees via a custom transport. SDK 1.1.8 does not expose fee fields on writeContract.
 // genlayer CLI supplies the signing client; fee injection is installed in scripts/deploy.ps1.
 const proofPath=process.env.ELIGIBILITY_PROOF_PATH??'deploy/proof.json';

@@ -10,6 +10,9 @@ try {
  $env:NODE_OPTIONS=($previousNodeOptions+' --import=tsx --import=./scripts/milestone-rpc-budget.mjs').Trim()
  genlayer.cmd deploy
  if($LASTEXITCODE -ne 0){exit $LASTEXITCODE}
+ $milestoneJournal=if($env:ELIGIBILITY_MILESTONE_PROOF_PATH){$env:ELIGIBILITY_MILESTONE_PROOF_PATH}else{'deploy/milestone-proof.json'}
+ $milestoneResult=Get-Content -LiteralPath $milestoneJournal -Raw | ConvertFrom-Json
+ if($milestoneResult.stages.$Step.status -ne 'PASS'){throw ('Milestone stage did not pass: '+$Step+'. Saved hashes remain in '+$milestoneJournal)}
 } finally {
  $env:NODE_OPTIONS=$previousNodeOptions
  $env:ELIGIBILITY_MILESTONE_STEP=$previousMilestoneStep

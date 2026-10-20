@@ -1,0 +1,134 @@
+{
+  "action": "Propose an update",
+  "project": "Eligibility Judge",
+  "milestone": "Milestone v1: Seasons, Badges and Rule Disputes",
+  "status": "Live proof in progress. Do not submit this draft.",
+  "readyForOwnerReview": false,
+  "summary": "Eligibility Judge adds targeted rule disputes, portable qualification badges and multi-round seasons. A bonded hearing fetches one complete file at the entrant’s pinned commit; independent validators decide the frozen rule and verify the leader’s exact quote in their own fetches. Finalized overturns change credentials and season standings while the original judge pool stays immutable. Badges wait for the opening window and all pending hearings. Seasons retain a fixed qualification count, split a GEN bonus equally and verify native credits before marking payments paid. Unreachable evidence and timed exits refund funds. The disclosed live demo uses owner-operated public repositories, owner-controlled wallets and an existing negative fixture. Original tree-bound shortfalls and a consensus failure are retained and reported, with no rerun of a failed case.",
+  "judgmentPoints": "New judgment: apply one frozen eligibility rule to a full named file, up to 64 KB, at the original pinned Git commit. Each validator independently fetches and judges that file, compares only verdict and path, and re-verifies the leader’s verbatim quote in its own fetch. Arguments and instructions in the file remain untrusted evidence. Code derives UPHELD, OVERTURNED or VOID, preserves the original prize settlement, gates credentials on finality and deadlines, and handles bonded refunds. Badges and seasons use deterministic cross-contract reads without an LLM.",
+  "reviewRules": "Opening lasts until challenge close + one-hour judging grace + two hours. Bonds are 0.01–10 simulated GEN. Opening persists a reservation before a zero-value file check. Hearings have a 24-hour VOID/refund exit. Badges and round imports wait for every pending case. Void rounds never lower the season qualification threshold. Seasons have a full-refund exit 24 hours after their end. Native claims reserve numbered attempts and require independently verified credit.",
+  "network": "StudioNet 61999. GEN is simulated development currency.",
+  "contracts": [
+    {
+      "name": "RulingDisputes",
+      "address": "0x1fcF18ef9e74159900E4C7eA00F859F9132EBa5C",
+      "description": "Bonded full-file rule hearings. Validators independently judge pinned evidence and verify quotes. Finalized outcomes update credentials; VOID refunds and timed exits protect bonds.",
+      "explorer": "https://explorer-studio.genlayer.com/address/0x1fcF18ef9e74159900E4C7eA00F859F9132EBa5C"
+    },
+    {
+      "name": "QualificationBadges",
+      "address": "0x7BCF4C1ED69F0B0dC36b590911f886bd32f24bDE",
+      "description": "Non-transferable qualification credentials tied to a pinned commit, frozen rulebook and effective-verdict digest. Minting waits for the opening window and every pending hearing. No LLM or stake.",
+      "explorer": "https://explorer-studio.genlayer.com/address/0x7BCF4C1ED69F0B0dC36b590911f886bd32f24bDE"
+    },
+    {
+      "name": "EligibilitySeries",
+      "address": "0x03262D836d327d4b01103A2ca759BC0776414E53",
+      "description": "Two-to-six-round seasons with a fixed qualification count and equal GEN bonus shares. Imports final effective rulings, refunds void or empty seasons, and verifies native credit before marking paid.",
+      "explorer": "https://explorer-studio.genlayer.com/address/0x03262D836d327d4b01103A2ca759BC0776414E53"
+    }
+  ],
+  "evidence": [
+    {
+      "type": "GenLayer Explorer Contract",
+      "title": "RulingDisputes deployed on StudioNet",
+      "url": "https://explorer-studio.genlayer.com/address/0x1fcF18ef9e74159900E4C7eA00F859F9132EBa5C"
+    },
+    {
+      "type": "GenLayer Explorer Contract",
+      "title": "QualificationBadges deployed on StudioNet",
+      "url": "https://explorer-studio.genlayer.com/address/0x7BCF4C1ED69F0B0dC36b590911f886bd32f24bDE"
+    },
+    {
+      "type": "GenLayer Explorer Contract",
+      "title": "EligibilitySeries deployed on StudioNet",
+      "url": "https://explorer-studio.genlayer.com/address/0x03262D836d327d4b01103A2ca759BC0776414E53"
+    },
+    {
+      "type": "GenLayer Explorer Contract",
+      "title": "Unchanged EligibilityJudge dependency on StudioNet",
+      "url": "https://explorer-studio.genlayer.com/address/0x03E7970E791d644B2714a457D178Edf036670bb7"
+    }
+  ],
+  "liveUrl": "https://eligibility-judge.vercel.app/series",
+  "source": "https://github.com/JWattjr/eligibility-judge",
+  "sourceCommit": "d5478e911a280d8842b3d75b722c13ccec31ccf9",
+  "tutorial": "https://github.com/JWattjr/eligibility-judge/blob/main/docs/TUTORIAL-MILESTONE-V1.md",
+  "architecture": "https://github.com/JWattjr/eligibility-judge/blob/main/docs/MILESTONE-V1-ARCHITECTURE.md",
+  "proofManifest": "https://github.com/JWattjr/eligibility-judge/blob/main/deploy/milestone-proof.json",
+  "verification": "https://github.com/JWattjr/eligibility-judge/blob/main/deploy/milestone-verification.json",
+  "deploymentVerification": "https://github.com/JWattjr/eligibility-judge/blob/main/docs/submission/milestone-v1-links.json",
+  "challengeProofs": [],
+  "keyTransactions": {
+    "deploy-disputes": "https://explorer-studio.genlayer.com/tx/0x7ed11b453bf9d2a0a51bdb77cb4c1ef1bb5846b7c7f6ef5856f29c6cd533a34c",
+    "deploy-badges": "https://explorer-studio.genlayer.com/tx/0x03c12c0767ddf63d6404d72944823816cf811f99d2aa33ed40c6d5d891b948ea",
+    "deploy-series": "https://explorer-studio.genlayer.com/tx/0x9949e8c28c43dcb6aa079c323b6e88d64c1d6653949618c2d24ddb3c9d1b9cb9"
+  },
+  "grossDepositsWei": "100000000000000002",
+  "depositCeilingWei": "1000000000000000000",
+  "deposits": [
+    {
+      "name": "round-1-create",
+      "hash": "0x5429fa170e1628bdf5ce890cda853a0cb3f614056afbe2db621da6d2889e4526",
+      "value": "1"
+    },
+    {
+      "name": "round-2-create",
+      "hash": "0x10ba03804812bbe2fc5aac2aed36ab8c1dd6acdea5b2c6d05a9f1b569cf9bbf4",
+      "value": "1"
+    },
+    {
+      "name": "series-create",
+      "hash": "0xef4c8bb9acf3b001703de16723b145bb62c840ef86a9cc8594f549080518289a",
+      "value": "100000000000000000"
+    }
+  ],
+  "reportedMismatches": [
+    {
+      "round": 1,
+      "entrant": "consistent",
+      "expected": "QUALIFIED",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "reason": "Pinned tree is 263265 bytes, above the immutable judge 96000-byte bound; original verdict retained. Six unique full-file hearings address the missing evidence.",
+      "reported": true
+    },
+    {
+      "round": 1,
+      "entrant": "targeted",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "JUDGING",
+      "reason": "An original judgment finalized with consensus disagreement; the case is retained without rerun. Settlement waits for the immutable judge grace deadline.",
+      "reported": true
+    }
+  ],
+  "reportedFailedTransactions": [
+    {
+      "name": "round-1-judge-targeted-1",
+      "hash": "0x881ed4c5e4808348428c8223aedc02f635c316723c31b20c1f7080dd9f82abf3",
+      "at": "2026-10-20T14:18:54.591Z",
+      "receipt": "deploy/receipts/milestone-v1/round-1-judge-targeted-1.json",
+      "reported": true,
+      "classification": "LIVE_CONSENSUS_FAILURE",
+      "reason": "MAJORITY_DISAGREE"
+    }
+  ],
+  "limits": "The immutable original judge uses bounded evidence. Its Bullseye tree overflow and original consensus failure remain visible. Corrections affect credentials only. Demo wallets and repositories are owner-operated; the negative entry is a test fixture. The first three milestone deployments were retired unfunded before bonds or bonus deposits. No Portal form is submitted automatically.",
+  "checks": {
+    "contractTests": 97,
+    "existingContractTests": 46,
+    "newContractTests": 51,
+    "appTests": 22,
+    "lint": "Three contracts pass GenVM lint and SDK validation.",
+    "typecheck": "PASS",
+    "productionBuild": "PASS",
+    "liveVerification": "PENDING"
+  },
+  "blockers": "Live proof, independent verification and final production browser checks are still running.",
+  "fieldCharacterCounts": {
+    "summary": 863,
+    "judgmentPoints": 565,
+    "RulingDisputes.description": 180,
+    "QualificationBadges.description": 194,
+    "EligibilitySeries.description": 197
+  }
+}

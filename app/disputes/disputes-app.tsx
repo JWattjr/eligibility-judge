@@ -1,0 +1,8 @@
+'use client';
+import {ArrowUpRight} from 'lucide-react';
+import {snapshot,contractUrl} from '@/lib/milestone-domain';
+import type {MilestoneProof} from '@/lib/milestone-domain';
+import {HearingRow} from '../dispute-panel';
+import {MilestoneWallet,MilestoneNav,Provenance,TransactionTrail,useFinalizedRead} from '../milestone-controls';
+function Ledger({proof}:{proof:MilestoneProof}){const {data,mode,busy,error,refresh}=useFinalizedRead('/api/milestone?kind=disputes',snapshot(proof));return <><MilestoneNav active="ledger"/><main className="milestone-main"><div className="milestone-heading"><div><h1>Every second hearing, on record.</h1><p>A targeted file can change a credential. Validator judgment never moves an already-settled judge pool.</p></div><a className="button secondary" href="/series">Season standings <ArrowUpRight size={14}/></a></div><Provenance mode={mode} readAt={data.readAt} busy={busy} error={error} onRefresh={()=>void refresh()}/>{data.disputes.length?data.disputes.map(h=><HearingRow key={h.id} hearing={h}/>):<section className="milestone-empty"><h2>No finalized hearings recorded yet</h2><p>Open an entry in a settled challenge, choose a rule, and inspect its dispute availability.</p></section>}<p className="milestone-disclosure">The demonstration uses owner-operated public repositories, owner-controlled wallets and a disclosed public negative fixture. The injection argument is deliberately adversarial test data.</p><a href={contractUrl(proof.contracts.disputes.address)} target="_blank" rel="noreferrer">RulingDisputes on StudioNet</a><TransactionTrail onFinalized={()=>void refresh()}/></main></>}
+export default function DisputesApp({proof}:{proof:MilestoneProof}){return <MilestoneWallet><Ledger proof={proof}/></MilestoneWallet>}

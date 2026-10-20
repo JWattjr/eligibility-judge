@@ -13,7 +13,9 @@
     "verify:smoke": "python scripts/verify_consensus_smoke.py",
     "deploy:contract": "powershell -ExecutionPolicy Bypass -File scripts/deploy.ps1",
     "test:contract": "python -m pytest tests/direct -q",
-    "verify:appeal": "python scripts/verify_native_appeal.py"
+    "verify:appeal": "python scripts/verify_native_appeal.py",
+    "verify:milestone": "python scripts/verify_milestone.py",
+    "milestone": "powershell -ExecutionPolicy Bypass -File scripts/milestone.ps1"
   },
   "dependencies": {
     "next": "16.3.8",

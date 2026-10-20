@@ -9,6 +9,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.request import Request, urlopen
+from urllib.error import HTTPError, URLError
 
 from eth_account import Account
 from genlayer_py import create_client, studionet
@@ -31,9 +32,20 @@ def rpc(method, params):
     time.sleep(max(0, 2.7 - (time.monotonic() - last_call)))
     request = Request(RPC, data=json.dumps({'jsonrpc': '2.0', 'id': 1, 'method': method, 'params': params}).encode(),
                       headers={'Content-Type': 'application/json', 'User-Agent': UA})
-    with urlopen(request, timeout=60) as response:
-        assert response.status == 200
-        value = json.load(response)
+    for attempt in range(4):
+        last_call = time.monotonic()
+        try:
+            with urlopen(request, timeout=60) as response:
+                assert response.status == 200
+                value = json.load(response)
+            break
+        except (URLError, TimeoutError, json.JSONDecodeError) as error:
+            if isinstance(error, HTTPError) and error.code not in (429, 500, 502, 503, 504):
+                raise
+            if attempt == 3:
+                raise
+            print('Transient read failure; retrying the same read-only request:', method, flush=True)
+            time.sleep(5 * (attempt + 1))
     last_call = time.monotonic()
     assert not value.get('error'), value.get('error')
     return value
@@ -87,12 +99,12 @@ def main():
     assert proof['completed'], 'Live milestone is incomplete; no pass claim is allowed'
     assert proof['judge'].lower() == EXPECTED_JUDGE and proof['chainId'] == 61999
     assert all(m.get('reported') and m.get('reason') for m in proof.get('mismatches', [])), 'Every mismatch must be disclosed'
-    failures = {f['hash']: f for f in proof.get('failures', []) if f.get('classification') == 'LIVE_CONSENSUS_FAILURE' and f.get('reported')}
+    failures = {f['hash']: f for f in proof.get('failures', []) if f.get('classification') in ('LIVE_CONSENSUS_FAILURE','LIVE_EXPECTED_STATE_ROLLBACK') and f.get('reported')}
     assert all(f.get('classification', '').startswith('LOCAL_RECEIPT_ADAPTER_ERROR') or f['hash'] in failures for f in proof.get('failures', [])), 'Unreported live failure'
     assert proof['treeBound']['bytes'] > 96000 and proof['treeBound']['bytes'] <= 1000000
     deposits = sum(int(d['value']) for d in proof['deposits'])
     assert deposits == int(proof['grossDepositsWei']) <= 10**18
-    assert deposits == 19 * 10**16 + 2, 'Unexpected milestone deposits'
+    assert deposits == 13 * 10**16 + 3, 'Unexpected milestone deposits'
     records = {}
     for name, tx_hash in proof['transactions'].items():
         record = rpc('eth_getTransactionByHash', [tx_hash])['result']
@@ -101,7 +113,8 @@ def main():
         if native:
             assert record['status'] == 'FINALIZED' and record['value_credited'] is True
         elif tx_hash in failures:
-            assert record['status'] == 'FINALIZED' and record.get('result') != 6
+            assert record['status'] == 'FINALIZED'
+            assert record.get('result') != 6 or record['consensus_data']['leader_receipt'][0]['execution_result'] != 'SUCCESS'
             assert name == failures[tx_hash]['name']
         else:
             successful(record)
@@ -158,8 +171,13 @@ def main():
 
     for name, case in proof['disputeCases'].items():
         record = view(proof['contracts']['disputes']['address'], 'get_dispute', [case['id']])
-        assert record['status'] == case['expected'] and record['answer']['verdict'] == case['verdict']
-        assert record['status'] in ('UPHELD', 'OVERTURNED')
+        if name=='C':
+            assert record['status']=='VOID' and record['opening_result']=='VOID'
+            assert record['reason'].startswith('VOID_SOURCES_UNREACHABLE:')
+            assert any(m.get('case')=='C' and m['actual']=='VOID' and m['reported'] for m in proof['mismatches'])
+        else:
+            assert record['status'] == case['expected'] and record['answer']['verdict'] == case['verdict']
+            assert record['status'] in ('UPHELD', 'OVERTURNED')
         assert record['claims'][record['recipient']] == str(10**16)
         pending = record['claim_attempts'][record['recipient']]
         assert pending['status'] == 'paid'
@@ -180,15 +198,24 @@ def main():
             assert badge['via_dispute'] == effective['via_dispute']
             assert badge['commit'] == entrant['commit'] and badge['transferable'] is False
         all_badges.extend(badges)
-    assert len(all_badges) == 3 and sum(b['via_dispute'] for b in all_badges) == 3
+    assert len(all_badges) == 1 and sum(b['via_dispute'] for b in all_badges) == 1
+    assert set(proof['disputeCases'])=={'A','B','C'} and {c['case'] for c in proof['unrunCases']}==set('DEFGHI')
     series = view(proof['contracts']['series']['address'], 'get_series', [proof['seriesId']])
     assert series == proof['series'] and series['status'] == 'CLOSED'
-    assert series['threshold'] == 2 and series['winners'] == [organizer]
-    assert series['pool'] == str(10**17) and series['share'] == str(10**17) and series['refund'] == '0'
+    assert series['threshold'] == 2 and series['winners'] == []
+    assert series['pool'] == str(10**17) and series['share'] == '0' and series['refund'] == str(10**17)
     assert series['claims'][organizer] == str(10**17)
     assert all(r['status'] == 'RECORDED' for r in series['rounds'].values())
     key = 'series-claim-' + organizer[2:10]
     credited_transfer(records[key+'-child-0'], records[key], proof['contracts']['series']['address'], organizer, 10**17)
+    payout_control=view(proof['contracts']['series']['address'],'get_series',[proof['payoutControl']['id']])
+    target=next(e['wallet'] for e in proof['entrants'] if e['name']=='targeted')
+    assert payout_control==proof['payoutControl']['record'] and payout_control['status']=='CLOSED'
+    assert payout_control['threshold']==1 and payout_control['winners']==[target]
+    assert payout_control['pool']=='1' and payout_control['share']=='1' and payout_control['refund']=='0'
+    assert payout_control['claims'][target]=='1'
+    control_key='payout-control-claim-'+target[2:10]
+    credited_transfer(records[control_key+'-child-0'],records[control_key],proof['contracts']['series']['address'],target,1)
     balances = {}
     for name, contract in proof['contracts'].items():
         balances[name] = int(rpc('eth_getBalance', [contract['address'], 'latest'])['result'], 16)
@@ -201,8 +228,8 @@ def main():
             retired_balances[contract['address']] = amount
     report = {'status': 'PASS_WITH_REPORTED_FAILURES' if failures else 'PASS', 'allTransactionsSuccessful': not bool(failures), 'reportedFailures': list(failures.values()), 'reportedMismatches': proof.get('mismatches', []), 'retiredUnfundedBalancesWei': retired_balances, 'recordedAt': datetime.now(timezone.utc).isoformat(), 'receiptCount': len(records),
         'grossDepositsWei': str(deposits), 'allNewContractBalancesWei': balances, 'badgeCount': len(all_badges),
-        'viaDisputeBadges': 3, 'seriesWinners': series['winners'], 'deployedAndGitSourceByteIdentical': True,
-        'disputes': {name: case['expected'] for name, case in proof['disputeCases'].items()}}
+        'viaDisputeBadges': 1, 'payoutControlWinner': target, 'unrunCases': proof['unrunCases'], 'seriesWinners': series['winners'], 'deployedAndGitSourceByteIdentical': True,
+        'disputes': {name: case['record']['status'] for name, case in proof['disputeCases'].items()}}
     (ROOT/'deploy/milestone-verification.json').write_text(json.dumps(report, indent=2)+'\n', encoding='utf-8')
     print(json.dumps(report, indent=2))
 

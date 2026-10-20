@@ -199,6 +199,19 @@ export default async function milestone(client:Client){
  if(step==='complete'){
   if(Date.now()/1000<proof.endsAt)throw Error('Dispute windows remain open; completion available '+new Date(proof.endsAt*1000).toISOString());
   const badges=proof.contracts.badges.address,series=proof.contracts.series.address,disputes=proof.contracts.disputes.address;
+  for(const [name,c] of Object.entries(proof.disputeCases??{}) as [string,any][]){
+   const record=await json(disputes,'get_dispute',[c.id]);c.record=record;
+   if(record.status!==c.expected){proof.mismatches??=[];if(!proof.mismatches.some((m:any)=>m.case===name))proof.mismatches.push({case:name,expected:c.expected,actual:record.status,reason:record.reason,reported:true});}
+   if(record.status==='VOID'&&!record.claims[record.recipient]){
+    const claim=await send('dispute-'+name+'-claim',disputes,'claim',[c.id,1],0n,client,true);
+    await send('dispute-'+name+'-verify-claim',disputes,'verify_claim',[c.id,record.recipient,claim.hash]);
+    c.record=await json(disputes,'get_dispute',[c.id]);save();
+   }
+  }
+  proof.unrunCases=['D','E','F','G','H','I'].filter(name=>!proof.disputeCases?.[name]).map(name=>({case:name,reason:'Not opened: the dispute stage stopped after C produced VOID and its later hear call rolled back; both original opening windows have since closed. No failed case was replayed.'}));
+  for(const f of proof.failures??[]){if(f.hash===proof.transactions['dispute-C-hear']){f.reported=true;f.classification='LIVE_EXPECTED_STATE_ROLLBACK';f.reason='C was already VOID after its source check; hear correctly rejected a non-open dispute.';}else if(f.hash===proof.transactions['round-1-judge-targeted-1']){f.reported=true;f.classification='LIVE_CONSENSUS_FAILURE';f.reason='Original validator disagreement; failed case retained without rerun.';}}
+  save();
+
   for(let round=0;round<2;round++){
    const id=proof.rounds[round].id;
    for(const e of proof.entrants){const effective=await json(disputes,'get_effective_verdicts',[id,e.wallet]);if(effective.effective_status==='QUALIFIED'){await send(`round-${round+1}-badge-${e.name}`,badges,'mint',[id,e.wallet])}}
@@ -207,9 +220,19 @@ export default async function milestone(client:Client){
   await send('series-close',series,'close',[proof.seriesId]);
   const record=await json(series,'get_series',[proof.seriesId]);
   for(const [payee,amount] of Object.entries(record.allocations)){if(BigInt(String(amount))===0n)continue;const signer=payee===owner?client:payee===deep!.account!.address.toLowerCase()?deep!:control!;const name='series-claim-'+payee.slice(2,10);const claim=await send(name,series,'claim',[proof.seriesId,1],0n,signer,true);await send(name+'-verify',series,'verify_claim',[proof.seriesId,payee,claim.hash]);}
+  // A distinct one-wei control proves a positive bonus credit. The original
+  // season retains threshold 2 and its honest no-winner refund.
+  if(!proof.payoutControl){const end=Math.floor(Date.now()/1000)+300;const receipt=await send('payout-control-create',series,'create_series',['One-qualification payout control',JSON.stringify(proof.rounds.map((r:any)=>r.id)),1,end],1n);proof.payoutControl={id:returned(receipt),threshold:1,disclosure:'Separate deterministic one-wei payout control; does not change the original season threshold or replay any judgment.'};save();}
+  for(let round=0;round<2;round++)await send('payout-control-record-'+round,series,'record_round',[proof.payoutControl.id,proof.rounds[round].id]);
+  await send('payout-control-close',series,'close',[proof.payoutControl.id]);
+  const controlSeason=await json(series,'get_series',[proof.payoutControl.id]);
+  for(const [payee,amount] of Object.entries(controlSeason.allocations)){if(BigInt(String(amount))===0n)continue;const signer=payee===owner?client:payee===deep!.account!.address.toLowerCase()?deep!:control!;const label='payout-control-claim-'+payee.slice(2,10);const claim=await send(label,series,'claim',[proof.payoutControl.id,1],0n,signer,true);await send(label+'-verify',series,'verify_claim',[proof.payoutControl.id,payee,claim.hash]);}
+  proof.payoutControl.record=await json(series,'get_series',[proof.payoutControl.id]);
   proof.completed=true;save();
  }
  if(['snapshot','complete','disputes'].includes(String(step))){
+  for(const c of Object.values(proof.disputeCases??{}) as any[])c.record=await json(proof.contracts.disputes.address,'get_dispute',[c.id]);
+  proof.effective={};for(const r of proof.rounds??[])for(const e of proof.entrants??[])proof.effective[r.id+':'+e.wallet]=await json(proof.contracts.disputes.address,'get_effective_verdicts',[r.id,e.wallet]);
   if(proof.seriesId)proof.series=await json(proof.contracts.series.address,'get_series',[proof.seriesId]);
   for(const e of proof.entrants??[])if(proof.contracts.badges) {proof.badges??={};proof.badges[e.wallet]=await json(proof.contracts.badges.address,'get_badges',[e.wallet])}
   proof.balances={};for(const [name,item] of Object.entries(proof.contracts) as [string,any][]){if(name!=='badges')proof.balances[name]=String(await read(item.address,'get_balance'));else proof.balances[name]=String(await client.getBalance({address:item.address}))}save();

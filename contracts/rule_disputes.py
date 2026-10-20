@@ -234,7 +234,7 @@ class RulingDisputes(gl.Contract):
         key = 'dispute-' + str(self.counter)
         record = {'id': key, 'challenge_id': challenge_id, 'entrant': entrant, 'rule_id': rule_id,
             'file_path': file_path, 'argument': argument, 'disputant': sender, 'opened_at': now(),
-            'deadline': now() + HEARING_DEADLINE, 'bond': str(amount), 'status': 'OPEN', 'outcome': None,
+            'deadline': now() + HEARING_DEADLINE, 'bond': str(amount), 'status': 'OPENING', 'outcome': None,
             'answer': None, 'allocations': {}, 'claims': {}, 'claim_attempts': {}, 'version': 0}
         try:
             entrant = wallet(entrant)
@@ -254,10 +254,6 @@ class RulingDisputes(gl.Contract):
             require(len(history) < 32, 'hearing capacity for this ruling reached')
             entry = source['entries'][entrant]
             require(re.fullmatch(r'[0-9a-f]{40}', entry['commit']) is not None, 'invalid pinned commit')
-            def inspect_named_file():
-                return file_in_tree(entry['repo'], entry['commit'], file_path)
-            exists = gl.eq_principle.strict_eq(inspect_named_file)
-            require(exists == 'FOUND', 'VOID_SOURCES_UNREACHABLE' if exists in ('UNREACHABLE', 'OVERSIZED') else 'named file missing from pinned tree')
             original = entry['verdicts'][rule_id]
             record.update(rule=source['rules'][rule_id], original=original,
                           original_verdict=original['status'] if original else 'INSUFFICIENT_EVIDENCE',
@@ -276,7 +272,55 @@ class RulingDisputes(gl.Contract):
         self.ids.append(key)
         if record['status'] == 'VOID_PENDING_FINALITY':
             gl.get_contract_at(gl.message.contract_address).emit(on='finalized').finalize_outcome(key, 1)
+        else:
+            # Persist the funded reservation FIRST. A failed web consensus in
+            # the zero-value callback cannot roll back or orphan this bond.
+            gl.get_contract_at(gl.message.contract_address).emit(on='finalized').check_open(key)
         return key
+
+    @gl.public.write
+    def check_open(self, dispute_id: str) -> None:
+        record = self._load(dispute_id)
+        require(record['status'] == 'OPENING', 'file check is not pending')
+        require(now() < record['deadline'], 'opening deadline reached; expire for refund')
+        def inspect_named_file():
+            return file_in_tree(record['repo'], record['commit'], record['file_path'])
+        exists = gl.eq_principle.strict_eq(inspect_named_file)
+        record.update(status='OPENING_FINALITY', opening_result='OPEN' if exists == 'FOUND' else 'VOID',
+                      reason='' if exists == 'FOUND' else 'VOID_SOURCES_UNREACHABLE: named file missing, oversized, or tree unavailable.',
+                      version=record['version'] + 1)
+        record['pending_call'] = {'method': 'check_open', 'args': [dispute_id]}
+        self._save(dispute_id, record)
+        gl.get_contract_at(gl.message.contract_address).emit(on='finalized').finalize_open(dispute_id, record['version'])
+
+    def _finish_open(self, key, record):
+        if record['opening_result'] == 'OPEN' and now() < record['deadline']:
+            record.update(status='OPEN', opening_finalized_at=now())
+        else:
+            record.update(status='VOID', outcome='VOID', recipient=record['disputant'],
+                          allocations={record['disputant']: record['bond']}, finalized_at=now())
+            if now() >= record['deadline']:
+                record['reason'] = 'VOID_TIMEOUT: opening did not finalize before the 24-hour deadline.'
+        self._save(key, record)
+
+    @gl.public.write
+    def finalize_open(self, dispute_id: str, version: int) -> None:
+        require(gl.message.sender_address == gl.message.contract_address, 'self callback only')
+        record = self._load(dispute_id)
+        if record['status'] != 'OPENING_FINALITY' or record['version'] != version:
+            return
+        self._finish_open(dispute_id, record)
+
+    @gl.public.write
+    def verify_open(self, dispute_id: str, check_hash: str) -> None:
+        record = self._load(dispute_id)
+        require(record['status'] == 'OPENING_FINALITY', 'no pending opening finality')
+        tx_hash = receipt_hash(check_hash)
+        def observe():
+            successful_call(protocol_receipt(tx_hash), str(gl.message.contract_address).lower(), record['pending_call'])
+            return tx_hash
+        gl.eq_principle.strict_eq(observe)
+        self._finish_open(dispute_id, record)
 
     def _propose(self, key, record, answer, call):
         verdict = answer['verdict']
@@ -298,7 +342,7 @@ class RulingDisputes(gl.Contract):
     @gl.public.write
     def expire(self, dispute_id: str) -> None:
         record = self._load(dispute_id)
-        require(record['status'] in ('OPEN', 'HEARD') and now() >= record['deadline'], 'dispute not overdue or already final')
+        require(record['status'] in ('OPENING', 'OPENING_FINALITY', 'OPEN', 'HEARD') and now() >= record['deadline'], 'dispute not overdue or already final')
         self._propose(dispute_id, record, {'verdict': 'VOID', 'path': record['file_path'], 'quote': '',
             'reason': 'VOID_TIMEOUT: consensus did not finalize before the 24-hour deadline.'}, {'method': 'expire', 'args': [dispute_id]})
 

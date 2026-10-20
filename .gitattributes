@@ -2,3 +2,4 @@
 contracts/rule_disputes.py -text
 contracts/qualification_badges.py -text
 contracts/eligibility_series.py -text
+deploy/previous-runs/milestone-v1-first-run/** -text

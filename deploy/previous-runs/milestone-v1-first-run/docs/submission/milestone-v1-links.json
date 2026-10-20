@@ -1,0 +1,179 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-20T17:34:27.895647+00:00",
+  "results": [
+    {
+      "url": "https://explorer-studio.genlayer.com/address/0x1fcF18ef9e74159900E4C7eA00F859F9132EBa5C",
+      "httpStatus": 200,
+      "network": "StudioNet 61999",
+      "type": "CONTRACT",
+      "address": "0x1fcF18ef9e74159900E4C7eA00F859F9132EBa5C"
+    },
+    {
+      "url": "https://explorer-studio.genlayer.com/address/0x7BCF4C1ED69F0B0dC36b590911f886bd32f24bDE",
+      "httpStatus": 200,
+      "network": "StudioNet 61999",
+      "type": "CONTRACT",
+      "address": "0x7BCF4C1ED69F0B0dC36b590911f886bd32f24bDE"
+    },
+    {
+      "url": "https://explorer-studio.genlayer.com/address/0x03262D836d327d4b01103A2ca759BC0776414E53",
+      "httpStatus": 200,
+      "network": "StudioNet 61999",
+      "type": "CONTRACT",
+      "address": "0x03262D836d327d4b01103A2ca759BC0776414E53"
+    },
+    {
+      "url": "https://explorer-studio.genlayer.com/address/0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "httpStatus": 200,
+      "network": "StudioNet 61999",
+      "type": "CONTRACT",
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7"
+    },
+    {
+      "name": "deploy-disputes",
+      "url": "https://explorer-studio.genlayer.com/tx/0x7ed11b453bf9d2a0a51bdb77cb4c1ef1bb5846b7c7f6ef5856f29c6cd533a34c",
+      "httpStatus": 200
+    },
+    {
+      "name": "deploy-badges",
+      "url": "https://explorer-studio.genlayer.com/tx/0x03c12c0767ddf63d6404d72944823816cf811f99d2aa33ed40c6d5d891b948ea",
+      "httpStatus": 200
+    },
+    {
+      "name": "deploy-series",
+      "url": "https://explorer-studio.genlayer.com/tx/0x9949e8c28c43dcb6aa079c323b6e88d64c1d6653949618c2d24ddb3c9d1b9cb9",
+      "httpStatus": 200
+    },
+    {
+      "name": "round-1-claim-child-0",
+      "url": "https://explorer-studio.genlayer.com/tx/0xf9b2bdfddb82cce9a5fc891740f16464d31e9b1891595e09b875a299733aac91",
+      "httpStatus": 200
+    },
+    {
+      "name": "round-2-claim-child-0",
+      "url": "https://explorer-studio.genlayer.com/tx/0xed666680205e7be9fb085b3a3fc8378615cd3b38eb8482762c4d53dd2db35b16",
+      "httpStatus": 200
+    },
+    {
+      "name": "dispute-A-hear",
+      "url": "https://explorer-studio.genlayer.com/tx/0xbea5a382c6eabd3631b0ea064e28648c5e5174689500ea142305ef0fa537decd",
+      "httpStatus": 200
+    },
+    {
+      "name": "dispute-A-claim-child-0",
+      "url": "https://explorer-studio.genlayer.com/tx/0x4f5f5be8ac3cbd147ddbced5a91a2ebd087344a49c53ff4e7a8557850e2639c7",
+      "httpStatus": 200
+    },
+    {
+      "name": "dispute-A-verify-claim-child-0",
+      "url": "https://explorer-studio.genlayer.com/tx/0x10542c1b818bfc7f68151d3d4bfe5dc3978781bad758bb6200c29a93751b4085",
+      "httpStatus": 200
+    },
+    {
+      "name": "dispute-B-hear",
+      "url": "https://explorer-studio.genlayer.com/tx/0xa65d0007854d21c271593ab42751afb8c8ef11884c5bb35c9a5ba0bc2c5ad80d",
+      "httpStatus": 200
+    },
+    {
+      "name": "dispute-B-claim-child-0",
+      "url": "https://explorer-studio.genlayer.com/tx/0xcede3725ff68ee96784059c609201bebd53349822fa480884a32072606b32587",
+      "httpStatus": 200
+    },
+    {
+      "name": "dispute-B-verify-claim-child-0",
+      "url": "https://explorer-studio.genlayer.com/tx/0xbe3daddfe5b1c55ccbf4d3ea94a3f49b0da3f6561a6a041e7c9ce043f4d64717",
+      "httpStatus": 200
+    },
+    {
+      "name": "dispute-C-hear",
+      "url": "https://explorer-studio.genlayer.com/tx/0xc32498d27288659318481278736745e68da532e4e09db6687d1a1396c7497302",
+      "httpStatus": 200
+    },
+    {
+      "name": "dispute-C-claim-child-0",
+      "url": "https://explorer-studio.genlayer.com/tx/0x26405b019f1b255e4b935cad6fc39b9c3e2ba3be71965206b3b5200ce6ed3141",
+      "httpStatus": 200
+    },
+    {
+      "name": "dispute-C-verify-claim-child-0",
+      "url": "https://explorer-studio.genlayer.com/tx/0xd3e29b73dbcc7b9245a186cc044d03a8c8698c5642e253f2013dda4ee296402c",
+      "httpStatus": 200
+    },
+    {
+      "name": "series-close",
+      "url": "https://explorer-studio.genlayer.com/tx/0x096fb11957256e9cbdae1b6ea3f0a0be8f90d2e81f76984c1eef44d5dfd9587a",
+      "httpStatus": 200
+    },
+    {
+      "name": "series-close-child-0",
+      "url": "https://explorer-studio.genlayer.com/tx/0xd1ce0e29a8d0567379a52ac4535b69529578b3e0d65588337bcb4e7af727f6d3",
+      "httpStatus": 200
+    },
+    {
+      "name": "series-claim-db433ff6",
+      "url": "https://explorer-studio.genlayer.com/tx/0x4c980357ad3ed9d5d087e1c1d113387652e5715835be3ee59599100e4a7c15b2",
+      "httpStatus": 200
+    },
+    {
+      "name": "series-claim-db433ff6-verify",
+      "url": "https://explorer-studio.genlayer.com/tx/0xdf75c36a8bfc4acc8bfdaa9069c3cb17a0869dea3b8d3c6d1ebb2d22c556898d",
+      "httpStatus": 200
+    },
+    {
+      "name": "payout-control-create",
+      "url": "https://explorer-studio.genlayer.com/tx/0x3f37e40d7d0dc108844253cf7dfac44d306b0e2e8037193c6ecf847011ac2efe",
+      "httpStatus": 200
+    },
+    {
+      "name": "payout-control-record-0",
+      "url": "https://explorer-studio.genlayer.com/tx/0x5454740b3a1b5573e3f9df8abe50fed207d6b1ab6e183953cf02ae4529d04f06",
+      "httpStatus": 200
+    },
+    {
+      "name": "payout-control-record-1",
+      "url": "https://explorer-studio.genlayer.com/tx/0x783459577847ecb577005e8901172f3eca7ec741d101b72622bc83f789f416dd",
+      "httpStatus": 200
+    },
+    {
+      "name": "payout-control-close",
+      "url": "https://explorer-studio.genlayer.com/tx/0x667899f484586046f3a223e88d515747fd37f3c33951151c5ba30cdffe8ac728",
+      "httpStatus": 200
+    },
+    {
+      "name": "payout-control-close-child-0",
+      "url": "https://explorer-studio.genlayer.com/tx/0xfaf90eca8ddd72340dc2290aa474b830a67e3ef9bb7b9ef5c906f6d38d34552b",
+      "httpStatus": 200
+    },
+    {
+      "name": "payout-control-claim-f3372965",
+      "url": "https://explorer-studio.genlayer.com/tx/0x1380e653e3b1cb0893fc6a13acf6dd7f60a449e23208c2c7b9842abf44c81d55",
+      "httpStatus": 200
+    },
+    {
+      "name": "payout-control-claim-f3372965-child-0",
+      "url": "https://explorer-studio.genlayer.com/tx/0xb7580ceb4af617ed907adce93140f9541d19ee87880a85d85b6a84e1d1c9c5c4",
+      "httpStatus": 200
+    },
+    {
+      "name": "payout-control-claim-f3372965-verify",
+      "url": "https://explorer-studio.genlayer.com/tx/0xa7e92871e4296d27deecbea9ebfc1997647b80e34a8279191d32e7b3b1386201",
+      "httpStatus": 200
+    },
+    {
+      "name": "payout-control-claim-f3372965-verify-child-0",
+      "url": "https://explorer-studio.genlayer.com/tx/0xfc819eda17d9d2e86af2c005732307979dcab1d528437ea00b50f82a075a8cf8",
+      "httpStatus": 200
+    },
+    {
+      "name": "reported-failure-0",
+      "url": "https://explorer-studio.genlayer.com/tx/0x881ed4c5e4808348428c8223aedc02f635c316723c31b20c1f7080dd9f82abf3",
+      "httpStatus": 200
+    },
+    {
+      "name": "reported-failure-1",
+      "url": "https://explorer-studio.genlayer.com/tx/0xc32498d27288659318481278736745e68da532e4e09db6687d1a1396c7497302",
+      "httpStatus": 200
+    }
+  ]
+}

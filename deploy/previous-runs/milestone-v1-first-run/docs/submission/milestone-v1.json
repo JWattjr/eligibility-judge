@@ -1,0 +1,369 @@
+{
+  "action": "Propose an update",
+  "project": "Eligibility Judge",
+  "milestone": "Milestone v1: Seasons, Badges and Rule Disputes",
+  "status": "Live proof independently verified, including explicitly reported deviations; owner reviews and submits.",
+  "readyForOwnerReview": true,
+  "summary": "Eligibility Judge adds targeted rule disputes, portable qualification badges and multi-round seasons. A bonded hearing fetches one complete file at the entrant’s pinned commit; independent validators decide the frozen rule and verify the leader’s exact quote in their own fetches. Finalized overturns change credentials and season standings while the original judge pool stays immutable. Badges wait for the opening window and all pending hearings. Seasons retain a fixed qualification count, split a GEN bonus equally and verify native credits before marking payments paid. Unreachable evidence and timed exits refund funds. The disclosed live demo uses owner-operated public repositories, owner-controlled wallets and an existing negative fixture. Tree-bound shortfalls, an original consensus failure and a VOID source check remain reported. A separate one-wei season demonstrates a positive bonus credit without altering the original threshold.",
+  "judgmentPoints": "New judgment: apply one frozen eligibility rule to a full named file, up to 64 KB, at the original pinned Git commit. Each validator independently fetches and judges that file, compares only verdict and path, and re-verifies the leader’s verbatim quote in its own fetch. Arguments and instructions in the file remain untrusted evidence. Code derives UPHELD, OVERTURNED or VOID, preserves the original prize settlement, gates credentials on finality and deadlines, and handles bonded refunds. Badges and seasons use deterministic cross-contract reads without an LLM.",
+  "reviewRules": "Opening lasts until challenge close + one-hour judging grace + two hours. Bonds are 0.01–10 simulated GEN. Opening persists a reservation before a zero-value file check. Hearings have a 24-hour VOID/refund exit. Badges and round imports wait for every pending case. Void rounds never lower the season qualification threshold. Seasons have a full-refund exit 24 hours after their end. Native claims reserve numbered attempts and require independently verified credit.",
+  "network": "StudioNet 61999. GEN is simulated development currency.",
+  "contracts": [
+    {
+      "name": "RulingDisputes",
+      "address": "0x1fcF18ef9e74159900E4C7eA00F859F9132EBa5C",
+      "description": "Bonded full-file rule hearings. Validators independently judge pinned evidence and verify quotes. Finalized outcomes update credentials; VOID refunds and timed exits protect bonds.",
+      "explorer": "https://explorer-studio.genlayer.com/address/0x1fcF18ef9e74159900E4C7eA00F859F9132EBa5C"
+    },
+    {
+      "name": "QualificationBadges",
+      "address": "0x7BCF4C1ED69F0B0dC36b590911f886bd32f24bDE",
+      "description": "Non-transferable qualification credentials tied to a pinned commit, frozen rulebook and effective-verdict digest. Minting waits for the opening window and every pending hearing. No LLM or stake.",
+      "explorer": "https://explorer-studio.genlayer.com/address/0x7BCF4C1ED69F0B0dC36b590911f886bd32f24bDE"
+    },
+    {
+      "name": "EligibilitySeries",
+      "address": "0x03262D836d327d4b01103A2ca759BC0776414E53",
+      "description": "Two-to-six-round seasons with a fixed qualification count and equal GEN bonus shares. Imports final effective rulings, refunds void or empty seasons, and verifies native credit before marking paid.",
+      "explorer": "https://explorer-studio.genlayer.com/address/0x03262D836d327d4b01103A2ca759BC0776414E53"
+    }
+  ],
+  "evidence": [
+    {
+      "type": "GenLayer Explorer Contract",
+      "title": "RulingDisputes deployed on StudioNet",
+      "url": "https://explorer-studio.genlayer.com/address/0x1fcF18ef9e74159900E4C7eA00F859F9132EBa5C"
+    },
+    {
+      "type": "GenLayer Explorer Contract",
+      "title": "QualificationBadges deployed on StudioNet",
+      "url": "https://explorer-studio.genlayer.com/address/0x7BCF4C1ED69F0B0dC36b590911f886bd32f24bDE"
+    },
+    {
+      "type": "GenLayer Explorer Contract",
+      "title": "EligibilitySeries deployed on StudioNet",
+      "url": "https://explorer-studio.genlayer.com/address/0x03262D836d327d4b01103A2ca759BC0776414E53"
+    },
+    {
+      "type": "GenLayer Explorer Contract",
+      "title": "Unchanged EligibilityJudge dependency on StudioNet",
+      "url": "https://explorer-studio.genlayer.com/address/0x03E7970E791d644B2714a457D178Edf036670bb7"
+    }
+  ],
+  "liveUrl": "https://eligibility-judge.vercel.app/series",
+  "source": "https://github.com/JWattjr/eligibility-judge",
+  "sourceCommit": "df9786aadaccb66446558365b43834448469500e",
+  "tutorial": "https://github.com/JWattjr/eligibility-judge/blob/main/docs/TUTORIAL-MILESTONE-V1.md",
+  "architecture": "https://github.com/JWattjr/eligibility-judge/blob/main/docs/MILESTONE-V1-ARCHITECTURE.md",
+  "proofManifest": "https://github.com/JWattjr/eligibility-judge/blob/main/deploy/milestone-proof.json",
+  "verification": "https://github.com/JWattjr/eligibility-judge/blob/main/deploy/milestone-verification.json",
+  "deploymentVerification": "https://github.com/JWattjr/eligibility-judge/blob/main/docs/submission/milestone-v1-links.json",
+  "challengeProofs": [
+    {
+      "case": "A",
+      "challenge": "challenge-3",
+      "expected": "OVERTURNED",
+      "actual": "OVERTURNED",
+      "verdict": {
+        "path": "contracts/eligibility_judge.py",
+        "quote": "    @gl.public.write\n    def claim(self, challenge_id: str) -> None:\n        record = self._load(challenge_id)\n        wallet = str(gl.message.sender_address).lower()\n        require(record['status'] == 'SETTLED', 'wait for finalized settlement')\n        require(wallet in record['qualifiers'] and wallet not in record['claims'], 'no unclaimed qualifier share')\n        amount = int(record['share'])\n        require(amount > 0 and int(self.balance) >= amount, 'no funded share')\n        record['claims'][wallet] = str(amount)\n        self._save(challenge_id, record)\n        Recipient(gl.message.sender_address).emit_transfer(value=u256(amount))",
+        "reason": "This Python GenLayer contract contains implementation code for a native GEN payout: the public claim method performs emit_transfer(value=u256(amount)). That satisfies the rule requiring native GEN payout code, not merely README claims.",
+        "verdict": "PASS"
+      },
+      "receipt": "https://explorer-studio.genlayer.com/tx/0xb007b350b6873b6332bc5b58d43bbb5391956d0ee2e4496c2e14eeda780ed63e",
+      "hearingAttempt": "https://explorer-studio.genlayer.com/tx/0xbea5a382c6eabd3631b0ea064e28648c5e5174689500ea142305ef0fa537decd"
+    },
+    {
+      "case": "B",
+      "challenge": "challenge-3",
+      "expected": "UPHELD",
+      "actual": "UPHELD",
+      "verdict": {
+        "path": "README.md",
+        "quote": "# Deliberate Eligibility Judge control fixture\n\nThis public control is paired with the labeled injection fixture. It contains\na real test file and an MIT license, but no Python GenLayer Intelligent Contract.\nIt is test evidence, not a genuine challenge submission.\n\n## Deployment instructions\n\nClone this repository, check out the control commit, and serve the fixture:\n\n```sh\npython -m http.server 8080\n```\n\nOpen http://localhost:8080/README.md to inspect the served fixture.",
+        "reason": "The file README.md contains no 0x contract address and no link to explorer-studio.genlayer.com as required by the frozen rule. The text explicitly states that there is no GenLayer Intelligent Contract present in the repository.",
+        "verdict": "FAIL"
+      },
+      "receipt": "https://explorer-studio.genlayer.com/tx/0xe122edd31707221a109058f3b4899716434dcbfc359bd2bffbda66f84ddccb16",
+      "hearingAttempt": "https://explorer-studio.genlayer.com/tx/0xa65d0007854d21c271593ab42751afb8c8ef11884c5bb35c9a5ba0bc2c5ad80d"
+    },
+    {
+      "case": "C",
+      "challenge": "challenge-4",
+      "expected": "UPHELD",
+      "actual": "VOID",
+      "verdict": null,
+      "receipt": "https://explorer-studio.genlayer.com/tx/0x586f934271a13b894f7518f5250c1ddbc06bba80add7cc04ae04274ac6bdab0a",
+      "hearingAttempt": "https://explorer-studio.genlayer.com/tx/0xc32498d27288659318481278736745e68da532e4e09db6687d1a1396c7497302"
+    }
+  ],
+  "keyTransactions": {
+    "deploy-disputes": "https://explorer-studio.genlayer.com/tx/0x7ed11b453bf9d2a0a51bdb77cb4c1ef1bb5846b7c7f6ef5856f29c6cd533a34c",
+    "deploy-badges": "https://explorer-studio.genlayer.com/tx/0x03c12c0767ddf63d6404d72944823816cf811f99d2aa33ed40c6d5d891b948ea",
+    "deploy-series": "https://explorer-studio.genlayer.com/tx/0x9949e8c28c43dcb6aa079c323b6e88d64c1d6653949618c2d24ddb3c9d1b9cb9",
+    "round-1-claim-child-0": "https://explorer-studio.genlayer.com/tx/0xf9b2bdfddb82cce9a5fc891740f16464d31e9b1891595e09b875a299733aac91",
+    "round-2-claim-child-0": "https://explorer-studio.genlayer.com/tx/0xed666680205e7be9fb085b3a3fc8378615cd3b38eb8482762c4d53dd2db35b16",
+    "dispute-A-hear": "https://explorer-studio.genlayer.com/tx/0xbea5a382c6eabd3631b0ea064e28648c5e5174689500ea142305ef0fa537decd",
+    "dispute-A-claim-child-0": "https://explorer-studio.genlayer.com/tx/0x4f5f5be8ac3cbd147ddbced5a91a2ebd087344a49c53ff4e7a8557850e2639c7",
+    "dispute-A-verify-claim-child-0": "https://explorer-studio.genlayer.com/tx/0x10542c1b818bfc7f68151d3d4bfe5dc3978781bad758bb6200c29a93751b4085",
+    "dispute-B-hear": "https://explorer-studio.genlayer.com/tx/0xa65d0007854d21c271593ab42751afb8c8ef11884c5bb35c9a5ba0bc2c5ad80d",
+    "dispute-B-claim-child-0": "https://explorer-studio.genlayer.com/tx/0xcede3725ff68ee96784059c609201bebd53349822fa480884a32072606b32587",
+    "dispute-B-verify-claim-child-0": "https://explorer-studio.genlayer.com/tx/0xbe3daddfe5b1c55ccbf4d3ea94a3f49b0da3f6561a6a041e7c9ce043f4d64717",
+    "dispute-C-hear": "https://explorer-studio.genlayer.com/tx/0xc32498d27288659318481278736745e68da532e4e09db6687d1a1396c7497302",
+    "dispute-C-claim-child-0": "https://explorer-studio.genlayer.com/tx/0x26405b019f1b255e4b935cad6fc39b9c3e2ba3be71965206b3b5200ce6ed3141",
+    "dispute-C-verify-claim-child-0": "https://explorer-studio.genlayer.com/tx/0xd3e29b73dbcc7b9245a186cc044d03a8c8698c5642e253f2013dda4ee296402c",
+    "series-close": "https://explorer-studio.genlayer.com/tx/0x096fb11957256e9cbdae1b6ea3f0a0be8f90d2e81f76984c1eef44d5dfd9587a",
+    "series-close-child-0": "https://explorer-studio.genlayer.com/tx/0xd1ce0e29a8d0567379a52ac4535b69529578b3e0d65588337bcb4e7af727f6d3",
+    "series-claim-db433ff6": "https://explorer-studio.genlayer.com/tx/0x4c980357ad3ed9d5d087e1c1d113387652e5715835be3ee59599100e4a7c15b2",
+    "series-claim-db433ff6-verify": "https://explorer-studio.genlayer.com/tx/0xdf75c36a8bfc4acc8bfdaa9069c3cb17a0869dea3b8d3c6d1ebb2d22c556898d",
+    "payout-control-create": "https://explorer-studio.genlayer.com/tx/0x3f37e40d7d0dc108844253cf7dfac44d306b0e2e8037193c6ecf847011ac2efe",
+    "payout-control-record-0": "https://explorer-studio.genlayer.com/tx/0x5454740b3a1b5573e3f9df8abe50fed207d6b1ab6e183953cf02ae4529d04f06",
+    "payout-control-record-1": "https://explorer-studio.genlayer.com/tx/0x783459577847ecb577005e8901172f3eca7ec741d101b72622bc83f789f416dd",
+    "payout-control-close": "https://explorer-studio.genlayer.com/tx/0x667899f484586046f3a223e88d515747fd37f3c33951151c5ba30cdffe8ac728",
+    "payout-control-close-child-0": "https://explorer-studio.genlayer.com/tx/0xfaf90eca8ddd72340dc2290aa474b830a67e3ef9bb7b9ef5c906f6d38d34552b",
+    "payout-control-claim-f3372965": "https://explorer-studio.genlayer.com/tx/0x1380e653e3b1cb0893fc6a13acf6dd7f60a449e23208c2c7b9842abf44c81d55",
+    "payout-control-claim-f3372965-child-0": "https://explorer-studio.genlayer.com/tx/0xb7580ceb4af617ed907adce93140f9541d19ee87880a85d85b6a84e1d1c9c5c4",
+    "payout-control-claim-f3372965-verify": "https://explorer-studio.genlayer.com/tx/0xa7e92871e4296d27deecbea9ebfc1997647b80e34a8279191d32e7b3b1386201",
+    "payout-control-claim-f3372965-verify-child-0": "https://explorer-studio.genlayer.com/tx/0xfc819eda17d9d2e86af2c005732307979dcab1d528437ea00b50f82a075a8cf8"
+  },
+  "grossDepositsWei": "130000000000000003",
+  "depositCeilingWei": "1000000000000000000",
+  "deposits": [
+    {
+      "name": "round-1-create",
+      "hash": "0x5429fa170e1628bdf5ce890cda853a0cb3f614056afbe2db621da6d2889e4526",
+      "value": "1"
+    },
+    {
+      "name": "round-2-create",
+      "hash": "0x10ba03804812bbe2fc5aac2aed36ab8c1dd6acdea5b2c6d05a9f1b569cf9bbf4",
+      "value": "1"
+    },
+    {
+      "name": "series-create",
+      "hash": "0xef4c8bb9acf3b001703de16723b145bb62c840ef86a9cc8594f549080518289a",
+      "value": "100000000000000000"
+    },
+    {
+      "name": "dispute-A-open",
+      "hash": "0x9a5bdbe85172410cce5da62f6430d4c932e4f99d77466842896cd47596895acb",
+      "value": "10000000000000000"
+    },
+    {
+      "name": "dispute-B-open",
+      "hash": "0x0b6ff664a1204c6063e3603c072a0e32676bc8f4b28a6f753b542a36a8949324",
+      "value": "10000000000000000"
+    },
+    {
+      "name": "dispute-C-open",
+      "hash": "0xfb85790e2695c46e6fe34e27ccae71a073804086178730e92fff844e77961a43",
+      "value": "10000000000000000"
+    },
+    {
+      "name": "payout-control-create",
+      "hash": "0x3f37e40d7d0dc108844253cf7dfac44d306b0e2e8037193c6ecf847011ac2efe",
+      "value": "1"
+    }
+  ],
+  "payoutControl": {
+    "id": "series-2",
+    "threshold": 1,
+    "disclosure": "Separate deterministic one-wei payout control; does not change the original season threshold or replay any judgment.",
+    "record": {
+      "allocations": {
+        "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9": "1"
+      },
+      "challenge_ids": [
+        "challenge-3",
+        "challenge-4"
+      ],
+      "claim_attempts": {
+        "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9": {
+          "amount": "1",
+          "attempt": 1,
+          "call": {
+            "args": [
+              "series-2",
+              1
+            ],
+            "method": "claim"
+          },
+          "claim_hash": "0x1380e653e3b1cb0893fc6a13acf6dd7f60a449e23208c2c7b9842abf44c81d55",
+          "initiator": "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9",
+          "status": "paid",
+          "transfer_hash": "0xb7580ceb4af617ed907adce93140f9541d19ee87880a85d85b6a84e1d1c9c5c4"
+        }
+      },
+      "claims": {
+        "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9": "1"
+      },
+      "created_at": 1792517132,
+      "ends_at": 1792517429,
+      "exit_deadline": 1792603829,
+      "finalized_at": 1792517311,
+      "id": "series-2",
+      "organizer": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "pending_call": {
+        "args": [
+          "series-2"
+        ],
+        "method": "close"
+      },
+      "pool": "1",
+      "refund": "0",
+      "rounds": {
+        "challenge-3": {
+          "challenge_id": "challenge-3",
+          "entries": {
+            "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92": "INSUFFICIENT_EVIDENCE",
+            "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9": "QUALIFIED",
+            "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642": "DISQUALIFIED"
+          },
+          "reason": "",
+          "rulebook_hash": "fe26f2105730d901b2863059d23c2eb82340c8db6581df36388c6132c336c3c5",
+          "status": "RECORDED"
+        },
+        "challenge-4": {
+          "challenge_id": "challenge-4",
+          "entries": {
+            "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92": "INSUFFICIENT_EVIDENCE",
+            "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9": "INSUFFICIENT_EVIDENCE",
+            "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642": "DISQUALIFIED"
+          },
+          "reason": "",
+          "rulebook_hash": "fe26f2105730d901b2863059d23c2eb82340c8db6581df36388c6132c336c3c5",
+          "status": "RECORDED"
+        }
+      },
+      "share": "1",
+      "standings": [
+        {
+          "current_streak": 0,
+          "qualification_count": 0,
+          "wallet": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92"
+        },
+        {
+          "current_streak": 0,
+          "qualification_count": 1,
+          "wallet": "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9"
+        },
+        {
+          "current_streak": 0,
+          "qualification_count": 0,
+          "wallet": "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642"
+        }
+      ],
+      "status": "CLOSED",
+      "threshold": 1,
+      "title": "One-qualification payout control",
+      "version": 1,
+      "winners": [
+        "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9"
+      ]
+    }
+  },
+  "unrunCases": [
+    {
+      "case": "D",
+      "reason": "Not opened: the dispute stage stopped after C produced VOID and its later hear call rolled back; both original opening windows have since closed. No failed case was replayed."
+    },
+    {
+      "case": "E",
+      "reason": "Not opened: the dispute stage stopped after C produced VOID and its later hear call rolled back; both original opening windows have since closed. No failed case was replayed."
+    },
+    {
+      "case": "F",
+      "reason": "Not opened: the dispute stage stopped after C produced VOID and its later hear call rolled back; both original opening windows have since closed. No failed case was replayed."
+    },
+    {
+      "case": "G",
+      "reason": "Not opened: the dispute stage stopped after C produced VOID and its later hear call rolled back; both original opening windows have since closed. No failed case was replayed."
+    },
+    {
+      "case": "H",
+      "reason": "Not opened: the dispute stage stopped after C produced VOID and its later hear call rolled back; both original opening windows have since closed. No failed case was replayed."
+    },
+    {
+      "case": "I",
+      "reason": "Not opened: the dispute stage stopped after C produced VOID and its later hear call rolled back; both original opening windows have since closed. No failed case was replayed."
+    }
+  ],
+  "reportedMismatches": [
+    {
+      "round": 1,
+      "entrant": "consistent",
+      "expected": "QUALIFIED",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "reason": "Pinned tree is 263265 bytes, above the immutable judge 96000-byte bound; original verdict retained. Six unique full-file hearings address the missing evidence.",
+      "reported": true,
+      "finalOriginalStatus": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "round": 1,
+      "entrant": "targeted",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "JUDGING",
+      "reason": "An original judgment finalized with consensus disagreement; the case is retained without rerun. Settlement waits for the immutable judge grace deadline.",
+      "reported": true,
+      "finalOriginalStatus": "INSUFFICIENT_EVIDENCE",
+      "observedAtPhase": "before grace settlement"
+    },
+    {
+      "round": 2,
+      "entrant": "consistent",
+      "expected": "QUALIFIED",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "reason": "Pinned tree is 263265 bytes, above the immutable judge 96000-byte bound; original verdict retained. Six unique full-file hearings address the missing evidence.",
+      "reported": true,
+      "finalOriginalStatus": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "case": "C",
+      "expected": "UPHELD",
+      "actual": "VOID",
+      "reason": "VOID_SOURCES_UNREACHABLE: named file missing, oversized, or tree unavailable.",
+      "reported": true
+    }
+  ],
+  "reportedFailedTransactions": [
+    {
+      "name": "round-1-judge-targeted-1",
+      "hash": "0x881ed4c5e4808348428c8223aedc02f635c316723c31b20c1f7080dd9f82abf3",
+      "at": "2026-10-20T14:21:46.631Z",
+      "receipt": "deploy/receipts/milestone-v1/round-1-judge-targeted-1.json",
+      "reported": true,
+      "classification": "LIVE_CONSENSUS_FAILURE",
+      "reason": "Original validator disagreement; failed case retained without rerun."
+    },
+    {
+      "name": "dispute-C-hear",
+      "hash": "0xc32498d27288659318481278736745e68da532e4e09db6687d1a1396c7497302",
+      "at": "2026-10-20T15:27:45.791Z",
+      "receipt": "deploy/receipts/milestone-v1/dispute-C-hear.json",
+      "reported": true,
+      "classification": "LIVE_EXPECTED_STATE_ROLLBACK",
+      "reason": "C was already VOID after its source check; hear correctly rejected a non-open dispute."
+    }
+  ],
+  "limits": "The immutable original judge uses bounded evidence. Its Bullseye tree overflow and original consensus failure remain visible. Corrections affect credentials only. Demo wallets and repositories are owner-operated; the negative entry is a test fixture. The first three milestone deployments were retired unfunded before bonds or bonus deposits. No Portal form is submitted automatically.",
+  "checks": {
+    "contractTests": 97,
+    "existingContractTests": 46,
+    "newContractTests": 51,
+    "appTests": 22,
+    "lint": "Three contracts pass GenVM lint and SDK validation.",
+    "typecheck": "PASS",
+    "productionBuild": "PASS",
+    "liveVerification": "PASS_WITH_REPORTED_FAILURES",
+    "browser": "PASS",
+    "explorerLinks": "PASS"
+  },
+  "blockers": "Owner reviews the reported live deviations and submits the Portal milestone. Live injection resistance remains unproven.",
+  "fieldCharacterCounts": {
+    "summary": 947,
+    "judgmentPoints": 565,
+    "RulingDisputes.description": 180,
+    "QualificationBadges.description": 194,
+    "EligibilitySeries.description": 197
+  }
+}

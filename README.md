@@ -101,6 +101,15 @@ The resumable timeout stages are timeout-seed, timeout-entry, and timeout-settle
 
 ## Milestone v1: Seasons, Badges and Disputes
 
+A clean one-pass rerun is in preparation. The immutable judge remains [0x03E7970E791d644B2714a457D178Edf036670bb7](https://explorer-studio.genlayer.com/address/0x03E7970E791d644B2714a457D178Edf036670bb7). The new dispute opening checks the pinned raw file directly, removing the GitHub tree API dependency. Existing season payout methods appear earlier in the source without changing their logic, so bounded repository inspection can see the actual native transfer.
+
+The new deposit ceiling is **0.2 simulated StudioNet GEN**. The plan uses two 1-wei challenge pools, three 0.01-GEN bonds and one 0.05-GEN season bonus: **0.08 GEN plus 2 wei**. Repository trees must be complete and under 80,000 bytes before any deposit. Every live case runs once; an unexpected outcome stops the run. No new successful live result is claimed yet. Nothing is submitted to the Portal automatically.
+
+### Retired milestone deployments (first run)
+
+The archived [first-run manifest](deploy/previous-runs/milestone-v1-first-run/deploy/milestone-proof.json), [verification](deploy/previous-runs/milestone-v1-first-run/deploy/milestone-verification.json), sources and reports retain every original hash, failure and payout. [Archive checksums](deploy/previous-runs/milestone-v1-first-run/archive.json) preserve their exact bytes.
+
+
 The milestone extends the existing judge with three contracts. The original judge at `0x03E7970E791d644B2714a457D178Edf036670bb7` remains unchanged; new contracts read its finalized state and never write to it.
 
 | Contract | StudioNet Explorer | Purpose |

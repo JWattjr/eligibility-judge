@@ -12,7 +12,6 @@ JUDGING_GRACE = 3600
 DISPUTE_WINDOW = 7200
 HEARING_DEADLINE = 86400
 FILE_BYTES = 65536
-TREE_BYTES = 1000000
 RECEIPT_RPC = 'https://studio.genlayer.com/api'
 
 def require(condition, message):
@@ -109,24 +108,24 @@ def check_path(path):
             and not path.startswith('/') and all(p not in ('', '.', '..') for p in path.split('/')), 'clean relative file path required')
 
 
+def file_url(repo, commit, path):
+    return 'https://raw.githubusercontent.com/' + repository(repo) + '/' + commit + '/' + path.replace(' ', '%20')
+
+
 def file_in_tree(repo, commit, path):
-    response = gl.nondet.web.get('https://api.github.com/repos/' + repository(repo) + '/git/trees/' + commit + '?recursive=1')
-    if response.status != 200 or len(response.body) > TREE_BYTES:
-        return 'UNREACHABLE'
     try:
-        tree = json.loads(response.body.decode('utf-8'))
-        if tree.get('truncated', True):
-            return 'UNREACHABLE'
-        for item in tree.get('tree', []):
-            if item.get('type') == 'blob' and item.get('path') == path:
-                return 'FOUND' if item.get('size', 0) <= FILE_BYTES else 'OVERSIZED'
-        return 'MISSING'
+        response = gl.nondet.web.get(file_url(repo, commit, path))
+        if response.status == 404:
+            return 'MISSING'
+        if response.status == 200:
+            return 'FOUND' if len(response.body) <= FILE_BYTES else 'OVERSIZED'
     except Exception:
-        return 'UNREACHABLE'
+        pass
+    return 'UNREACHABLE'
 
 
 def fetch_file(record):
-    source = 'https://raw.githubusercontent.com/' + repository(record['repo']) + '/' + record['commit'] + '/' + record['file_path'].replace(' ', '%20')
+    source = file_url(record['repo'], record['commit'], record['file_path'])
     try:
         response = gl.nondet.web.get(source)
         if response.status == 200 and 0 < len(response.body) <= FILE_BYTES:
@@ -287,7 +286,7 @@ class RulingDisputes(gl.Contract):
             return file_in_tree(record['repo'], record['commit'], record['file_path'])
         exists = gl.eq_principle.strict_eq(inspect_named_file)
         record.update(status='OPENING_FINALITY', opening_result='OPEN' if exists == 'FOUND' else 'VOID',
-                      reason='' if exists == 'FOUND' else 'VOID_SOURCES_UNREACHABLE: named file missing, oversized, or tree unavailable.',
+                      reason='' if exists == 'FOUND' else 'VOID_SOURCES_UNREACHABLE: named raw file missing, oversized, or unreachable.',
                       version=record['version'] + 1)
         record['pending_call'] = {'method': 'check_open', 'args': [dispute_id]}
         self._save(dispute_id, record)

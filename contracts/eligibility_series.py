@@ -116,6 +116,27 @@ class EligibilitySeries(gl.Contract):
         self.total_deposited = u256(0)
         self.total_paid = u256(0)
 
+    def _claim(self, series_id, participant, attempt, method, args):
+        record = self._load(series_id)
+        require(record['status'] == 'CLOSED', 'wait for finalized season settlement')
+        amount = begin_claim(record, participant, attempt, int(self.balance), int(self.total_deposited), int(self.total_paid), method, args)
+        self._save(series_id, record)
+        Recipient(Address(participant)).emit_transfer(value=u256(amount))
+
+    @gl.public.write
+    def claim(self, series_id: str, attempt: int) -> None:
+        self._claim(series_id, str(gl.message.sender_address).lower(), attempt, 'claim', [series_id, attempt])
+
+    @gl.public.write
+    def claim_refund(self, series_id: str, attempt: int) -> None:
+        record = self._load(series_id)
+        require(str(gl.message.sender_address).lower() == record['organizer'], 'organizer only')
+        self._claim(series_id, record['organizer'], attempt, 'claim_refund', [series_id, attempt])
+
+    @gl.public.write
+    def claim_for(self, series_id: str, participant: str, attempt: int) -> None:
+        self._claim(series_id, wallet(participant), attempt, 'claim_for', [series_id, participant, attempt])
+
     def _load(self, key):
         require(key in self.items, 'unknown series')
         return json.loads(self.items[key])
@@ -252,27 +273,6 @@ class EligibilitySeries(gl.Contract):
         gl.eq_principle.strict_eq(observe)
         record.update(status='CLOSED', finalized_at=now())
         self._save(series_id, record)
-
-    def _claim(self, series_id, participant, attempt, method, args):
-        record = self._load(series_id)
-        require(record['status'] == 'CLOSED', 'wait for finalized season settlement')
-        amount = begin_claim(record, participant, attempt, int(self.balance), int(self.total_deposited), int(self.total_paid), method, args)
-        self._save(series_id, record)
-        Recipient(Address(participant)).emit_transfer(value=u256(amount))
-
-    @gl.public.write
-    def claim(self, series_id: str, attempt: int) -> None:
-        self._claim(series_id, str(gl.message.sender_address).lower(), attempt, 'claim', [series_id, attempt])
-
-    @gl.public.write
-    def claim_refund(self, series_id: str, attempt: int) -> None:
-        record = self._load(series_id)
-        require(str(gl.message.sender_address).lower() == record['organizer'], 'organizer only')
-        self._claim(series_id, record['organizer'], attempt, 'claim_refund', [series_id, attempt])
-
-    @gl.public.write
-    def claim_for(self, series_id: str, participant: str, attempt: int) -> None:
-        self._claim(series_id, wallet(participant), attempt, 'claim_for', [series_id, participant, attempt])
 
     def _finish_claim(self, key, record, participant):
         pending = record['claim_attempts'][participant]

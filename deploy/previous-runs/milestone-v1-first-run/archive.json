@@ -1,0 +1,21 @@
+{
+  "sourceCommit": "f0a894a0591285cad85c9751a009bec06e113b87",
+  "files": {
+    "deploy/milestone-proof.json": "dc4a38c4b3b9d94e916a0cc4e39dc873f7c7f9360c73b69367e1de0e94b0cabd",
+    "deploy/milestone-verification.json": "672326317ffe266c6d24d7e745354cc622f7ef554182203c09c084c6f87e2f85",
+    "docs/submission/MILESTONE-V1-READINESS.md": "fc0fdcbdae108135fbbf59513768e1b17a6df52698784f64ee5cd549bd58d933",
+    "docs/submission/milestone-v1.json": "d4806b0e3e423f69232373c00d93963bda785b6a430675f90333ae2d2be346c3",
+    "docs/submission/milestone-v1-links.json": "69643b93add233e3992a082bf94b2bfe5c83b7a027b1dc1f35cbaebb8568bfcc",
+    "docs/milestone-v1-browser.json": "a02926282380908a2163ccb48a86eb5965726e3001e7692826ea0b8ebd1684f3",
+    "docs/milestone-v1-resume.json": "1a6c31f48d59a8aec5cd907b6b98be5c9a46b15a06b30ebbd689123a118e2832",
+    "docs/milestone-v1-phase1.json": "a8c7058c02855736f67f5caeaa8e19f78912da7100beb1f52a4e43c2f33a7351",
+    "docs/milestone-v1-tree-bound.json": "9d85a43c19497cda148b13354f29255365e90c485cc1a3c474d9dd6d21ed165d",
+    "docs/TUTORIAL-MILESTONE-V1.md": "5601d55ee920247f3fd82e0f6e2b6d7c69a582e48b7b205309bdfe8cbb2f69f4",
+    "contracts/rule_disputes.py": "f930c877ab865cf94f7ef6e7dfb873e7abeab8f5f30447eae973b996574f011b",
+    "contracts/qualification_badges.py": "2f4d00ebab6f4e1a2c1ccd476be4cc1b979705b5b112da6411d02b5e1f605f14",
+    "contracts/eligibility_series.py": "542ebf177d060be33c729198ceb7d2542af90b892bd4c3545330a9349831ac65",
+    "scripts/milestone-runner.ts": "038601c4490d13bb99bee1efcdd95ae94b08f52270a4cd91f1aaea9944cd29fd",
+    "scripts/verify_milestone.py": "f2b51936488342e2d5862a7848f86cd41cc9974e73e2d5714482d06b1d956193",
+    "scripts/package-milestone.py": "9faccb92e8ed455af9a04fc7f718d84504a79d84d6455d4c76ee2b608d86d3b1"
+  }
+}

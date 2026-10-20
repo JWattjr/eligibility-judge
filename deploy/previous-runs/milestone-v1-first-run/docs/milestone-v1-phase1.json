@@ -1,0 +1,67 @@
+{
+  "phase": 1,
+  "status": "PASS",
+  "recordedAt": "2026-10-20T13:34:18.950709+00:00",
+  "judgeContract": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+  "judgeSourceSha256": "740a52ba9d9274fe2a8536535852b69394b3f53726cd57e7979f09073d29db2a",
+  "judgeSourceUnchanged": true,
+  "draftContracts": [
+    {
+      "path": "contracts/rule_disputes.py",
+      "sha256": "f930c877ab865cf94f7ef6e7dfb873e7abeab8f5f30447eae973b996574f011b"
+    },
+    {
+      "path": "contracts/qualification_badges.py",
+      "sha256": "2f4d00ebab6f4e1a2c1ccd476be4cc1b979705b5b112da6411d02b5e1f605f14"
+    },
+    {
+      "path": "contracts/eligibility_series.py",
+      "sha256": "542ebf177d060be33c729198ceb7d2542af90b892bd4c3545330a9349831ac65"
+    }
+  ],
+  "phase1Check": {
+    "result": "PASS",
+    "lint": "PASS (all three contracts)",
+    "sdkValidation": "PASS (all three contracts)",
+    "directTests": "97 passed"
+  },
+  "directTests": {
+    "passed": 97,
+    "existing": 46,
+    "new": 51
+  },
+  "deployments": [],
+  "transactions": {},
+  "grossDepositsWei": "0",
+  "depositCeilingWei": "1000000000000000000",
+  "fixedThresholdOwnerAnswer": "Void rounds never lower the original qualification count.",
+  "nextStep": "Phase 1 complete. Current deployments, deposits and live progress are journaled in deploy/milestone-proof.json.",
+  "resolvedPreviousFailure": "Replaced inline nondeterministic observation lambdas with named local functions. All three contracts now pass lint and SDK validation without behavior changes.",
+  "lintChecks": [
+    {
+      "contract": "RulingDisputes",
+      "lint": "PASS",
+      "sdkValidation": "PASS",
+      "runner": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6"
+    },
+    {
+      "contract": "QualificationBadges",
+      "lint": "PASS",
+      "sdkValidation": "PASS",
+      "runner": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6"
+    },
+    {
+      "contract": "EligibilitySeries",
+      "lint": "PASS",
+      "sdkValidation": "PASS",
+      "runner": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6"
+    }
+  ],
+  "ownerContinuation": "Owner explicitly revoked the instruction to stop at checkpoints; fix checks and continue to completion. Preserve one-shot live cases and the 1 GEN ceiling.",
+  "historicalInitialCheck": {
+    "passed": 96,
+    "new": 50,
+    "disputesSha256": "1fa153162ccba5f7b47586d712771f08ca84f8a20bf59cf6917c9055988b28b1"
+  },
+  "openingSafetyRevision": "Funded reservation persists before zero-value file check; failed checks remain expirable and refundable."
+}

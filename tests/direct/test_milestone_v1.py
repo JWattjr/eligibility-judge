@@ -95,9 +95,9 @@ def series(sources, direct_deploy, monkeypatch):
     return c
 
 
-def mock_file(vm, status=200, body=FILE, tree_status=200, size=100):
-    vm.mock_web(r'.*api\.github\.com/.*', {'status': tree_status, 'body': json.dumps({'truncated': False, 'tree': [{'path': PATH, 'type': 'blob', 'size': size}]})})
-    vm.mock_web(r'.*raw\.githubusercontent\.com/.*', {'status': status, 'body': body})
+def mock_file(vm, status=200, body=FILE):
+    vm.mock_web(r'.*raw\.githubusercontent\.com/.*/deep/decisive\.py$', {'status': status, 'body': body})
+    vm.mock_web(r'.*raw\.githubusercontent\.com/.*/missing\.py$', {'status': 404, 'body': '404: Not Found'})
 
 
 def open_case(c, vm, sources, entrant=None, argument='Read the full pinned file.', amount=BOND):
@@ -166,6 +166,49 @@ def test_dispute_oversized_full_file_void_not_partial_judgment(dispute, sources,
     assert case(dispute, key)['status'] == 'VOID'
 
 
+@pytest.mark.parametrize('status,body,expected', [
+    (404, 'Not Found', 'MISSING'),
+    (429, 'Rate limited', 'UNREACHABLE'),
+    (500, 'Server error', 'UNREACHABLE'),
+    (503, 'Unavailable', 'UNREACHABLE'),
+    (403, 'Forbidden', 'UNREACHABLE'),
+    (200, '', 'FOUND'),
+    (200, 'x' * 65536, 'FOUND'),
+    (200, 'x' * 65537, 'OVERSIZED'),
+    (200, '\u00e9' * 32769, 'OVERSIZED'),
+], ids=['missing', 'limited', 'server-error', 'unavailable', 'forbidden', 'empty', 'at-limit', 'over-limit', 'multibyte-over-limit'])
+def test_raw_file_presence_status_and_byte_limit(dispute, direct_vm, status, body, expected):
+    direct_vm.mock_web(r'.*raw\.githubusercontent\.com/.*', {'status': status, 'body': body})
+    module = deployed_module('rule_disputes.py')
+    assert module.file_in_tree('https://github.com/JWattjr/eligibility-judge', SHA, PATH) == expected
+
+
+def test_raw_file_exception_is_unreachable_and_same_url_is_used(dispute, monkeypatch):
+    module = deployed_module('rule_disputes.py')
+    urls = []
+    def offline(url):
+        urls.append(url)
+        raise OSError('temporary network outage')
+    monkeypatch.setattr(module.gl.nondet.web, 'get', offline)
+    repo = 'https://github.com/JWattjr/eligibility-judge'
+    assert module.file_in_tree(repo, SHA, 'deep/a file.py') == 'UNREACHABLE'
+    assert module.fetch_file({'repo': repo, 'commit': SHA, 'file_path': 'deep/a file.py'}) is None
+    assert urls == ['https://raw.githubusercontent.com/JWattjr/eligibility-judge/' + SHA + '/deep/a%20file.py'] * 2
+
+
+@pytest.mark.parametrize('status', [404, 429, 503])
+def test_raw_file_opening_failures_keep_bond_refundable(dispute, sources, direct_vm, status):
+    mock_file(direct_vm, status=status)
+    direct_vm.value = BOND
+    key = dispute.open_dispute('challenge-1', sources.alice, 0, PATH, 'Check the pinned file.')
+    direct_vm.value = 0
+    dispute.check_open(key)
+    self_call(direct_vm, dispute.finalize_open, key, case(dispute, key)['version'])
+    record = case(dispute, key)
+    assert record['status'] == 'VOID' and record['reason'].startswith('VOID_SOURCES_UNREACHABLE:')
+    assert record['allocations'] == {sources.owner: str(BOND)}
+
+
 def test_expiry_permissionless_at_exact_deadline_and_late_hearing_noop(dispute, sources, direct_vm, direct_bob):
     key = open_case(dispute, direct_vm, sources)
     direct_vm.mock_llm(r'.*ELIGIBILITY_DISPUTE_HEARING.*', json.dumps({'verdict': 'PASS', 'path': PATH, 'quote': 'from genlayer import *', 'reason': 'Positive evidence.'}))
@@ -218,7 +261,7 @@ def test_invalid_funded_dispute_is_rejected_but_every_deposit_refundable(dispute
         open_case(dispute, direct_vm, sources)
     if invalid == 'window':
         warp(direct_vm, sources.challenges['challenge-1']['closes'] + 10800)
-    mock_file(direct_vm, tree_status=503 if invalid == 'tree' else 200)
+    mock_file(direct_vm, status=503 if invalid == 'tree' else 200)
     direct_vm.value = 1 if invalid == 'bond' else BOND
     key = dispute.open_dispute('challenge-1', sources.alice, 0, 'missing.py' if invalid == 'file' else PATH,
                                'x' * 601 if invalid == 'argument' else 'Check the frozen file.')

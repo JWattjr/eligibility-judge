@@ -3,14 +3,31 @@ import argparse
 import json
 import re
 import subprocess
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.request import Request, urlopen
+from urllib.error import HTTPError, URLError
 
 ROOT = Path(__file__).resolve().parent.parent
 EXPLORER = 'https://explorer-studio.genlayer.com'
 SOURCE = 'https://github.com/JWattjr/eligibility-judge'
 ADDRESS = re.compile(r'^https://explorer-(studio|studio-dev|bradbury|asimov)\.genlayer\.com/address/(0x[0-9a-fA-F]{40})/?$')
+
+
+def fetch_json(url):
+    for attempt in range(4):
+        try:
+            with urlopen(Request(url,headers={'User-Agent':'Mozilla/5.0 Eligibility Judge evidence verifier'}),timeout=60) as response:
+                assert response.status==200
+                return json.load(response)
+        except (URLError,TimeoutError,json.JSONDecodeError) as error:
+            if isinstance(error,HTTPError) and error.code not in (429,500,502,503,504):
+                raise
+            if attempt==3:
+                raise
+            print('Transient Explorer read; retrying the same URL.',flush=True)
+            time.sleep(5*(attempt+1))
 
 
 def main():
@@ -20,7 +37,8 @@ def main():
     proof = json.loads((ROOT/'deploy/milestone-proof.json').read_text(encoding='utf-8'))
     report_path = ROOT/'deploy/milestone-verification.json'
     report = json.loads(report_path.read_text(encoding='utf-8')) if report_path.exists() else {}
-    verified = proof['completed'] and report.get('status') in ('PASS', 'PASS_WITH_REPORTED_FAILURES')
+    live_verified = proof['completed'] and report.get('status') in ('PASS', 'PASS_WITH_REPORTED_FAILURES')
+    verified = False
     descriptions = {
         'disputes': ('RulingDisputes', 'Bonded full-file rule hearings. Validators independently judge pinned evidence and verify quotes. Finalized outcomes update credentials; VOID refunds and timed exits protect bonds.'),
         'badges': ('QualificationBadges', 'Non-transferable qualification credentials tied to a pinned commit, frozen rulebook and effective-verdict digest. Minting waits for the opening window and every pending hearing. No LLM or stake.'),
@@ -66,19 +84,31 @@ def main():
     target.write_text(json.dumps(fields,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     if options.verify_links:
         results=[]
+        (ROOT/'docs/submission/milestone-v1-links.json').write_text(json.dumps(dict(status='RUNNING',checkedAt=datetime.now(timezone.utc).isoformat()),indent=2)+'\n',encoding='utf-8')
         for item in evidence:
             match=ADDRESS.fullmatch(item['url']); assert match
             address=match.group(2)
-            with urlopen(Request(EXPLORER+'/api/address/'+address,headers={'User-Agent':'Mozilla/5.0 Eligibility Judge evidence verifier'}),timeout=60) as response:
-                data=json.load(response);assert response.status==200 and data['type']=='CONTRACT' and data['address'].lower()==address.lower()
+            data=fetch_json(EXPLORER+'/api/address/'+address);assert data['type']=='CONTRACT' and data['address'].lower()==address.lower()
             results.append(dict(url=item['url'],httpStatus=200,network='StudioNet 61999',type='CONTRACT',address=address))
         for name,url in {**transactions,**{'reported-failure-'+str(i):EXPLORER+'/tx/'+h for i,h in enumerate(failures)}}.items():
             tx_hash=url.rsplit('/',1)[1]
-            with urlopen(Request(EXPLORER+'/api/transactions/'+tx_hash,headers={'User-Agent':'Mozilla/5.0 Eligibility Judge evidence verifier'}),timeout=60) as response:
-                data=json.load(response);assert response.status==200 and data['transaction']['hash'].lower()==tx_hash.lower()
+            data=fetch_json(EXPLORER+'/api/transactions/'+tx_hash);assert data['transaction']['hash'].lower()==tx_hash.lower()
             results.append(dict(name=name,url=url,httpStatus=200))
         (ROOT/'docs/submission/milestone-v1-links.json').write_text(json.dumps(dict(status='PASS',checkedAt=datetime.now(timezone.utc).isoformat(),results=results),indent=2)+'\n',encoding='utf-8')
         print('Verified Explorer evidence links:',len(results))
+    links_path=ROOT/'docs/submission/milestone-v1-links.json'
+    links=json.loads(links_path.read_text(encoding='utf-8')) if links_path.exists() else {}
+    urls={r['url'] for r in links.get('results',[]) if r.get('httpStatus')==200}
+    required={item['url'] for item in evidence}|set(transactions.values())|{EXPLORER+'/tx/'+h for h in failures}
+    browser_path=ROOT/'docs/milestone-v1-browser.json'
+    browser=json.loads(browser_path.read_text(encoding='utf-8')) if browser_path.exists() else {}
+    verified=bool(live_verified and links.get('status')=='PASS' and required<=urls and browser.get('status')=='PASS')
+    fields['readyForOwnerReview']=verified
+    fields['status']='Live proof independently verified, including explicitly reported deviations; owner reviews and submits.' if verified else 'Final verification in progress. Do not submit this draft.'
+    fields['checks']['browser']=browser.get('status','PENDING')
+    fields['checks']['explorerLinks']=links.get('status','PENDING')
+    if verified:fields['blockers']='Owner reviews the reported live deviations and submits the Portal milestone. Live injection resistance remains unproven.'
+    target.write_text(json.dumps(fields,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(counts,indent=2))
 
 

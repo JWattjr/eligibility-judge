@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-20T17:45:44.482515+00:00",
+  "scope": "Production read-only UI and API verification; no new browser wallet signature claimed.",
+  "liveUrl": "https://eligibility-judge.vercel.app/series",
+  "appReleaseCommit": "df9786a",
+  "deployment": {
+    "id": "dpl_F7HSAP5scHMnina1f5eBf79xTwSk",
+    "url": "https://eligibility-judge-9vubznff0-wattxs-projects.vercel.app",
+    "alias": "https://eligibility-judge.vercel.app",
+    "target": "production",
+    "readyState": "READY",
+    "remoteBuild": "PASS"
+  },
+  "browser": "In-app browser after the connected Chrome session disconnected. Chrome initially confirmed MetaMask discovery.",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "checks": {
+    "originalSeasonClosed": true,
+    "originalThresholdRemainsTwo": true,
+    "originalRefundPaidAndVerified": true,
+    "separateOneWeiControlClosed": true,
+    "controlThresholdOneFromCreation": true,
+    "controlBonusPaidAndVerified": true,
+    "bothCompletedSeasonSnapshotsVisible": true,
+    "oneBadgeVerifiedOnChain": true,
+    "existingBadgeMintDisabled": true,
+    "embeddedBadgeRendered": true,
+    "disputeOutcomes": [
+      "OVERTURNED",
+      "UPHELD",
+      "VOID"
+    ],
+    "allThreeBondCreditsVerified": true,
+    "challengeLinksAndFrozenRulesVisible": true,
+    "originalInsufficientVersusEffectivePassVisible": true,
+    "closedOpeningWindowExplained": true,
+    "savedHashSurvivesReload": true,
+    "savedHashAppearsAcrossRoutes": true,
+    "mobileHorizontalPageOverflow": false,
+    "observedConsoleErrors": []
+  },
+  "apiChecks": [
+    {
+      "name": "series",
+      "url": "https://eligibility-judge.vercel.app/api/milestone?kind=series",
+      "httpStatus": 200,
+      "passed": true
+    },
+    {
+      "name": "badge-verification",
+      "url": "https://eligibility-judge.vercel.app/api/milestone?kind=verify&wallet=0xf3372965edf1a2ccf6bb97bc923480aebd4750f9&challenge=challenge-3",
+      "httpStatus": 200,
+      "passed": true
+    },
+    {
+      "name": "disputes",
+      "url": "https://eligibility-judge.vercel.app/api/milestone?kind=disputes",
+      "httpStatus": 200,
+      "passed": true
+    },
+    {
+      "name": "pinned-files",
+      "url": "https://eligibility-judge.vercel.app/api/dispute-files?repo=https%3A%2F%2Fgithub.com%2FJWattjr%2Feligibility-judge&commit=24ace69788fe86ef4e2c8326e46094882df4bf12",
+      "httpStatus": 200,
+      "passed": true
+    }
+  ],
+  "designReview": {
+    "disposition": "ship",
+    "materialFixes": 0,
+    "detectorRuns": 1,
+    "pinnedFontWarning": "Space Grotesk intentionally preserves DESIGN.md",
+    "documentation": "DESIGN.md Components / Milestone v1"
+  },
+  "screenshotsDirectory": ".impeccable/review/milestone-v1/",
+  "screenshots": [
+    "desktop.png",
+    "mobile.png",
+    "desktop-badge.png",
+    "mobile-badge.png",
+    "desktop-disputes.png",
+    "mobile-disputes.png",
+    "desktop-payout-control.png",
+    "mobile-payout-control.png",
+    "mobile-rule-review.png",
+    "desktop-form.png"
+  ],
+  "limits": [
+    "No new MetaMask signature or pending-wallet flow was exercised. Live calls were signed through the authorized CLI demo accounts.",
+    "The creation form required-field state was checked; a valid date submission was not broadcast.",
+    "Opening windows were closed during final browser checks; the pinned-file endpoint and closed-state explanation were verified.",
+    "C was VOID during its source check, so this run does not prove live injection resistance.",
+    "Six additional planned hearings were not opened."
+  ]
+}

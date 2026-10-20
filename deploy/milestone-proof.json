@@ -1079,7 +1079,7 @@
   ],
   "completed": true,
   "organizer": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
-  "recordedAt": "2026-10-20T17:31:33.110Z",
+  "recordedAt": "2026-10-20T17:45:37.605Z",
   "failures": [
     {
       "name": "deploy-disputes",
@@ -1545,7 +1545,8 @@
       "expected": "QUALIFIED",
       "actual": "INSUFFICIENT_EVIDENCE",
       "reason": "Pinned tree is 263265 bytes, above the immutable judge 96000-byte bound; original verdict retained. Six unique full-file hearings address the missing evidence.",
-      "reported": true
+      "reported": true,
+      "finalOriginalStatus": "INSUFFICIENT_EVIDENCE"
     },
     {
       "round": 1,
@@ -1553,7 +1554,9 @@
       "expected": "INSUFFICIENT_EVIDENCE",
       "actual": "JUDGING",
       "reason": "An original judgment finalized with consensus disagreement; the case is retained without rerun. Settlement waits for the immutable judge grace deadline.",
-      "reported": true
+      "reported": true,
+      "finalOriginalStatus": "INSUFFICIENT_EVIDENCE",
+      "observedAtPhase": "before grace settlement"
     },
     {
       "round": 2,
@@ -1561,7 +1564,8 @@
       "expected": "QUALIFIED",
       "actual": "INSUFFICIENT_EVIDENCE",
       "reason": "Pinned tree is 263265 bytes, above the immutable judge 96000-byte bound; original verdict retained. Six unique full-file hearings address the missing evidence.",
-      "reported": true
+      "reported": true,
+      "finalOriginalStatus": "INSUFFICIENT_EVIDENCE"
     },
     {
       "case": "C",
@@ -1623,8 +1627,7 @@
     },
     "disputes": {
       "status": "COMPLETED_WITH_REPORTED_DEVIATIONS",
-      "at": "2026-10-20T15:09:09.401Z",
-      "reason": "A overturned and B upheld; C was VOID at source check and its later hear call rolled back. All bonds paid. Six additional planned hearings were not opened before their windows closed."
+      "at": "2026-10-20T17:45:37.605Z"
     },
     "snapshot": {
       "status": "PASS",

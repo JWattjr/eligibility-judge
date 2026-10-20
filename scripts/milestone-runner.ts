@@ -186,10 +186,25 @@ export default async function milestone(client:Client){
    ]),
   ];proof.disputeCases??={};
   for(const c of cases){
-   if(!proof.disputeCases[c.name]){const original=(await json(JUDGE,'get_challenge',[proof.rounds[c.round].id])).entries[c.wallet].verdicts[c.rule]?.status??'INSUFFICIENT_EVIDENCE';if(original!==(c.expected==='UPHELD'?'FAIL':'INSUFFICIENT_EVIDENCE'))throw Error('Original ruling differs; preserve case '+c.name+' '+original);const r=await send('dispute-'+c.name+'-open',d,'open_dispute',[proof.rounds[c.round].id,c.wallet,c.rule,c.path,c.argument],10n**16n);proof.disputeCases[c.name]={...c,id:returned(r)};save()}
-   const id=proof.disputeCases[c.name].id;await send('dispute-'+c.name+'-hear',d,'hear',[id]);
-   const record=await json(d,'get_dispute',[id]);proof.disputeCases[c.name].record=record;save();
-   if(record.status!==c.expected||record.answer?.verdict!==c.verdict)throw Error('Live dispute mismatch, not rerun: '+c.name+' '+record.status);
+   if(!proof.disputeCases[c.name]){
+    const challenge=await json(JUDGE,'get_challenge',[proof.rounds[c.round].id]);
+    if(Date.now()/1000>=challenge.closes+10800){proof.unrunCases??=[];if(!proof.unrunCases.some((x:any)=>x.case===c.name))proof.unrunCases.push({case:c.name,reason:'Opening window closed; no deposit or hearing sent.'});save();continue;}
+    const original=challenge.entries[c.wallet].verdicts[c.rule]?.status??'INSUFFICIENT_EVIDENCE';
+    if(original!==(c.expected==='UPHELD'?'FAIL':'INSUFFICIENT_EVIDENCE'))throw Error('Original ruling differs; preserve case '+c.name+' '+original);
+    const receipt=await send('dispute-'+c.name+'-open',d,'open_dispute',[proof.rounds[c.round].id,c.wallet,c.rule,c.path,c.argument],10n**16n);
+    proof.disputeCases[c.name]={...c,id:returned(receipt)};save();
+   }
+   const id=proof.disputeCases[c.name].id;
+   let record=await json(d,'get_dispute',[id]);
+   // A source-check VOID already owns a refundable allocation. Never hear it.
+   if(record.status==='OPEN'){
+    const label='dispute-'+c.name+'-hear';
+    try{await send(label,d,'hear',[id])}catch(error){const failure=proof.failures?.find((f:any)=>f.name===label);if(!failure)throw error;failure.reported=true;failure.classification='LIVE_CONSENSUS_FAILURE';failure.reason='Saved finalized hearing failure; no replay.';save();}
+    record=await json(d,'get_dispute',[id]);
+   }
+   proof.disputeCases[c.name].record=record;save();
+   if(record.status!==c.expected||record.answer?.verdict!==c.verdict){proof.mismatches??=[];if(!proof.mismatches.some((m:any)=>m.case===c.name))proof.mismatches.push({case:c.name,expected:c.expected,actual:record.status,reason:record.reason||'Hearing has no conclusive finalized verdict; retain its saved case and timed exit.',reported:true});save();}
+   if(!['UPHELD','OVERTURNED','VOID'].includes(record.status)||record.claims[record.recipient])continue;
    const payee=record.recipient,signer=payee===owner?client:payee===control!.account!.address.toLowerCase()?control!:deep!;
    const claim=await send('dispute-'+c.name+'-claim',d,'claim',[id,1],0n,signer,true);
    await send('dispute-'+c.name+'-verify-claim',d,'verify_claim',[id,payee,claim.hash]);
@@ -237,6 +252,8 @@ export default async function milestone(client:Client){
   for(const e of proof.entrants??[])if(proof.contracts.badges) {proof.badges??={};proof.badges[e.wallet]=await json(proof.contracts.badges.address,'get_badges',[e.wallet])}
   proof.balances={};for(const [name,item] of Object.entries(proof.contracts) as [string,any][]){if(name!=='badges')proof.balances[name]=String(await read(item.address,'get_balance'));else proof.balances[name]=String(await client.getBalance({address:item.address}))}save();
  }
- proof.stages[step]={status:'PASS',at:new Date().toISOString()};save();
+ const reported=step==='disputes'&&(proof.unrunCases?.length||proof.mismatches?.some((m:any)=>m.case));
+ const judgeFailure=step==='judge'&&proof.failures?.some((f:any)=>f.reported&&f.name.includes('-judge-'));
+ proof.stages[step]={status:reported?'COMPLETED_WITH_REPORTED_DEVIATIONS':judgeFailure?'PASS_WITH_REPORTED_FAILURES':'PASS',at:new Date().toISOString()};save();
  console.log('Milestone stage',step,'gross deposits',proof.grossDepositsWei,'of',proof.depositCeilingWei,'wei');
 }

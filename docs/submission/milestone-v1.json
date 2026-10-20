@@ -2,8 +2,8 @@
   "action": "Propose an update",
   "project": "Eligibility Judge",
   "milestone": "Milestone v1: Seasons, Badges and Rule Disputes",
-  "status": "Final verification in progress. Do not submit this draft.",
-  "readyForOwnerReview": false,
+  "status": "Live proof independently verified, including explicitly reported deviations; owner reviews and submits.",
+  "readyForOwnerReview": true,
   "summary": "Eligibility Judge adds targeted rule disputes, portable qualification badges and multi-round seasons. A bonded hearing fetches one complete file at the entrant’s pinned commit; independent validators decide the frozen rule and verify the leader’s exact quote in their own fetches. Finalized overturns change credentials and season standings while the original judge pool stays immutable. Badges wait for the opening window and all pending hearings. Seasons retain a fixed qualification count, split a GEN bonus equally and verify native credits before marking payments paid. Unreachable evidence and timed exits refund funds. The disclosed live demo uses owner-operated public repositories, owner-controlled wallets and an existing negative fixture. Tree-bound shortfalls, an original consensus failure and a VOID source check remain reported. A separate one-wei season demonstrates a positive bonus credit without altering the original threshold.",
   "judgmentPoints": "New judgment: apply one frozen eligibility rule to a full named file, up to 64 KB, at the original pinned Git commit. Each validator independently fetches and judges that file, compares only verdict and path, and re-verifies the leader’s verbatim quote in its own fetch. Arguments and instructions in the file remain untrusted evidence. Code derives UPHELD, OVERTURNED or VOID, preserves the original prize settlement, gates credentials on finality and deadlines, and handles bonded refunds. Badges and seasons use deterministic cross-contract reads without an LLM.",
   "reviewRules": "Opening lasts until challenge close + one-hour judging grace + two hours. Bonds are 0.01–10 simulated GEN. Opening persists a reservation before a zero-value file check. Hearings have a 24-hour VOID/refund exit. Badges and round imports wait for every pending case. Void rounds never lower the season qualification threshold. Seasons have a full-refund exit 24 hours after their end. Native claims reserve numbered attempts and require independently verified credit.",
@@ -52,7 +52,7 @@
   ],
   "liveUrl": "https://eligibility-judge.vercel.app/series",
   "source": "https://github.com/JWattjr/eligibility-judge",
-  "sourceCommit": "a40c78ee6133af88ee9ff5ee4ad7b35df8db6748",
+  "sourceCommit": "df9786aadaccb66446558365b43834448469500e",
   "tutorial": "https://github.com/JWattjr/eligibility-judge/blob/main/docs/TUTORIAL-MILESTONE-V1.md",
   "architecture": "https://github.com/JWattjr/eligibility-judge/blob/main/docs/MILESTONE-V1-ARCHITECTURE.md",
   "proofManifest": "https://github.com/JWattjr/eligibility-judge/blob/main/deploy/milestone-proof.json",
@@ -295,7 +295,8 @@
       "expected": "QUALIFIED",
       "actual": "INSUFFICIENT_EVIDENCE",
       "reason": "Pinned tree is 263265 bytes, above the immutable judge 96000-byte bound; original verdict retained. Six unique full-file hearings address the missing evidence.",
-      "reported": true
+      "reported": true,
+      "finalOriginalStatus": "INSUFFICIENT_EVIDENCE"
     },
     {
       "round": 1,
@@ -303,7 +304,9 @@
       "expected": "INSUFFICIENT_EVIDENCE",
       "actual": "JUDGING",
       "reason": "An original judgment finalized with consensus disagreement; the case is retained without rerun. Settlement waits for the immutable judge grace deadline.",
-      "reported": true
+      "reported": true,
+      "finalOriginalStatus": "INSUFFICIENT_EVIDENCE",
+      "observedAtPhase": "before grace settlement"
     },
     {
       "round": 2,
@@ -311,7 +314,8 @@
       "expected": "QUALIFIED",
       "actual": "INSUFFICIENT_EVIDENCE",
       "reason": "Pinned tree is 263265 bytes, above the immutable judge 96000-byte bound; original verdict retained. Six unique full-file hearings address the missing evidence.",
-      "reported": true
+      "reported": true,
+      "finalOriginalStatus": "INSUFFICIENT_EVIDENCE"
     },
     {
       "case": "C",
@@ -350,11 +354,11 @@
     "lint": "Three contracts pass GenVM lint and SDK validation.",
     "typecheck": "PASS",
     "productionBuild": "PASS",
-    "liveVerification": "PENDING",
-    "browser": "PENDING",
+    "liveVerification": "PASS_WITH_REPORTED_FAILURES",
+    "browser": "PASS",
     "explorerLinks": "PASS"
   },
-  "blockers": "Live proof, independent verification and final production browser checks are still running.",
+  "blockers": "Owner reviews the reported live deviations and submits the Portal milestone. Live injection resistance remains unproven.",
   "fieldCharacterCounts": {
     "summary": 947,
     "judgmentPoints": 565,

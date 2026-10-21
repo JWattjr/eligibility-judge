@@ -98,7 +98,7 @@ def credited_transfer(receipt, parent, source, recipient, amount):
 def main():
     report_path = ROOT / 'deploy/milestone-verification.json'
     report_path.write_text(json.dumps({'status': 'RUNNING', 'run': proof['run']}) + '\n', encoding='utf-8')
-    assert proof['run'] == 'milestone-v1-final', 'Expected the final-run manifest'
+    assert proof['run'] == 'milestone-v1-release', 'Expected the final-run manifest'
     assert not proof.get('stopReason'), 'Clean run stopped: ' + str(proof.get('stopReason'))
     assert proof['completed'] and proof.get('allPlannedLiveCasesSuccessful'), 'Clean live proof is incomplete'
     assert proof['judge'].lower() == EXPECTED_JUDGE and proof['chainId'] == 61999
@@ -114,7 +114,7 @@ def main():
     assert int(proof['depositCeilingWei']) == 2 * 10**17 and deposits <= int(proof['depositCeilingWei'])
     prior = json.loads((ROOT / proof['previousRun'] / 'deploy/milestone-proof.json').read_text())
     assert prior['stopReason'] and not prior['completed']
-    assert int(proof['previousGrossDepositsWei']) == int(prior['grossDepositsWei']) == 5 * 10**16 + 2
+    assert int(proof['previousGrossDepositsWei']) == int(prior['cumulativeGrossDepositsWei']) == 5 * 10**16 + 3
     assert int(proof['cumulativeGrossDepositsWei']) == int(proof['previousGrossDepositsWei']) + deposits <= 2 * 10**17
     records = {}
     for name, tx_hash in proof['transactions'].items():

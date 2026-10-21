@@ -1,0 +1,51 @@
+{
+  "archivedAt": "2026-10-21T11:26:48.745950+00:00",
+  "files": [
+    {
+      "path": "deploy/milestone-proof.json",
+      "bytes": 43947,
+      "sha256": "35967c6cff50e1d4eda696dc68c342750666b1dc2c570803b8128d8f673854c2"
+    },
+    {
+      "path": "deploy/milestone-verification.json",
+      "bytes": 373,
+      "sha256": "2165a2178dea6092448a4551c7fd61357e5f4a684d20d3aa243fbaf73cf9b622"
+    },
+    {
+      "path": "deploy/explicit-control-fixture.json",
+      "bytes": 420,
+      "sha256": "0afa42874adf364d10f9d9b5da10452b112f9aa9bb89e027f5efd6d370092a3a"
+    },
+    {
+      "path": "docs/submission/MILESTONE-V1-READINESS.md",
+      "bytes": 1040,
+      "sha256": "b13b04c10ba0ae9883f6112cc852085387c715ebe2cacc3e41bc09f67bac3efc"
+    },
+    {
+      "path": "docs/submission/milestone-v1.json",
+      "bytes": 3436,
+      "sha256": "d431afe5ffcd7c4ce05a121bf0d678e50286b4b8b0e802f39c82b1efcaab3e81"
+    },
+    {
+      "path": "scripts/milestone-runner.ts",
+      "bytes": 24415,
+      "sha256": "abe23ba17b6041b113f4b4268943cd42b09343f94bbaec8ace97e38a6e3316e7"
+    },
+    {
+      "path": "scripts/run-final-demo.ps1",
+      "bytes": 1412,
+      "sha256": "8d7b5744f5f5609fc298404eda75ac8a2b1171bcec5b63ba8703ba897ecd95bc"
+    },
+    {
+      "path": "scripts/preflight-milestone.py",
+      "bytes": 6447,
+      "sha256": "50003095be0ee86b3f79e42723258c89627193a69815e6b9eea193d027831b8c"
+    },
+    {
+      "path": "deploy/receipts/milestone-v1-final/round-1-judge-control-0.json",
+      "bytes": 222761,
+      "sha256": "41a545aa513c28ff3730b6d9ef7640dc5bc19c49ed39f5655e21e1ed327d4b15"
+    }
+  ],
+  "reason": "Finalized missing-verbatim-quote error; no hearings or bonus funded."
+}

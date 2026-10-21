@@ -7,13 +7,13 @@ foreach($stage in $steps){
   & powershell -ExecutionPolicy Bypass -File scripts/milestone.ps1 $stage
   $result=Get-Content -LiteralPath deploy/milestone-proof.json -Raw | ConvertFrom-Json
   if($result.stopReason){throw ('Final run stopped: '+$result.stopReason)}
-  if($result.stages.$stage.status -eq 'WAITING_RECEIPT'){
+  if($result.stages.$stage.status -in @('WAITING_RECEIPT','WAITING_READ')){
    Write-Output 'Continuing receipt reads from the same saved hashes; no failed call is replayed.'
    Start-Sleep -Seconds 10
   } elseif($LASTEXITCODE -ne 0 -or $result.stages.$stage.status -ne 'PASS'){
    throw ('Stage did not pass: '+$stage)
   }
- } while($result.stages.$stage.status -eq 'WAITING_RECEIPT')
+ } while($result.stages.$stage.status -in @('WAITING_RECEIPT','WAITING_READ'))
 }
 while([DateTimeOffset]::UtcNow.ToUnixTimeSeconds() -lt $result.endsAt){
  $remaining=$result.endsAt-[DateTimeOffset]::UtcNow.ToUnixTimeSeconds()

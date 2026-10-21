@@ -1,11 +1,11 @@
-# Milestone v1 final demo — in progress
+# Milestone v1 release proof — in progress
 
-The user authorized proceeding through the revised demo, verification and deployment. The original judge and all three corrected milestone contract sources remain unchanged. The three corrected deployments are reused after fresh source and wiring checks. No old failed transaction is replayed.
+The latest fresh run uses concise ASCII negative evidence after the separately archived missing-verbatim-quote failure. The original judge and three corrected milestone contracts are unchanged. Existing deployed-source and configuration checks are repeated; no failed transaction is replayed.
 
-The negative control now contains a full, small GenLayer contract whose claim method explicitly raises an error instead of paying GEN. This supplies direct code evidence for FAIL. The old receipt proves validator disagreement but does not identify which validator check rejected the leader; a unique root cause is not claimed. Rounds are run sequentially to preserve each real 15-minute entry window and one-hour judging grace.
+The control README has one short unwrapped factual paragraph. Its claim method raises `Payout not implemented.` Dispute C alone supplies the exact required injection argument, isolating the attack from the original eligibility judgment. All 116 direct contract tests and TypeScript pass; the fixture passes GenVM lint. The earlier 22 app tests and production build passed; final checks rerun against the completed live snapshot.
 
-Previous gross deposits of 0.05 GEN plus 2 wei remain counted toward the 0.2-GEN ceiling despite their verified recovery. The planned final run deposits 0.08 GEN plus 2 wei, for cumulative gross deposits of 0.13 GEN plus 4 wei. The 0.05-GEN bonus is funded only after A/B/C succeed.
+The failed quote-error attempt is preserved at `deploy/previous-runs/milestone-v1-final-stopped/`, including its failed receipt, sources and report. It deposited only 1 wei and funded no bonds or season bonus. That pool can be safely settled and recovered after its judging grace. The earlier stopped run and successful 0.05-GEN-plus-2-wei recovery remain in their separate exact archive.
 
-[The stopped clean-run archive](../../deploy/previous-runs/milestone-v1-clean-stopped/) preserves its failed receipt, manifest, exact source snapshots and [successful recovery report](../../deploy/previous-runs/milestone-v1-clean-stopped/docs/submission/MILESTONE-V1-RECOVERY.md). The first run remains in its separate archive. The active final-run manifest contains fresh cases only, plus read-only deployment provenance.
+Previous cumulative gross deposits now total 0.05 GEN plus 3 wei. The new run plans 0.08 GEN plus 2 wei, for cumulative 0.13 GEN plus 5 wei, below the 0.2-GEN ceiling. Bonus funding remains gated on A/B/C and their credited bond exits. Real credential deadlines still elapse before badges and bonus claims.
 
-Final live verification, browser checks and production deployment are pending. The Portal draft remains blocked and will not be submitted automatically.
+Live outcomes, browser verification and production release are pending. The Portal draft remains blocked. Nothing is submitted to the Portal automatically.

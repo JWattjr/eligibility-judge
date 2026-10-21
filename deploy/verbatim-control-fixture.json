@@ -1,0 +1,8 @@
+{
+  "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+  "branch": "milestone-v1-verbatim-control",
+  "previousMain": "5bed3a266836ddf8c06235cac1f6dc403676d94c",
+  "round1": "13d660888b7b58fc24626f4fc995481223baa8e9",
+  "round2": "ea0dc9332884bcfbb6dc17c1238d9712ee75fe0b",
+  "purpose": "Labeled negative fixture with direct claim-reverts code evidence; original main/history retained."
+}

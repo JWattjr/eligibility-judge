@@ -1,0 +1,65 @@
+{
+  "action": "Propose an update",
+  "project": "Eligibility Judge",
+  "milestone": "Milestone v1: Seasons, Badges and Rule Disputes",
+  "network": "StudioNet 61999. GEN is simulated development currency.",
+  "contracts": [
+    {
+      "name": "RulingDisputes",
+      "address": "0x464f3e7147d1C7e7EdeF5e4A0fcb9393a8F8A680",
+      "description": "Bonded full-file rule hearings. Validators independently judge pinned evidence and verify quotes. Finalized outcomes update credentials; VOID refunds and timed exits protect bonds.",
+      "explorer": "https://explorer-studio.genlayer.com/address/0x464f3e7147d1C7e7EdeF5e4A0fcb9393a8F8A680"
+    },
+    {
+      "name": "QualificationBadges",
+      "address": "0x0F278ea98EB792C616947Be2Fb4A857C1Be59543",
+      "description": "Non-transferable qualification credentials tied to a pinned commit, frozen rulebook and effective-verdict digest. Minting waits for the opening window and every pending hearing. No LLM or stake.",
+      "explorer": "https://explorer-studio.genlayer.com/address/0x0F278ea98EB792C616947Be2Fb4A857C1Be59543"
+    },
+    {
+      "name": "EligibilitySeries",
+      "address": "0x0e355b80258869F6b42016185EBc0901F87C152C",
+      "description": "Two-to-six-round seasons with a fixed qualification count and equal GEN bonus shares. Imports final effective rulings, refunds void or empty seasons, and verifies native credit before marking paid.",
+      "explorer": "https://explorer-studio.genlayer.com/address/0x0e355b80258869F6b42016185EBc0901F87C152C"
+    }
+  ],
+  "run": "milestone-v1-final",
+  "status": "STOPPED: missing verbatim quote in control README judgment.",
+  "readyForOwnerReview": false,
+  "summary": "Eligibility Judge implements full-file rule hearings, qualification badges and fixed-threshold seasons. A revised owner-operated live demo is in progress. Prior stopped cases and their credited recovery remain archived. New live outcomes, badge issuance and bonus payouts are not yet claimed.",
+  "evidence": [
+    {
+      "type": "GenLayer Explorer Contract",
+      "title": "RulingDisputes deployed on StudioNet",
+      "url": "https://explorer-studio.genlayer.com/address/0x464f3e7147d1C7e7EdeF5e4A0fcb9393a8F8A680"
+    },
+    {
+      "type": "GenLayer Explorer Contract",
+      "title": "QualificationBadges deployed on StudioNet",
+      "url": "https://explorer-studio.genlayer.com/address/0x0F278ea98EB792C616947Be2Fb4A857C1Be59543"
+    },
+    {
+      "type": "GenLayer Explorer Contract",
+      "title": "EligibilitySeries deployed on StudioNet",
+      "url": "https://explorer-studio.genlayer.com/address/0x0e355b80258869F6b42016185EBc0901F87C152C"
+    },
+    {
+      "type": "GenLayer Explorer Contract",
+      "title": "Unchanged EligibilityJudge on StudioNet",
+      "url": "https://explorer-studio.genlayer.com/address/0x03E7970E791d644B2714a457D178Edf036670bb7"
+    }
+  ],
+  "checks": {
+    "liveVerification": "PENDING",
+    "browser": "PENDING",
+    "productionRelease": "PENDING"
+  },
+  "blockers": "The fresh live demo and independent end-to-end verification must complete before submission review.",
+  "fieldCharacterCounts": {
+    "summary": 292,
+    "RulingDisputes.description": 180,
+    "QualificationBadges.description": 194,
+    "EligibilitySeries.description": 197
+  },
+  "failedTransaction": "0x34543a309fa906b82e1c231fe30d4822b39f1f0e0cd49d703749832c21692dc9"
+}

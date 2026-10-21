@@ -6,3 +6,5 @@ deploy/previous-runs/milestone-v1-first-run/** -text
 deploy/clean-preflight/*-tree.json -text
 deploy/previous-runs/milestone-v1-clean-stopped/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
 deploy/final-preflight/*-tree.json -text
+deploy/previous-runs/milestone-v1-final-stopped/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+deploy/release-preflight/*-tree.json -text

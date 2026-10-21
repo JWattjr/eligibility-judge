@@ -1,11 +1,11 @@
 {
   "status": "PASS",
-  "run": "milestone-v1-final",
-  "checkedAt": "2026-10-21T10:48:05.064953+00:00",
-  "contractTests": 114,
+  "run": "milestone-v1-release",
+  "checkedAt": "2026-10-21T11:30:47.645094+00:00",
+  "contractTests": 116,
   "existingContractTests": 46,
-  "milestoneContractTests": 68,
-  "additionalTestsThisRun": 4,
+  "milestoneContractTests": 70,
+  "additionalTestsThisRun": 6,
   "appTests": 22,
   "typecheck": "PASS",
   "lint": {

@@ -23,10 +23,6 @@
       "explorer": "https://explorer-studio.genlayer.com/address/0x0e355b80258869F6b42016185EBc0901F87C152C"
     }
   ],
-  "run": "milestone-v1-final",
-  "status": "Revised final demo in progress. Do not submit this draft.",
-  "readyForOwnerReview": false,
-  "summary": "Eligibility Judge implements full-file rule hearings, qualification badges and fixed-threshold seasons. A revised owner-operated live demo is in progress. Prior stopped cases and their credited recovery remain archived. New live outcomes, badge issuance and bonus payouts are not yet claimed.",
   "evidence": [
     {
       "type": "GenLayer Explorer Contract",
@@ -49,16 +45,21 @@
       "url": "https://explorer-studio.genlayer.com/address/0x03E7970E791d644B2714a457D178Edf036670bb7"
     }
   ],
-  "checks": {
-    "liveVerification": "PENDING",
-    "browser": "PENDING",
-    "productionRelease": "PENDING"
-  },
-  "blockers": "The fresh live demo and independent end-to-end verification must complete before submission review.",
+  "summary": "Eligibility Judge implements full-file rule hearings, qualification badges and fixed-threshold seasons. A revised owner-operated live demo is in progress. Prior stopped cases and their credited recovery remain archived. New live outcomes, badge issuance and bonus payouts are not yet claimed.",
   "fieldCharacterCounts": {
     "summary": 292,
     "RulingDisputes.description": 180,
     "QualificationBadges.description": 194,
     "EligibilitySeries.description": 197
+  },
+  "run": "milestone-v1-release",
+  "status": "Concise-evidence release run in progress; do not submit this draft.",
+  "readyForOwnerReview": false,
+  "previousGrossDepositsWei": "50000000000000003",
+  "checks": {
+    "contractTests": 116,
+    "liveVerification": "PENDING",
+    "browser": "PENDING",
+    "productionRelease": "PENDING"
   }
 }

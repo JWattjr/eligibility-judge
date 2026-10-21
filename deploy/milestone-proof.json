@@ -1,19 +1,25 @@
 {
-  "version": 3,
-  "run": "milestone-v1-final",
+  "version": 4,
+  "run": "milestone-v1-release",
   "network": "StudioNet",
   "chainId": 61999,
   "judge": "0x03E7970E791d644B2714a457D178Edf036670bb7",
   "probe": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
   "organizer": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
   "depositCeilingWei": "200000000000000000",
-  "previousGrossDepositsWei": "50000000000000002",
+  "previousGrossDepositsWei": "50000000000000003",
   "grossDepositsWei": "0",
-  "cumulativeGrossDepositsWei": "50000000000000002",
+  "cumulativeGrossDepositsWei": "50000000000000003",
   "transactions": {
     "deploy-disputes": "0x99e12579d128fa6ad3de3b33a3fe411b7192a03aa8b0559a9202602c1aa2cd2e",
     "deploy-badges": "0xe998c9dd5f2d3b87c1266b46ebf7a687bb337d48c99418b7a30442791a3a5df7",
-    "deploy-series": "0xd86ac5a1173036b2e1b7746276770e28e738472dff35a18be1dd29672ff46f9c"
+    "deploy-series": "0xd86ac5a1173036b2e1b7746276770e28e738472dff35a18be1dd29672ff46f9c",
+    "probe-0": "0xa1bdfeef848afcb28fc343a89be99f6257ac5f3532f8aad037b24e2d8ee61bec",
+    "probe-1": "0xcb975aeb2563b392e35bdf560d3dfb7febcc69be3d4426a5742d4bd52653a773",
+    "probe-2": "0x535e5f469b492d4868bc56ebc400a092c53e4e32059dbd6806325ea911301d73",
+    "probe-5": "0x40d305598bbf6c316c72132bf54577f87e80fa1841e6f51f93cbcf45255cb431",
+    "probe-6": "0x27ee719406e4317f297428ba936a82048b853fa7069109f66b8567d557745763",
+    "probe-7": "0x03c88a9aceee585e8a409263629d2fcd328d4f4385b3bc540be0f6b89b6be6e2"
   },
   "broadcasts": {
     "deploy-disputes": {
@@ -38,6 +44,92 @@
         "0x464f3e7147d1C7e7EdeF5e4A0fcb9393a8F8A680"
       ],
       "at": "2026-10-20T18:24:50.923Z"
+    },
+    "probe-0": {
+      "address": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+      "method": "probe",
+      "args": [
+        "https://raw.githubusercontent.com/JWattjr/Slash-court/18b3f691fc7fcfcc3a94a1973db1caaf1570224a/README.md"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:51:10.675Z"
+    },
+    "probe-1": {
+      "address": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+      "method": "probe",
+      "args": [
+        "https://raw.githubusercontent.com/JWattjr/eligibility-judge/24ace69788fe86ef4e2c8326e46094882df4bf12/README.md"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:51:57.371Z"
+    },
+    "probe-2": {
+      "address": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+      "method": "probe",
+      "args": [
+        "https://raw.githubusercontent.com/JWattjr/eligibility-judge/1cc23996bb52c4ade9790ae2477e6a58f9057ee9/README.md"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:52:42.071Z"
+    },
+    "probe-5": {
+      "address": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+      "method": "probe",
+      "args": [
+        "https://raw.githubusercontent.com/JWattjr/Slash-court/18b3f691fc7fcfcc3a94a1973db1caaf1570224a/contracts/operator_bond_vault.py"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:55:06.534Z"
+    },
+    "probe-6": {
+      "address": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+      "method": "probe",
+      "args": [
+        "https://raw.githubusercontent.com/JWattjr/eligibility-judge/24ace69788fe86ef4e2c8326e46094882df4bf12/contracts/eligibility_judge.py"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:56:02.396Z"
+    },
+    "probe-7": {
+      "address": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+      "method": "probe",
+      "args": [
+        "https://raw.githubusercontent.com/JWattjr/eligibility-judge/1cc23996bb52c4ade9790ae2477e6a58f9057ee9/contracts/eligibility_series.py"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:56:48.647Z"
+    }
+  },
+  "probes": {
+    "https://raw.githubusercontent.com/JWattjr/Slash-court/18b3f691fc7fcfcc3a94a1973db1caaf1570224a/README.md": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://raw.githubusercontent.com/JWattjr/eligibility-judge/24ace69788fe86ef4e2c8326e46094882df4bf12/README.md": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://raw.githubusercontent.com/JWattjr/eligibility-judge/1cc23996bb52c4ade9790ae2477e6a58f9057ee9/README.md": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://raw.githubusercontent.com/JWattjr/Slash-court/18b3f691fc7fcfcc3a94a1973db1caaf1570224a/contracts/operator_bond_vault.py": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://raw.githubusercontent.com/JWattjr/eligibility-judge/24ace69788fe86ef4e2c8326e46094882df4bf12/contracts/eligibility_judge.py": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://raw.githubusercontent.com/JWattjr/eligibility-judge/1cc23996bb52c4ade9790ae2477e6a58f9057ee9/contracts/eligibility_series.py": {
+      "reachable": true,
+      "status": 200
     }
   },
   "contracts": {
@@ -67,9 +159,330 @@
   "completed": false,
   "stages": {},
   "stopOnAnyFailure": true,
-  "previousRun": "deploy/previous-runs/milestone-v1-clean-stopped",
+  "previousRun": "deploy/previous-runs/milestone-v1-final-stopped",
   "deploymentReused": true,
   "deploymentProvenance": "Corrected contracts deployed and source-verified in the archived clean run; no contract source changes.",
-  "authorization": "User instructed proceed till finish after the revised-demo plan and full recovery. Separate fresh cases; no old failed transaction is replayed.",
-  "recordedAt": "2026-10-21T10:39:04.614020+00:00"
+  "probeProvenance": "Six successful immutable-URL probes reused by receipt; four revised fixture URLs checked before deposits.",
+  "authorization": "User instructed proceed till finish; fresh cases within the cumulative 0.2-GEN ceiling, preserving failed attempts without replay.",
+  "priorStoppedPool": {
+    "challenge": "challenge-7",
+    "amountWei": "1",
+    "graceEndsAt": 1792584856
+  },
+  "recordedAt": "2026-10-21T11:26:48.745950+00:00",
+  "candidateTrees": [
+    {
+      "name": "slash-court",
+      "repo": "https://github.com/JWattjr/Slash-court",
+      "commit": "18b3f691fc7fcfcc3a94a1973db1caaf1570224a",
+      "url": "https://api.github.com/repos/JWattjr/Slash-court/git/trees/18b3f691fc7fcfcc3a94a1973db1caaf1570224a?recursive=1",
+      "bytes": 26145,
+      "truncated": false,
+      "sha256": "fabd48e73bbfe3055a9a918296e3d2bc3158b0987b769c5274df48aca058644b",
+      "responseFile": "deploy/release-preflight/slash-court-tree.json",
+      "accepted": true,
+      "judgeSelectedFiles": [
+        "LICENSE",
+        "README.md",
+        "deploy/README.md",
+        "evidence-fixtures/README.md",
+        "contracts/__init__.py",
+        "contracts/operator_bond_vault.py",
+        "contracts/slash_court.py",
+        "tests/__init__.py",
+        "tests/direct/__init__.py",
+        "tests/direct/conftest.py"
+      ],
+      "inspection": {
+        "LICENSE": {
+          "bytes": 1064,
+          "sha256": "7217bf1f8bc4d10531dc7bd6ac06b5fe30c45489e27edd14e953b5e7e42a125b",
+          "visibleNativePayout": false
+        },
+        "README.md": {
+          "bytes": 8790,
+          "sha256": "880f0024d54bef96944017aa01b8f107cbe84e2bd84653e0387544fd48d7862d",
+          "visibleNativePayout": false
+        },
+        "deploy/README.md": {
+          "bytes": 685,
+          "sha256": "664c71c6e561af361d35055679f8380b9436af7918fdadd182d301c28f0c68e5",
+          "visibleNativePayout": false
+        },
+        "evidence-fixtures/README.md": {
+          "bytes": 306,
+          "sha256": "413dd5ee832c451decb9edee28868dbea05d00f73c0a0c8267cc8b6b125fb10b",
+          "visibleNativePayout": false
+        },
+        "contracts/__init__.py": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "visibleNativePayout": false
+        },
+        "contracts/operator_bond_vault.py": {
+          "bytes": 34378,
+          "sha256": "dee5b3832050b2951f0e1c62994f9725ba29a2b3c97e94ae01d02f2232b04c07",
+          "visibleNativePayout": true
+        },
+        "contracts/slash_court.py": {
+          "bytes": 57897,
+          "sha256": "9545c3eed692153ccb5e64f0ba054d5f76d272e5df1324f52a8418acb5d34388",
+          "visibleNativePayout": false
+        },
+        "tests/__init__.py": {
+          "bytes": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "visibleNativePayout": false
+        },
+        "tests/direct/__init__.py": {
+          "bytes": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "visibleNativePayout": false
+        },
+        "tests/direct/conftest.py": {
+          "bytes": 5390,
+          "sha256": "058ea8210a00718db32fb21dd9fe2b986c234193d4c8b81e3797f69b83bd8316",
+          "visibleNativePayout": false
+        }
+      },
+      "readmeHasExplorerAddress": true,
+      "visibleNativePayout": true,
+      "mitLicense": true
+    },
+    {
+      "name": "rescued-original",
+      "repo": "https://github.com/JWattjr/eligibility-judge",
+      "commit": "24ace69788fe86ef4e2c8326e46094882df4bf12",
+      "url": "https://api.github.com/repos/JWattjr/eligibility-judge/git/trees/24ace69788fe86ef4e2c8326e46094882df4bf12?recursive=1",
+      "bytes": 21504,
+      "truncated": false,
+      "sha256": "0c2d5d21bb61e69677f8e43862066312475ad99b6bb4f0d9f4e7aae13f2f5687",
+      "responseFile": "deploy/release-preflight/rescued-original-tree.json",
+      "accepted": true,
+      "judgeSelectedFiles": [
+        "LICENSE",
+        "README.md",
+        "contracts/access_probe.py",
+        "contracts/citation_probe.py",
+        "contracts/consensus_probe.py",
+        "contracts/eligibility_judge.py",
+        "deploy/citation-run-contract.py",
+        "deploy/evidence-contract.py",
+        "deploy/previous-contract.py",
+        "tests/appeal.test.ts"
+      ],
+      "inspection": {
+        "LICENSE": {
+          "bytes": 1064,
+          "sha256": "dc608c11b712e70a845b740517ec7de1a38ad5974603daaa4cc14ae5a14c2f84",
+          "visibleNativePayout": false
+        },
+        "README.md": {
+          "bytes": 11882,
+          "sha256": "19abf402d38bbc8ab48a4d490baf18d5da5c42883461762c58ef6686cf732409",
+          "visibleNativePayout": false
+        },
+        "contracts/access_probe.py": {
+          "bytes": 618,
+          "sha256": "9dd55074175ba25faa4ddb86a01a4da162637267a11683a857a78599844b765d",
+          "visibleNativePayout": false
+        },
+        "contracts/citation_probe.py": {
+          "bytes": 9329,
+          "sha256": "2f33447ebe2a6ab346870a49f84f1b85342ab44790d1d1713e544c726a85a54d",
+          "visibleNativePayout": false
+        },
+        "contracts/consensus_probe.py": {
+          "bytes": 10129,
+          "sha256": "b9bb8c26b0184965a02e1cba7503056e1bd84214f0364c717f4f258c119bed61",
+          "visibleNativePayout": false
+        },
+        "contracts/eligibility_judge.py": {
+          "bytes": 21475,
+          "sha256": "20244a168541a23d1d46b2dc14b1f3d05e2b74d8def8761fb9f0eb5aaa7a17aa",
+          "visibleNativePayout": false
+        },
+        "deploy/citation-run-contract.py": {
+          "bytes": 19203,
+          "sha256": "eac2ce6ce8f232d19a940cf972fb035347435737579187bec1b2fee0294fc156",
+          "visibleNativePayout": false
+        },
+        "deploy/evidence-contract.py": {
+          "bytes": 19037,
+          "sha256": "a7e6c675e2ba1c268075aef89cab47ec7df309f39e87e714c6b9617509d1b3c3",
+          "visibleNativePayout": false
+        },
+        "deploy/previous-contract.py": {
+          "bytes": 18776,
+          "sha256": "2e12db9ed81167c87ee7db03d9eb880e033f059e1307ec285eb7c1f5bbd624c2",
+          "visibleNativePayout": false
+        },
+        "tests/appeal.test.ts": {
+          "bytes": 1498,
+          "sha256": "47865beac725f08cc923a6f94893047dcd7f9eeafdf25e881adb9b7f6a9d732b",
+          "visibleNativePayout": false
+        }
+      },
+      "readmeHasExplorerAddress": true,
+      "visibleNativePayout": false,
+      "mitLicense": true,
+      "decisiveFile": {
+        "path": "contracts/eligibility_judge.py",
+        "bytes": 21475,
+        "payoutOffset": 20471
+      }
+    },
+    {
+      "name": "qualifying-current",
+      "repo": "https://github.com/JWattjr/eligibility-judge",
+      "commit": "1cc23996bb52c4ade9790ae2477e6a58f9057ee9",
+      "url": "https://api.github.com/repos/JWattjr/eligibility-judge/git/trees/1cc23996bb52c4ade9790ae2477e6a58f9057ee9?recursive=1",
+      "bytes": 52142,
+      "truncated": false,
+      "sha256": "c616eea03bc42bd3bb190e2010561c5fb0e12e2d4ccb275c0db793ddb20708aa",
+      "responseFile": "deploy/release-preflight/qualifying-current-tree.json",
+      "accepted": true,
+      "judgeSelectedFiles": [
+        "LICENSE",
+        "README.md",
+        "contracts/access_probe.py",
+        "contracts/citation_probe.py",
+        "contracts/consensus_probe.py",
+        "contracts/eligibility_judge.py",
+        "contracts/eligibility_series.py",
+        "contracts/qualification_badges.py",
+        "contracts/rule_disputes.py",
+        "deploy/citation-run-contract.py"
+      ],
+      "inspection": {
+        "LICENSE": {
+          "bytes": 1064,
+          "sha256": "dc608c11b712e70a845b740517ec7de1a38ad5974603daaa4cc14ae5a14c2f84",
+          "visibleNativePayout": false
+        },
+        "README.md": {
+          "bytes": 20741,
+          "sha256": "d881c2e0a16c65b1791b35371b9f47616a1758c31deb7c7514d95e1653e225b7",
+          "visibleNativePayout": false
+        },
+        "contracts/access_probe.py": {
+          "bytes": 618,
+          "sha256": "9dd55074175ba25faa4ddb86a01a4da162637267a11683a857a78599844b765d",
+          "visibleNativePayout": false
+        },
+        "contracts/citation_probe.py": {
+          "bytes": 9329,
+          "sha256": "2f33447ebe2a6ab346870a49f84f1b85342ab44790d1d1713e544c726a85a54d",
+          "visibleNativePayout": false
+        },
+        "contracts/consensus_probe.py": {
+          "bytes": 10129,
+          "sha256": "b9bb8c26b0184965a02e1cba7503056e1bd84214f0364c717f4f258c119bed61",
+          "visibleNativePayout": false
+        },
+        "contracts/eligibility_judge.py": {
+          "bytes": 21475,
+          "sha256": "20244a168541a23d1d46b2dc14b1f3d05e2b74d8def8761fb9f0eb5aaa7a17aa",
+          "visibleNativePayout": false
+        },
+        "contracts/eligibility_series.py": {
+          "bytes": 17646,
+          "sha256": "0b9781520e730a0387a46423826924b4ff1dac84e4359687295f92f6c32b049a",
+          "visibleNativePayout": true
+        },
+        "contracts/qualification_badges.py": {
+          "bytes": 3644,
+          "sha256": "2f4d00ebab6f4e1a2c1ccd476be4cc1b979705b5b112da6411d02b5e1f605f14",
+          "visibleNativePayout": false
+        },
+        "contracts/rule_disputes.py": {
+          "bytes": 26078,
+          "sha256": "947ff60e7ba005f6b418db9e4db98c83f424231433221f78a82af65e61e93181",
+          "visibleNativePayout": false
+        },
+        "deploy/citation-run-contract.py": {
+          "bytes": 19203,
+          "sha256": "eac2ce6ce8f232d19a940cf972fb035347435737579187bec1b2fee0294fc156",
+          "visibleNativePayout": false
+        }
+      },
+      "readmeHasExplorerAddress": true,
+      "visibleNativePayout": true,
+      "mitLicense": true
+    },
+    {
+      "name": "control-original",
+      "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+      "commit": "13d660888b7b58fc24626f4fc995481223baa8e9",
+      "url": "https://api.github.com/repos/JWattjr/eligibility-judge-injection-fixture/git/trees/13d660888b7b58fc24626f4fc995481223baa8e9?recursive=1",
+      "bytes": 1189,
+      "truncated": false,
+      "sha256": "fcaf909a30d424c730adb2cdb8ee0216bb3ed416d1a4a5893face4e93e01e3b0",
+      "responseFile": "deploy/release-preflight/control-original-tree.json",
+      "accepted": true,
+      "judgeSelectedFiles": [
+        "LICENSE",
+        "README.md",
+        "contracts/negative_control.py"
+      ],
+      "inspection": {
+        "LICENSE": {
+          "bytes": 1064,
+          "sha256": "dc608c11b712e70a845b740517ec7de1a38ad5974603daaa4cc14ae5a14c2f84",
+          "visibleNativePayout": false
+        },
+        "README.md": {
+          "bytes": 184,
+          "sha256": "20a69de25d8ac50a9b6ff700182b667ea7a6725c7be945c258cd5b445cbb79da",
+          "visibleNativePayout": false
+        },
+        "contracts/negative_control.py": {
+          "bytes": 476,
+          "sha256": "03043ec971e928b551ced40a47b69a2c57b4eebdb72462969f25eadc8273e612",
+          "visibleNativePayout": false
+        }
+      },
+      "readmeHasExplorerAddress": false,
+      "visibleNativePayout": false,
+      "mitLicense": true
+    },
+    {
+      "name": "control-second",
+      "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+      "commit": "ea0dc9332884bcfbb6dc17c1238d9712ee75fe0b",
+      "url": "https://api.github.com/repos/JWattjr/eligibility-judge-injection-fixture/git/trees/ea0dc9332884bcfbb6dc17c1238d9712ee75fe0b?recursive=1",
+      "bytes": 1189,
+      "truncated": false,
+      "sha256": "21383c0ba6fc75898e9395f300b8347cbfb3bd19a266968009b02c53ec52c0b3",
+      "responseFile": "deploy/release-preflight/control-second-tree.json",
+      "accepted": true,
+      "judgeSelectedFiles": [
+        "LICENSE",
+        "README.md",
+        "contracts/negative_control.py"
+      ],
+      "inspection": {
+        "LICENSE": {
+          "bytes": 1064,
+          "sha256": "dc608c11b712e70a845b740517ec7de1a38ad5974603daaa4cc14ae5a14c2f84",
+          "visibleNativePayout": false
+        },
+        "README.md": {
+          "bytes": 184,
+          "sha256": "d512b51f754c0538c3bffc12f6c1437e99a6c7c6b2e1ec4d545758bfc28b798b",
+          "visibleNativePayout": false
+        },
+        "contracts/negative_control.py": {
+          "bytes": 476,
+          "sha256": "03043ec971e928b551ced40a47b69a2c57b4eebdb72462969f25eadc8273e612",
+          "visibleNativePayout": false
+        }
+      },
+      "readmeHasExplorerAddress": false,
+      "visibleNativePayout": false,
+      "mitLicense": true
+    }
+  ],
+  "candidatePreflightPassed": true,
+  "candidatePreflightAt": "2026-10-21T11:29:54.256290+00:00"
 }

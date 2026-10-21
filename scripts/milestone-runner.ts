@@ -6,7 +6,7 @@ import {TransactionHashVariant} from 'genlayer-js/types';
 import type {GenLayerClient,TransactionHash} from 'genlayer-js/types';
 import {privateKeyToAccount} from 'viem/accounts';
 const path=process.env.ELIGIBILITY_MILESTONE_PROOF_PATH??'deploy/milestone-proof.json';
-const receipts=process.env.ELIGIBILITY_MILESTONE_RECEIPTS??'deploy/receipts/milestone-v1-final';
+const receipts=process.env.ELIGIBILITY_MILESTONE_RECEIPTS??'deploy/receipts/milestone-v1-release';
 const pause=(ms:number)=>new Promise(r=>setTimeout(r,ms));
 const sha=(value:string)=>createHash('sha256').update(value).digest('hex');
 const JUDGE='0x03E7970E791d644B2714a457D178Edf036670bb7';
@@ -18,7 +18,7 @@ export default async function milestone(client:Client){
  const save=()=>{proof.recordedAt=new Date().toISOString();writeFileSync(path+'.tmp',JSON.stringify(proof,null,2)+'\n');renameSync(path+'.tmp',path)};
  const step=process.env.ELIGIBILITY_MILESTONE_STEP??'snapshot';
  if(proof.stopReason)throw Error('One-pass run is stopped: '+proof.stopReason);
- if(proof.run!=='milestone-v1-final'||proof.depositCeilingWei!=='200000000000000000')throw Error('Expected the isolated final-run journal and cumulative 0.2 GEN ceiling');
+ if(proof.run!=='milestone-v1-release'||proof.depositCeilingWei!=='200000000000000000')throw Error('Expected the isolated final-run journal and cumulative 0.2 GEN ceiling');
  if(proof.stages?.[step]?.status==='PASS'){console.log('Previously completed stage retained:',step);return}
  proof.stages??={};proof.stages[step]={status:'RUNNING',at:new Date().toISOString()};save();
  const owner=client.account!.address.toLowerCase();
@@ -69,7 +69,13 @@ export default async function milestone(client:Client){
   await follow(parent,name,native);
   return parent;
  }
- async function read(address:string,method:string,args:any[]=[]){return client.readContract({address:address as `0x${string}`,functionName:method,args,transactionHashVariant:TransactionHashVariant.LATEST_FINAL})}
+ async function read(address:string,method:string,args:any[]=[]):Promise<any>{
+  for(let attempt=0;attempt<6;attempt++){
+   try{return await client.readContract({address:address as `0x${string}`,functionName:method,args,transactionHashVariant:TransactionHashVariant.LATEST_FINAL})}
+   catch(error){if(!/fetch failed|Unexpected token|ETIMEDOUT|ECONNRESET|timed out|rate.limit|429|Bad Gateway|\b50[234]\b/i.test(String(error)))throw error;console.log('Transient read failure for',method,'retaining all saved transaction hashes');await pause(10000)}
+  }
+  throw Object.assign(Error('Read temporarily unavailable: '+method),{code:'WAITING_READ'});
+ }
  const json=async(address:string,method:string,args:any[]=[])=>JSON.parse(String(await read(address,method,args)));
  function returned(receipt:any){const payload=receipt.consensus_data?.leader_receipt?.[0]?.result?.payload;return JSON.parse(payload?.readable??'null')}
  async function exactCode(name:string){
@@ -105,6 +111,17 @@ export default async function milestone(client:Client){
  const control=keys?createClient({chain:studionet,account:privateKeyToAccount(keys.missing)}):null;
  const signerFor=(wallet:string)=>wallet===owner?client:wallet===rescued?.account?.address.toLowerCase()?rescued!:wallet===control?.account?.address.toLowerCase()?control!:(()=>{throw Error('Unknown demo signer')})();
  const specification=(entrant:any,round:number)=>entrant.rounds[round];
+ async function waitForWindowBudget(){
+  const ledger='.impeccable/review/milestone-v1/rpc-budget.json';
+  for(let checks=0;;checks++){
+   const now=Date.now();const requests:number[]=existsSync(ledger)?JSON.parse(readFileSync(ledger,'utf8')):[];
+   const recent=requests.filter(t=>now-t<3600000).length;
+   // Start a short entry window only with room for its entries AND judgments.
+   if(recent<=170)return;
+   if(checks%6===0)console.log('Waiting before creating the next 15-minute window; retaining RPC history,',recent,'requests in the last hour.');
+   await pause(10000);
+  }
+ }
  function expect(condition:unknown,message:string,detail?:unknown):asserts condition{
   if(!condition){proof.mismatches??=[];proof.mismatches.push({message,detail,at:new Date().toISOString()});save();throw Error(message)}
  }
@@ -139,8 +156,10 @@ export default async function milestone(client:Client){
   expect(proof.candidatePreflightPassed&&proof.accessProbesVerified&&Object.values(proof.contracts).length===3&&Object.values(proof.contracts).every((v:any)=>v.sourceVerified&&v.configurationVerified),'Preflight, exact deployed sources, correct wiring and access probes required before deposits');
   proof.rounds??=[];
   for(const round of [step==='seed-1'?0:1]){
-   const name='round-'+(round+1),stamp=Math.floor(Date.now()/1000);
+   const name='round-'+(round+1);
    if(!proof.rounds[round]){
+    await waitForWindowBudget();
+    const stamp=Math.floor(Date.now()/1000);
     const r=await send(name+'-create',JUDGE,'create',['GenLayer Builders Final Season — Round '+(round+1),'Owner-operated public applications and a labeled negative contract fixture; distinct pinned commits across rounds.',JSON.stringify(proof.rules),stamp,stamp+900,3],1n);
     const id=returned(r);expect(typeof id==='string','Challenge ID missing');proof.rounds[round]={id};save();
    }
@@ -239,7 +258,7 @@ export default async function milestone(client:Client){
  proof.stages[step]={status:'PASS',at:new Date().toISOString()};save();
  console.log('Milestone stage',step,'PASS; gross deposits',proof.grossDepositsWei,'of',proof.depositCeilingWei,'wei');
  } catch(error){
-  if((error as any)?.code==='WAITING_RECEIPT'){proof.stages[step]={status:'WAITING_RECEIPT',at:new Date().toISOString(),message:String(error)};save();throw error}
+  if(['WAITING_RECEIPT','WAITING_READ'].includes((error as any)?.code)){proof.stages[step]={status:(error as any).code,at:new Date().toISOString(),message:String(error)};save();throw error}
   proof.completed=false;proof.stopReason=String(error);proof.stoppedAt=new Date().toISOString();proof.stages[step]={status:'FAILED',at:proof.stoppedAt,error:String(error)};save();throw error;
  }
 }

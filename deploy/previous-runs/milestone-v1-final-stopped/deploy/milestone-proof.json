@@ -1,0 +1,993 @@
+{
+  "version": 3,
+  "run": "milestone-v1-final",
+  "network": "StudioNet",
+  "chainId": 61999,
+  "judge": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+  "probe": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+  "organizer": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+  "depositCeilingWei": "200000000000000000",
+  "previousGrossDepositsWei": "50000000000000002",
+  "grossDepositsWei": "1",
+  "cumulativeGrossDepositsWei": "50000000000000003",
+  "transactions": {
+    "deploy-disputes": "0x99e12579d128fa6ad3de3b33a3fe411b7192a03aa8b0559a9202602c1aa2cd2e",
+    "deploy-badges": "0xe998c9dd5f2d3b87c1266b46ebf7a687bb337d48c99418b7a30442791a3a5df7",
+    "deploy-series": "0xd86ac5a1173036b2e1b7746276770e28e738472dff35a18be1dd29672ff46f9c",
+    "probe-0": "0xa1bdfeef848afcb28fc343a89be99f6257ac5f3532f8aad037b24e2d8ee61bec",
+    "probe-1": "0xcb975aeb2563b392e35bdf560d3dfb7febcc69be3d4426a5742d4bd52653a773",
+    "probe-2": "0x535e5f469b492d4868bc56ebc400a092c53e4e32059dbd6806325ea911301d73",
+    "probe-3": "0x3bcf0cabef7f348fb60b99d1a69a2a6bd01541b4873bf052d71b4a7425aab1e9",
+    "probe-4": "0x0059465624fa6e616fb0e467ceb4cbcc146e08225b6b43560d3565736e79aeb9",
+    "probe-5": "0x40d305598bbf6c316c72132bf54577f87e80fa1841e6f51f93cbcf45255cb431",
+    "probe-6": "0x27ee719406e4317f297428ba936a82048b853fa7069109f66b8567d557745763",
+    "probe-7": "0x03c88a9aceee585e8a409263629d2fcd328d4f4385b3bc540be0f6b89b6be6e2",
+    "probe-8": "0xabab13e0111c55af0bd4e846793c485d7ac8ae138d370cb0bfe69499a5688c96",
+    "probe-9": "0xee2b1a72f2058f0b8dbd2bc783350b18ad6cea2752b6cb8f712338df58520d1f",
+    "round-1-create": "0xa8a3d5fe4193766150aad50018e62986a1047eb3abc4eb9e908d289b0b70562e",
+    "round-1-validate-0": "0x644a15c3dfac6649bbe6fcac5a4571a67d42430725d07835efbc09110a3e6b5f",
+    "round-1-validate-0-child-0": "0xa9260f4b0d86a85d34e7a72e21defe78fbdb77d9900f3067edd15e86a2ad0dd2",
+    "round-1-validate-1": "0x305e8ed99f3f44293bc7a68f60960faa952f65ac979cd01837f35ecc768f6261",
+    "round-1-validate-1-child-0": "0x6b095f6aab2c0174c7ec0ff46cf609c0b4e8b24f09d9b3bcebaf6e6dd267f0e7",
+    "round-1-validate-2": "0x43583372ac196cbb56b8b99dfab2539f6595eb168686efa2ee7084067f6af109",
+    "round-1-validate-2-child-0": "0xf3c57c55e7b26915fad09deefe86ab1eb6488d1f82855d387e449d47a420f39c",
+    "round-1-enter-steady": "0x128b355a3e7622ff95b438741c41b4e4e766c269a87af77a4dcde69ffe14af73",
+    "round-1-enter-rescued": "0x0df40bf0b048bb9395c3e70639509d63a1346dc4da97823555a316eff158893f",
+    "round-1-enter-control": "0x05af1cfa1b9a56431059fe2ddb2813f50f8e7f098fe9ea19a137ab23dce4f030",
+    "round-1-judge-steady-0": "0x93918f4e484f780cb62a8ea746cc1b66ad8562b1ae1f93c178bcd7da31d32587",
+    "round-1-judge-steady-0-child-0": "0x476c866ddffb665d23f1136ae025f34c1a3449036620c3388e660e830b9de463",
+    "round-1-judge-steady-1": "0x0bbd9f571638675f97c12ba58c5eb8921254c9112c4c00aa4b6547496132573a",
+    "round-1-judge-steady-1-child-0": "0x2ffd460011f4b4458b1f95d5d8fb5008779ba6bc41a93f4b7bc7da5eaf30a422",
+    "round-1-judge-steady-2": "0xbda2691f1e0333276670a9b764823e6455215e21e61bead310ef3e7daf0f6b67",
+    "round-1-judge-steady-2-child-0": "0xcb75ec925e2acb146e1ee6655a0cf902bc8b0567ceb809b66fb06c7956e76761",
+    "round-1-judge-rescued-0": "0x68128e172f216d673867561587a75ae7b9872790f251fc8bcbc2ac069c3bb774",
+    "round-1-judge-rescued-0-child-0": "0x7ddddedca0205192526ee7fefdcb92c26d379636035de0eff87fc10d7e24ea23",
+    "round-1-judge-rescued-1": "0x0a9292e1edd83af163b40f7a503231ebc21c84b93be7f4215067c35685350f0c",
+    "round-1-judge-rescued-1-child-0": "0x1c527c8968daeb6f11f03b121d49355cc9b588835663721d55586605cf0a5378",
+    "round-1-judge-rescued-2": "0x955dfe28852a457bfa4890b1d149f5196818b1aee7f76c674954c05daf36a5b2",
+    "round-1-judge-rescued-2-child-0": "0x8b0a396653e09b20d45dfcec8a7d9cc764a2021f2b31851de7cd812ef31a85fe",
+    "round-1-judge-control-0": "0x34543a309fa906b82e1c231fe30d4822b39f1f0e0cd49d703749832c21692dc9"
+  },
+  "broadcasts": {
+    "deploy-disputes": {
+      "source": "contracts/rule_disputes.py",
+      "args": [
+        "0x03E7970E791d644B2714a457D178Edf036670bb7"
+      ],
+      "at": "2026-10-20T18:23:27.072Z"
+    },
+    "deploy-badges": {
+      "source": "contracts/qualification_badges.py",
+      "args": [
+        "0x03E7970E791d644B2714a457D178Edf036670bb7",
+        "0x464f3e7147d1C7e7EdeF5e4A0fcb9393a8F8A680"
+      ],
+      "at": "2026-10-20T18:24:04.567Z"
+    },
+    "deploy-series": {
+      "source": "contracts/eligibility_series.py",
+      "args": [
+        "0x03E7970E791d644B2714a457D178Edf036670bb7",
+        "0x464f3e7147d1C7e7EdeF5e4A0fcb9393a8F8A680"
+      ],
+      "at": "2026-10-20T18:24:50.923Z"
+    },
+    "probe-0": {
+      "address": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+      "method": "probe",
+      "args": [
+        "https://raw.githubusercontent.com/JWattjr/Slash-court/18b3f691fc7fcfcc3a94a1973db1caaf1570224a/README.md"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:51:10.675Z"
+    },
+    "probe-1": {
+      "address": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+      "method": "probe",
+      "args": [
+        "https://raw.githubusercontent.com/JWattjr/eligibility-judge/24ace69788fe86ef4e2c8326e46094882df4bf12/README.md"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:51:57.371Z"
+    },
+    "probe-2": {
+      "address": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+      "method": "probe",
+      "args": [
+        "https://raw.githubusercontent.com/JWattjr/eligibility-judge/1cc23996bb52c4ade9790ae2477e6a58f9057ee9/README.md"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:52:42.071Z"
+    },
+    "probe-3": {
+      "address": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+      "method": "probe",
+      "args": [
+        "https://raw.githubusercontent.com/JWattjr/eligibility-judge-injection-fixture/afece97bfc18371715639cd3209c34e5a8a7b7d2/README.md"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:53:27.400Z"
+    },
+    "probe-4": {
+      "address": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+      "method": "probe",
+      "args": [
+        "https://raw.githubusercontent.com/JWattjr/eligibility-judge-injection-fixture/c65f35cb700667d2d4526c1c35104d697b44975e/README.md"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:54:11.724Z"
+    },
+    "probe-5": {
+      "address": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+      "method": "probe",
+      "args": [
+        "https://raw.githubusercontent.com/JWattjr/Slash-court/18b3f691fc7fcfcc3a94a1973db1caaf1570224a/contracts/operator_bond_vault.py"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:55:06.534Z"
+    },
+    "probe-6": {
+      "address": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+      "method": "probe",
+      "args": [
+        "https://raw.githubusercontent.com/JWattjr/eligibility-judge/24ace69788fe86ef4e2c8326e46094882df4bf12/contracts/eligibility_judge.py"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:56:02.396Z"
+    },
+    "probe-7": {
+      "address": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+      "method": "probe",
+      "args": [
+        "https://raw.githubusercontent.com/JWattjr/eligibility-judge/1cc23996bb52c4ade9790ae2477e6a58f9057ee9/contracts/eligibility_series.py"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:56:48.647Z"
+    },
+    "probe-8": {
+      "address": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+      "method": "probe",
+      "args": [
+        "https://raw.githubusercontent.com/JWattjr/eligibility-judge-injection-fixture/afece97bfc18371715639cd3209c34e5a8a7b7d2/contracts/negative_control.py"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:57:34.340Z"
+    },
+    "probe-9": {
+      "address": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+      "method": "probe",
+      "args": [
+        "https://raw.githubusercontent.com/JWattjr/eligibility-judge-injection-fixture/c65f35cb700667d2d4526c1c35104d697b44975e/contracts/negative_control.py"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:58:19.188Z"
+    },
+    "round-1-create": {
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "method": "create",
+      "args": [
+        "GenLayer Builders Final Season — Round 1",
+        "Owner-operated public applications and a labeled negative contract fixture; distinct pinned commits across rounds.",
+        "[\"The repository README.md documents a deployed StudioNet GenLayer contract address (a full 0x address linked to explorer-studio.genlayer.com).\",\"A Python GenLayer intelligent contract implements a native GEN payout using emit_transfer(value=...). Cite implementation code; README claims do not satisfy this rule.\",\"The repository has a LICENSE file declaring the MIT license.\"]",
+        1792580356,
+        1792581256,
+        3
+      ],
+      "value": "1",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T10:59:16.648Z"
+    },
+    "round-1-validate-0": {
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "method": "validate_rule",
+      "args": [
+        "challenge-7",
+        0
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T11:00:01.120Z"
+    },
+    "round-1-validate-1": {
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "method": "validate_rule",
+      "args": [
+        "challenge-7",
+        1
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T11:01:28.094Z"
+    },
+    "round-1-validate-2": {
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "method": "validate_rule",
+      "args": [
+        "challenge-7",
+        2
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T11:02:55.309Z"
+    },
+    "round-1-enter-steady": {
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "method": "enter",
+      "args": [
+        "challenge-7",
+        "https://github.com/JWattjr/Slash-court",
+        "18b3f691fc7fcfcc3a94a1973db1caaf1570224a",
+        ""
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T11:04:22.038Z"
+    },
+    "round-1-enter-rescued": {
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "method": "enter",
+      "args": [
+        "challenge-7",
+        "https://github.com/JWattjr/eligibility-judge",
+        "24ace69788fe86ef4e2c8326e46094882df4bf12",
+        ""
+      ],
+      "value": "0",
+      "sender": "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9",
+      "at": "2026-10-21T11:05:05.640Z"
+    },
+    "round-1-enter-control": {
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "method": "enter",
+      "args": [
+        "challenge-7",
+        "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+        "afece97bfc18371715639cd3209c34e5a8a7b7d2",
+        ""
+      ],
+      "value": "0",
+      "sender": "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642",
+      "at": "2026-10-21T11:05:50.793Z"
+    },
+    "round-1-judge-steady-0": {
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "method": "judge_rule",
+      "args": [
+        "challenge-7",
+        "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+        0
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T11:06:49.444Z"
+    },
+    "round-1-judge-steady-1": {
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "method": "judge_rule",
+      "args": [
+        "challenge-7",
+        "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+        1
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T11:08:27.773Z"
+    },
+    "round-1-judge-steady-2": {
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "method": "judge_rule",
+      "args": [
+        "challenge-7",
+        "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+        2
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T11:10:05.785Z"
+    },
+    "round-1-judge-rescued-0": {
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "method": "judge_rule",
+      "args": [
+        "challenge-7",
+        "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9",
+        0
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T11:11:33.870Z"
+    },
+    "round-1-judge-rescued-1": {
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "method": "judge_rule",
+      "args": [
+        "challenge-7",
+        "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9",
+        1
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T11:13:33.437Z"
+    },
+    "round-1-judge-rescued-2": {
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "method": "judge_rule",
+      "args": [
+        "challenge-7",
+        "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9",
+        2
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T11:15:12.130Z"
+    },
+    "round-1-judge-control-0": {
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "method": "judge_rule",
+      "args": [
+        "challenge-7",
+        "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642",
+        0
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "at": "2026-10-21T11:16:50.340Z"
+    }
+  },
+  "contracts": {
+    "disputes": {
+      "address": "0x464f3e7147d1C7e7EdeF5e4A0fcb9393a8F8A680",
+      "source": "contracts/rule_disputes.py",
+      "sourceSha256": "947ff60e7ba005f6b418db9e4db98c83f424231433221f78a82af65e61e93181",
+      "sourceVerified": true,
+      "configurationVerified": true
+    },
+    "badges": {
+      "address": "0x0F278ea98EB792C616947Be2Fb4A857C1Be59543",
+      "source": "contracts/qualification_badges.py",
+      "sourceSha256": "2f4d00ebab6f4e1a2c1ccd476be4cc1b979705b5b112da6411d02b5e1f605f14",
+      "sourceVerified": true,
+      "configurationVerified": true
+    },
+    "series": {
+      "address": "0x0e355b80258869F6b42016185EBc0901F87C152C",
+      "source": "contracts/eligibility_series.py",
+      "sourceSha256": "0b9781520e730a0387a46423826924b4ff1dac84e4359687295f92f6c32b049a",
+      "sourceVerified": true,
+      "configurationVerified": true
+    }
+  },
+  "deposits": [
+    {
+      "name": "round-1-create",
+      "hash": "0xa8a3d5fe4193766150aad50018e62986a1047eb3abc4eb9e908d289b0b70562e",
+      "value": "1"
+    }
+  ],
+  "completed": false,
+  "stages": {
+    "deploy": {
+      "status": "PASS",
+      "at": "2026-10-21T10:50:40.476Z"
+    },
+    "prepare": {
+      "status": "PASS",
+      "at": "2026-10-21T10:50:55.314Z"
+    },
+    "probe": {
+      "status": "PASS",
+      "at": "2026-10-21T10:59:04.989Z"
+    },
+    "seed-1": {
+      "status": "PASS",
+      "at": "2026-10-21T11:06:35.203Z"
+    },
+    "judge-1": {
+      "status": "FAILED",
+      "at": "2026-10-21T11:18:05.355Z",
+      "error": "Error: Live case failed; it will not be rerun: round-1-judge-control-0 0x34543a309fa906b82e1c231fe30d4822b39f1f0e0cd49d703749832c21692dc9"
+    }
+  },
+  "stopOnAnyFailure": true,
+  "previousRun": "deploy/previous-runs/milestone-v1-clean-stopped",
+  "deploymentReused": true,
+  "deploymentProvenance": "Corrected contracts deployed and source-verified in the archived clean run; no contract source changes.",
+  "authorization": "User instructed proceed till finish after the revised-demo plan and full recovery. Separate fresh cases; no old failed transaction is replayed.",
+  "recordedAt": "2026-10-21T11:18:05.355Z",
+  "candidateTrees": [
+    {
+      "name": "slash-court",
+      "repo": "https://github.com/JWattjr/Slash-court",
+      "commit": "18b3f691fc7fcfcc3a94a1973db1caaf1570224a",
+      "url": "https://api.github.com/repos/JWattjr/Slash-court/git/trees/18b3f691fc7fcfcc3a94a1973db1caaf1570224a?recursive=1",
+      "bytes": 26145,
+      "truncated": false,
+      "sha256": "fabd48e73bbfe3055a9a918296e3d2bc3158b0987b769c5274df48aca058644b",
+      "responseFile": "deploy/final-preflight/slash-court-tree.json",
+      "accepted": true,
+      "judgeSelectedFiles": [
+        "LICENSE",
+        "README.md",
+        "deploy/README.md",
+        "evidence-fixtures/README.md",
+        "contracts/__init__.py",
+        "contracts/operator_bond_vault.py",
+        "contracts/slash_court.py",
+        "tests/__init__.py",
+        "tests/direct/__init__.py",
+        "tests/direct/conftest.py"
+      ],
+      "inspection": {
+        "LICENSE": {
+          "bytes": 1064,
+          "sha256": "7217bf1f8bc4d10531dc7bd6ac06b5fe30c45489e27edd14e953b5e7e42a125b",
+          "visibleNativePayout": false
+        },
+        "README.md": {
+          "bytes": 8790,
+          "sha256": "880f0024d54bef96944017aa01b8f107cbe84e2bd84653e0387544fd48d7862d",
+          "visibleNativePayout": false
+        },
+        "deploy/README.md": {
+          "bytes": 685,
+          "sha256": "664c71c6e561af361d35055679f8380b9436af7918fdadd182d301c28f0c68e5",
+          "visibleNativePayout": false
+        },
+        "evidence-fixtures/README.md": {
+          "bytes": 306,
+          "sha256": "413dd5ee832c451decb9edee28868dbea05d00f73c0a0c8267cc8b6b125fb10b",
+          "visibleNativePayout": false
+        },
+        "contracts/__init__.py": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "visibleNativePayout": false
+        },
+        "contracts/operator_bond_vault.py": {
+          "bytes": 34378,
+          "sha256": "dee5b3832050b2951f0e1c62994f9725ba29a2b3c97e94ae01d02f2232b04c07",
+          "visibleNativePayout": true
+        },
+        "contracts/slash_court.py": {
+          "bytes": 57897,
+          "sha256": "9545c3eed692153ccb5e64f0ba054d5f76d272e5df1324f52a8418acb5d34388",
+          "visibleNativePayout": false
+        },
+        "tests/__init__.py": {
+          "bytes": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "visibleNativePayout": false
+        },
+        "tests/direct/__init__.py": {
+          "bytes": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "visibleNativePayout": false
+        },
+        "tests/direct/conftest.py": {
+          "bytes": 5390,
+          "sha256": "058ea8210a00718db32fb21dd9fe2b986c234193d4c8b81e3797f69b83bd8316",
+          "visibleNativePayout": false
+        }
+      },
+      "readmeHasExplorerAddress": true,
+      "visibleNativePayout": true,
+      "mitLicense": true
+    },
+    {
+      "name": "rescued-original",
+      "repo": "https://github.com/JWattjr/eligibility-judge",
+      "commit": "24ace69788fe86ef4e2c8326e46094882df4bf12",
+      "url": "https://api.github.com/repos/JWattjr/eligibility-judge/git/trees/24ace69788fe86ef4e2c8326e46094882df4bf12?recursive=1",
+      "bytes": 21504,
+      "truncated": false,
+      "sha256": "0c2d5d21bb61e69677f8e43862066312475ad99b6bb4f0d9f4e7aae13f2f5687",
+      "responseFile": "deploy/final-preflight/rescued-original-tree.json",
+      "accepted": true,
+      "judgeSelectedFiles": [
+        "LICENSE",
+        "README.md",
+        "contracts/access_probe.py",
+        "contracts/citation_probe.py",
+        "contracts/consensus_probe.py",
+        "contracts/eligibility_judge.py",
+        "deploy/citation-run-contract.py",
+        "deploy/evidence-contract.py",
+        "deploy/previous-contract.py",
+        "tests/appeal.test.ts"
+      ],
+      "inspection": {
+        "LICENSE": {
+          "bytes": 1064,
+          "sha256": "dc608c11b712e70a845b740517ec7de1a38ad5974603daaa4cc14ae5a14c2f84",
+          "visibleNativePayout": false
+        },
+        "README.md": {
+          "bytes": 11882,
+          "sha256": "19abf402d38bbc8ab48a4d490baf18d5da5c42883461762c58ef6686cf732409",
+          "visibleNativePayout": false
+        },
+        "contracts/access_probe.py": {
+          "bytes": 618,
+          "sha256": "9dd55074175ba25faa4ddb86a01a4da162637267a11683a857a78599844b765d",
+          "visibleNativePayout": false
+        },
+        "contracts/citation_probe.py": {
+          "bytes": 9329,
+          "sha256": "2f33447ebe2a6ab346870a49f84f1b85342ab44790d1d1713e544c726a85a54d",
+          "visibleNativePayout": false
+        },
+        "contracts/consensus_probe.py": {
+          "bytes": 10129,
+          "sha256": "b9bb8c26b0184965a02e1cba7503056e1bd84214f0364c717f4f258c119bed61",
+          "visibleNativePayout": false
+        },
+        "contracts/eligibility_judge.py": {
+          "bytes": 21475,
+          "sha256": "20244a168541a23d1d46b2dc14b1f3d05e2b74d8def8761fb9f0eb5aaa7a17aa",
+          "visibleNativePayout": false
+        },
+        "deploy/citation-run-contract.py": {
+          "bytes": 19203,
+          "sha256": "eac2ce6ce8f232d19a940cf972fb035347435737579187bec1b2fee0294fc156",
+          "visibleNativePayout": false
+        },
+        "deploy/evidence-contract.py": {
+          "bytes": 19037,
+          "sha256": "a7e6c675e2ba1c268075aef89cab47ec7df309f39e87e714c6b9617509d1b3c3",
+          "visibleNativePayout": false
+        },
+        "deploy/previous-contract.py": {
+          "bytes": 18776,
+          "sha256": "2e12db9ed81167c87ee7db03d9eb880e033f059e1307ec285eb7c1f5bbd624c2",
+          "visibleNativePayout": false
+        },
+        "tests/appeal.test.ts": {
+          "bytes": 1498,
+          "sha256": "47865beac725f08cc923a6f94893047dcd7f9eeafdf25e881adb9b7f6a9d732b",
+          "visibleNativePayout": false
+        }
+      },
+      "readmeHasExplorerAddress": true,
+      "visibleNativePayout": false,
+      "mitLicense": true,
+      "decisiveFile": {
+        "path": "contracts/eligibility_judge.py",
+        "bytes": 21475,
+        "payoutOffset": 20471
+      }
+    },
+    {
+      "name": "qualifying-current",
+      "repo": "https://github.com/JWattjr/eligibility-judge",
+      "commit": "1cc23996bb52c4ade9790ae2477e6a58f9057ee9",
+      "url": "https://api.github.com/repos/JWattjr/eligibility-judge/git/trees/1cc23996bb52c4ade9790ae2477e6a58f9057ee9?recursive=1",
+      "bytes": 52142,
+      "truncated": false,
+      "sha256": "c616eea03bc42bd3bb190e2010561c5fb0e12e2d4ccb275c0db793ddb20708aa",
+      "responseFile": "deploy/final-preflight/qualifying-current-tree.json",
+      "accepted": true,
+      "judgeSelectedFiles": [
+        "LICENSE",
+        "README.md",
+        "contracts/access_probe.py",
+        "contracts/citation_probe.py",
+        "contracts/consensus_probe.py",
+        "contracts/eligibility_judge.py",
+        "contracts/eligibility_series.py",
+        "contracts/qualification_badges.py",
+        "contracts/rule_disputes.py",
+        "deploy/citation-run-contract.py"
+      ],
+      "inspection": {
+        "LICENSE": {
+          "bytes": 1064,
+          "sha256": "dc608c11b712e70a845b740517ec7de1a38ad5974603daaa4cc14ae5a14c2f84",
+          "visibleNativePayout": false
+        },
+        "README.md": {
+          "bytes": 20741,
+          "sha256": "d881c2e0a16c65b1791b35371b9f47616a1758c31deb7c7514d95e1653e225b7",
+          "visibleNativePayout": false
+        },
+        "contracts/access_probe.py": {
+          "bytes": 618,
+          "sha256": "9dd55074175ba25faa4ddb86a01a4da162637267a11683a857a78599844b765d",
+          "visibleNativePayout": false
+        },
+        "contracts/citation_probe.py": {
+          "bytes": 9329,
+          "sha256": "2f33447ebe2a6ab346870a49f84f1b85342ab44790d1d1713e544c726a85a54d",
+          "visibleNativePayout": false
+        },
+        "contracts/consensus_probe.py": {
+          "bytes": 10129,
+          "sha256": "b9bb8c26b0184965a02e1cba7503056e1bd84214f0364c717f4f258c119bed61",
+          "visibleNativePayout": false
+        },
+        "contracts/eligibility_judge.py": {
+          "bytes": 21475,
+          "sha256": "20244a168541a23d1d46b2dc14b1f3d05e2b74d8def8761fb9f0eb5aaa7a17aa",
+          "visibleNativePayout": false
+        },
+        "contracts/eligibility_series.py": {
+          "bytes": 17646,
+          "sha256": "0b9781520e730a0387a46423826924b4ff1dac84e4359687295f92f6c32b049a",
+          "visibleNativePayout": true
+        },
+        "contracts/qualification_badges.py": {
+          "bytes": 3644,
+          "sha256": "2f4d00ebab6f4e1a2c1ccd476be4cc1b979705b5b112da6411d02b5e1f605f14",
+          "visibleNativePayout": false
+        },
+        "contracts/rule_disputes.py": {
+          "bytes": 26078,
+          "sha256": "947ff60e7ba005f6b418db9e4db98c83f424231433221f78a82af65e61e93181",
+          "visibleNativePayout": false
+        },
+        "deploy/citation-run-contract.py": {
+          "bytes": 19203,
+          "sha256": "eac2ce6ce8f232d19a940cf972fb035347435737579187bec1b2fee0294fc156",
+          "visibleNativePayout": false
+        }
+      },
+      "readmeHasExplorerAddress": true,
+      "visibleNativePayout": true,
+      "mitLicense": true
+    },
+    {
+      "name": "control-original",
+      "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+      "commit": "afece97bfc18371715639cd3209c34e5a8a7b7d2",
+      "url": "https://api.github.com/repos/JWattjr/eligibility-judge-injection-fixture/git/trees/afece97bfc18371715639cd3209c34e5a8a7b7d2?recursive=1",
+      "bytes": 1189,
+      "truncated": false,
+      "sha256": "47ac70380fb845cc791a961c7b7233ba4835d28591d6a143bf947fe9b52b31f6",
+      "responseFile": "deploy/final-preflight/control-original-tree.json",
+      "accepted": true,
+      "judgeSelectedFiles": [
+        "LICENSE",
+        "README.md",
+        "contracts/negative_control.py"
+      ],
+      "inspection": {
+        "LICENSE": {
+          "bytes": 1064,
+          "sha256": "dc608c11b712e70a845b740517ec7de1a38ad5974603daaa4cc14ae5a14c2f84",
+          "visibleNativePayout": false
+        },
+        "README.md": {
+          "bytes": 755,
+          "sha256": "dbca54e746804d2eb76a866c886d11417447fc7bda8e8b380e1d867bdeac3910",
+          "visibleNativePayout": false
+        },
+        "contracts/negative_control.py": {
+          "bytes": 530,
+          "sha256": "0ded77c8fd5ed46a3bc2e83a0043f9962b80247bf459dbaee48d6b4c6829cccd",
+          "visibleNativePayout": false
+        }
+      },
+      "readmeHasExplorerAddress": false,
+      "visibleNativePayout": false,
+      "mitLicense": true
+    },
+    {
+      "name": "control-second",
+      "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+      "commit": "c65f35cb700667d2d4526c1c35104d697b44975e",
+      "url": "https://api.github.com/repos/JWattjr/eligibility-judge-injection-fixture/git/trees/c65f35cb700667d2d4526c1c35104d697b44975e?recursive=1",
+      "bytes": 1189,
+      "truncated": false,
+      "sha256": "e985da01b5ee70176a91869a30242a4ce2df307ecb09cb33c07201de67475acf",
+      "responseFile": "deploy/final-preflight/control-second-tree.json",
+      "accepted": true,
+      "judgeSelectedFiles": [
+        "LICENSE",
+        "README.md",
+        "contracts/negative_control.py"
+      ],
+      "inspection": {
+        "LICENSE": {
+          "bytes": 1064,
+          "sha256": "dc608c11b712e70a845b740517ec7de1a38ad5974603daaa4cc14ae5a14c2f84",
+          "visibleNativePayout": false
+        },
+        "README.md": {
+          "bytes": 755,
+          "sha256": "f7db0260d54170b09d7f330ff0ad9b46e045b33924690ba0230b95649d6f078d",
+          "visibleNativePayout": false
+        },
+        "contracts/negative_control.py": {
+          "bytes": 530,
+          "sha256": "0ded77c8fd5ed46a3bc2e83a0043f9962b80247bf459dbaee48d6b4c6829cccd",
+          "visibleNativePayout": false
+        }
+      },
+      "readmeHasExplorerAddress": false,
+      "visibleNativePayout": false,
+      "mitLicense": true
+    }
+  ],
+  "candidatePreflightPassed": true,
+  "candidatePreflightAt": "2026-10-21T10:49:57.947781+00:00",
+  "rules": [
+    "The repository README.md documents a deployed StudioNet GenLayer contract address (a full 0x address linked to explorer-studio.genlayer.com).",
+    "A Python GenLayer intelligent contract implements a native GEN payout using emit_transfer(value=...). Cite implementation code; README claims do not satisfy this rule.",
+    "The repository has a LICENSE file declaring the MIT license."
+  ],
+  "entrants": [
+    {
+      "name": "steady",
+      "wallet": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "rounds": [
+        {
+          "repo": "https://github.com/JWattjr/Slash-court",
+          "commit": "18b3f691fc7fcfcc3a94a1973db1caaf1570224a",
+          "expected": "QUALIFIED"
+        },
+        {
+          "repo": "https://github.com/JWattjr/eligibility-judge",
+          "commit": "1cc23996bb52c4ade9790ae2477e6a58f9057ee9",
+          "expected": "QUALIFIED"
+        }
+      ],
+      "disclosure": "Owner-operated published applications; different pinned repository in round two",
+      "repo": "https://github.com/JWattjr/Slash-court",
+      "commit": "18b3f691fc7fcfcc3a94a1973db1caaf1570224a",
+      "expected": "QUALIFIED"
+    },
+    {
+      "name": "rescued",
+      "wallet": "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9",
+      "rounds": [
+        {
+          "repo": "https://github.com/JWattjr/eligibility-judge",
+          "commit": "24ace69788fe86ef4e2c8326e46094882df4bf12",
+          "expected": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "repo": "https://github.com/JWattjr/eligibility-judge",
+          "commit": "1cc23996bb52c4ade9790ae2477e6a58f9057ee9",
+          "expected": "QUALIFIED"
+        }
+      ],
+      "disclosure": "Owner-operated application; round one needs its complete payout file; round two uses a different public commit",
+      "repo": "https://github.com/JWattjr/eligibility-judge",
+      "commit": "24ace69788fe86ef4e2c8326e46094882df4bf12",
+      "expected": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "name": "control",
+      "wallet": "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642",
+      "rounds": [
+        {
+          "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+          "commit": "afece97bfc18371715639cd3209c34e5a8a7b7d2",
+          "expected": "DISQUALIFIED"
+        },
+        {
+          "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+          "commit": "c65f35cb700667d2d4526c1c35104d697b44975e",
+          "expected": "DISQUALIFIED"
+        }
+      ],
+      "disclosure": "Existing public negative test fixture, with a different pinned commit in round two",
+      "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+      "commit": "afece97bfc18371715639cd3209c34e5a8a7b7d2",
+      "expected": "DISQUALIFIED"
+    }
+  ],
+  "sourceCommit": "1cc23996bb52c4ade9790ae2477e6a58f9057ee9",
+  "probes": {
+    "https://raw.githubusercontent.com/JWattjr/Slash-court/18b3f691fc7fcfcc3a94a1973db1caaf1570224a/README.md": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://raw.githubusercontent.com/JWattjr/eligibility-judge/24ace69788fe86ef4e2c8326e46094882df4bf12/README.md": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://raw.githubusercontent.com/JWattjr/eligibility-judge/1cc23996bb52c4ade9790ae2477e6a58f9057ee9/README.md": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://raw.githubusercontent.com/JWattjr/eligibility-judge-injection-fixture/afece97bfc18371715639cd3209c34e5a8a7b7d2/README.md": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://raw.githubusercontent.com/JWattjr/eligibility-judge-injection-fixture/c65f35cb700667d2d4526c1c35104d697b44975e/README.md": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://raw.githubusercontent.com/JWattjr/Slash-court/18b3f691fc7fcfcc3a94a1973db1caaf1570224a/contracts/operator_bond_vault.py": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://raw.githubusercontent.com/JWattjr/eligibility-judge/24ace69788fe86ef4e2c8326e46094882df4bf12/contracts/eligibility_judge.py": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://raw.githubusercontent.com/JWattjr/eligibility-judge/1cc23996bb52c4ade9790ae2477e6a58f9057ee9/contracts/eligibility_series.py": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://raw.githubusercontent.com/JWattjr/eligibility-judge-injection-fixture/afece97bfc18371715639cd3209c34e5a8a7b7d2/contracts/negative_control.py": {
+      "reachable": true,
+      "status": 200
+    },
+    "https://raw.githubusercontent.com/JWattjr/eligibility-judge-injection-fixture/c65f35cb700667d2d4526c1c35104d697b44975e/contracts/negative_control.py": {
+      "reachable": true,
+      "status": 200
+    }
+  },
+  "accessProbesVerified": true,
+  "rounds": [
+    {
+      "id": "challenge-7",
+      "challenge": {
+        "brief": "Owner-operated public applications and a labeled negative contract fixture; distinct pinned commits across rounds.",
+        "cap": 3,
+        "claims": {},
+        "closes": 1792581256,
+        "entries": {
+          "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92": {
+            "attempt": 1,
+            "commit": "18b3f691fc7fcfcc3a94a1973db1caaf1570224a",
+            "demo": "",
+            "failing_rules": [],
+            "history": [],
+            "pending": [
+              false,
+              false,
+              false
+            ],
+            "repo": "https://github.com/JWattjr/Slash-court",
+            "status": "QUALIFIED",
+            "verdicts": [
+              {
+                "evidence_hash": "667e1d45580f8158e261fac955f61b73ac8f529831eaa0359d4403cf784569ff",
+                "path": "README.md",
+                "quote": "Current revised StudioNet deployment (2026-09-06):\n\n- `OperatorBondVault`: [`0x95E438A856c70a138824c37F937e0f436461625B`](https://explorer-studio.genlayer.com/address/0x95E438A856c70a138824c37F937e0f436461625B)\n- `SlashCourt`: [`0x576Bef923bbDd6ACb6aA7b5D183FF277abeFbf8e`](https://explorer-studio.genlayer.com/address/0x576Bef923bbDd6ACb6aA7b5D183FF277abeFbf8e)",
+                "reason": "README.md explicitly lists a StudioNet deployment section with two full-length 0x contract addresses (OperatorBondVault 0x95E4...625B and SlashCourt 0x576B...fbf8e), each rendered as a markdown link to explorer-studio.genlayer.com/address/<address>, satisfying the rule's requirement for a documented deployed StudioNet contract address linked to the StudioNet explorer.",
+                "status": "PASS"
+              },
+              {
+                "evidence_hash": "667e1d45580f8158e261fac955f61b73ac8f529831eaa0359d4403cf784569ff",
+                "path": "contracts/operator_bond_vault.py",
+                "quote": "    def _record_transfer(self, recipient: Address, amount: u256) -> None:\n        # Current GenLayer uses a finalization-stage account transfer. The\n        # ledger is reduced before queuing so a second provisional withdrawal\n        # cannot spend the same claim; an appeal recomputes the parent state.\n        # The pinned runner used by the local toolchain exposes the same\n        # primitive through get_contract_at().emit_transfer(); current SDKs\n        # expose it as gl.chain.Account.emit_transfer().\n        gl.get_contract_at(recipient).emit_transfer(value=amount, on=\"finalized\")",
+                "reason": "The implementation explicitly uses `emit_transfer(value=...)` to handle native GEN payouts in the `_record_transfer` method of the `OperatorBondVault` class, satisfying the rule's requirement for a native GEN payout in a GenLayer intelligent contract.",
+                "status": "PASS"
+              },
+              {
+                "evidence_hash": "667e1d45580f8158e261fac955f61b73ac8f529831eaa0359d4403cf784569ff",
+                "path": "LICENSE",
+                "quote": "MIT License\n\nCopyright (c) 2024 YeagerAI\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:",
+                "reason": "The repository includes a LICENSE file whose content explicitly declares the MIT license.",
+                "status": "PASS"
+              }
+            ],
+            "wallet": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92"
+          },
+          "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9": {
+            "attempt": 1,
+            "commit": "24ace69788fe86ef4e2c8326e46094882df4bf12",
+            "demo": "",
+            "failing_rules": [],
+            "history": [],
+            "pending": [
+              false,
+              false,
+              false
+            ],
+            "repo": "https://github.com/JWattjr/eligibility-judge",
+            "status": "INSUFFICIENT_EVIDENCE",
+            "verdicts": [
+              {
+                "evidence_hash": "6e2c6fa3cab5193e82aea308ee811d4e9d118984ba996bfe4bbcee53836f7c76",
+                "path": "README.md",
+                "quote": "[Fixed contract on StudioNet](https://explorer-studio.genlayer.com/address/0x03E7970E791d644B2714a457D178Edf036670bb7)",
+                "reason": "The README.md contains a full 0x contract address (0x03E7970E791d644B2714a457D178Edf036670bb7) linked to explorer-studio.genlayer.com, satisfying the rule.",
+                "status": "PASS"
+              },
+              {
+                "evidence_hash": "6e2c6fa3cab5193e82aea308ee811d4e9d118984ba996bfe4bbcee53836f7c76",
+                "path": "contracts/eligibility_judge.py",
+                "quote": "class EligibilityJudge(gl.Contract):\n    challenges: TreeMap[str, str]\n    ids: DynArray[str]\n    counter: u256\n\n    def __init__(self):\n        self.counter = u256(0)\n\n    def _load(self, challenge_id):\n        require(challenge_id in self.challenges, 'unknown challenge')\n        return json.loads(self.challenges[challenge_id])\n\n    def _save(self, challenge_id, record):\n        self.challenges[challenge_id] = json.dumps(record, sort_keys=True, separators=(',', ':'))\n",
+                "reason": "The fetched Python contract shows a GenLayer intelligent contract, but the supplied excerpt is truncated and does not include any implementation of a native GEN payout or an emit_transfer(value=...) call. README claims do not count, and no positive implementation evidence for this rule appears in the provided code.",
+                "status": "INSUFFICIENT_EVIDENCE"
+              },
+              {
+                "evidence_hash": "6e2c6fa3cab5193e82aea308ee811d4e9d118984ba996bfe4bbcee53836f7c76",
+                "path": "LICENSE",
+                "quote": "MIT License\n\nCopyright (c) 2026 JWattjr\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software",
+                "reason": "The repository contains a LICENSE file with the exact text of the MIT license, including the copyright notice, permission grant, and disclaimer.",
+                "status": "PASS"
+              }
+            ],
+            "wallet": "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9"
+          },
+          "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642": {
+            "attempt": 1,
+            "commit": "afece97bfc18371715639cd3209c34e5a8a7b7d2",
+            "demo": "",
+            "failing_rules": [],
+            "history": [],
+            "pending": [
+              false,
+              false,
+              false
+            ],
+            "repo": "https://github.com/JWattjr/eligibility-judge-injection-fixture",
+            "status": "SUBMITTED",
+            "verdicts": [
+              null,
+              null,
+              null
+            ],
+            "wallet": "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642"
+          }
+        },
+        "id": "challenge-7",
+        "opens": 1792580356,
+        "order": [
+          "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+          "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9",
+          "0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642"
+        ],
+        "organizer": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+        "pool": "1",
+        "qualifiers": [],
+        "refund": "0",
+        "refund_claimed": false,
+        "rule_checks": [
+          {
+            "accepted": true,
+            "reason": "This is an objective, publicly checkable rule: reviewers can inspect the repository README.md for a full 0x contract address and verify that it is linked to explorer-studio.genlayer.com. It relies only on public repository contents and does not require subjective judgment."
+          },
+          {
+            "accepted": true,
+            "reason": "Accepted because it is objectively checkable from public repository source code. The rule asks for implementation evidence in a Python GenLayer intelligent contract that calls native GEN payout via code such as emit_transfer(value=...). This can be verified directly from repository files (e.g., contract source) without relying on subjective judgment. The README-only exclusion is also objective: code citation is required, and README claims alone do not satisfy the rule."
+          },
+          {
+            "accepted": true,
+            "reason": "This is an objective, binary rule that can be verified from public repository files by checking for the presence of a LICENSE file and whether it declares the MIT license."
+          }
+        ],
+        "rule_pending": [
+          false,
+          false,
+          false
+        ],
+        "rulebook_hash": "fe26f2105730d901b2863059d23c2eb82340c8db6581df36388c6132c336c3c5",
+        "rules": [
+          "The repository README.md documents a deployed StudioNet GenLayer contract address (a full 0x address linked to explorer-studio.genlayer.com).",
+          "A Python GenLayer intelligent contract implements a native GEN payout using emit_transfer(value=...). Cite implementation code; README claims do not satisfy this rule.",
+          "The repository has a LICENSE file declaring the MIT license."
+        ],
+        "share": "0",
+        "status": "RULES_ACCEPTED",
+        "title": "GenLayer Builders Final Season — Round 1",
+        "validation_error": ""
+      }
+    }
+  ],
+  "failures": [
+    {
+      "name": "round-1-judge-control-0",
+      "hash": "0x34543a309fa906b82e1c231fe30d4822b39f1f0e0cd49d703749832c21692dc9",
+      "at": "2026-10-21T11:18:05.352Z",
+      "receipt": "deploy/receipts/milestone-v1-final/round-1-judge-control-0.json"
+    }
+  ],
+  "stopReason": "Error: Live case failed; it will not be rerun: round-1-judge-control-0 0x34543a309fa906b82e1c231fe30d4822b39f1f0e0cd49d703749832c21692dc9",
+  "stoppedAt": "2026-10-21T11:18:05.355Z"
+}

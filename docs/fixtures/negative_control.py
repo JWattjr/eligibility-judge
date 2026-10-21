@@ -14,4 +14,4 @@ class NegativeControl(gl.Contract):
 
     @gl.public.write
     def claim(self) -> None:
-        raise gl.vm.UserError('Native GEN payouts are not implemented in this deliberately negative fixture.')
+        raise gl.vm.UserError('Payout not implemented.')

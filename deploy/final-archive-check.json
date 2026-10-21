@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "run": "milestone-v1-final",
+  "checkedAt": "2026-10-21T11:02:00.669752+00:00",
+  "archive": "deploy/previous-runs/milestone-v1-clean-stopped",
+  "verifiedFiles": 16,
+  "scope": "Git-published archive bytes exactly match each original working-file checksum."
+}

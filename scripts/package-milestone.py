@@ -37,7 +37,7 @@ def main():
     proof = json.loads((ROOT/'deploy/milestone-proof.json').read_text(encoding='utf-8'))
     report_path = ROOT/'deploy/milestone-verification.json'
     report = json.loads(report_path.read_text(encoding='utf-8')) if report_path.exists() else {}
-    live_verified = proof['completed'] and report.get('status') == 'PASS' and proof.get('run') == 'milestone-v1-final'
+    live_verified = proof['completed'] and report.get('status') == 'PASS' and proof.get('run') == 'milestone-v1-release'
     assert live_verified, 'Generate success fields only after the final live proof independently passes'
     verified = False
     descriptions = {
@@ -73,7 +73,7 @@ def main():
         'previousGrossDepositsWei':proof['previousGrossDepositsWei'], 'cumulativeGrossDepositsWei':proof['cumulativeGrossDepositsWei'],
         'seriesWinners':proof.get('series',{}).get('winners',[]), 'bonusShareWei':proof.get('series',{}).get('share'), 'candidateTreeSizes':{c['name']:c['bytes'] for c in proof.get('candidateTrees',[])}, 'previousRun':SOURCE+'/tree/main/'+proof['previousRun'],
         'limits':'The original judge retains bounded evidence inspection. Badge minting and round imports wait for the dispute opening window and every pending hearing. The qualification count stays fixed even if a round is VOID. StudioNet GEN is simulated development currency. Historical first-run evidence is preserved separately. Nothing is submitted to the Portal automatically.',
-        'checks':{'contractTests':114,'existingContractTests':46,'newContractTests':68,'appTests':22,'lint':'Three contracts pass GenVM lint and SDK validation.','typecheck':'PASS','productionBuild':'PASS','liveVerification':report.get('status','PENDING')},
+        'checks':{'contractTests':116,'existingContractTests':46,'newContractTests':70,'appTests':22,'lint':'Three contracts pass GenVM lint and SDK validation.','typecheck':'PASS','productionBuild':'PASS','liveVerification':report.get('status','PENDING')},
         'blockers':'Owner reviews the completed clean proof and submits the Portal milestone.' if verified else 'Live proof, independent verification and final production browser checks are still running.',
     }
     counts={'summary':len(fields['summary']),'judgmentPoints':len(fields['judgmentPoints'])}
@@ -104,11 +104,14 @@ def main():
     required={item['url'] for item in evidence}|set(transactions.values())|{EXPLORER+'/tx/'+h for h in failures}
     browser_path=ROOT/'docs/milestone-v1-browser.json'
     browser=json.loads(browser_path.read_text(encoding='utf-8')) if browser_path.exists() else {}
-    verified=bool(live_verified and links.get('status')=='PASS' and required<=urls and browser.get('status')=='PASS' and browser.get('run')==proof.get('run'))
+    release_path=ROOT/'docs/milestone-v1-release.json'
+    release=json.loads(release_path.read_text(encoding='utf-8')) if release_path.exists() else {}
+    verified=bool(live_verified and links.get('status')=='PASS' and required<=urls and browser.get('status')=='PASS' and browser.get('run')==proof.get('run') and release.get('status')=='PASS' and release.get('run')==proof.get('run'))
     fields['readyForOwnerReview']=verified
     fields['status']='Clean one-pass live proof independently verified; owner reviews and submits.' if verified else 'Final verification in progress. Do not submit this draft.'
     fields['checks']['browser']=browser.get('status','PENDING')
     fields['checks']['explorerLinks']=links.get('status','PENDING')
+    fields['checks']['productionRelease']=release.get('status','PENDING')
     if verified:fields['blockers']='Owner reviews the completed clean proof and submits the Portal milestone.'
     target.write_text(json.dumps(fields,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(counts,indent=2))

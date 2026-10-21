@@ -103,7 +103,7 @@ The resumable timeout stages are timeout-seed, timeout-entry, and timeout-settle
 
 The final demo is in preparation after the user authorized a revised plan. Both prior runs remain preserved. The immutable judge remains [0x03E7970E791d644B2714a457D178Edf036670bb7](https://explorer-studio.genlayer.com/address/0x03E7970E791d644B2714a457D178Edf036670bb7). Corrected milestone contracts are reused with exact source and wiring checks. The negative fixture now provides direct non-paying contract code as counterevidence; each round is judged before the next is seeded.
 
-The new deposit ceiling is **0.2 simulated StudioNet GEN**. The plan uses two 1-wei challenge pools, three 0.01-GEN bonds and one 0.05-GEN season bonus: **0.08 GEN plus 2 wei**. Repository trees must be complete and under 80,000 bytes before any deposit. Every live case runs once; an unexpected outcome stops the run. The previous 0.05 GEN plus 2 wei was recovered and still counts toward the gross ceiling. The planned cumulative gross is 0.13 GEN plus 4 wei. No completed final live outcome is claimed yet. The Portal is not submitted automatically.
+The new deposit ceiling is **0.2 simulated StudioNet GEN**. The plan uses two 1-wei challenge pools, three 0.01-GEN bonds and one 0.05-GEN season bonus: **0.08 GEN plus 2 wei**. Repository trees must be complete and under 80,000 bytes before any deposit. Every live case runs once; an unexpected outcome stops the run. The previous 0.05 GEN plus 2 wei was recovered and still counts toward the gross ceiling. The quote-error attempt added 1 wei; the planned cumulative gross is now 0.13 GEN plus 5 wei. No completed final live outcome is claimed yet. The Portal is not submitted automatically.
 
 The clean-run contracts are deployed, source-byte checked and wired to the unchanged judge:
 
@@ -118,6 +118,10 @@ Validation for the revised demo is running. The active [readiness report](docs/s
 ### Previous clean run: stopped and recovered
 
 The [exact archive](deploy/previous-runs/milestone-v1-clean-stopped/archive.json) preserves the second-round control judgment that finalized MAJORITY_DISAGREE. Its [separate recovery](deploy/previous-runs/milestone-v1-clean-stopped/docs/submission/MILESTONE-V1-RECOVERY.md) credited all 0.05 GEN plus 2 wei with zero new deposits. This failed demo was not reclassified as passing; its cases are not replayed. The contracts remain valid and are reused by the newly authorized final run.
+
+### Previous final attempt: missing verbatim quote
+
+The [archived attempt](deploy/previous-runs/milestone-v1-final-stopped/archive.json) stopped at a control README judgment with `[LLM_ERROR] quote missing from fetched file` and MAJORITY_DISAGREE. It deposited only 1 wei; no hearings or bonus were funded. Rescued's original payout verdict explicitly identified the truncated source excerpt. The replacement uses a concise unwrapped README and short non-paying claim statement; C supplies its malicious argument only at the hearing. The original failed transaction is never replayed.
 
 ### Retired milestone deployments (first run)
 

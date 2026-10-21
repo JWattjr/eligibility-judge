@@ -1,104 +1,121 @@
 {
   "status": "PASS",
-  "checkedAt": "2026-10-20T17:45:44.482515+00:00",
-  "scope": "Production read-only UI and API verification; no new browser wallet signature claimed.",
-  "liveUrl": "https://eligibility-judge.vercel.app/series",
-  "appReleaseCommit": "df9786a",
-  "deployment": {
-    "id": "dpl_F7HSAP5scHMnina1f5eBf79xTwSk",
-    "url": "https://eligibility-judge-9vubznff0-wattxs-projects.vercel.app",
-    "alias": "https://eligibility-judge.vercel.app",
-    "target": "production",
-    "readyState": "READY",
-    "remoteBuild": "PASS"
-  },
-  "browser": "In-app browser after the connected Chrome session disconnected. Chrome initially confirmed MetaMask discovery.",
-  "viewports": [
-    {
-      "width": 1440,
-      "height": 960
+  "run": "milestone-v1-release",
+  "proofDigest": "2af737010333c35b8742ff9c18300069011ef7dfbfc5693576ee3dbf04c9b258",
+  "checkedAt": "2026-10-21T17:16:04.417Z",
+  "deploymentId": "dpl_BhK5UsKgQ7KkUrdMB8ALbLxhr68n",
+  "baseUrl": "https://eligibility-judge-45ijixys0-wattxs-projects.vercel.app",
+  "desktop": {
+    "viewport": {
+      "width": 1710,
+      "height": 1241
     },
-    {
+    "series": {
+      "live": true,
+      "series": "series-2",
+      "status": "CLOSED",
+      "paidVerifiedRows": 2,
+      "threshold": 2
+    },
+    "disputes": {
+      "live": true,
+      "outcomes": [
+        "OVERTURNED",
+        "UPHELD",
+        "UPHELD"
+      ],
+      "nativeCreditsVerified": 3
+    },
+    "badges": {
+      "live": true,
+      "defaultWallet": "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9",
+      "cards": 2,
+      "viaDisputeCards": 1,
+      "onChainVerification": true,
+      "width": 1710,
+      "scrollWidth": 1702
+    }
+  },
+  "mobile": {
+    "viewport": {
       "width": 390,
       "height": 844
+    },
+    "series": {
+      "height": 844,
+      "live": true,
+      "paidRows": 2,
+      "scrollWidth": 382,
+      "width": 390
+    },
+    "disputes": {
+      "cases": [
+        {
+          "id": "dispute-1",
+          "status": "OVERTURNED"
+        },
+        {
+          "id": "dispute-2",
+          "status": "UPHELD"
+        },
+        {
+          "id": "dispute-3",
+          "status": "UPHELD"
+        }
+      ],
+      "credits": 3,
+      "height": 844,
+      "live": true,
+      "scrollWidth": 382,
+      "width": 390
+    },
+    "badges": {
+      "height": 844,
+      "scrollWidth": 382,
+      "verified": true,
+      "width": 390
+    },
+    "noWholePageHorizontalOverflow": true
+  },
+  "roundLinks": {
+    "challenge-8": {
+      "openedFromSeason": true,
+      "readChainClicked": true,
+      "original": "INSUFFICIENT_EVIDENCE",
+      "effective": "PASS",
+      "dispute": "dispute-1"
+    },
+    "challenge-9": {
+      "openedFromSeason": true,
+      "readChainClicked": true,
+      "finalized": true,
+      "positivePin": "1cc23996bb52c4ade9790ae2477e6a58f9057ee9",
+      "twoQualifiedEntries": true
     }
-  ],
-  "checks": {
-    "originalSeasonClosed": true,
-    "originalThresholdRemainsTwo": true,
-    "originalRefundPaidAndVerified": true,
-    "separateOneWeiControlClosed": true,
-    "controlThresholdOneFromCreation": true,
-    "controlBonusPaidAndVerified": true,
-    "bothCompletedSeasonSnapshotsVisible": true,
-    "oneBadgeVerifiedOnChain": true,
-    "existingBadgeMintDisabled": true,
-    "embeddedBadgeRendered": true,
-    "disputeOutcomes": [
-      "OVERTURNED",
-      "UPHELD",
-      "VOID"
+  },
+  "verificationEmbed": {
+    "href": "/badges/0xf3372965edf1a2ccf6bb97bc923480aebd4750f9?challenge=challenge-8&embed=1",
+    "iframeSnippetDisplayed": true,
+    "navigationVerified": false,
+    "limitation": "Automation rejected goto with the relative href as an invalid URL. No workaround attempted. Expanded badge verified on-chain and production verification API separately passed."
+  },
+  "console": {
+    "applicationErrorsObserved": 0,
+    "externalWalletExtensionErrorsObserved": true,
+    "extensionSources": [
+      "Phantom evmAsk.js",
+      "MetaMask inpage.js"
     ],
-    "allThreeBondCreditsVerified": true,
-    "challengeLinksAndFrozenRulesVisible": true,
-    "originalInsufficientVersusEffectivePassVisible": true,
-    "closedOpeningWindowExplained": true,
-    "savedHashSurvivesReload": true,
-    "savedHashAppearsAcrossRoutes": true,
-    "mobileHorizontalPageOverflow": false,
-    "observedConsoleErrors": []
+    "note": "Multiple wallet extensions collide while setting window.ethereum. EIP6963 selector discovers MetaMask. No fresh browser signing claimed."
   },
-  "apiChecks": [
-    {
-      "name": "series",
-      "url": "https://eligibility-judge.vercel.app/api/milestone?kind=series",
-      "httpStatus": 200,
-      "passed": true
-    },
-    {
-      "name": "badge-verification",
-      "url": "https://eligibility-judge.vercel.app/api/milestone?kind=verify&wallet=0xf3372965edf1a2ccf6bb97bc923480aebd4750f9&challenge=challenge-3",
-      "httpStatus": 200,
-      "passed": true
-    },
-    {
-      "name": "disputes",
-      "url": "https://eligibility-judge.vercel.app/api/milestone?kind=disputes",
-      "httpStatus": 200,
-      "passed": true
-    },
-    {
-      "name": "pinned-files",
-      "url": "https://eligibility-judge.vercel.app/api/dispute-files?repo=https%3A%2F%2Fgithub.com%2FJWattjr%2Feligibility-judge&commit=24ace69788fe86ef4e2c8326e46094882df4bf12",
-      "httpStatus": 200,
-      "passed": true
-    }
-  ],
-  "designReview": {
-    "disposition": "ship",
-    "materialFixes": 0,
-    "detectorRuns": 1,
-    "pinnedFontWarning": "Space Grotesk intentionally preserves DESIGN.md",
-    "documentation": "DESIGN.md Components / Milestone v1"
-  },
-  "screenshotsDirectory": ".impeccable/review/milestone-v1/",
   "screenshots": [
-    "desktop.png",
-    "mobile.png",
-    "desktop-badge.png",
-    "mobile-badge.png",
-    "desktop-disputes.png",
-    "mobile-disputes.png",
-    "desktop-payout-control.png",
-    "mobile-payout-control.png",
-    "mobile-rule-review.png",
-    "desktop-form.png"
+    "docs/submission/evidence/milestone-v1-release/series-desktop.png",
+    "docs/submission/evidence/milestone-v1-release/hearings-desktop.png",
+    "docs/submission/evidence/milestone-v1-release/badges-desktop.png",
+    "docs/submission/evidence/milestone-v1-release/series-mobile.png",
+    "docs/submission/evidence/milestone-v1-release/hearings-mobile.png",
+    "docs/submission/evidence/milestone-v1-release/badges-mobile.png"
   ],
-  "limits": [
-    "No new MetaMask signature or pending-wallet flow was exercised. Live calls were signed through the authorized CLI demo accounts.",
-    "The creation form required-field state was checked; a valid date submission was not broadcast.",
-    "Opening windows were closed during final browser checks; the pinned-file endpoint and closed-state explanation were verified.",
-    "C was VOID during its source check, so this run does not prove live injection resistance.",
-    "Six additional planned hearings were not opened."
-  ]
+  "viewportReset": true,
+  "portalSubmitted": false
 }

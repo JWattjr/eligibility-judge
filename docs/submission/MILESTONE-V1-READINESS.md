@@ -1,4 +1,4 @@
-# Milestone v1 — live proof verified; release checks pending
+# Milestone v1 — ready for owner submission
 
 The active `milestone-v1-release` proof independently reports **PASS**, with no reported failures or mismatches. All 121 clean-demo receipts finalized successfully or credited their native transfers. Seven clean-demo native credits are verified. No Portal form was submitted.
 
@@ -37,9 +37,11 @@ New demo deposits: **80000000000000002 wei**. Previous gross deposits counted to
 ## Validation and release
 
 - 116 direct contract tests; 22 app tests; GenVM lint, TypeScript and production build pass.
-- Fresh final checks: **PASS**. Desktop and 390x844 browser checks: **PENDING**.
-- Explorer API evidence: **PASS**. Public production API: **PENDING**. Production release: **PENDING**.
+- Fresh final checks: **PASS**. Desktop and 390x844 browser checks: **PASS**.
+- Explorer API evidence: **PASS**. Public production API: **PASS**. Production release: **PASS**.
 - Summary: **864 / 1000 characters**. Contract descriptions: **180, 194, 197 / 200**.
+
+The [browser report](../milestone-v1-browser.json) records six screenshots, both round links, and the original-to-effective ruling comparison. The expanded badge verified on-chain; separate embed navigation was not verified because browser automation rejected the relative URL. Wallet extensions also logged competing `window.ethereum` injection errors; no fresh browser signature is claimed for this release.
 
 Live app: [https://eligibility-judge.vercel.app/series](https://eligibility-judge.vercel.app/series). The demonstration uses owner-operated wallets and repositories; overturns affect credentials and seasons, not the original judge pool. StudioNet GEN is development currency.
 

@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "run": "milestone-v1-release",
+  "proofDigest": "2af737010333c35b8742ff9c18300069011ef7dfbfc5693576ee3dbf04c9b258",
+  "baseUrl": "https://eligibility-judge.vercel.app",
+  "checks": [
+    {
+      "url": "https://eligibility-judge.vercel.app/api/milestone?kind=series",
+      "httpStatus": 200,
+      "readAt": "2026-10-21T17:15:13.966Z"
+    },
+    {
+      "url": "https://eligibility-judge.vercel.app/api/milestone?kind=disputes",
+      "httpStatus": 200,
+      "readAt": "2026-10-21T17:15:17.245Z"
+    },
+    {
+      "url": "https://eligibility-judge.vercel.app/api/milestone?kind=badges&wallet=0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+      "httpStatus": 200,
+      "readAt": "2026-10-21T17:15:20.517Z"
+    },
+    {
+      "url": "https://eligibility-judge.vercel.app/api/milestone?kind=badges&wallet=0xf3372965edf1a2ccf6bb97bc923480aebd4750f9",
+      "httpStatus": 200,
+      "readAt": "2026-10-21T17:15:22.246Z"
+    },
+    {
+      "url": "https://eligibility-judge.vercel.app/api/milestone?kind=badges&wallet=0xff26ed75cc2bed7fd9638e17fea5bb71cb46e642",
+      "httpStatus": 200,
+      "readAt": "2026-10-21T17:15:23.944Z"
+    },
+    {
+      "url": "https://eligibility-judge.vercel.app/api/milestone?kind=verify&wallet=0xf3372965edf1a2ccf6bb97bc923480aebd4750f9&challenge=challenge-8",
+      "httpStatus": 200,
+      "readAt": "2026-10-21T17:15:22.246Z"
+    },
+    {
+      "url": "https://eligibility-judge.vercel.app/api/milestone?kind=entry&wallet=0xf3372965edf1a2ccf6bb97bc923480aebd4750f9&challenge=challenge-8",
+      "httpStatus": 200,
+      "readAt": "2026-10-21T17:14:52.278Z"
+    }
+  ],
+  "checkedAt": "2026-10-21T17:15:24.413377+00:00",
+  "winners": [
+    "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+    "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9"
+  ],
+  "badgeCount": 4,
+  "viaDisputeBadges": 1,
+  "hearingOutcomes": {
+    "A": "OVERTURNED",
+    "B": "UPHELD",
+    "C": "UPHELD"
+  }
+}

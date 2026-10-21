@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "run": "milestone-v1-release",
+  "proofDigest": "2af737010333c35b8742ff9c18300069011ef7dfbfc5693576ee3dbf04c9b258",
+  "runtimeCommit": "00920431a1aa91781392f4c5e39b11e398f540d3",
+  "project": "eligibility-judge",
+  "projectId": "prj_AQSTLacBt5NvQhNWMMIEURTZokB5",
+  "scope": "wattxs-projects",
+  "teamId": "team_4mmvifpyuNjvwkcbbJvmxNIc",
+  "deploymentId": "dpl_BhK5UsKgQ7KkUrdMB8ALbLxhr68n",
+  "deploymentUrl": "https://eligibility-judge-45ijixys0-wattxs-projects.vercel.app",
+  "productionUrl": "https://eligibility-judge.vercel.app",
+  "deploymentCreatedAt": "2026-10-21T17:02:45Z",
+  "publicDomainInspectedAt": "2026-10-21T17:15:00Z",
+  "publicDomainResolvedToTestedDeployment": true,
+  "browser": {
+    "liveFinalizedSeries": "series-2",
+    "paidVerifiedRows": 2,
+    "desktopAndMobileReport": "docs/milestone-v1-browser.json"
+  },
+  "productionApi": "docs/milestone-v1-api.json",
+  "promotionMethod": "vercel promote of the same tested production deployment",
+  "releasePolicy": "The final documentation-only push may trigger another build. Re-promote this tested deployment after that build completes; verify the public domain again. Runtime source and proof stay identical to runtimeCommit.",
+  "portalSubmitted": false
+}

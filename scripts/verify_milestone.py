@@ -112,7 +112,7 @@ def main():
     deposits = sum(int(d['value']) for d in proof['deposits'])
     assert deposits == int(proof['grossDepositsWei']) == 8 * 10**16 + 2
     assert int(proof['depositCeilingWei']) == 2 * 10**17 and deposits <= int(proof['depositCeilingWei'])
-    prior = json.loads((ROOT / proof['previousRun'] / 'deploy/milestone-proof.json').read_text())
+    prior = json.loads((ROOT / proof['previousRun'] / 'deploy/milestone-proof.json').read_text(encoding='utf-8'))
     assert prior['stopReason'] and not prior['completed']
     assert int(proof['previousGrossDepositsWei']) == int(prior['cumulativeGrossDepositsWei']) == 5 * 10**16 + 3
     assert int(proof['cumulativeGrossDepositsWei']) == int(proof['previousGrossDepositsWei']) + deposits <= 2 * 10**17

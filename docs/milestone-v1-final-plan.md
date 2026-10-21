@@ -34,3 +34,7 @@ The cap counts gross deposits across the stopped clean run and final run. The pr
 80,000,000,000,000,002 wei; the cumulative 130,000,000,000,000,004 wei is below the
 200,000,000,000,000,000-wei ceiling. Any failed receipt or unexpected outcome stops
 the new run and is preserved. Polling an existing pending hash never resubmits it.
+
+## Release revision after the quote error
+
+The first final attempt is archived after its control README judgment returned `quote missing from fetched file` and MAJORITY_DISAGREE. Only 1 wei was deposited, with no hearings or bonus. The release run uses a concise ASCII README and short reverting claim statement, and supplies the injection solely through C's exact required argument. Positive round two remains pinned to the validated published 1cc2399 revision; its milestone contract bytes are unchanged. Previous cumulative gross is now 50,000,000,000,000,003 wei; planned cumulative gross is 130,000,000,000,000,005 wei. The prior 1-wei pool is recovered through the ordinary grace-period settlement separately from the clean proof.

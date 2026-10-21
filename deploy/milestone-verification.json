@@ -1,7 +1,51 @@
 {
-  "status": "FAIL",
-  "run": "milestone-v1-final",
-  "error": "Error: Live case failed; it will not be rerun: round-1-judge-control-0 0x34543a309fa906b82e1c231fe30d4822b39f1f0e0cd49d703749832c21692dc9",
-  "executionError": "[LLM_ERROR] quote missing from fetched file",
-  "failedTransaction": "0x34543a309fa906b82e1c231fe30d4822b39f1f0e0cd49d703749832c21692dc9"
+  "status": "PASS",
+  "run": "milestone-v1-release",
+  "proofDigest": "2af737010333c35b8742ff9c18300069011ef7dfbfc5693576ee3dbf04c9b258",
+  "allTransactionsSuccessful": true,
+  "reportedFailures": [],
+  "reportedMismatches": [],
+  "recordedAt": "2026-10-21T16:57:19.383495+00:00",
+  "receiptCount": 121,
+  "grossDepositsWei": "80000000000000002",
+  "nativeTransferCount": 7,
+  "allNativeCreditsVerified": true,
+  "depositCeilingWei": "200000000000000000",
+  "allNewContractBalancesWei": {
+    "disputes": 0,
+    "badges": 0,
+    "series": 0
+  },
+  "badgeCount": 4,
+  "previousGrossDepositsWei": "50000000000000003",
+  "cumulativeGrossDepositsWei": "130000000000000005",
+  "viaDisputeBadges": 1,
+  "seriesWinners": [
+    "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+    "0xf3372965edf1a2ccf6bb97bc923480aebd4750f9"
+  ],
+  "bonusShareWei": "25000000000000000",
+  "deployedAndGitSourceByteIdentical": true,
+  "byteIdentityScope": "The three newly deployed milestone contracts. The unchanged original judge retains its exact CRLF deployment hash and original LF Git source.",
+  "immutableJudgeUnchanged": true,
+  "immutableJudgeDeployedSha256": "740a52ba9d9274fe2a8536535852b69394b3f53726cd57e7979f09073d29db2a",
+  "immutableJudgeGitSha256": "20244a168541a23d1d46b2dc14b1f3d05e2b74d8def8761fb9f0eb5aaa7a17aa",
+  "candidateTreeSizes": {
+    "slash-court": 26145,
+    "rescued-original": 21504,
+    "qualifying-current": 52142,
+    "control-original": 1189,
+    "control-second": 1189
+  },
+  "priorPoolRecovery": {
+    "recoveredWei": "1",
+    "nativeCredit": "0x87e67d6258b1fed05ea47a59ad99b35333ba44c09587771b53ff27509c112e1d",
+    "receiptCount": 4,
+    "separateFromCleanDemo": true
+  },
+  "disputes": {
+    "A": "OVERTURNED",
+    "B": "UPHELD",
+    "C": "UPHELD"
+  }
 }

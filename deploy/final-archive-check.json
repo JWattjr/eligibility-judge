@@ -1,8 +1,25 @@
 {
   "status": "PASS",
-  "run": "milestone-v1-final",
-  "checkedAt": "2026-10-21T11:02:00.669752+00:00",
-  "archive": "deploy/previous-runs/milestone-v1-clean-stopped",
-  "verifiedFiles": 16,
-  "scope": "Git-published archive bytes exactly match each original working-file checksum."
+  "checkedAt": "2026-10-21T16:49:52.887481+00:00",
+  "filesVerified": 41,
+  "archives": [
+    {
+      "archive": "milestone-v1-first-run",
+      "status": "PASS",
+      "filesVerified": 16,
+      "manifestSha256": "a55f1241dd85acbb3b1f90c4668fd18bc355894adbdbf609bd0d5cc92c26c672"
+    },
+    {
+      "archive": "milestone-v1-clean-stopped",
+      "status": "PASS",
+      "filesVerified": 16,
+      "manifestSha256": "4ae3a1917dd9427fc9b37210b45b70ad2eb9ed38546d31c1ad4c7493a0cd7168"
+    },
+    {
+      "archive": "milestone-v1-final-stopped",
+      "status": "PASS",
+      "filesVerified": 9,
+      "manifestSha256": "a708b20c9c8052188e0a4a09f43994686158062d78e230f8e665d37a96f56a6e"
+    }
+  ]
 }

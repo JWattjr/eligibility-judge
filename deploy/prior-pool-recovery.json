@@ -1,0 +1,41 @@
+{
+  "run": "milestone-v1-prior-pool-recovery",
+  "judge": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+  "challenge": "challenge-7",
+  "organizer": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+  "sourceFailure": "0x34543a309fa906b82e1c231fe30d4822b39f1f0e0cd49d703749832c21692dc9",
+  "grossNewDepositsWei": "0",
+  "amountWei": "1",
+  "transactions": {
+    "settle": "0x154184eee693947bc6547fb1b387a1da6734c4a67a67839ad640f56d1dfe7843",
+    "settle-child-0": "0x917d9c7904d146945307c3ea966faaeaeb873855784845df463df994f8aabd68",
+    "claim": "0xc7b48ef8ed20346f7742349d257fa1c04c049ddf2ea2a8829d7150aa7c56abc1",
+    "claim-child-0": "0x87e67d6258b1fed05ea47a59ad99b35333ba44c09587771b53ff27509c112e1d"
+  },
+  "broadcasts": {
+    "settle": {
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "method": "settle",
+      "args": [
+        "challenge-7"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92"
+    },
+    "claim": {
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "method": "claim",
+      "args": [
+        "challenge-7"
+      ],
+      "value": "0",
+      "sender": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92"
+    }
+  },
+  "completed": true,
+  "recordedAt": "2026-10-21T16:45:26.096Z",
+  "transfer": "0x87e67d6258b1fed05ea47a59ad99b35333ba44c09587771b53ff27509c112e1d",
+  "judgeBalanceWei": "0",
+  "recoveredWei": "1",
+  "status": "RECOVERED"
+}

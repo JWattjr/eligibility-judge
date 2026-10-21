@@ -237,7 +237,30 @@ def main():
     for name, contract in proof['contracts'].items():
         balances[name] = int(rpc('eth_getBalance', [contract['address'], 'latest'])['result'], 16)
         assert balances[name] == 0, (name, 'unexpected stranded balance', balances[name])
-    report = {'status': 'PASS', 'run': proof['run'], 'allTransactionsSuccessful': True, 'reportedFailures': [], 'reportedMismatches': [],
+    # Recovery of the previous attempt is separate from the seven clean-demo credits.
+    recovery = json.loads((ROOT / 'deploy/prior-pool-recovery.json').read_text(encoding='utf-8'))
+    assert recovery['completed'] and recovery['recoveredWei'] == '1' and recovery['grossNewDepositsWei'] == '0'
+    assert recovery['challenge'] == 'challenge-7' and recovery['sourceFailure'] == prior['failures'][0]['hash']
+    recovery_records = {}
+    for name, tx_hash in recovery['transactions'].items():
+        record = rpc('eth_getTransactionByHash', [tx_hash])['result']
+        recovery_records[name] = record
+        if name == 'claim-child-0':
+            credited_transfer(record, recovery_records['claim'], proof['judge'], organizer, 1)
+        else:
+            successful(record)
+        if name in ('settle', 'claim'):
+            assert record['from_address'].lower() == organizer and record['to_address'].lower() == proof['judge'].lower() and int(record['value']) == 0
+            assert decode(base64.b64decode(record['data']['calldata'])) == {'method': name, 'args': ['challenge-7']}
+            assert record['triggered_transactions'] == [recovery['transactions'][name+'-child-0']]
+        else:
+            parent = recovery_records[name.removesuffix('-child-0')]
+            assert record.get('triggered_by') == parent['hash'] and record['triggered_on'] == 'finalized'
+            if name == 'settle-child-0':
+                assert record['from_address'].lower() == record['to_address'].lower() == proof['judge'].lower() and int(record['value']) == 0
+    assert set(recovery_records) == {'settle', 'settle-child-0', 'claim', 'claim-child-0'}
+    assert int(rpc('eth_getBalance', [proof['judge'], 'latest'])['result'], 16) == 0
+    report = {'status': 'PASS', 'run': proof['run'], 'proofDigest': digest(proof), 'allTransactionsSuccessful': True, 'reportedFailures': [], 'reportedMismatches': [],
               'recordedAt': datetime.now(timezone.utc).isoformat(), 'receiptCount': len(records), 'grossDepositsWei': str(deposits),
               'nativeTransferCount': len(native_records), 'allNativeCreditsVerified': True,
               'depositCeilingWei': proof['depositCeilingWei'], 'allNewContractBalancesWei': balances, 'badgeCount': len(all_badges),
@@ -246,6 +269,7 @@ def main():
               'byteIdentityScope': 'The three newly deployed milestone contracts. The unchanged original judge retains its exact CRLF deployment hash and original LF Git source.',
               'immutableJudgeUnchanged': True, 'immutableJudgeDeployedSha256': hashlib.sha256(judge).hexdigest(), 'immutableJudgeGitSha256': hashlib.sha256(judge_git).hexdigest(),
               'candidateTreeSizes': {c['name']: c['bytes'] for c in proof['candidateTrees']},
+              'priorPoolRecovery': {'recoveredWei': '1', 'nativeCredit': recovery['transfer'], 'receiptCount': len(recovery_records), 'separateFromCleanDemo': True},
               'disputes': {name: case['record']['status'] for name, case in proof['disputeCases'].items()}}
     report_path.write_text(json.dumps(report, indent=2)+'\n', encoding='utf-8')
     print(json.dumps(report, indent=2))

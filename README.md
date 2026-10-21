@@ -101,11 +101,9 @@ The resumable timeout stages are timeout-seed, timeout-entry, and timeout-settle
 
 ## Milestone v1: Seasons, Badges and Disputes
 
-The final demo is in preparation after the user authorized a revised plan. Both prior runs remain preserved. The immutable judge remains [0x03E7970E791d644B2714a457D178Edf036670bb7](https://explorer-studio.genlayer.com/address/0x03E7970E791d644B2714a457D178Edf036670bb7). Corrected milestone contracts are reused with exact source and wiring checks. The negative fixture now provides direct non-paying contract code as counterevidence; each round is judged before the next is seeded.
+The clean `milestone-v1-release` demonstration independently verifies **PASS**, with no reported failures or mismatches. Dispute A overturns the rescued entrant's bounded-evidence payout ruling to PASS. B upholds the control's correct FAIL and pays the frivolous dispute bond to the entrant. C rejects the exact injection argument in a real hearing. Four finalized badges include one `via_dispute` credential; steady and rescued each qualify twice and receive a verified **0.025 GEN** season bonus. The original judge pool remains settled independently.
 
-The new deposit ceiling is **0.2 simulated StudioNet GEN**. The plan uses two 1-wei challenge pools, three 0.01-GEN bonds and one 0.05-GEN season bonus: **0.08 GEN plus 2 wei**. Repository trees must be complete and under 80,000 bytes before any deposit. Every live case runs once; an unexpected outcome stops the run. The previous 0.05 GEN plus 2 wei was recovered and still counts toward the gross ceiling. The quote-error attempt added 1 wei; the planned cumulative gross is now 0.13 GEN plus 5 wei. No completed final live outcome is claimed yet. The Portal is not submitted automatically.
-
-The clean-run contracts are deployed, source-byte checked and wired to the unchanged judge:
+The immutable judge remains [0x03E7970E791d644B2714a457D178Edf036670bb7](https://explorer-studio.genlayer.com/address/0x03E7970E791d644B2714a457D178Edf036670bb7). The three corrected milestone contracts are reused unchanged, with byte-identical deployed, working and Git sources and verified dependency wiring. Every address is a separate GenLayer Explorer Contract evidence entry:
 
 | Contract | StudioNet Explorer |
 | --- | --- |
@@ -113,7 +111,11 @@ The clean-run contracts are deployed, source-byte checked and wired to the uncha
 | QualificationBadges | [0x0F278ea98EB792C616947Be2Fb4A857C1Be59543](https://explorer-studio.genlayer.com/address/0x0F278ea98EB792C616947Be2Fb4A857C1Be59543) |
 | EligibilitySeries | [0x0e355b80258869F6b42016185EBc0901F87C152C](https://explorer-studio.genlayer.com/address/0x0e355b80258869F6b42016185EBc0901F87C152C) |
 
-Validation for the revised demo is running. The active [readiness report](docs/submission/MILESTONE-V1-READINESS.md) and manifest record actual results.
+Repository trees were saved before deposits, complete and below 80,000 bytes. The two rounds use distinct immutable pins. New demo deposits are **80000000000000002 wei** (0.08 GEN plus 2 wei); cumulative gross deposits under this authorization are **130000000000000005 wei** (0.13 GEN plus 5 wei), below the 0.2-GEN ceiling. Previous deposits remain counted after recovery. All three milestone contracts and the original judge have zero balance; the previous attempt's one-wei pool was recovered separately without another deposit.
+
+Validation: 116 direct contract tests and 22 app tests; lint, TypeScript and production build pass. Fresh completed-snapshot checks: **PASS**; desktop and 390x844 browser checks: **PENDING**; production release: **PENDING**. See [readiness](docs/submission/MILESTONE-V1-READINESS.md), [Portal fields](docs/submission/milestone-v1.json), [the manifest](deploy/milestone-proof.json), [strict verification](deploy/milestone-verification.json) and [the tutorial](docs/TUTORIAL-MILESTONE-V1.md).
+
+The demonstration uses owner-operated wallets and repositories; overturns affect credentials and seasons, not the original judge pool. StudioNet GEN is development currency. The Portal remains for the owner to submit.
 
 ### Previous clean run: stopped and recovered
 

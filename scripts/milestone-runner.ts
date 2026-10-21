@@ -19,6 +19,7 @@ export default async function milestone(client:Client){
  const step=process.env.ELIGIBILITY_MILESTONE_STEP??'snapshot';
  if(proof.stopReason)throw Error('One-pass run is stopped: '+proof.stopReason);
  if(proof.run!=='milestone-v1-release'||proof.depositCeilingWei!=='200000000000000000')throw Error('Expected the isolated final-run journal and cumulative 0.2 GEN ceiling');
+ if(Number(client.chain?.id)!==61999)throw Error('Select StudioNet 61999 before resuming this journal; no write was sent.');
  if(proof.stages?.[step]?.status==='PASS'){console.log('Previously completed stage retained:',step);return}
  proof.stages??={};proof.stages[step]={status:'RUNNING',at:new Date().toISOString()};save();
  const owner=client.account!.address.toLowerCase();
@@ -47,7 +48,7 @@ export default async function milestone(client:Client){
     console.log(name,hash,native?'FINALIZED CREDITED':'FINALIZED SUCCESS');return receipt;
    }
    if(i%12===0)console.log(name,hash,receipt.statusName??receipt.status_name??receipt.status);
-   await pause(10000);
+   await pause(20000);
   }
   throw Object.assign(Error('Receipt timeout; resume this SAME saved hash: '+name+' '+hash),{code:'WAITING_RECEIPT'});
  }
@@ -117,7 +118,7 @@ export default async function milestone(client:Client){
    const now=Date.now();const requests:number[]=existsSync(ledger)?JSON.parse(readFileSync(ledger,'utf8')):[];
    const recent=requests.filter(t=>now-t<3600000).length;
    // Start a short entry window only with room for its entries AND judgments.
-   if(recent<=170)return;
+   if(recent<=220)return;
    if(checks%6===0)console.log('Waiting before creating the next 15-minute window; retaining RPC history,',recent,'requests in the last hour.');
    await pause(10000);
   }

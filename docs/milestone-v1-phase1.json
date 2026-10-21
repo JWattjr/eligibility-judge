@@ -111,9 +111,9 @@
   },
   "diagnosticScope": "Four new direct tests exercise the actual immutable-judge validator closure and non-paying negative contract; mocks do not identify the historical rejection cause or prove live consensus.",
   "evidenceLogs": {
-    "directTests": ".impeccable/review/milestone-v1-final-direct-tests.log",
+    "directTests": ".impeccable/review/milestone-v1-release-direct-tests.log",
     "appTests": ".impeccable/review/milestone-v1-final-app-tests.log",
-    "typecheck": ".impeccable/review/milestone-v1-final-typecheck.log",
+    "typecheck": ".impeccable/review/milestone-v1-release/poll-budget-typecheck.log",
     "productionBuild": ".impeccable/review/milestone-v1-final-build-elevated.log"
   }
 }

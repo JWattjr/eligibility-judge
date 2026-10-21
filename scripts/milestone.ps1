@@ -1,4 +1,4 @@
-param([ValidateSet('deploy','probe','prepare','seed','judge','disputes','complete','snapshot')][string]$Step='snapshot')
+param([ValidateSet('deploy','probe','prepare','seed-1','judge-1','disputes-1','seed-2','judge-2','disputes-2','create-series','complete','snapshot')][string]$Step='snapshot')
 $ErrorActionPreference='Stop'
 Set-Location -LiteralPath (Split-Path -Parent $PSScriptRoot)
 $previousNodeOptions=$env:NODE_OPTIONS
@@ -12,7 +12,7 @@ try {
  if($LASTEXITCODE -ne 0){exit $LASTEXITCODE}
  $milestoneJournal=if($env:ELIGIBILITY_MILESTONE_PROOF_PATH){$env:ELIGIBILITY_MILESTONE_PROOF_PATH}else{'deploy/milestone-proof.json'}
  $milestoneResult=Get-Content -LiteralPath $milestoneJournal -Raw | ConvertFrom-Json
- if($milestoneResult.stages.$Step.status -notin @('PASS','PASS_WITH_REPORTED_FAILURES','COMPLETED_WITH_REPORTED_DEVIATIONS')){throw ('Milestone stage did not pass: '+$Step+'. Saved hashes remain in '+$milestoneJournal)}
+ if($milestoneResult.stages.$Step.status -ne 'PASS'){throw ('Milestone stage did not pass: '+$Step+'. Saved hashes remain in '+$milestoneJournal)}
 } finally {
  $env:NODE_OPTIONS=$previousNodeOptions
  $env:ELIGIBILITY_MILESTONE_STEP=$previousMilestoneStep

@@ -1,17 +1,75 @@
 {
-  "version": 2,
-  "run": "milestone-v1-clean",
+  "version": 3,
+  "run": "milestone-v1-final",
   "network": "StudioNet",
   "chainId": 61999,
   "judge": "0x03E7970E791d644B2714a457D178Edf036670bb7",
   "probe": "0x195BcD24D86Cb4c3D594408cd92481E6aAe60611",
+  "organizer": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
   "depositCeilingWei": "200000000000000000",
+  "previousGrossDepositsWei": "50000000000000002",
   "grossDepositsWei": "0",
-  "transactions": {},
-  "broadcasts": {},
-  "contracts": {},
+  "cumulativeGrossDepositsWei": "50000000000000002",
+  "transactions": {
+    "deploy-disputes": "0x99e12579d128fa6ad3de3b33a3fe411b7192a03aa8b0559a9202602c1aa2cd2e",
+    "deploy-badges": "0xe998c9dd5f2d3b87c1266b46ebf7a687bb337d48c99418b7a30442791a3a5df7",
+    "deploy-series": "0xd86ac5a1173036b2e1b7746276770e28e738472dff35a18be1dd29672ff46f9c"
+  },
+  "broadcasts": {
+    "deploy-disputes": {
+      "source": "contracts/rule_disputes.py",
+      "args": [
+        "0x03E7970E791d644B2714a457D178Edf036670bb7"
+      ],
+      "at": "2026-10-20T18:23:27.072Z"
+    },
+    "deploy-badges": {
+      "source": "contracts/qualification_badges.py",
+      "args": [
+        "0x03E7970E791d644B2714a457D178Edf036670bb7",
+        "0x464f3e7147d1C7e7EdeF5e4A0fcb9393a8F8A680"
+      ],
+      "at": "2026-10-20T18:24:04.567Z"
+    },
+    "deploy-series": {
+      "source": "contracts/eligibility_series.py",
+      "args": [
+        "0x03E7970E791d644B2714a457D178Edf036670bb7",
+        "0x464f3e7147d1C7e7EdeF5e4A0fcb9393a8F8A680"
+      ],
+      "at": "2026-10-20T18:24:50.923Z"
+    }
+  },
+  "contracts": {
+    "disputes": {
+      "address": "0x464f3e7147d1C7e7EdeF5e4A0fcb9393a8F8A680",
+      "source": "contracts/rule_disputes.py",
+      "sourceSha256": "947ff60e7ba005f6b418db9e4db98c83f424231433221f78a82af65e61e93181",
+      "sourceVerified": true,
+      "configurationVerified": true
+    },
+    "badges": {
+      "address": "0x0F278ea98EB792C616947Be2Fb4A857C1Be59543",
+      "source": "contracts/qualification_badges.py",
+      "sourceSha256": "2f4d00ebab6f4e1a2c1ccd476be4cc1b979705b5b112da6411d02b5e1f605f14",
+      "sourceVerified": true,
+      "configurationVerified": true
+    },
+    "series": {
+      "address": "0x0e355b80258869F6b42016185EBc0901F87C152C",
+      "source": "contracts/eligibility_series.py",
+      "sourceSha256": "0b9781520e730a0387a46423826924b4ff1dac84e4359687295f92f6c32b049a",
+      "sourceVerified": true,
+      "configurationVerified": true
+    }
+  },
   "deposits": [],
   "completed": false,
-  "previousRun": "deploy/previous-runs/milestone-v1-first-run/deploy/milestone-proof.json",
-  "stopOnAnyFailure": true
+  "stages": {},
+  "stopOnAnyFailure": true,
+  "previousRun": "deploy/previous-runs/milestone-v1-clean-stopped",
+  "deploymentReused": true,
+  "deploymentProvenance": "Corrected contracts deployed and source-verified in the archived clean run; no contract source changes.",
+  "authorization": "User instructed proceed till finish after the revised-demo plan and full recovery. Separate fresh cases; no old failed transaction is replayed.",
+  "recordedAt": "2026-10-21T10:39:04.614020+00:00"
 }

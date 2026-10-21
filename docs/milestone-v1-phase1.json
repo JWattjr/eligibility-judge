@@ -1,67 +1,119 @@
 {
-  "phase": 1,
   "status": "PASS",
-  "recordedAt": "2026-10-20T13:34:18.950709+00:00",
-  "judgeContract": "0x03E7970E791d644B2714a457D178Edf036670bb7",
-  "judgeSourceSha256": "740a52ba9d9274fe2a8536535852b69394b3f53726cd57e7979f09073d29db2a",
-  "judgeSourceUnchanged": true,
-  "draftContracts": [
-    {
-      "path": "contracts/rule_disputes.py",
-      "sha256": "f930c877ab865cf94f7ef6e7dfb873e7abeab8f5f30447eae973b996574f011b"
+  "run": "milestone-v1-final",
+  "checkedAt": "2026-10-21T10:48:05.064953+00:00",
+  "contractTests": 114,
+  "existingContractTests": 46,
+  "milestoneContractTests": 68,
+  "additionalTestsThisRun": 4,
+  "appTests": 22,
+  "typecheck": "PASS",
+  "lint": {
+    "disputes": {
+      "ok": true,
+      "lint": {
+        "ok": true,
+        "passed": 3
+      },
+      "validate": {
+        "ok": true,
+        "contract": "RulingDisputes",
+        "methods": 17,
+        "view_methods": 5,
+        "write_methods": 12,
+        "ctor_params": 1,
+        "warnings": [
+          {
+            "code": "I200",
+            "msg": "py-genlayer: a newer runner is available (babwp9t37jw9g4j2bccgn14g6x7x9s1f7dsmh7emvz735pz4zxa0). See https://github.com/genlayerlabs/genvm-manager/releases for changes."
+          }
+        ]
+      }
     },
-    {
-      "path": "contracts/qualification_badges.py",
-      "sha256": "2f4d00ebab6f4e1a2c1ccd476be4cc1b979705b5b112da6411d02b5e1f605f14"
+    "badges": {
+      "ok": true,
+      "lint": {
+        "ok": true,
+        "passed": 3
+      },
+      "validate": {
+        "ok": true,
+        "contract": "QualificationBadges",
+        "methods": 5,
+        "view_methods": 4,
+        "write_methods": 1,
+        "ctor_params": 2,
+        "warnings": [
+          {
+            "code": "I200",
+            "msg": "py-genlayer: a newer runner is available (babwp9t37jw9g4j2bccgn14g6x7x9s1f7dsmh7emvz735pz4zxa0). See https://github.com/genlayerlabs/genvm-manager/releases for changes."
+          }
+        ]
+      }
     },
-    {
-      "path": "contracts/eligibility_series.py",
-      "sha256": "542ebf177d060be33c729198ceb7d2542af90b892bd4c3545330a9349831ac65"
+    "series": {
+      "ok": true,
+      "lint": {
+        "ok": true,
+        "passed": 3
+      },
+      "validate": {
+        "ok": true,
+        "contract": "EligibilitySeries",
+        "methods": 15,
+        "view_methods": 5,
+        "write_methods": 10,
+        "ctor_params": 2,
+        "warnings": [
+          {
+            "code": "I200",
+            "msg": "py-genlayer: a newer runner is available (babwp9t37jw9g4j2bccgn14g6x7x9s1f7dsmh7emvz735pz4zxa0). See https://github.com/genlayerlabs/genvm-manager/releases for changes."
+          }
+        ]
+      }
     }
-  ],
-  "phase1Check": {
-    "result": "PASS",
-    "lint": "PASS (all three contracts)",
-    "sdkValidation": "PASS (all three contracts)",
-    "directTests": "97 passed"
   },
-  "directTests": {
-    "passed": 97,
-    "existing": 46,
-    "new": 51
-  },
-  "deployments": [],
-  "transactions": {},
-  "grossDepositsWei": "0",
-  "depositCeilingWei": "1000000000000000000",
-  "fixedThresholdOwnerAnswer": "Void rounds never lower the original qualification count.",
-  "nextStep": "Phase 1 complete. Current deployments, deposits and live progress are journaled in deploy/milestone-proof.json.",
-  "resolvedPreviousFailure": "Replaced inline nondeterministic observation lambdas with named local functions. All three contracts now pass lint and SDK validation without behavior changes.",
-  "lintChecks": [
-    {
-      "contract": "RulingDisputes",
-      "lint": "PASS",
-      "sdkValidation": "PASS",
-      "runner": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6"
+  "seriesPayoutMethodOrder": "Existing methods moved earlier without changing their ASTs or logic.",
+  "contracts": {
+    "disputes": {
+      "address": "0x464f3e7147d1C7e7EdeF5e4A0fcb9393a8F8A680",
+      "source": "contracts/rule_disputes.py",
+      "sourceSha256": "947ff60e7ba005f6b418db9e4db98c83f424231433221f78a82af65e61e93181",
+      "sourceVerified": true,
+      "configurationVerified": true
     },
-    {
-      "contract": "QualificationBadges",
-      "lint": "PASS",
-      "sdkValidation": "PASS",
-      "runner": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6"
+    "badges": {
+      "address": "0x0F278ea98EB792C616947Be2Fb4A857C1Be59543",
+      "source": "contracts/qualification_badges.py",
+      "sourceSha256": "2f4d00ebab6f4e1a2c1ccd476be4cc1b979705b5b112da6411d02b5e1f605f14",
+      "sourceVerified": true,
+      "configurationVerified": true
     },
-    {
-      "contract": "EligibilitySeries",
-      "lint": "PASS",
-      "sdkValidation": "PASS",
-      "runner": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6"
+    "series": {
+      "address": "0x0e355b80258869F6b42016185EBc0901F87C152C",
+      "source": "contracts/eligibility_series.py",
+      "sourceSha256": "0b9781520e730a0387a46423826924b4ff1dac84e4359687295f92f6c32b049a",
+      "sourceVerified": true,
+      "configurationVerified": true
     }
-  ],
-  "ownerContinuation": "Owner explicitly revoked the instruction to stop at checkpoints; fix checks and continue to completion. Preserve one-shot live cases and the 1 GEN ceiling.",
-  "historicalInitialCheck": {
-    "passed": 96,
-    "new": 50,
-    "disputesSha256": "1fa153162ccba5f7b47586d712771f08ca84f8a20bf59cf6917c9055988b28b1"
   },
-  "openingSafetyRevision": "Funded reservation persists before zero-value file check; failed checks remain expirable and refundable."
+  "immutableJudgeSha256": "740a52ba9d9274fe2a8536535852b69394b3f53726cd57e7979f09073d29db2a",
+  "productionBuild": "PASS",
+  "immutableJudgeBaseline": {
+    "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+    "deployedSha256": "740a52ba9d9274fe2a8536535852b69394b3f53726cd57e7979f09073d29db2a",
+    "deployedBytes": 21846,
+    "gitSha256": "20244a168541a23d1d46b2dc14b1f3d05e2b74d8def8761fb9f0eb5aaa7a17aa",
+    "gitByteIdentical": false,
+    "workingSha256": "740a52ba9d9274fe2a8536535852b69394b3f53726cd57e7979f09073d29db2a",
+    "workingByteIdentical": true,
+    "normalizedIdentical": true
+  },
+  "diagnosticScope": "Four new direct tests exercise the actual immutable-judge validator closure and non-paying negative contract; mocks do not identify the historical rejection cause or prove live consensus.",
+  "evidenceLogs": {
+    "directTests": ".impeccable/review/milestone-v1-final-direct-tests.log",
+    "appTests": ".impeccable/review/milestone-v1-final-app-tests.log",
+    "typecheck": ".impeccable/review/milestone-v1-final-typecheck.log",
+    "productionBuild": ".impeccable/review/milestone-v1-final-build-elevated.log"
+  }
 }

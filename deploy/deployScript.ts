@@ -6,6 +6,7 @@ import {studionet} from 'genlayer-js/chains';
 import {createClient} from 'genlayer-js';
 import {generatePrivateKey,privateKeyToAccount} from 'viem/accounts';
 import milestone from '../scripts/milestone-runner';
+import recoverMilestone from '../scripts/recover-milestone';
 // All writes carry explicit fees via a custom transport. SDK 1.1.8 does not expose fee fields on writeContract.
 // genlayer CLI supplies the signing client; fee injection is installed in scripts/deploy.ps1.
 const proofPath=process.env.ELIGIBILITY_PROOF_PATH??'deploy/proof.json';
@@ -13,6 +14,7 @@ const receiptDir=proofPath==='deploy/proof.json'?'deploy/receipts':proofPath==='
 const sleep=(ms:number)=>new Promise(r=>setTimeout(r,ms));
 const compact=(r:any)=>({hash:r.hash,status:r.statusName??r.status_name,execution:r.txExecutionResultName??r.consensus_data?.leader_receipt?.[0]?.execution_result,recipient:r.recipient??r.to_address,value:r.value,value_credited:r.value_credited,result:r.result_name??r.resultName,error:r.consensus_data?.leader_receipt?.[0]?.genvm_result});
 export default async function main(client:GenLayerClient<typeof studionet>){
+ if(process.env.ELIGIBILITY_RECOVERY_STEP)return recoverMilestone(client);
  if(process.env.ELIGIBILITY_MILESTONE_STEP)return milestone(client);
  const proof=JSON.parse(readFileSync(proofPath,'utf8'));mkdirSync(receiptDir,{recursive:true});
  const save=()=>{proof.recordedAt=new Date().toISOString();writeFileSync(proofPath,JSON.stringify(proof,null,2));};

@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "run": "milestone-v1-clean",
+  "checkedAt": "2026-10-20T18:30:44.689Z",
+  "contracts": [
+    {
+      "name": "disputes",
+      "address": "0x464f3e7147d1C7e7EdeF5e4A0fcb9393a8F8A680",
+      "visibleContract": true,
+      "network": "StudioNet"
+    },
+    {
+      "name": "badges",
+      "address": "0x0F278ea98EB792C616947Be2Fb4A857C1Be59543",
+      "visibleContract": true,
+      "network": "StudioNet"
+    },
+    {
+      "name": "series",
+      "address": "0x0e355b80258869F6b42016185EBc0901F87C152C",
+      "visibleContract": true,
+      "network": "StudioNet"
+    },
+    {
+      "name": "judge",
+      "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+      "visibleContract": true,
+      "network": "StudioNet"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "scope": "Existing deposit recovery only; clean submission run remains failed.",
+  "checkedAt": "2026-10-21T04:44:07.461135+00:00",
+  "chainId": 61999,
+  "transactionCount": 14,
+  "nativeCredits": 3,
+  "recipient": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+  "recoveredWei": "50000000000000002",
+  "grossNewDepositsWei": "0",
+  "seriesBalanceWei": "0",
+  "failedRunPreserved": true,
+  "sourceProofSha256": "8371021c06a2d88ee0918cd6a6ed18b22500f57780154bd1e1632bc1ea737d1d",
+  "credits": [
+    {
+      "name": "season-refund",
+      "parent": "0xce8ace45d64c03076c1b91a39ab737e276b52df915dd78c7784bfc138742169e",
+      "transfer": "0xaf7a04b90be7fc9fbdd507f7de8cd9eec4bae93af27334ed589dd7b9b2bc7cfe",
+      "amountWei": "50000000000000000"
+    },
+    {
+      "name": "round-1-claim",
+      "parent": "0x11098e7afa874ec14d24b262dfad2ea2ee67b21888eeb2aa9544af924c295fbf",
+      "transfer": "0x9c155e4c06fff6cc54d270a3428359bc350b05dbc6378c7d50711a2b62dd121a",
+      "amountWei": "1"
+    },
+    {
+      "name": "round-2-refund",
+      "parent": "0xc1163081359e1429bea847afd922a2ffd7561db48429694119b7bb5c46a55c20",
+      "transfer": "0xc0a0bc6193583cb94f50a15f309b6724e2164f37333b21df5d2d49f89fffcb7d",
+      "amountWei": "1"
+    }
+  ]
+}

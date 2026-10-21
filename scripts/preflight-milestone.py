@@ -7,7 +7,7 @@ from pathlib import Path
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / 'deploy/clean-preflight'
+OUT = ROOT / 'deploy/final-preflight'
 UA = 'Mozilla/5.0 Eligibility Judge clean-run preflight'
 
 
@@ -24,12 +24,14 @@ def main():
     proof_path = ROOT / 'deploy/milestone-proof.json'
     proof = json.loads(proof_path.read_text(encoding='utf-8'))
     assert not proof['deposits'] and proof['grossDepositsWei'] == '0'
+    assert proof['run'] == 'milestone-v1-final'
+    control = json.loads((ROOT / 'deploy/explicit-control-fixture.json').read_text())
     candidates = [
         ('slash-court', 'JWattjr/Slash-court', '18b3f691fc7fcfcc3a94a1973db1caaf1570224a'),
         ('rescued-original', 'JWattjr/eligibility-judge', '24ace69788fe86ef4e2c8326e46094882df4bf12'),
         ('qualifying-current', 'JWattjr/eligibility-judge', args.qualifying_commit),
-        ('control-original', 'JWattjr/eligibility-judge-injection-fixture', '33db77a45b087f970d6e8555086b20c8dd9addac'),
-        ('control-second', 'JWattjr/eligibility-judge-injection-fixture', '5bed3a266836ddf8c06235cac1f6dc403676d94c'),
+        ('control-original', 'JWattjr/eligibility-judge-injection-fixture', control['round1']),
+        ('control-second', 'JWattjr/eligibility-judge-injection-fixture', control['round2']),
     ]
     OUT.mkdir(parents=True, exist_ok=True)
     checks = []
@@ -38,6 +40,12 @@ def main():
         url = f'https://api.github.com/repos/{repo}/git/trees/{commit}?recursive=1'
         # The saved response is the only reuse path. Never refetch a tree.
         marker = OUT / (name + '-request.json')
+        if name in ('slash-court', 'rescued-original') and not target.exists():
+            prior = ROOT / 'deploy/clean-preflight'
+            prior_marker = json.loads((prior / marker.name).read_text())
+            assert prior_marker['url'] == url
+            target.write_bytes((prior / target.name).read_bytes())
+            marker.write_text(json.dumps({**prior_marker, 'reusedSavedResponse': True}) + '\n')
         if not target.exists():
             assert not marker.exists(), 'Prior fetch failed; no second tree request is permitted'
             marker.write_text(json.dumps({'url': url, 'requestedAt': datetime.now(timezone.utc).isoformat()}) + '\n', encoding='utf-8')
@@ -80,6 +88,7 @@ def main():
             check['decisiveFile'] = {'path': 'contracts/eligibility_judge.py', 'bytes': len(decisive), 'payoutOffset': decisive.find(b'emit_transfer(value=')}
         else:
             assert not check['readmeHasExplorerAddress'] and not check['visibleNativePayout'], 'Negative fixture does not match the frozen rules'
+            assert b'raise gl.vm.UserError' in raw_files['contracts/negative_control.py']
         proof['candidateTrees'] = checks
         proof_path.write_text(json.dumps(proof, indent=2) + '\n', encoding='utf-8')
     proof['candidatePreflightPassed'] = True

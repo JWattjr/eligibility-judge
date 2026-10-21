@@ -1,0 +1,146 @@
+{
+  "action": "Propose an update",
+  "project": "Eligibility Judge",
+  "milestone": "Milestone v1: Seasons, Badges and Rule Disputes",
+  "run": "milestone-v1-clean",
+  "status": "STOPPED_NOT_SUBMISSION_READY: first failed receipt; no retries authorized by the clean-run brief.",
+  "readyForOwnerReview": false,
+  "summary": "Clean rerun stopped before completion: the second-round control payout-rule judgment finalized as MAJORITY_DISAGREE. The three revised contracts are deployed and source-verified; disputes A/B/C, badge minting and bonus payouts did not run. Demo wallets and repositories are owner-operated; overturns affect credentials and seasons, not the original judge pool.",
+  "network": "StudioNet 61999. GEN is simulated development currency.",
+  "contracts": [
+    {
+      "name": "RulingDisputes",
+      "address": "0x464f3e7147d1C7e7EdeF5e4A0fcb9393a8F8A680",
+      "description": "Bonded full-file rule hearings. Validators independently judge pinned evidence and verify quotes. Finalized outcomes update credentials; VOID refunds and timed exits protect bonds.",
+      "explorer": "https://explorer-studio.genlayer.com/address/0x464f3e7147d1C7e7EdeF5e4A0fcb9393a8F8A680"
+    },
+    {
+      "name": "QualificationBadges",
+      "address": "0x0F278ea98EB792C616947Be2Fb4A857C1Be59543",
+      "description": "Non-transferable qualification credentials tied to a pinned commit, frozen rulebook and effective-verdict digest. Minting waits for the opening window and every pending hearing. No LLM or stake.",
+      "explorer": "https://explorer-studio.genlayer.com/address/0x0F278ea98EB792C616947Be2Fb4A857C1Be59543"
+    },
+    {
+      "name": "EligibilitySeries",
+      "address": "0x0e355b80258869F6b42016185EBc0901F87C152C",
+      "description": "Two-to-six-round seasons with a fixed qualification count and equal GEN bonus shares. Imports final effective rulings, refunds void or empty seasons, and verifies native credit before marking paid.",
+      "explorer": "https://explorer-studio.genlayer.com/address/0x0e355b80258869F6b42016185EBc0901F87C152C"
+    }
+  ],
+  "evidence": [
+    {
+      "type": "GenLayer Explorer Contract",
+      "title": "RulingDisputes deployed on StudioNet",
+      "url": "https://explorer-studio.genlayer.com/address/0x464f3e7147d1C7e7EdeF5e4A0fcb9393a8F8A680"
+    },
+    {
+      "type": "GenLayer Explorer Contract",
+      "title": "QualificationBadges deployed on StudioNet",
+      "url": "https://explorer-studio.genlayer.com/address/0x0F278ea98EB792C616947Be2Fb4A857C1Be59543"
+    },
+    {
+      "type": "GenLayer Explorer Contract",
+      "title": "EligibilitySeries deployed on StudioNet",
+      "url": "https://explorer-studio.genlayer.com/address/0x0e355b80258869F6b42016185EBc0901F87C152C"
+    },
+    {
+      "type": "GenLayer Explorer Contract",
+      "title": "Unchanged EligibilityJudge on StudioNet",
+      "url": "https://explorer-studio.genlayer.com/address/0x03E7970E791d644B2714a457D178Edf036670bb7"
+    },
+    {
+      "type": "GenLayer Explorer Transaction",
+      "title": "Clean run stopped: MAJORITY_DISAGREE",
+      "url": "https://explorer-studio.genlayer.com/tx/0xb1c68291e8c3211acb8755f5504709ddb6acff96d3cb9481b194c21b70ad5296"
+    },
+    {
+      "type": "GenLayer Explorer Transaction",
+      "title": "Season bonus refund — native credit",
+      "url": "https://explorer-studio.genlayer.com/tx/0xaf7a04b90be7fc9fbdd507f7de8cd9eec4bae93af27334ed589dd7b9b2bc7cfe"
+    },
+    {
+      "type": "GenLayer Explorer Transaction",
+      "title": "Round 1 qualifier share — native credit",
+      "url": "https://explorer-studio.genlayer.com/tx/0x9c155e4c06fff6cc54d270a3428359bc350b05dbc6378c7d50711a2b62dd121a"
+    },
+    {
+      "type": "GenLayer Explorer Transaction",
+      "title": "Round 2 remainder refund — native credit",
+      "url": "https://explorer-studio.genlayer.com/tx/0xc0a0bc6193583cb94f50a15f309b6724e2164f37333b21df5d2d49f89fffcb7d"
+    }
+  ],
+  "liveOutcome": {
+    "failure": {
+      "name": "round-2-judge-control-1",
+      "hash": "0xb1c68291e8c3211acb8755f5504709ddb6acff96d3cb9481b194c21b70ad5296",
+      "status": "FINALIZED",
+      "result": 7,
+      "resultName": "MAJORITY_DISAGREE",
+      "rounds": "4",
+      "rotations": 3,
+      "children": [],
+      "leaderExecution": "SUCCESS",
+      "votes": {
+        "0x17ac0CaefB18205c737e64ee582c9245A28ca1f9": "disagree",
+        "0x8Ce1805d6970d54748dE7160b5b395dCC5c71F44": "idle",
+        "0x8a876C3F3a4783Bd123982bcBF3c672dc0239004": "disagree",
+        "0xA712cB25a4002666FA9D09477251f238dD9e06b3": "agree",
+        "0xa21bc502E3578E4b3039be8c59a257198f7c3f19": "disagree"
+      },
+      "receipt": "deploy/receipts/milestone-v1-clean/round-2-judge-control-1.json",
+      "currentReadReceipt": ".impeccable/review/milestone-v1-clean/failed-receipt-current.json"
+    },
+    "disputes": {
+      "A": "NOT_RUN",
+      "B": "NOT_RUN",
+      "C": "NOT_RUN"
+    },
+    "badgesMinted": 0,
+    "seriesWinners": [],
+    "bonusPayoutsWei": [],
+    "seriesStatus": "OPEN",
+    "grossDepositsWei": "50000000000000002",
+    "contractBalancesWei": {
+      "disputes": "0",
+      "badges": "0",
+      "series": "50000000000000000"
+    },
+    "snapshotScope": "Historical stopped-run snapshot before separately authorized deposit recovery.",
+    "snapshotAt": "2026-10-21T03:00:29.548Z"
+  },
+  "checks": {
+    "contractTests": 110,
+    "appTests": 22,
+    "lint": "PASS (phase 1)",
+    "typecheck": "PASS (phase 1)",
+    "productionBuild": "PASS (phase 1)",
+    "phase1Evidence": "docs/milestone-v1-phase1.json",
+    "liveVerification": "FAIL",
+    "browser": "NOT_RUN_FOR_THIS_RELEASE",
+    "productionRelease": "NOT_RUN",
+    "contractExplorerEvidence": "API and browser verified 2026-10-20; deploy/clean-contract-links.json and deploy/clean-contract-browser.json",
+    "recoveryVerification": "PASS (deposit recovery only; submission proof remains FAIL)"
+  },
+  "blockers": "The requested failure-free proof did not complete. Preserve the failed case and stop. Any recovery or revised live plan must be separate from this one-pass run; do not submit this draft.",
+  "fieldCharacterCounts": {
+    "summary": 360,
+    "RulingDisputes.description": 180,
+    "QualificationBadges.description": 194,
+    "EligibilitySeries.description": 197
+  },
+  "readinessReport": "docs/submission/MILESTONE-V1-READINESS.md",
+  "recordedAt": "2026-10-21T04:44:07.461135+00:00",
+  "recovery": {
+    "status": "RECOVERED",
+    "independentVerification": "PASS",
+    "checkedAt": "2026-10-21T04:44:07.461135+00:00",
+    "recoveredWei": "50000000000000002",
+    "grossNewDepositsWei": "0",
+    "seriesBalanceWei": "0",
+    "recipient": "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92",
+    "nativeCredits": 3,
+    "transactionCount": 14,
+    "failedRunPreserved": true,
+    "report": "docs/submission/MILESTONE-V1-RECOVERY.md"
+  }
+}

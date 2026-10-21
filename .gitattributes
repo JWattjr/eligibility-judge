@@ -3,3 +3,6 @@ contracts/rule_disputes.py -text
 contracts/qualification_badges.py -text
 contracts/eligibility_series.py -text
 deploy/previous-runs/milestone-v1-first-run/** -text
+deploy/clean-preflight/*-tree.json -text
+deploy/previous-runs/milestone-v1-clean-stopped/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+deploy/final-preflight/*-tree.json -text

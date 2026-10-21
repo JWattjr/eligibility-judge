@@ -37,7 +37,8 @@ def main():
     proof = json.loads((ROOT/'deploy/milestone-proof.json').read_text(encoding='utf-8'))
     report_path = ROOT/'deploy/milestone-verification.json'
     report = json.loads(report_path.read_text(encoding='utf-8')) if report_path.exists() else {}
-    live_verified = proof['completed'] and report.get('status') in ('PASS', 'PASS_WITH_REPORTED_FAILURES')
+    live_verified = proof['completed'] and report.get('status') == 'PASS' and proof.get('run') == 'milestone-v1-final'
+    assert live_verified, 'Generate success fields only after the final live proof independently passes'
     verified = False
     descriptions = {
         'disputes': ('RulingDisputes', 'Bonded full-file rule hearings. Validators independently judge pinned evidence and verify quotes. Finalized outcomes update credentials; VOID refunds and timed exits protect bonds.'),
@@ -53,9 +54,9 @@ def main():
     fields = {
         'action':'Propose an update', 'project':'Eligibility Judge',
         'milestone':'Milestone v1: Seasons, Badges and Rule Disputes',
-        'status':'Live proof independently verified, including explicitly reported original-judge failures; owner submits.' if verified else 'Live proof in progress. Do not submit this draft.',
+        'status':'Clean one-pass live proof independently verified; owner reviews and submits.' if verified else 'Live proof in progress. Do not submit this draft.',
         'readyForOwnerReview':bool(verified),
-        'summary':'Eligibility Judge adds targeted rule disputes, portable qualification badges and multi-round seasons. A bonded hearing fetches one complete file at the entrant’s pinned commit; independent validators decide the frozen rule and verify the leader’s exact quote in their own fetches. Finalized overturns change credentials and season standings while the original judge pool stays immutable. Badges wait for the opening window and all pending hearings. Seasons retain a fixed qualification count, split a GEN bonus equally and verify native credits before marking payments paid. Unreachable evidence and timed exits refund funds. The disclosed live demo uses owner-operated public repositories, owner-controlled wallets and an existing negative fixture. Tree-bound shortfalls, an original consensus failure and a VOID source check remain reported. A separate one-wei season demonstrates a positive bonus credit without altering the original threshold.',
+        'summary':'Eligibility Judge adds targeted full-file rule hearings, portable qualification badges and fixed-threshold seasons. Validators independently fetch one named file at its pinned commit, decide the frozen rule and verify the leader’s exact quote. The live demo traces an insufficient-evidence verdict through an overturned hearing, a via-dispute badge and a season bonus. Two builders qualify across distinct rounds and each receives 0.025 GEN. A prompt-injection argument is rejected in a real hearing; frivolous disputes pay their bond to the entrant. Raw-file checks remove the GitHub tree API dependency from openings. Unreachable evidence and timed VOID exits refund funds, while native credits are verified before claims become paid. The demo uses owner-operated wallets and repositories; overturns affect credentials and seasons, not the original judge’s pool.',
         'judgmentPoints':'New judgment: apply one frozen eligibility rule to a full named file, up to 64 KB, at the original pinned Git commit. Each validator independently fetches and judges that file, compares only verdict and path, and re-verifies the leader’s verbatim quote in its own fetch. Arguments and instructions in the file remain untrusted evidence. Code derives UPHELD, OVERTURNED or VOID, preserves the original prize settlement, gates credentials on finality and deadlines, and handles bonded refunds. Badges and seasons use deterministic cross-contract reads without an LLM.',
         'reviewRules':'Opening lasts until challenge close + one-hour judging grace + two hours. Bonds are 0.01–10 simulated GEN. Opening persists a reservation before a zero-value file check. Hearings have a 24-hour VOID/refund exit. Badges and round imports wait for every pending case. Void rounds never lower the season qualification threshold. Seasons have a full-refund exit 24 hours after their end. Native claims reserve numbered attempts and require independently verified credit.',
         'network':'StudioNet 61999. GEN is simulated development currency.',
@@ -69,10 +70,11 @@ def main():
         'deploymentVerification':SOURCE+'/blob/main/docs/submission/milestone-v1-links.json',
         'challengeProofs':cases, 'keyTransactions':transactions,
         'grossDepositsWei':proof['grossDepositsWei'], 'depositCeilingWei':proof['depositCeilingWei'], 'deposits':proof['deposits'],
-        'payoutControl':proof.get('payoutControl'), 'unrunCases':proof.get('unrunCases',[]), 'reportedMismatches':proof.get('mismatches',[]), 'reportedFailedTransactions':list(failures.values()),
-        'limits':'The immutable original judge uses bounded evidence. Its Bullseye tree overflow and original consensus failure remain visible. Corrections affect credentials only. Demo wallets and repositories are owner-operated; the negative entry is a test fixture. The first three milestone deployments were retired unfunded before bonds or bonus deposits. No Portal form is submitted automatically.',
-        'checks':{'contractTests':97,'existingContractTests':46,'newContractTests':51,'appTests':22,'lint':'Three contracts pass GenVM lint and SDK validation.','typecheck':'PASS','productionBuild':'PASS','liveVerification':report.get('status','PENDING')},
-        'blockers':'Owner reviews the reported original-judge deviations and submits the Portal milestone.' if verified else 'Live proof, independent verification and final production browser checks are still running.',
+        'previousGrossDepositsWei':proof['previousGrossDepositsWei'], 'cumulativeGrossDepositsWei':proof['cumulativeGrossDepositsWei'],
+        'seriesWinners':proof.get('series',{}).get('winners',[]), 'bonusShareWei':proof.get('series',{}).get('share'), 'candidateTreeSizes':{c['name']:c['bytes'] for c in proof.get('candidateTrees',[])}, 'previousRun':SOURCE+'/tree/main/'+proof['previousRun'],
+        'limits':'The original judge retains bounded evidence inspection. Badge minting and round imports wait for the dispute opening window and every pending hearing. The qualification count stays fixed even if a round is VOID. StudioNet GEN is simulated development currency. Historical first-run evidence is preserved separately. Nothing is submitted to the Portal automatically.',
+        'checks':{'contractTests':114,'existingContractTests':46,'newContractTests':68,'appTests':22,'lint':'Three contracts pass GenVM lint and SDK validation.','typecheck':'PASS','productionBuild':'PASS','liveVerification':report.get('status','PENDING')},
+        'blockers':'Owner reviews the completed clean proof and submits the Portal milestone.' if verified else 'Live proof, independent verification and final production browser checks are still running.',
     }
     counts={'summary':len(fields['summary']),'judgmentPoints':len(fields['judgmentPoints'])}
     assert counts['summary']<=1000
@@ -102,12 +104,12 @@ def main():
     required={item['url'] for item in evidence}|set(transactions.values())|{EXPLORER+'/tx/'+h for h in failures}
     browser_path=ROOT/'docs/milestone-v1-browser.json'
     browser=json.loads(browser_path.read_text(encoding='utf-8')) if browser_path.exists() else {}
-    verified=bool(live_verified and links.get('status')=='PASS' and required<=urls and browser.get('status')=='PASS')
+    verified=bool(live_verified and links.get('status')=='PASS' and required<=urls and browser.get('status')=='PASS' and browser.get('run')==proof.get('run'))
     fields['readyForOwnerReview']=verified
-    fields['status']='Live proof independently verified, including explicitly reported deviations; owner reviews and submits.' if verified else 'Final verification in progress. Do not submit this draft.'
+    fields['status']='Clean one-pass live proof independently verified; owner reviews and submits.' if verified else 'Final verification in progress. Do not submit this draft.'
     fields['checks']['browser']=browser.get('status','PENDING')
     fields['checks']['explorerLinks']=links.get('status','PENDING')
-    if verified:fields['blockers']='Owner reviews the reported live deviations and submits the Portal milestone. Live injection resistance remains unproven.'
+    if verified:fields['blockers']='Owner reviews the completed clean proof and submits the Portal milestone.'
     target.write_text(json.dumps(fields,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(counts,indent=2))
 

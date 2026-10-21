@@ -1,0 +1,87 @@
+{
+  "archivedAt": "2026-10-21T10:39:04.614020+00:00",
+  "head": "00170026a0b9c2469d564b1fa262d60f05cc7672",
+  "note": "Exact working-file snapshots; the stopped journal and credited recovery are preserved. No failure was cleared.",
+  "files": [
+    {
+      "path": "deploy/milestone-proof.json",
+      "bytes": 61260,
+      "sha256": "8371021c06a2d88ee0918cd6a6ed18b22500f57780154bd1e1632bc1ea737d1d"
+    },
+    {
+      "path": "deploy/milestone-verification.json",
+      "bytes": 283,
+      "sha256": "8d5007e3d8f8f632906478c10bc0dfde3397a68a09cef6455fefd9eee27ea6bf"
+    },
+    {
+      "path": "deploy/milestone-recovery.json",
+      "bytes": 27549,
+      "sha256": "93cc2057ede37829163dcd68cf0f4917c3fc9769dd3f5d710da50ccbc54de8dc"
+    },
+    {
+      "path": "deploy/milestone-recovery-verification.json",
+      "bytes": 1296,
+      "sha256": "68fdbb991fa454804a274f854a5ade6d8c85f7fb5e54c3e907f78384fe468ad5"
+    },
+    {
+      "path": "deploy/clean-stop-audit.json",
+      "bytes": 20717,
+      "sha256": "bdb5d0383547247d4ac7704e3037dced21dcd94cf067ca6704e6b968341b0caa"
+    },
+    {
+      "path": "docs/milestone-v1-phase1.json",
+      "bytes": 3722,
+      "sha256": "6d98434ff072bef63d13753fb2e3464ba67bed276616cd3a38a6f4f32a0b8823"
+    },
+    {
+      "path": "docs/submission/MILESTONE-V1-READINESS.md",
+      "bytes": 7492,
+      "sha256": "6b3e9e4b94f2a2e12d86e72a3e188e51cfa139dd08c7a13359592855a29b6fed"
+    },
+    {
+      "path": "docs/submission/MILESTONE-V1-RECOVERY.md",
+      "bytes": 4412,
+      "sha256": "ade58a1945c8a8042f5aadd0105cda74053caa1405753e30378f68f1504cc13c"
+    },
+    {
+      "path": "docs/submission/milestone-v1.json",
+      "bytes": 6990,
+      "sha256": "574cc10b9bced6fc7db1d37e8f2d6d0633216575e35ce9be80214d85d5b2cd00"
+    },
+    {
+      "path": "scripts/milestone-runner.ts",
+      "bytes": 22155,
+      "sha256": "c1d24d13bdec42bf217b2576891785f060d13e3b4f9999d5056f66e124839696"
+    },
+    {
+      "path": "scripts/milestone.ps1",
+      "bytes": 1244,
+      "sha256": "36cd81fc689a7fc3ce801684574e9390e92c4fb67ef74d904e9de5793558ef18"
+    },
+    {
+      "path": "scripts/verify_milestone.py",
+      "bytes": 17201,
+      "sha256": "d4b608bc4401d330628a292ff7b87f4c020cc4b1cd0f2acd1b6b390a0bc40b74"
+    },
+    {
+      "path": "scripts/package-milestone.py",
+      "bytes": 11450,
+      "sha256": "9f9b815774fc76e49b1f23ef38e1de467a4fbbd37b61a79e8065013f20cb370f"
+    },
+    {
+      "path": "scripts/recover-milestone.ts",
+      "bytes": 10770,
+      "sha256": "cda930d8b8f216b09969198825cc782f69821d28ed8d326e561cc21b0fc12ee2"
+    },
+    {
+      "path": "scripts/verify_milestone_recovery.py",
+      "bytes": 5522,
+      "sha256": "fc73e25245c9c4bd029021f6d4b0b29c10d57ebf27a45158c8d9d422113ab5c0"
+    },
+    {
+      "path": "deploy/receipts/milestone-v1-clean/round-2-judge-control-1.json",
+      "bytes": 275853,
+      "sha256": "a446727a7a593d88b98bcf8384755c978343406eb9a91a94ed2eb7093641cc55"
+    }
+  ]
+}

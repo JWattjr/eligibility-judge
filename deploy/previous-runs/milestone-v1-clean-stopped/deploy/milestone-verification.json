@@ -1,0 +1,6 @@
+{
+  "status": "FAIL",
+  "run": "milestone-v1-clean",
+  "error": "Clean run stopped: Error: Live case failed; it will not be rerun: round-2-judge-control-1 0xb1c68291e8c3211acb8755f5504709ddb6acff96d3cb9481b194c21b70ad5296",
+  "recordedAt": "2026-10-21T03:02:16.856210+00:00"
+}

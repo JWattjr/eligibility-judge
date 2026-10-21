@@ -1,0 +1,10 @@
+{
+  "address": "0x03E7970E791d644B2714a457D178Edf036670bb7",
+  "deployedSha256": "740a52ba9d9274fe2a8536535852b69394b3f53726cd57e7979f09073d29db2a",
+  "deployedBytes": 21846,
+  "gitSha256": "20244a168541a23d1d46b2dc14b1f3d05e2b74d8def8761fb9f0eb5aaa7a17aa",
+  "gitByteIdentical": false,
+  "workingSha256": "740a52ba9d9274fe2a8536535852b69394b3f53726cd57e7979f09073d29db2a",
+  "workingByteIdentical": true,
+  "normalizedIdentical": true
+}
